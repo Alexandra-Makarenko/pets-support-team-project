@@ -9,6 +9,11 @@ import {
   FormInput,
   NextFormRegisterBtn,
   SectionRegisterForm,
+  RegisterTitle,
+  RegisterLinkText,
+  RegisterBoxText,
+  ReqisterLoginLink,
+  RegisterBgImg,
 } from './AuthForm.styled';
 
 export const AuthForm = () => {
@@ -41,7 +46,7 @@ export const AuthForm = () => {
   return (
     <SectionRegisterForm>
       <RegisterFormContainer>
-        <h2>Registration</h2>
+        <RegisterTitle>Registration</RegisterTitle>
         <Formik
           initialValues={initialValues}
           // validationSchema={yup.object().shape({
@@ -102,6 +107,13 @@ export const AuthForm = () => {
             </Form>
           )}
         </Formik>
+        <RegisterBoxText>
+          <RegisterLinkText>
+            Already have an account?{' '}
+            <ReqisterLoginLink to="/about">Login</ReqisterLoginLink>
+          </RegisterLinkText>
+        </RegisterBoxText>
+        <RegisterBgImg></RegisterBgImg>
       </RegisterFormContainer>
     </SectionRegisterForm>
   );
