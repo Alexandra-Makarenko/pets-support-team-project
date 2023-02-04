@@ -11,7 +11,16 @@ export const SectionRegisterForm = styled.div`
 `;
 
 export const RegisterFormContainer = styled.div`
-  padding: 10px;
+  max-width: 320px;
+  padding: 0px 20px;
+  margin: 0px auto;
+  /* margin-left: auto;
+  margin-right: auto; */
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-bottom: 103px;
+
+  background-color: green;
   /* justify-items: center; */
   /* align-items: stretch; */
   /* margin-bottom: 30px; */
@@ -20,7 +29,7 @@ export const RegisterFormContainer = styled.div`
 export const FormInput = styled(Field)`
   display: block;
   margin-top: 5px;
-  color: ${props => props.theme.colors.mainTextColor};
+  color: ${props => props.theme.colors.blackColor};
   font-size: 14px;
   line-height: 19px;
   outline: none;
