@@ -6,8 +6,8 @@ import { useLocation} from "react-router-dom";
 const NoticesCategoryList = () => {
 
     const [filter, setFilter] = useState('');
-    const [isLoading, setIsLoading] = useState(false);
-    const [error, setError] = useState(null);
+//     const [isLoading, setIsLoading] = useState(false);
+//     const [error, setError] = useState(null);
     const [film, setFilm] = useState([]);
     
  
