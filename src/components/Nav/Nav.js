@@ -2,7 +2,7 @@ import { useState } from 'react';
 
 import { MdMenu } from 'react-icons/md';
 import { MobileMenu } from 'components/MobileMenu/MobileMenu';
-import css from './Nav.module.css';
+import { MobMenuBtn } from './Nav.styled';
 
 export const Nav = () => {
   const [isOpen, setIsOnen] = useState(false);
@@ -13,13 +13,9 @@ export const Nav = () => {
 
   return (
     <nav>
-      <button
-        type="button"
-        className={css.mobMenuBtn}
-        onClick={mobMenuBtnHandler}
-      >
+      <MobMenuBtn type="button" onClick={mobMenuBtnHandler}>
         <MdMenu size={30} />
-      </button>
+      </MobMenuBtn>
       {isOpen && <MobileMenu />}
     </nav>
   );

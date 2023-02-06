@@ -1,13 +1,11 @@
-import css from './Logo.module.css';
-
-import { Link } from 'react-router-dom';
+import { LogoLink, LogoAccent } from './Logo.styled';
 
 export const Logo = () => {
   return (
     <div>
-      <Link className={css.logo} to="/">
-        pe<span className={css.logoAccent}>t</span>ly
-      </Link>
+      <LogoLink to="/">
+        pe<LogoAccent>t</LogoAccent>ly
+      </LogoLink>
     </div>
   );
 };

@@ -1,12 +1,12 @@
 import { Logo } from 'components/Logo/Logo';
 import { Navigation } from 'components/Naigation/Navigation';
-import css from './Header.module.css';
+import { HeaderContainer } from './Header.styled';
 
 export const Header = () => {
   return (
-    <header className={css.header}>
+    <HeaderContainer>
       <Logo />
       <Navigation />
-    </header>
+    </HeaderContainer>
   );
 };
