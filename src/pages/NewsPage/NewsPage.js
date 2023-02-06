@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from 'react';
 import Searchbar from './components/Searchbar';
 import NewsFeed from './components/NewsFeed';
@@ -27,6 +28,7 @@ const NewsPage = () => {
 
   return (
     <section>
+
       <Searchbar
         onSubmit={handleSubmit}
         onChange={updateQueryString}
@@ -34,6 +36,7 @@ const NewsPage = () => {
       />
 
       <NewsFeed news={news} />
+
     </section>
   );
 };
