@@ -1,9 +1,10 @@
+import { PagesTitle } from '../../components/PagesTitle/PagesTitle';
+
 const NewsPage = () => {
   return (
     <section>
-          <h2>NewsPage</h2>
-          <h3>NewsList</h3>
-      
+      <PagesTitle>News</PagesTitle>
+      <h3>NewsList</h3>
     </section>
   );
 };
