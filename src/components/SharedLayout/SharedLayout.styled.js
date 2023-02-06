@@ -5,9 +5,31 @@ import { device } from '../../styles/device';
 
 export const SharedLayoutBox = styled.div`
   background-color: ${props => props.theme.backgrounds.input};
+  width: 100%;
+  min-height: 100vh;
+  }
 
-   @media ${device.preMobileTablet} { 
-    max-width: 100%;
+`;
+export const SharedLayoutContainer = styled.div`
+   margin-left: auto;
+   margin-right: auto;
+   @media ${device.preTablet} { 
+    max-width: 360px;
+    padding-top: 16px;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+   @media ${device.preDesktop} { 
+   width: 768px;
+   padding-top: 24px;
+   padding-left: 32px;
+   padding-right: 32px;
+  }
+   @media ${device.desktop} { 
+    width: 1280px;
+    padding-top: 20px;
+    padding-left: 16px;
+    padding-right: 16px;
   }
 
 `;
