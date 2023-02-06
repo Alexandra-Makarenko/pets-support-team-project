@@ -9,8 +9,6 @@ export const Nav = () => {
 
   const mobMenuBtnHandler = () => {
     setIsOnen(isOpen => !isOpen);
-    console.log(isOpen);
-    console.log('mobMenuBtnHandler click');
   };
 
   return (
