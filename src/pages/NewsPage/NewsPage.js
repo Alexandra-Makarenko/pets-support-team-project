@@ -10,7 +10,7 @@ const NewsPage = () => {
 
   useEffect(() => {
     getNews(search);
-  }, []);
+  }, [search]);
 
   const getNews = async searchQueue => {
     const result = await fetchNews(searchQueue);
