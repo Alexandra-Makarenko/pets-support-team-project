@@ -1,7 +1,10 @@
+import OurFriends from 'components/OurFriends';
+
 const OurFriendsPage = () => {
   return (
     <section>
-          <h2>OurFriendsPage</h2>      
+      <h2>Our friends</h2>
+      <OurFriends />
     </section>
   );
 };
