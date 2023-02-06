@@ -1,9 +1,12 @@
+import { Logo } from 'components/Logo/Logo';
+import { Navigation } from 'components/Naigation/Navigation';
 import css from './Header.module.css';
 
 export const Header = () => {
   return (
-    <header>
-      <h2>Header must be here</h2>
+    <header className={css.header}>
+      <Logo />
+      <Navigation />
     </header>
   );
 };

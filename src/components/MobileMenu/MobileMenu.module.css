@@ -1,0 +1,41 @@
+.mobileMenu {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: absolute;
+  top: 74px;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: #fdf7f2;
+
+  padding: 30px;
+}
+.userMenuWrapper {
+  margin-bottom: 60px;
+}
+.mobileMenuItem {
+  box-sizing: border-box;
+}
+
+.mobileMenuItem:not(:last-child) {
+  margin-bottom: 40px;
+}
+
+.mobileMenulink {
+  font-family: 'Manrope';
+  display: inline-block;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 32px;
+  line-height: 1.4;
+
+  color: inherit;
+  text-decoration: none;
+}
+
+.mobileMenulink:hover,
+.mobileMenulink:focus {
+  font-weight: 700;
+  color: #f59256;
+}
