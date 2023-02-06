@@ -16,14 +16,14 @@ export const GlobalStyles = createGlobalStyle`
   --white-color: #ffffff;
 }
 
-/* $mobile: 320px;
+$mobile: 320px;
 $mobile-tablet: 480px;
 $tablet: 768px;
 $desktop: 1280px;
 $pre-mobile: 319px;
 $pre-mobile-tablet: 480px;
 $pre-tablet: 767px;
-$pre-desktop: 1279px; */
+$pre-desktop: 1279px;
 
 *,
 *::before,
@@ -177,3 +177,4 @@ img {
 }
 
 `;
+

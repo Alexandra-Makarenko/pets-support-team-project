@@ -1,25 +1,86 @@
 @import-normalize;
 /* bring in normalize.css styles */
 
-:root {
-  --font-base: 'Manrope', sans-serif;
-  --primary-color: #f59256;
-  --secondary-color: #3091eb;
-  --background-color: #fdf7f2;
-  --black-color: #111111;
-  --gray-color: #111111;
-  /* gray color - opacity 60% */
-  --white-color: #ffffff;
+@font-face {
+  font-family: "Manrope500";
+  src: local("Manrope500"),
+    url("./fonts/Manrope/Manrope-Medium.ttf") format("truetype");
+  font-weight: 500;
 }
 
-/* $mobile: 320px;
-$mobile-tablet: 480px;
-$tablet: 768px;
-$desktop: 1280px;
-$pre-mobile: 319px;
-$pre-mobile-tablet: 480px;
-$pre-tablet: 767px;
-$pre-desktop: 1279px; */
+@font-face {
+  font-family: "Manrope400";
+  src: local("Manrope400"),
+    url("./fonts/Manrope/Manrope-Regular.ttf") format("truetype");
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: "Manrope700";
+  src: local("Manrope700"),
+    url("./fonts/Manrope/Manrope-Bold.ttf") format("truetype");
+  font-weight: 700;
+}
+
+@font-face {
+  font-family: "Manrope600";
+  src: local("Manrope600"),
+    url("./fonts/Manrope/Manrope-SemiBold.ttf") format("truetype");
+  font-weight: 600;
+}
+
+@font-face {
+  font-family: "Inter500";
+  src: local("Inter500"),
+    url("./fonts/Inter/Inter-Medium.ttf") format("truetype");
+  font-weight: 500;
+}
+@font-face {
+  font-family: "Inter700";
+  src: local("Inter700"),
+    url("./fonts/Inter/Inter-Bold.ttf") format("truetype");
+  font-weight: 700;
+}
+@font-face {
+  font-family: "Inter400";
+  src: local("Inter400"),
+    url("./fonts/Inter/Inter-Regular.ttf") format("truetype");
+  font-weight: 400;
+}
+
+
+@font-face {
+  font-family: "Montserrat400";
+  src: local("Montserrat400"),
+    url("./fonts/Montserrat/Montserrat-Regular.ttf") format("truetype");
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: "Montserrat500";
+  src: local("Montserrat500"),
+    url("./fonts/Montserrat/Montserrat-Medium.ttf") format("truetype");
+  font-weight: 500;
+}
+
+@font-face {
+  font-family: "Poppins400";
+  src: local("Poppins400"),
+    url("./fonts/Poppins/Poppins-Regular.ttf") format("truetype");
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: "Poppins700";
+  src: local("Poppins700"),
+    url("./fonts/Poppins/Poppins-Bold.ttf") format("truetype");
+  font-weight: 700;
+}
+
+
+body {
+font-family: Manrope400;
+}
 
 *,
 *::before,

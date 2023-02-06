@@ -13,8 +13,9 @@ const OurFriendsPage = lazy(() =>
 const NewsPage = lazy(() => import('../pages/NewsPage/NewsPage'));
 const NoticesPage = lazy(() => import('../pages/NoticesPage/NoticesPage'));
 const UserPage = lazy(() => import('../pages/UserPage/UserPage'));
-const NoticesCategoryList = lazy(() => import("./Notices/NoticesCategoryList/NoticesCategoryList"));
-
+const NoticesCategoryList = lazy(() =>
+  import('./Notices/NoticesCategoryList/NoticesCategoryList')
+);
 
 export const App = () => {
   return (
