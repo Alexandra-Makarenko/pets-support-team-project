@@ -8,7 +8,7 @@ import {
   stepOneReqisterSchema,
   stepTwoReqisterSchema,
   FormError,
-} from 'components/Validation/RegisterValidation';
+} from 'Validations/RegisterValidation';
 
 import {
   RegisterFormContainer,
@@ -19,10 +19,11 @@ import {
   RegisterLinkText,
   RegisterBoxText,
   ReqisterLoginLink,
-  // RegisterBgImg,
+  BackFormRegisterBtn,
+  RegisterFormBox,
 } from './RegisterForm.styled';
 
-export const AuthForm = () => {
+export const RegisterForm = () => {
   // const dispatch = useDispatch();
 
   const [userData, setUserData] = useState({
@@ -65,8 +66,13 @@ export const AuthForm = () => {
   };
 
   const registerSteps = [
-    <RegisterStepOne nextStep={handleNextStep} userData={userData} />,
+    <RegisterStepOne
+      currentStep={currentStep}
+      nextStep={handleNextStep}
+      userData={userData}
+    />,
     <RegisterStepTwo
+      currentStep={currentStep}
       nextStep={handleNextStep}
       prevStep={handlePrevStep}
       userData={userData}
@@ -76,7 +82,9 @@ export const AuthForm = () => {
   // console.log('data', userData);
 
   return (
-    <SectionRegisterForm>{registerSteps[currentStep]}</SectionRegisterForm>
+    <SectionRegisterForm currentStep={currentStep}>
+      {registerSteps[currentStep]}
+    </SectionRegisterForm>
   );
 };
 
@@ -91,60 +99,67 @@ const RegisterStepOne = props => {
 
   return (
     <RegisterFormContainer>
-      <RegisterTitle>Registration</RegisterTitle>
-      <Formik
-        initialValues={props.userData}
-        // validationSchema={stepOneReqisterSchema}
-        onSubmit={handleSubmit}
-      >
-        {({ isValid, dirty }) => (
-          <Form autoComplete="off">
-            <FormInput
-              id={emailInputId}
-              // label="Email"
-              // variant="outlined"
-              name="email"
-              placeholder="Email"
-              // type="email"
-              autoComplete="off"
-              // required
-            />
-            <FormError name="email" />
-            <FormInput
-              id={passwordInputId}
-              // label="Password"
-              name="password"
-              placeholder="Password"
-              type="password"
-              autoComplete="off"
-              // required
-              // error={Boolean(errors.name) && Boolean(touched.name)}
-              // helperText={Boolean(touched.name) && errors.name}
-            />
-            <FormError name="password" />
-            <FormInput
-              id={confirmPasswordInputId}
-              // label="Password"
-              // variant="outlined"
-              name="confirmPassword"
-              placeholder="Confirm Password"
-              type="password"
-              autoComplete="off"
-              // required
-              // error={Boolean(errors.name) && Boolean(touched.name)}
-              // helperText={Boolean(touched.name) && errors.name}
-            />
-            <FormError name="confirmPassword" />
-            <NextFormRegisterBtn type="submit">Next</NextFormRegisterBtn>
-          </Form>
-        )}
-      </Formik>
-      <RegisterBoxText>
-        <RegisterLinkText>
-          Already have an account?{' '}
-          <ReqisterLoginLink to="/about">Login</ReqisterLoginLink>
-        </RegisterLinkText>
-      </RegisterBoxText>
+      <RegisterFormBox>
+        <RegisterTitle>Registration</RegisterTitle>
+        <Formik
+          initialValues={props.userData}
+          // validationSchema={stepOneReqisterSchema}
+          onSubmit={handleSubmit}
+        >
+          {({ isValid, dirty }) => (
+            <Form autoComplete="off">
+              <FormInput
+                id={emailInputId}
+                // label="Email"
+                // variant="outlined"
+                name="email"
+                placeholder="Email"
+                // type="email"
+                autoComplete="off"
+                // required
+              />
+              <FormError name="email" />
+              <FormInput
+                id={passwordInputId}
+                // label="Password"
+                name="password"
+                placeholder="Password"
+                type="password"
+                autoComplete="off"
+                // required
+                // error={Boolean(errors.name) && Boolean(touched.name)}
+                // helperText={Boolean(touched.name) && errors.name}
+              />
+              <FormError name="password" />
+              <FormInput
+                id={confirmPasswordInputId}
+                // label="Password"
+                // variant="outlined"
+                name="confirmPassword"
+                placeholder="Confirm Password"
+                type="password"
+                autoComplete="off"
+                // required
+                // error={Boolean(errors.name) && Boolean(touched.name)}
+                // helperText={Boolean(touched.name) && errors.name}
+              />
+              <FormError name="confirmPassword" />
+              <NextFormRegisterBtn
+                currentStep={props.currentStep}
+                type="submit"
+              >
+                Next
+              </NextFormRegisterBtn>
+            </Form>
+          )}
+        </Formik>
+        <RegisterBoxText>
+          <RegisterLinkText>
+            Already have an account?{' '}
+            <ReqisterLoginLink to="/about">Login</ReqisterLoginLink>
+          </RegisterLinkText>
+        </RegisterBoxText>
+      </RegisterFormBox>
     </RegisterFormContainer>
   );
 };
@@ -160,69 +175,76 @@ const RegisterStepTwo = props => {
 
   return (
     <RegisterFormContainer>
-      <RegisterTitle>Registration</RegisterTitle>
-      <Formik
-        initialValues={props.userData}
-        // validationSchema={stepTwoReqisterSchema}
-        onSubmit={handleSubmit}
-      >
-        {({ values }) => (
-          <Form autoComplete="off">
-            <FormInput
-              id={nameInputId}
-              // label="Email"
-              // variant="outlined"
-              name="name"
-              placeholder="Name"
-              type="text"
-              autoComplete="off"
-              // required
-              // error={Boolean(errors.email) && Boolean(touched.email)}
-              // helperText={Boolean(touched.email) && errors.email}
-            />
-            <FormError name="name" />
-            <FormInput
-              id={regionInputId}
-              // label="Password"
-              name="region"
-              placeholder="City, reqion"
-              type="text"
-              autoComplete="off"
-              // required
-              // error={Boolean(errors.name) && Boolean(touched.name)}
-              // helperText={Boolean(touched.name) && errors.name}
-            />
-            <FormError name="region" />
-            <FormInput
-              id={phoneInputId}
-              // label="Password"
-              // variant="outlined"
-              name="phone"
-              placeholder="Mobile phone"
-              type="tel"
-              autoComplete="off"
-              // required
-              // error={Boolean(errors.name) && Boolean(touched.name)}
-              // helperText={Boolean(touched.name) && errors.name}
-            />
-            <FormError name="phone" />
+      <RegisterFormBox>
+        <RegisterTitle>Registration</RegisterTitle>
+        <Formik
+          initialValues={props.userData}
+          // validationSchema={stepTwoReqisterSchema}
+          onSubmit={handleSubmit}
+        >
+          {({ values }) => (
+            <Form autoComplete="off">
+              <FormInput
+                id={nameInputId}
+                // label="Email"
+                // variant="outlined"
+                name="name"
+                placeholder="Name"
+                type="text"
+                autoComplete="off"
+                // required
+                // error={Boolean(errors.email) && Boolean(touched.email)}
+                // helperText={Boolean(touched.email) && errors.email}
+              />
+              <FormError name="name" />
+              <FormInput
+                id={regionInputId}
+                // label="Password"
+                name="region"
+                placeholder="City, reqion"
+                type="text"
+                autoComplete="off"
+                // required
+                // error={Boolean(errors.name) && Boolean(touched.name)}
+                // helperText={Boolean(touched.name) && errors.name}
+              />
+              <FormError name="region" />
+              <FormInput
+                id={phoneInputId}
+                // label="Password"
+                // variant="outlined"
+                name="phone"
+                placeholder="Mobile phone"
+                type="tel"
+                autoComplete="off"
+                // required
+                // error={Boolean(errors.name) && Boolean(touched.name)}
+                // helperText={Boolean(touched.name) && errors.name}
+              />
+              <FormError name="phone" />
 
-            <NextFormRegisterBtn type="submit">Next</NextFormRegisterBtn>
-            <NextFormRegisterBtn
-              type="button"
-              onClick={() => props.prevStep(values)}
-            >
-              Back
-            </NextFormRegisterBtn>
-          </Form>
-        )}
-      </Formik>
-      <RegisterBoxText>
-        <RegisterLinkText>
-          Already have an account?{' '}
-          <ReqisterLoginLink to="/about">Login</ReqisterLoginLink>
-        </RegisterLinkText>
-      </RegisterBoxText>
+              <NextFormRegisterBtn
+                currentStep={props.currentStep}
+                type="submit"
+              >
+                Register
+              </NextFormRegisterBtn>
+              <BackFormRegisterBtn
+                type="button"
+                onClick={() => props.prevStep(values)}
+              >
+                Back
+              </BackFormRegisterBtn>
+            </Form>
+          )}
+        </Formik>
+        <RegisterBoxText>
+          <RegisterLinkText>
+            Already have an account?{' '}
+            <ReqisterLoginLink to="/about">Login</ReqisterLoginLink>
+          </RegisterLinkText>
+        </RegisterBoxText>
+      </RegisterFormBox>
     </RegisterFormContainer>
   );
 };
