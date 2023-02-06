@@ -11,15 +11,15 @@ export const SharedLayoutBox = styled.div`
 
 `;
 export const SharedLayoutContainer = styled.div`
+   outline: 1px solid red;
    margin-left: auto;
    margin-right: auto;
-   @media ${device.preTablet} { 
-    max-width: 360px;
-    padding-top: 16px;
-    padding-left: 20px;
-    padding-right: 20px;
-  }
-   @media ${device.preDesktop} { 
+   width: 360px;
+   padding-top: 16px;
+   padding-left: 20px;
+   padding-right: 20px;
+
+   @media ${device.tablet} { 
    width: 768px;
    padding-top: 24px;
    padding-left: 32px;
