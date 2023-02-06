@@ -1,8 +1,12 @@
+import { Logo } from 'components/Logo/Logo';
+import { Navigation } from 'components/Naigation/Navigation';
+import { HeaderContainer } from './Header.styled';
+
 export const Header = () => {
   return (
-    <section>
-      <h2>Header must be here</h2>
-      
-    </section>
+    <HeaderContainer>
+      <Logo />
+      <Navigation />
+    </HeaderContainer>
   );
 };
