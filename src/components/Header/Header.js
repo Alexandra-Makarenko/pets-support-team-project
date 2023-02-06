@@ -1,8 +1,9 @@
+import css from './Header.module.css';
+
 export const Header = () => {
   return (
-    <section>
+    <header>
       <h2>Header must be here</h2>
-      
-    </section>
+    </header>
   );
 };
