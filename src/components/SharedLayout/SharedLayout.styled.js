@@ -14,7 +14,7 @@ export const SharedLayoutContainer = styled.div`
    outline: 1px solid red;
    margin-left: auto;
    margin-right: auto;
-   width: 360px;
+   width: 320px;
    padding-top: 16px;
    padding-left: 20px;
    padding-right: 20px;
