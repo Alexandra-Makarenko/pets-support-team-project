@@ -156,7 +156,7 @@ const RegisterStepOne = props => {
         <RegisterBoxText>
           <RegisterLinkText>
             Already have an account?{' '}
-            <ReqisterLoginLink to="/about">Login</ReqisterLoginLink>
+            <ReqisterLoginLink to="/login">Login</ReqisterLoginLink>
           </RegisterLinkText>
         </RegisterBoxText>
       </RegisterFormBox>
@@ -241,7 +241,7 @@ const RegisterStepTwo = props => {
         <RegisterBoxText>
           <RegisterLinkText>
             Already have an account?{' '}
-            <ReqisterLoginLink to="/about">Login</ReqisterLoginLink>
+            <ReqisterLoginLink to="/login">Login</ReqisterLoginLink>
           </RegisterLinkText>
         </RegisterBoxText>
       </RegisterFormBox>
