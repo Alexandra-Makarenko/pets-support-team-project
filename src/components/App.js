@@ -34,6 +34,7 @@ export const App = () => {
           <Route path="my-ads" element={<NoticesCategoryList />} />
         </Route>
         <Route path="/user" element={<UserPage />} />
+        <Route path="*" element={<Home />} />
       </Route>
     </Routes>
   );
