@@ -9,6 +9,10 @@ export const theme = createTheme({
       contrastText: '#fff',
     },
   },
+  typography: {
+    fontSize: 14,
+    textTransform: 'none',
+  },
 });
 
 // export const LoginBtn = styled(Button)({
