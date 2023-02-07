@@ -7,13 +7,9 @@ export const HeaderContainer = styled.header`
 
   position: relative;
 
-  width: 320px;
-  background-color: #fdf7f2;
+  width: 100%;
 
-  padding-top: 16px;
-  padding-left: 20px;
-  padding-right: 25px;
-  padding-bottom: 16px;
+  margin-bottom: 16px;
   margin-left: auto;
   margin-right: auto;
 `;

@@ -13,7 +13,7 @@ export const Nav = () => {
 
   return (
     <nav>
-      <MobMenuBtn type="button" onClick={mobMenuBtnHandler}>
+      <MobMenuBtn type="button" onClick={mobMenuBtnHandler} isOpen={isOpen}>
         <MdMenu size={30} />
       </MobMenuBtn>
       {isOpen && <MobileMenu />}
