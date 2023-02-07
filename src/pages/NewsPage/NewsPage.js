@@ -1,18 +1,19 @@
 import { useState, useEffect } from 'react';
 import Searchbar from './components/Searchbar';
 import NewsFeed from './components/NewsFeed';
-import { fetchNews } from './components/helpers/fetchNews';
+import { fetchNewsEng, fetchNews } from './components/helpers/fetchNews';
 
 const NewsPage = () => {
   const [news, setNews] = useState([]);
   const [search, setSearch] = useState('');
 
   useEffect(() => {
-    getNews(search);
+    getNews();
   }, []);
 
   const getNews = async searchQueue => {
-    const result = await fetchNews(searchQueue);
+    const result =
+      (await fetchNews(searchQueue)) || (await fetchNewsEng(searchQueue));
     setNews(result);
   };
 
