@@ -1,5 +1,6 @@
 import axios from 'axios';
 
+
 export const fetchNews = async searchQuery => {
   axios.defaults.baseURL = 'http://localhost:3001';
 
