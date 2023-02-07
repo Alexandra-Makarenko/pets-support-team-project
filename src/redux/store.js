@@ -1,4 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit';
+import { petsReducer } from './petsSlice';
+import { filtersReducer } from './filtersSlice';
+
 import {
   persistStore,
   FLUSH,
@@ -14,6 +17,8 @@ import { authReduser } from './auth/authSlice';
 export const store = configureStore({
   reducer: {
     auth: authReduser,
+    pets: petsReducer,
+    filters: filtersReducer,
   },
 
   middleware(getDefaultMiddleware) {
