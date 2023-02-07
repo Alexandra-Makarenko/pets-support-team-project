@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { Formik, Form } from 'formik';
 import { nanoid } from 'nanoid';
+import { register } from 'redux/auth/authOperations';
 // import * as yup from 'yup';
 
 import {
@@ -24,7 +25,7 @@ import {
 } from './RegisterForm.styled';
 
 export const RegisterForm = () => {
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
   const [userData, setUserData] = useState({
     email: '',
@@ -47,6 +48,7 @@ export const RegisterForm = () => {
       phone: formData.phone,
     };
     console.log('Form Submitted', body);
+    dispatch(register(body));
   };
 
   const handleNextStep = (newData, final = false) => {
@@ -103,7 +105,7 @@ const RegisterStepOne = props => {
         <RegisterTitle>Registration</RegisterTitle>
         <Formik
           initialValues={props.userData}
-          // validationSchema={stepOneReqisterSchema}
+          validationSchema={stepOneReqisterSchema}
           onSubmit={handleSubmit}
         >
           {({ isValid, dirty }) => (
@@ -179,7 +181,7 @@ const RegisterStepTwo = props => {
         <RegisterTitle>Registration</RegisterTitle>
         <Formik
           initialValues={props.userData}
-          // validationSchema={stepTwoReqisterSchema}
+          validationSchema={stepTwoReqisterSchema}
           onSubmit={handleSubmit}
         >
           {({ values }) => (

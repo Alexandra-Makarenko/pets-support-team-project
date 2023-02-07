@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Form, Field } from 'formik';
+import { Field } from 'formik';
 import { NavLink } from 'react-router-dom';
 import register_bg_step1_mob from '../../../assets/images/bg-pictures/mobile/register_bg_step1_mob.png';
 import tablet_vector_1 from '../../../assets/images/bg-pictures/tablet/tablet_vector_1.png';
