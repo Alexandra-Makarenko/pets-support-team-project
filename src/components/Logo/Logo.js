@@ -1,8 +1,11 @@
+import { LogoLink, LogoAccent } from './Logo.styled';
+
 export const Logo = () => {
   return (
-    <section>
-      <h2>Logo must be here</h2>
-      
-    </section>
+    <div>
+      <LogoLink to="/">
+        pe<LogoAccent>t</LogoAccent>ly
+      </LogoLink>
+    </div>
   );
 };

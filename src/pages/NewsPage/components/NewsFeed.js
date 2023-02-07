@@ -20,6 +20,7 @@ export default function NewsList({ news }) {
       {news && news.length == 0 && (
         <Empty>Ми не знайшли новин по вашому запиту</Empty>
       )}
+
       {news && (
         <News>
           {news.map(article => (
