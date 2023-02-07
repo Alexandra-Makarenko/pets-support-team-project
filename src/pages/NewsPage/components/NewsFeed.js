@@ -18,7 +18,7 @@ export default function NewsList({ news }) {
   return (
     <NewsContainer>
       {!news && <Empty>Щось пішло не так. Спробуйте пізніше</Empty>}
-      {news.length == 0 && <Empty>Ми не знайшли новин по вашому запиту</Empty>}
+      {news.length === 0 && <Empty>Ми не знайшли новин по вашому запиту</Empty>}
       {news && (
         <News>
           {news.map(article => (
