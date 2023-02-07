@@ -21,10 +21,10 @@ export const MobileMenu = () => {
           <MobMenulink to="news">News</MobMenulink>
         </MobMenuItem>
         <MobMenuItem>
-          <MobMenulink to="find-pet">Find pet</MobMenulink>
+          <MobMenulink to="notices">Find pet</MobMenulink>
         </MobMenuItem>
         <MobMenuItem>
-          <MobMenulink to="our-friend">Our friend</MobMenulink>
+          <MobMenulink to="friends">Our friend</MobMenulink>
         </MobMenuItem>
       </ul>
     </MobMenuContainer>
