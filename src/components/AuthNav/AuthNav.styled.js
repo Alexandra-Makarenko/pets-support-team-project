@@ -9,19 +9,6 @@ export const theme = createTheme({
       contrastText: '#fff',
     },
   },
-  components: {
-    MuiCssBaseline: {
-      styleOverrides: `
-        @font-face {
-            text-transform: none;
-          font-style: normal;
-          font-size: 14px;
-          font-weight: 500;
-          line-height: 1.4;
-        }
-      `,
-    },
-  },
 });
 
 // export const LoginBtn = styled(Button)({

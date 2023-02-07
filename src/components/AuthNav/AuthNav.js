@@ -10,7 +10,13 @@ export const AuthNav = () => {
     <ThemeProvider theme={theme}>
       <Stack direction="row" spacing={2}>
         <LoginBtn
-          // sx={{ fontSize: 14, textTransform: 'none' }}
+          sx={{
+            fontSize: 22,
+            textTransform: 'none',
+            fontWeight: 700,
+            lineHeight: 1.4,
+            fontStyle: 'norma',
+          }}
           color="main"
           variant="contained"
           onClick={navigate('/login')}
