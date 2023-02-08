@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { device } from 'styles/device';
 import bgDesktopWave from '../../images/hero/desktop/orangeWavesDesktop.png';
 import bgTabWave from '../../images/hero/desktop/bgWavesTablet.png';
 import bgMobWave from '../../images/hero/desktop/bgWavesMobile.png';
@@ -11,11 +12,11 @@ export const H1 = styled.h1`
   font-size: 68px;
   line-height: 1.47;
 
-  @media (max-width: 1279.98px) {
+  @media ${device.preDesktop} {
     margin-top: 88px;
   }
 
-  @media (max-width: 767.98px) {
+  @media ${device.preTablet} {
     max-width: 280px;
     font-size: 32px;
     line-height: 1.38;
@@ -24,7 +25,7 @@ export const H1 = styled.h1`
 `;
 
 export const Section = styled.section`
-  background-color: var(--background-color);
+  background-color: ${p => p.theme.backgrounds.bodyPrimary};
   overflow: hidden;
 `;
 
@@ -52,12 +53,12 @@ export const Img = styled.img`
     }
   }
 
-  @media (max-width: 1279.98px) {
+  @media ${device.preDesktop} {
     width: 645px;
     height: 715px;
   }
 
-  @media (max-width: 767.98px) {
+  @media ${device.preTablet} {
     width: 320px;
     height: 337px;
   }
@@ -70,7 +71,7 @@ export const Content = styled.div`
   background-position: 75% calc(21vh + 100%);
   background-repeat: no-repeat;
 
-  @media (max-width: 1279.98px) {
+  @media ${device.preDesktop} {
     flex-direction: column;
     justify-content: center;
     align-items: center;
@@ -79,11 +80,10 @@ export const Content = styled.div`
     background-position: 22% calc(9vh + 100%);
   }
 
-  @media (max-width: 767.98px) {
+  @media ${device.preTablet} {
     gap: 58px;
     background: url(${bgMobWave});
     background-repeat: no-repeat;
-    /* background-position: bottom -15px right calc(50vw - 375px); */
     background-position: 38% calc(2vh + 100%);
     width: 100%;
   }
@@ -95,7 +95,7 @@ export const Wrap = styled.div`
 
 export const Div = styled.div`
   display: none;
-  @media (min-width: 1280px) {
+  @media ${device.desktop} {
     display: flex;
     position: absolute;
     left: 68px;
