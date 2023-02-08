@@ -25,4 +25,7 @@ export const theme = Object.freeze({
   transitions: {
     primary: '',
   },
+  fonts: {
+    letterSpacing: '0.04em',
+  },
 });
