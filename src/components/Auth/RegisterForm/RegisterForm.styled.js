@@ -15,7 +15,7 @@ import desktop_vector_3 from '../../../assets/images/bg-pictures/desktop/desktop
 import { device } from 'styles/device';
 
 export const SectionRegisterForm = styled.section`
-  min-height: 100vh;
+  height: 100%;
   padding-top: 42px;
   padding-bottom: ${props => (props.currentStep === 0 ? `103px` : `59px`)};
   background-color: ${props => props.theme.backgrounds.input};
@@ -53,7 +53,6 @@ export const SectionRegisterForm = styled.section`
 
 export const RegisterFormContainer = styled.div`
   max-width: 320px;
-  padding: 0px 20px;
   /* margin-bottom: ${props =>
     props.currentStep === 0 ? `266px` : `223px`}; */
   /* padding-left: 20px;

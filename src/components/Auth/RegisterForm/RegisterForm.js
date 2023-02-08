@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux';
 import { Formik, Form } from 'formik';
 import { nanoid } from 'nanoid';
 import { register } from 'redux/auth/authOperations';
+// import PhoneInput from 'react-phone-input-2';
 // import * as yup from 'yup';
 
 import {
