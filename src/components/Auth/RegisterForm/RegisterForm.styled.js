@@ -53,6 +53,15 @@ export const PhoneInputField = props => {
       country="ua"
       value={props.value}
       onChange={props.onChange}
+      touched={props.touched}
+      errors={props.errors}
+      isValid={(inputNumber, country, countries) => {
+        console.log(props.touched);
+        console.log(props.errors);
+        console.log(inputNumber);
+        console.log(country);
+        console.log(countries);
+      }}
       inputStyle={{
         fontFamily: 'Manrope400',
         color: 'rgba(17, 17, 17, 0.6)',
@@ -225,7 +234,9 @@ export const NextFormRegisterBtn = styled.button`
   margin-top: ${props => (props.currentStep === 0 ? '40px' : '28px')};
   width: 100%;
   color: ${props => props.theme.fontColors.white};
-  background-color: ${props => props.theme.backgrounds.buttonPrimary};
+  /* background-color: ${props => props.theme.backgrounds.buttonPrimary}; */
+  background-color: ${props =>
+    props.disabled ? 'grey' : props.theme.backgrounds.buttonPrimary};
   border-radius: 40px;
   padding-top: 8.5px;
   padding-bottom: 8.5px;
@@ -236,9 +247,10 @@ export const NextFormRegisterBtn = styled.button`
   outline: none;
   border: none;
   transition: all 0.3s ease-in-out;
-  &:hover {
+
+  /* &:hover {
     transform: scale(1.03);
-  }
+  } */
 
   @media ${device.tablet} {
     margin-top: 40px;

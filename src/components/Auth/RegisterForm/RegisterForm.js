@@ -180,6 +180,10 @@ const RegisterStepOne = props => {
               <NextFormRegisterBtn
                 currentStep={props.currentStep}
                 type="submit"
+                // disabled={!dirty || !isValid}
+                disabled={!isValid}
+                // isValid={isValid}
+                // dirty={dirty}
               >
                 Next
               </NextFormRegisterBtn>
@@ -212,10 +216,10 @@ const RegisterStepTwo = props => {
         <RegisterTitle>Registration</RegisterTitle>
         <Formik
           initialValues={props.userData}
-          // validationSchema={stepTwoReqisterSchema}
+          validationSchema={stepTwoReqisterSchema}
           onSubmit={handleSubmit}
         >
-          {({ values, handleBlur, setFieldValue }) => (
+          {({ values, setFieldValue, isValid, dirty, errors, touched }) => (
             <Form autoComplete="off">
               <FormInput
                 id={nameInputId}
@@ -243,28 +247,37 @@ const RegisterStepTwo = props => {
               />
               <FormError name="region" />
 
-              <PhoneInputField
+              <FormInput
                 // as={PhoneInputField}
+                component={PhoneInputField}
+                type="text"
                 id={phoneInputId}
                 // label="Password"
                 // variant="outlined"
                 name="phone"
-                placeholder="Mobile phone"
-                type="tel"
-                autoComplete="off"
+                // placeholder="Mobile phone"
+                // type="tel"
+                // autoComplete="off"
                 onChange={e => setFieldValue('phone', `+${e}`)}
                 value={values.phone}
+                touched={touched.phone}
+                errors={errors.phone}
+
                 // onChange={phone => console.log({ phone })}
                 // onBlur={handleBlur}
                 // required
                 // error={Boolean(errors.name) && Boolean(touched.name)}
                 // helperText={Boolean(touched.name) && errors.name}
               />
-              <FormError name="phone" />
+              {errors.phone && console.log(errors.phone) && (
+                <FormError name="phone" />
+              )}
+              {/* <FormError name="phone" /> */}
 
               <NextFormRegisterBtn
                 currentStep={props.currentStep}
                 type="submit"
+                disabled={!dirty || !isValid}
               >
                 Register
               </NextFormRegisterBtn>

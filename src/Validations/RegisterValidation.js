@@ -37,6 +37,7 @@ export const stepTwoReqisterSchema = yup.object().shape({
   region: yup.string().required('Required'),
   phone: yup
     .string()
+    .min(12, 'Minimum number of characters 2')
     // .oneOf([yup.ref('password'), null], 'Passwords must match')
     .required('Required'),
 });
