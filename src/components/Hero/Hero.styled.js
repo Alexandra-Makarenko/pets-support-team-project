@@ -4,13 +4,14 @@ import bgDesktopWave from '../../images/hero/desktop/orangeWavesDesktop.png';
 import bgTabWave from '../../images/hero/desktop/bgWavesTablet.png';
 import bgMobWave from '../../images/hero/desktop/bgWavesMobile.png';
 
-export const H1 = styled.h1`
-  font-family: var(--font-base);
+export const H2 = styled.h2`
   width: 588px;
+  font-family: 'Manrope700';
   font-style: normal;
   font-weight: 700;
   font-size: 68px;
   line-height: 1.47;
+  margin-left: 16px;
 
   @media ${device.preDesktop} {
     margin-top: 88px;
@@ -68,7 +69,7 @@ export const Content = styled.div`
   display: flex;
   column-gap: 75px;
   background: url(${bgDesktopWave});
-  background-position: 75% calc(21vh + 100%);
+  background-position: 100% calc(21vh + 100%);
   background-repeat: no-repeat;
 
   @media ${device.preDesktop} {

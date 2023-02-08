@@ -1,5 +1,5 @@
 import {
-  H1,
+  H2,
   Section,
   Img,
   Content,
@@ -13,7 +13,7 @@ const Home = () => {
   return (
     <Section>
       <Content>
-        <H1>Take good care of your small pets</H1>
+        <H2>Take good care of your small pets</H2>
         <Wrap>
           <Img src={AddImage} alt="Image"></Img>
           <Div>
