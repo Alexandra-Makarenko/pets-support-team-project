@@ -30,8 +30,8 @@ export const register = createAsyncThunk(
       setAuthHeader(response.data.token);
       return response.data;
     } catch (error) {
-      console.log(error);
-      // return alert('Try entering a different email');
+      // console.log(error);
+      return alert('Try entering a different email');
       // return thunkAPI.rejectWithValue(error.message);
     }
   }

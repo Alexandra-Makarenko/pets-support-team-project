@@ -49,7 +49,7 @@ export const LoginForm = () => {
           <LoginTitle>Login</LoginTitle>
           <Formik
             initialValues={initialState}
-            validationSchema={stepOneReqisterSchema}
+            // validationSchema={stepOneReqisterSchema}
             onSubmit={handleSubmit}
           >
             {({ isValid, dirty }) => (
