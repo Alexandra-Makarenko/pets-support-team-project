@@ -1,31 +1,23 @@
+import { useState } from 'react';
 import {
   FriendTitle,
   FriendContentWrapper,
   FriendText,
+  FriendTime,
   FriendItem,
   FriendLink,
   TextWrapper,
   FriendImg,
   ImgWrapper,
+  HoursOfWeek,
+  HoursWrapper,
+  // HoursItem,
 } from './OurFriendItem.styled.js';
 
+import getHours from './getHours';
 import defaultImage from 'data/default-image_550.png';
 
-const NOT_INFO_STRING = '---------------';
-
-function getHoursToday(workDays) {
-  // workDays - Array of Work hours by Days of week
-  if (!workDays || !workDays.length) {
-    return NOT_INFO_STRING;
-  }
-  const numberOfDay = new Date().getDay();
-  const workToDay = workDays[!numberOfDay ? 6 : numberOfDay - 1];
-  const hoursToday = !workToDay.isOpen
-    ? NOT_INFO_STRING
-    : workToDay.from.concat('-', workToDay.to);
-
-  return hoursToday;
-}
+const NO_INFO_STRING = '---------------';
 
 export const OurFriendItem = ({
   title,
@@ -36,7 +28,13 @@ export const OurFriendItem = ({
   email,
   phone,
 }) => {
-  const hoursToday = getHoursToday(workDays);
+  const [isHours, setIsHours] = useState(false);
+
+  const handleClick = () => {
+    setIsHours(!isHours);
+  };
+
+  const { hoursToday, hoursOfWeek } = getHours(workDays, NO_INFO_STRING);
 
   return (
     <FriendItem>
@@ -52,25 +50,30 @@ export const OurFriendItem = ({
           />
         </ImgWrapper>
         <TextWrapper>
-          <FriendText>
-            Time:
-            <br />
-            {hoursToday}
-          </FriendText>
+          <HoursWrapper>
+            <FriendTime isHours={!!hoursOfWeek} onClick={() => handleClick()}>
+              Time:
+              <br />
+              {hoursToday}
+            </FriendTime>
+            {hoursOfWeek && (
+              <HoursOfWeek isOpen={isHours}>{hoursOfWeek}</HoursOfWeek>
+            )}
+          </HoursWrapper>
           <FriendText>
             Address:
             <br />
-            {address ?? NOT_INFO_STRING}
+            {address ?? NO_INFO_STRING}
           </FriendText>
           <FriendText>
             Email:
             <br />
-            {email ?? NOT_INFO_STRING}
+            {email ?? NO_INFO_STRING}
           </FriendText>
           <FriendText>
             Phone:
             <br />
-            {phone ?? NOT_INFO_STRING}
+            {phone ?? NO_INFO_STRING}
           </FriendText>
         </TextWrapper>
       </FriendContentWrapper>
