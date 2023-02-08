@@ -21,14 +21,14 @@ const NewsPage = () => {
     setNews(result);
   };
 
-  const handleSubmit = event => {
-    event.preventDefault();
-    getNews(search);
-  };
+//   const handleSubmit = event => {
+//     event.preventDefault();
+//     getNews(search);
+//   };
 
-  const updateQueryString = queue => {
-    setSearch(queue);
-  };
+//   const updateQueryString = queue => {
+//     setSearch(queue);
+//   };
 
   return (
     <section>
