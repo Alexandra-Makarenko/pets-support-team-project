@@ -1,7 +1,8 @@
-
 import { useState, useEffect } from 'react';
-import Searchbar from './components/Searchbar';
+// import Searchbar from './components/Searchbar';
+import { SearchForm } from 'components/Search/SearchForm';
 import NewsFeed from './components/NewsFeed';
+import { PagesTitle } from 'components/PagesTitle/PagesTitle';
 import { fetchNewsEng, fetchNews } from './components/helpers/fetchNews';
 
 const NewsPage = () => {
@@ -31,15 +32,15 @@ const NewsPage = () => {
 
   return (
     <section>
-
-      <Searchbar
+      <PagesTitle>News</PagesTitle>
+      <SearchForm />
+      {/* <Searchbar
         onSubmit={handleSubmit}
         onChange={updateQueryString}
         value={search}
-      />
+      /> */}
 
       <NewsFeed news={news} />
-
     </section>
   );
 };
