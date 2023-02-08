@@ -7,7 +7,7 @@ import { fetchNewsEng, fetchNews } from './components/helpers/fetchNews';
 
 const NewsPage = () => {
   const [news, setNews] = useState([]);
-  const [search, setSearch] = useState('');
+//   const [search, setSearch] = useState('');
 
   useEffect(() => {
 
