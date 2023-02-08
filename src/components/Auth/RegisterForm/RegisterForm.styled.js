@@ -13,6 +13,85 @@ import desktop_vector_1 from '../../../assets/images/bg-pictures/desktop/desktop
 import desktop_vector_2 from '../../../assets/images/bg-pictures/desktop/desktop_vector_2.png';
 import desktop_vector_3 from '../../../assets/images/bg-pictures/desktop/desktop_vector_3.png';
 import { device } from 'styles/device';
+import PhoneInput from 'react-phone-input-2';
+import 'react-phone-input-2/lib/style.css';
+
+// export const Phone = styled(PhoneInput)`
+//   display: block;
+//   font-family: 'Manrope400';
+//   font-size: 14px;
+//   line-height: 19px;
+//   letter-spacing: ${props => props.theme.fonts.letterSpacing};
+//   width: 100%;
+//   margin-top: 16px;
+//   padding-top: 11px;
+//   padding-bottom: 12px;
+//   padding-left: 14px;
+//   color: ${props => props.theme.fontColors.inputTextColor};
+//   outline: none;
+//   background-color: ${props => props.theme.backgrounds.input};
+//   border: 1px solid rgba(245, 146, 86, 0.5);
+//   border-radius: 40px;
+
+//   @media ${device.tablet} {
+//     font-family: 'Manrope400';
+//     font-size: 18px;
+//     line-height: 25px;
+//     padding-top: 14px;
+//     padding-bottom: 13px;
+//     padding-left: 32px;
+//   }
+
+//   @media ${device.desktop} {
+//   }
+// `;
+
+export const PhoneInputField = props => {
+  return (
+    <PhoneInput
+      regions={['europe']}
+      country="ua"
+      value={props.value}
+      onChange={props.onChange}
+      inputStyle={{
+        fontFamily: 'Manrope400',
+        color: 'rgba(17, 17, 17, 0.6)',
+        letterSpacing: '0.04em',
+        width: '180px',
+        background: '#FDF7F2',
+        outline: 0,
+        border: 0,
+        padding: 0,
+        margin: 0,
+        height: '100%',
+        left: '48px',
+      }}
+      containerStyle={{
+        marginTop: '16px',
+        paddingTop: '12px',
+        paddingBottom: '12px',
+        paddingLeft: '10px',
+        background: '#FDF7F2',
+        border: '1px solid rgba(245, 146, 86, 0.5)',
+        borderRadius: '40px',
+        textAlign: 'left',
+      }}
+      buttonStyle={{
+        background: '#FDF7F2',
+        border: 0,
+        color: 'rgba(17, 17, 17, 0.6)',
+        borderRadius: '50%',
+      }}
+      dropdownStyle={{
+        height: '200px',
+        color: '#000000',
+        background: '#FDF7F2',
+        textAlign: 'left',
+        borderRadius: '6px',
+      }}
+    />
+  );
+};
 
 export const SectionRegisterForm = styled.section`
   height: 100%;

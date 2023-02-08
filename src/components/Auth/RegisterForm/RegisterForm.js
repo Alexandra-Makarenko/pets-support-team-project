@@ -3,8 +3,10 @@ import { useDispatch } from 'react-redux';
 import { Formik, Form } from 'formik';
 import { nanoid } from 'nanoid';
 import { register } from 'redux/auth/authOperations';
-// import PhoneInput from 'react-phone-input-2';
+import PhoneInput from 'react-phone-input-2';
+import 'react-phone-input-2/lib/style.css';
 // import * as yup from 'yup';
+import { PhoneInputField } from './RegisterForm.styled';
 
 import {
   stepOneReqisterSchema,
@@ -24,6 +26,34 @@ import {
   BackFormRegisterBtn,
   RegisterFormBox,
 } from './RegisterForm.styled';
+
+// ============
+
+// const Wrapper = ({ className, ...props }) => (
+//   <div>
+//     <PhoneInput {...props} />
+//   </div>
+// );
+
+// const Phone = styled(Wrapper)`
+//   #phone-input {
+//     background: red;
+//   }
+// `;
+
+// function InputMobile({ value }) {
+//   return (
+//     <Phone
+//       country={'us'}
+//       inputProps={{
+//         id: 'phone-input',
+//       }}
+//       value={value}
+//     />
+//   );
+// }
+
+// ============
 
 export const RegisterForm = () => {
   const dispatch = useDispatch();
@@ -106,7 +136,7 @@ const RegisterStepOne = props => {
         <RegisterTitle>Registration</RegisterTitle>
         <Formik
           initialValues={props.userData}
-          validationSchema={stepOneReqisterSchema}
+          // validationSchema={stepOneReqisterSchema}
           onSubmit={handleSubmit}
         >
           {({ isValid, dirty }) => (
@@ -182,10 +212,10 @@ const RegisterStepTwo = props => {
         <RegisterTitle>Registration</RegisterTitle>
         <Formik
           initialValues={props.userData}
-          validationSchema={stepTwoReqisterSchema}
+          // validationSchema={stepTwoReqisterSchema}
           onSubmit={handleSubmit}
         >
-          {({ values }) => (
+          {({ values, handleBlur, setFieldValue }) => (
             <Form autoComplete="off">
               <FormInput
                 id={nameInputId}
@@ -212,7 +242,9 @@ const RegisterStepTwo = props => {
                 // helperText={Boolean(touched.name) && errors.name}
               />
               <FormError name="region" />
-              <FormInput
+
+              <PhoneInputField
+                // as={PhoneInputField}
                 id={phoneInputId}
                 // label="Password"
                 // variant="outlined"
@@ -220,6 +252,10 @@ const RegisterStepTwo = props => {
                 placeholder="Mobile phone"
                 type="tel"
                 autoComplete="off"
+                onChange={e => setFieldValue('phone', `+${e}`)}
+                value={values.phone}
+                // onChange={phone => console.log({ phone })}
+                // onBlur={handleBlur}
                 // required
                 // error={Boolean(errors.name) && Boolean(touched.name)}
                 // helperText={Boolean(touched.name) && errors.name}
