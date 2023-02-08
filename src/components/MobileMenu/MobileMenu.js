@@ -3,30 +3,41 @@ import { AuthNav } from 'components/AuthNav/AuthNav';
 import {
   MobMenuContainer,
   UserMenuWrapper,
+  MobMenuList,
   MobMenuItem,
   MobMenulink,
 } from './MobileMenu.styled';
 
-export const MobileMenu = () => {
+export const MobileMenu = mobMenuToggler => {
   const isLoggedIn = false;
 
   return (
     <MobMenuContainer>
       <UserMenuWrapper>
-        {isLoggedIn ? <UserMenu /> : <AuthNav />}
+        {isLoggedIn ? (
+          <UserMenu mobMenuToggler={mobMenuToggler} />
+        ) : (
+          <AuthNav mobMenuToggler={mobMenuToggler} />
+        )}
       </UserMenuWrapper>
 
-      <ul>
+      <MobMenuList>
         <MobMenuItem>
-          <MobMenulink to="news">News</MobMenulink>
+          <MobMenulink to="news" onClick={mobMenuToggler}>
+            News
+          </MobMenulink>
         </MobMenuItem>
         <MobMenuItem>
-          <MobMenulink to="notices">Find pet</MobMenulink>
+          <MobMenulink to="notices" onClick={mobMenuToggler}>
+            Find pet
+          </MobMenulink>
         </MobMenuItem>
         <MobMenuItem>
-          <MobMenulink to="friends">Our friend</MobMenulink>
+          <MobMenulink to="friends" onClick={mobMenuToggler}>
+            Our friend
+          </MobMenulink>
         </MobMenuItem>
-      </ul>
+      </MobMenuList>
     </MobMenuContainer>
   );
 };

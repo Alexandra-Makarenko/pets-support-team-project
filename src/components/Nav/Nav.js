@@ -1,22 +1,20 @@
 import { useState } from 'react';
-
-import { MdMenu } from 'react-icons/md';
 import { MobileMenu } from 'components/MobileMenu/MobileMenu';
-import { MobMenuBtn } from './Nav.styled';
+import { MobMenuBtn, Burger } from './Nav.styled';
 
 export const Nav = () => {
   const [isOpen, setIsOnen] = useState(false);
 
-  const mobMenuBtnHandler = () => {
+  const mobMenuToggler = () => {
     setIsOnen(isOpen => !isOpen);
   };
 
   return (
     <nav>
-      <MobMenuBtn type="button" onClick={mobMenuBtnHandler} isOpen={isOpen}>
-        <MdMenu size={30} />
+      <MobMenuBtn type="button" onClick={mobMenuToggler} isOpen={isOpen}>
+        <Burger sx={{ fontSize: 40 }} />
       </MobMenuBtn>
-      {isOpen && <MobileMenu />}
+      {isOpen && <MobileMenu isOpen={isOpen} mobMenuToggler={mobMenuToggler} />}
     </nav>
   );
 };

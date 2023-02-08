@@ -1,7 +1,8 @@
 import styled from 'styled-components';
+import MenuIcon from '@mui/icons-material/Menu';
 
 export const MobMenuBtn = styled.button`
-  color: #000000;
+  color: ${props => props.theme.fontColors.secondary};
   background-color: transparent;
   border: none;
 
@@ -10,3 +11,5 @@ export const MobMenuBtn = styled.button`
 
   cursor: pointer;
 `;
+
+export const Burger = styled(MenuIcon)``;

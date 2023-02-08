@@ -5,11 +5,9 @@ export const HeaderContainer = styled.header`
   justify-content: space-between;
   align-items: center;
 
-  position: relative;
-
   width: 100%;
 
-  margin-bottom: 16px;
+  margin-bottom: 42px;
   margin-left: auto;
   margin-right: auto;
 `;

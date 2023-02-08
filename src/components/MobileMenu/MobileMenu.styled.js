@@ -6,26 +6,29 @@ export const MobMenuContainer = styled.div`
   flex-direction: column;
   align-items: center;
   position: absolute;
-  top: 58px;
+  top: 84px;
   left: 0;
   width: 100%;
   height: 100vh;
-  background-color: #fdf7f2;
+  background-color: ${props => props.theme.backgrounds.bodyPrimary};
 
-  padding: 30px;
+  padding: 4px 34px;
 `;
 
 export const UserMenuWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 12px;
   margin-bottom: 60px;
 `;
-
-export const MobMenuItem = styled.li`
-  box-sizing: border-box;
-
-  &:not(:last-child) {
-    margin-bottom: 40px;
-  }
+export const MobMenuList = styled.ul`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;
 `;
+
+export const MobMenuItem = styled.li``;
 
 export const MobMenulink = styled(NavLink)`
   display: inline-block;
@@ -40,6 +43,6 @@ export const MobMenulink = styled(NavLink)`
   &:hover,
   :focus {
     font-weight: 700;
-    color: #f59256;
+    color: ${props => props.theme.fontColors.buttonSecondary};
   }
 `;
