@@ -74,8 +74,11 @@ const NewsMore = styled.a`
   font-size: 16px;
   line-height: 22px;
   text-align: right;
-  text-decoration-line: none;
+  text-decoration: none;
   color: #f59256;
+  &:hover {
+    text-decoration: underline;
+  }
 `;
 
 const Empty = styled.h3`
