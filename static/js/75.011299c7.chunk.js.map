@@ -1,1 +1,0 @@
-{"version":3,"file":"static/js/75.011299c7.chunk.js","mappings":"0JASA,UATa,WACX,OACE,gCACM,kCACA,gEAIT,C","sources":["pages/Home/Home.js"],"sourcesContent":["const Home = () => {\n  return (\n    <section>\n          <h2>Home</h2>\n          <h3>Take good care of your small pets</h3>\n      \n    </section>\n  );\n};\nexport default Home;"],"names":[],"sourceRoot":""}

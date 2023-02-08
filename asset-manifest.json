@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/pets-support-team-project/static/css/main.eaa84e6c.css",
-    "main.js": "/pets-support-team-project/static/js/main.d17f7a9c.js",
-    "static/js/75.011299c7.chunk.js": "/pets-support-team-project/static/js/75.011299c7.chunk.js",
+    "main.js": "/pets-support-team-project/static/js/main.34ffc9bd.js",
+    "static/js/774.b99b98fa.chunk.js": "/pets-support-team-project/static/js/774.b99b98fa.chunk.js",
     "static/js/317.f2c8f568.chunk.js": "/pets-support-team-project/static/js/317.f2c8f568.chunk.js",
     "static/js/752.9795e09d.chunk.js": "/pets-support-team-project/static/js/752.9795e09d.chunk.js",
     "static/js/316.18b51a41.chunk.js": "/pets-support-team-project/static/js/316.18b51a41.chunk.js",
@@ -11,15 +11,19 @@
     "static/js/287.8fcf3a05.chunk.js": "/pets-support-team-project/static/js/287.8fcf3a05.chunk.js",
     "static/js/495.e0d030e9.chunk.js": "/pets-support-team-project/static/js/495.e0d030e9.chunk.js",
     "static/js/289.69b08a66.chunk.js": "/pets-support-team-project/static/js/289.69b08a66.chunk.js",
+    "static/media/bgWavesTablet.png": "/pets-support-team-project/static/media/bgWavesTablet.6f94873ef5c743ba8030.png",
+    "static/media/portrait.png": "/pets-support-team-project/static/media/portrait.dd2ffedb085e6f606cc3.png",
     "static/media/Inter-Bold.ttf": "/pets-support-team-project/static/media/Inter-Bold.88fa7ae373b07b41ecce.ttf",
     "static/media/Inter-Medium.ttf": "/pets-support-team-project/static/media/Inter-Medium.6dcbc9bed1ec438907ee.ttf",
     "static/media/Inter-Regular.ttf": "/pets-support-team-project/static/media/Inter-Regular.e89cb19905e7db5591b0.ttf",
+    "static/media/orangeWavesDesktop.png": "/pets-support-team-project/static/media/orangeWavesDesktop.078929ad92d9b6f83b78.png",
     "static/media/Montserrat-Medium.ttf": "/pets-support-team-project/static/media/Montserrat-Medium.c86e3b9010ff63c99166.ttf",
     "static/media/Montserrat-Regular.ttf": "/pets-support-team-project/static/media/Montserrat-Regular.ceb11275ab638627a643.ttf",
     "static/media/tablet_vector_2.png": "/pets-support-team-project/static/media/tablet_vector_2.05871790f88419184eb0.png",
     "static/media/Poppins-Regular.ttf": "/pets-support-team-project/static/media/Poppins-Regular.35d26b781dc5fda684cc.ttf",
     "static/media/desktop_vector_3.png": "/pets-support-team-project/static/media/desktop_vector_3.9eeb186a2442ed72e905.png",
     "static/media/Poppins-Bold.ttf": "/pets-support-team-project/static/media/Poppins-Bold.cdb29a5d7ccf57ff05a3.ttf",
+    "static/media/bgWavesMobile.png": "/pets-support-team-project/static/media/bgWavesMobile.c91bcbaa58fbbbdfd654.png",
     "static/media/desktop_vector_1.png": "/pets-support-team-project/static/media/desktop_vector_1.fd7ba10802a1dc685d8c.png",
     "static/media/tablet_vector_3.png": "/pets-support-team-project/static/media/tablet_vector_3.a3eaca1c23120e1328d9.png",
     "static/media/desktop_vector_2.png": "/pets-support-team-project/static/media/desktop_vector_2.b07ac603037cf20d0eb6.png",
@@ -34,8 +38,8 @@
     "static/media/register_bg_step2_mob.png": "/pets-support-team-project/static/media/register_bg_step2_mob.24566353893c90ded5cf.png",
     "index.html": "/pets-support-team-project/index.html",
     "main.eaa84e6c.css.map": "/pets-support-team-project/static/css/main.eaa84e6c.css.map",
-    "main.d17f7a9c.js.map": "/pets-support-team-project/static/js/main.d17f7a9c.js.map",
-    "75.011299c7.chunk.js.map": "/pets-support-team-project/static/js/75.011299c7.chunk.js.map",
+    "main.34ffc9bd.js.map": "/pets-support-team-project/static/js/main.34ffc9bd.js.map",
+    "774.b99b98fa.chunk.js.map": "/pets-support-team-project/static/js/774.b99b98fa.chunk.js.map",
     "317.f2c8f568.chunk.js.map": "/pets-support-team-project/static/js/317.f2c8f568.chunk.js.map",
     "752.9795e09d.chunk.js.map": "/pets-support-team-project/static/js/752.9795e09d.chunk.js.map",
     "316.18b51a41.chunk.js.map": "/pets-support-team-project/static/js/316.18b51a41.chunk.js.map",
@@ -47,6 +51,6 @@
   },
   "entrypoints": [
     "static/css/main.eaa84e6c.css",
-    "static/js/main.d17f7a9c.js"
+    "static/js/main.34ffc9bd.js"
   ]
 }
