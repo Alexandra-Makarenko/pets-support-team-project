@@ -1,4 +1,4 @@
-import { Route, Routes } from 'react-router-dom';
+import { Route, Routes, Navigate } from 'react-router-dom';
 import { SharedLayout } from './SharedLayout/SharedLayout';
 import { lazy } from 'react';
 import { RestrictedRoute } from './RestrictedRoute';
@@ -46,6 +46,7 @@ export const App = () => {
           element={<PrivateRoute component={UserPage} redirectTo="/login" />}
         />
         <Route path="*" element={<Home />} />
+        <Route path="*" element={<Navigate to="/" />} />
       </Route>
     </Routes>
   );
