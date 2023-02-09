@@ -2,12 +2,8 @@ import { useDispatch } from 'react-redux';
 import { Formik, Form } from 'formik';
 import { nanoid } from 'nanoid';
 import { logIn } from 'redux/auth/authOperations';
-// import * as yup from 'yup';
 
-import {
-  stepOneReqisterSchema,
-  FormError,
-} from 'Validations/RegisterValidation';
+import { loginSchema, FormError } from 'Validations/LoginValidation';
 
 import {
   LoginFormContainer,
@@ -38,7 +34,7 @@ export const LoginForm = () => {
       password: values.password,
     };
 
-    console.log('Form Submitted', body);
+    // console.log('Form Submitted', body);
     dispatch(logIn(body));
   };
 
@@ -49,25 +45,20 @@ export const LoginForm = () => {
           <LoginTitle>Login</LoginTitle>
           <Formik
             initialValues={initialState}
-            // validationSchema={stepOneReqisterSchema}
+            validationSchema={loginSchema}
             onSubmit={handleSubmit}
           >
             {({ isValid, dirty }) => (
               <Form autoComplete="off">
                 <FormInput
                   id={emailInputId}
-                  // label="Email"
-                  // variant="outlined"
                   name="email"
                   placeholder="Email"
-                  // type="email"
                   autoComplete="off"
-                  // required
                 />
                 <FormError name="email" />
                 <FormInput
                   id={passwordInputId}
-                  // label="Password"
                   name="password"
                   placeholder="Password"
                   type="password"

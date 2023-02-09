@@ -53,15 +53,6 @@ export const PhoneInputField = props => {
       country="ua"
       value={props.value}
       onChange={props.onChange}
-      touched={props.touched}
-      errors={props.errors}
-      isValid={(inputNumber, country, countries) => {
-        console.log(props.touched);
-        console.log(props.errors);
-        console.log(inputNumber);
-        console.log(country);
-        console.log(countries);
-      }}
       inputStyle={{
         fontFamily: 'Manrope400',
         color: 'rgba(17, 17, 17, 0.6)',
@@ -103,9 +94,11 @@ export const PhoneInputField = props => {
 };
 
 export const SectionRegisterForm = styled.section`
-  height: 100%;
+  /* position: relative; */
+  height: 100vh;
   padding-top: 42px;
-  padding-bottom: ${props => (props.currentStep === 0 ? `103px` : `59px`)};
+  /* padding-bottom: ${props =>
+    props.currentStep === 0 ? `103px` : `59px`}; */
   background-color: ${props => props.theme.backgrounds.input};
 
   background-image: ${props =>
@@ -113,13 +106,14 @@ export const SectionRegisterForm = styled.section`
       ? `url(${register_bg_step1_mob})`
       : `url(${register_bg_step2_mob})`};
 
-  background-size: 'contain';
+  background-size: 'cover';
   background-position: left 50% bottom 0px;
   background-repeat: no-repeat;
 
   @media ${device.tablet} {
     padding-top: 169px;
-    padding-bottom: ${props => (props.currentStep === 0 ? `266px` : `223px`)};
+    /* padding-bottom: ${props =>
+      props.currentStep === 0 ? `266px` : `223px`}; */
     background-image: url(${tablet_vector_3}), url(${tablet_vector_2}),
       url(${tablet_vector_4}), url(${tablet_vector_1}), url(${tablet_vector_5}),
       url(${tablet_vector_6});
@@ -130,7 +124,8 @@ export const SectionRegisterForm = styled.section`
 
   @media ${device.desktop} {
     padding-top: 46px;
-    padding-bottom: ${props => (props.currentStep === 0 ? `113px` : `51px`)};
+    /* padding-bottom: ${props =>
+      props.currentStep === 0 ? `113px` : `51px`}; */
     background-image: url(${desktop_vector_1}), url(${desktop_vector_2}),
       url(${desktop_vector_3}), url(${tablet_vector_5}), url(${tablet_vector_6});
 
@@ -141,18 +136,9 @@ export const SectionRegisterForm = styled.section`
 
 export const RegisterFormContainer = styled.div`
   max-width: 320px;
-  /* margin-bottom: ${props =>
-    props.currentStep === 0 ? `266px` : `223px`}; */
-  /* padding-left: 20px;
-  padding-right: 20px; */
   margin: 0px auto;
-  /* margin-left: auto;
-  margin-right: auto; */
-  text-align: center;
   padding-left: 20px;
   padding-right: 20px;
-  /* padding-bottom: ${props =>
-    props.currentStep === 0 ? `103px` : `59px`}; */
 
   @media ${device.tablet} {
     max-width: 768px;
@@ -166,6 +152,9 @@ export const RegisterFormContainer = styled.div`
 `;
 
 export const RegisterFormBox = styled.div`
+  /* position: absolute; */
+  top: 40px;
+  text-align: center;
   @media ${device.tablet} {
     background-color: ${props => props.theme.backgrounds.bodySecondary};
     box-shadow: 7px 4px 14px rgba(0, 0, 0, 0.11);
@@ -236,7 +225,7 @@ export const NextFormRegisterBtn = styled.button`
   color: ${props => props.theme.fontColors.white};
   /* background-color: ${props => props.theme.backgrounds.buttonPrimary}; */
   background-color: ${props =>
-    props.disabled ? 'grey' : props.theme.backgrounds.buttonPrimary};
+    props.disabled ? '#A0A0A0' : props.theme.backgrounds.buttonPrimary};
   border-radius: 40px;
   padding-top: 8.5px;
   padding-bottom: 8.5px;
@@ -246,7 +235,12 @@ export const NextFormRegisterBtn = styled.button`
   letter-spacing: ${props => props.theme.fonts.letterSpacing};
   outline: none;
   border: none;
+  cursor: pointer;
   transition: all 0.3s ease-in-out;
+  ${props => (props.currentStep === 0 ? '40px' : '28px')}
+  &:hover {
+    transform: scale(1.03);
+  }
 
   /* &:hover {
     transform: scale(1.03);
@@ -278,6 +272,7 @@ export const BackFormRegisterBtn = styled.button`
   letter-spacing: ${props => props.theme.fonts.letterSpacing};
   outline: none;
   transition: all 0.3s ease-in-out;
+  cursor: pointer;
   &:hover {
     transform: scale(1.03);
   }

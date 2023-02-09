@@ -3,10 +3,9 @@ import { useDispatch } from 'react-redux';
 import { Formik, Form } from 'formik';
 import { nanoid } from 'nanoid';
 import { register } from 'redux/auth/authOperations';
-import PhoneInput from 'react-phone-input-2';
 import 'react-phone-input-2/lib/style.css';
-// import * as yup from 'yup';
 import { PhoneInputField } from './RegisterForm.styled';
+import { ErrorText } from 'Validations/AuthErrorMessage.styled';
 
 import {
   stepOneReqisterSchema,
@@ -27,34 +26,6 @@ import {
   RegisterFormBox,
 } from './RegisterForm.styled';
 
-// ============
-
-// const Wrapper = ({ className, ...props }) => (
-//   <div>
-//     <PhoneInput {...props} />
-//   </div>
-// );
-
-// const Phone = styled(Wrapper)`
-//   #phone-input {
-//     background: red;
-//   }
-// `;
-
-// function InputMobile({ value }) {
-//   return (
-//     <Phone
-//       country={'us'}
-//       inputProps={{
-//         id: 'phone-input',
-//       }}
-//       value={value}
-//     />
-//   );
-// }
-
-// ============
-
 export const RegisterForm = () => {
   const dispatch = useDispatch();
 
@@ -68,7 +39,6 @@ export const RegisterForm = () => {
   });
 
   const [currentStep, setCurrentStep] = useState(0);
-  // const [errors, setErrors] = useState({});
 
   const makeRequest = formData => {
     const body = {
@@ -112,8 +82,6 @@ export const RegisterForm = () => {
     />,
   ];
 
-  // console.log('data', userData);
-
   return (
     <SectionRegisterForm currentStep={currentStep}>
       {registerSteps[currentStep]}
@@ -136,54 +104,38 @@ const RegisterStepOne = props => {
         <RegisterTitle>Registration</RegisterTitle>
         <Formik
           initialValues={props.userData}
-          // validationSchema={stepOneReqisterSchema}
+          validationSchema={stepOneReqisterSchema}
           onSubmit={handleSubmit}
         >
           {({ isValid, dirty }) => (
             <Form autoComplete="off">
               <FormInput
                 id={emailInputId}
-                // label="Email"
-                // variant="outlined"
                 name="email"
                 placeholder="Email"
-                // type="email"
                 autoComplete="off"
-                // required
               />
               <FormError name="email" />
               <FormInput
                 id={passwordInputId}
-                // label="Password"
                 name="password"
                 placeholder="Password"
                 type="password"
                 autoComplete="off"
-                // required
-                // error={Boolean(errors.name) && Boolean(touched.name)}
-                // helperText={Boolean(touched.name) && errors.name}
               />
               <FormError name="password" />
               <FormInput
                 id={confirmPasswordInputId}
-                // label="Password"
-                // variant="outlined"
                 name="confirmPassword"
                 placeholder="Confirm Password"
                 type="password"
                 autoComplete="off"
-                // required
-                // error={Boolean(errors.name) && Boolean(touched.name)}
-                // helperText={Boolean(touched.name) && errors.name}
               />
               <FormError name="confirmPassword" />
               <NextFormRegisterBtn
                 currentStep={props.currentStep}
                 type="submit"
-                // disabled={!dirty || !isValid}
                 disabled={!isValid}
-                // isValid={isValid}
-                // dirty={dirty}
               >
                 Next
               </NextFormRegisterBtn>
@@ -219,60 +171,44 @@ const RegisterStepTwo = props => {
           validationSchema={stepTwoReqisterSchema}
           onSubmit={handleSubmit}
         >
-          {({ values, setFieldValue, isValid, dirty, errors, touched }) => (
+          {({
+            values,
+            setFieldValue,
+            isValid,
+            dirty,
+            errors,
+            touched,
+            context,
+          }) => (
             <Form autoComplete="off">
               <FormInput
                 id={nameInputId}
-                // label="Email"
-                // variant="outlined"
                 name="name"
                 placeholder="Name"
                 type="text"
                 autoComplete="off"
-                // required
-                // error={Boolean(errors.email) && Boolean(touched.email)}
-                // helperText={Boolean(touched.email) && errors.email}
               />
               <FormError name="name" />
               <FormInput
                 id={regionInputId}
-                // label="Password"
                 name="region"
                 placeholder="City, reqion"
                 type="text"
                 autoComplete="off"
-                // required
-                // error={Boolean(errors.name) && Boolean(touched.name)}
-                // helperText={Boolean(touched.name) && errors.name}
               />
               <FormError name="region" />
 
               <FormInput
-                // as={PhoneInputField}
                 component={PhoneInputField}
                 type="text"
                 id={phoneInputId}
-                // label="Password"
-                // variant="outlined"
                 name="phone"
-                // placeholder="Mobile phone"
-                // type="tel"
-                // autoComplete="off"
                 onChange={e => setFieldValue('phone', `+${e}`)}
                 value={values.phone}
-                touched={touched.phone}
-                errors={errors.phone}
-
-                // onChange={phone => console.log({ phone })}
-                // onBlur={handleBlur}
-                // required
-                // error={Boolean(errors.name) && Boolean(touched.name)}
-                // helperText={Boolean(touched.name) && errors.name}
+                error={Boolean(errors.phone) && Boolean(touched.phone)}
+                helperText={Boolean(touched.phone) && errors.phone}
               />
-              {errors.phone && console.log(errors.phone) && (
-                <FormError name="phone" />
-              )}
-              {/* <FormError name="phone" /> */}
+              <ErrorText>{errors.phone}</ErrorText>
 
               <NextFormRegisterBtn
                 currentStep={props.currentStep}
@@ -300,98 +236,3 @@ const RegisterStepTwo = props => {
     </RegisterFormContainer>
   );
 };
-
-// Formik
-// const initialValues = {
-//   email: '',
-//   password: '',
-//   confirmPassword: '',
-// };
-
-// const handleSubmit = (value, actions) => {
-//   const body = {
-//     email: value.email,
-//     password: value.password,
-//     confirmPassword: value.confirmPassword,
-//   };
-
-//   console.log(body);
-//   // dispatch(register(body));
-//   // actions.resetForm();
-//   // setValues({ ...values, password: '' });
-// };
-
-// return (
-//   <SectionRegisterForm>
-//     <RegisterFormContainer>
-//       <RegisterTitle>Registration</RegisterTitle>
-//       <Formik
-//         initialValues={initialValues}
-//         // validationSchema={yup.object().shape({
-//         //   name: yup
-//         //     .string()
-//         //     .required('Please enter name')
-//         //     .min(2, 'Name too short'),
-//         //   email: yup
-//         //     .string()
-//         //     .required('Please enter email')
-//         //     .email('Invalid email'),
-//         //   password: yup
-//         //     .string()
-//         //     .required('Please enter password')
-//         //     .min(7, 'Password should be minimum 7 characters long'),
-//         // })}
-//         onSubmit={handleSubmit}
-//       >
-//         {() => (
-//           <Form autoComplete="off">
-//             <FormInput
-//               id={emailInputId}
-//               // label="Email"
-//               // variant="outlined"
-//               name="email"
-//               placeholder="Email"
-//               // type="email"
-//               autoComplete="off"
-//               // required
-//               // error={Boolean(errors.email) && Boolean(touched.email)}
-//               // helperText={Boolean(touched.email) && errors.email}
-//             />
-//             <FormInput
-//               id={passwordInputId}
-//               // label="Password"
-//               name="password"
-//               placeholder="Password"
-//               type="password"
-//               autoComplete="off"
-//               // required
-//               // error={Boolean(errors.name) && Boolean(touched.name)}
-//               // helperText={Boolean(touched.name) && errors.name}
-//             />
-//             <FormInput
-//               id={confirmPasswordInputId}
-//               // label="Password"
-//               // variant="outlined"
-//               name="confirmPassword"
-//               placeholder="Confirm Password"
-//               type="password"
-//               autoComplete="off"
-//               // required
-//               // error={Boolean(errors.name) && Boolean(touched.name)}
-//               // helperText={Boolean(touched.name) && errors.name}
-//             />
-
-//             <NextFormRegisterBtn type="submit">Next</NextFormRegisterBtn>
-//           </Form>
-//         )}
-//       </Formik>
-//       <RegisterBoxText>
-//         <RegisterLinkText>
-//           Already have an account?{' '}
-//           <ReqisterLoginLink to="/about">Login</ReqisterLoginLink>
-//         </RegisterLinkText>
-//       </RegisterBoxText>
-//       {/* <RegisterBgImg></RegisterBgImg> */}
-//     </RegisterFormContainer>
-//   </SectionRegisterForm>
-// );
