@@ -19,8 +19,7 @@ export const MobMenuContainer = styled.div`
   }
 
   @media ${device.desktop} {
-    margin-right: 80px;
-    font-size: 32px;
+    display: none;
   }
 `;
 

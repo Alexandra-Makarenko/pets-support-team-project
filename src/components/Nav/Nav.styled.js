@@ -67,5 +67,3 @@ export const UserMenuWrapper = styled.div`
     margin-right: 0;
   }
 `;
-
-// export const Burger = styled(MenuIcon)``;

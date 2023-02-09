@@ -5,7 +5,7 @@ export const UserMenu = mobMenuToggler => {
   return (
     <UserMenuBtn to="user" onClick={mobMenuToggler}>
       <Button primary icon>
-        <UserIcon sx={{ fontSize: 20 }} /> Account
+        <UserIcon /> Account
       </Button>
     </UserMenuBtn>
   );
