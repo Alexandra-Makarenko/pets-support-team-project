@@ -1,27 +1,51 @@
 
-import { useSelector } from "react-redux";
-import { selectVisiblePets } from "redux/selectors";
-import { PetsListSection } from "./NoticesCategoryList.styled";
+import { useSelector,useDispatch } from "react-redux";
+import { getPets,getCategoryFilter } from "redux/selectors";
+import { PetsListSection,PetsList } from "./NoticesCategoryList.styled";
+import { useEffect } from "react";
+import { fetchTasks } from "redux/operations"
+import { useLocation } from "react-router-dom";
+import { setStatusFilter } from "redux/filtersSlice";
+import { NoticeCategoryItem } from "../NoticeCategoryItem/NoticeCategoryItem";
+
 
 const NoticesCategoryList = () => {
+  
+  const dispatch = useDispatch();
+  const pets = useSelector(getPets);
+  const categoryFilter = useSelector(getCategoryFilter);
+  const location = useLocation();  
+  
+  console.log(location.pathname);
 
-    // const [filter, setFilter] = useState('');
-    // const [isLoading, setIsLoading] = useState(false);
-    // const [error, setError] = useState(null);
-    // const [pets, setPets] = useState([]);
-    
-  const pets = useSelector(selectVisiblePets);
+  dispatch(setStatusFilter(location.pathname))
 
-  console.log(pets);
+  let category = 'sell';
+
+  if (categoryFilter === '/notices/lost-found') {
+    category = 'lost-found'
+  } else if (categoryFilter === '/notices/sell') {
+    category = 'sell'
+  } else if (categoryFilter === '/notices/in-good-hands') {
+    category = 'in-good-hands'
+  } else {
+    console.log('no category')
+  }
+  
+
+  useEffect(() => {
+    dispatch(fetchTasks(category));
+  }, [dispatch,category])
+
+  
   return (
     <PetsListSection>
-    <ul>
-      {pets.map(pet => (
-        <li key={pet.name}>
-          {pet.name}
-        </li>
+    <PetsList>
+      {pets.map((pet,idx) => (
+        <NoticeCategoryItem key={idx}  pet={pet}/>
+
       ))}
-      </ul>
+      </PetsList>
     </PetsListSection>
     );
 };

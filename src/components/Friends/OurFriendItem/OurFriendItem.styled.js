@@ -23,17 +23,18 @@ export const FriendItem = styled.li`
       margin-top: 0px;
     }
 
-    width: 336px;
+    flex-basis: calc((100% - 16px * 2) / 2);
+    gap: 16px;
+    /* width: 336px; */
     min-height: 246px;
 
-    border-radius: 40px;
     padding: 16px 4px;
-
-    gap: 16px;
+    border-radius: 40px;
   }
 
   @media screen and (min-width: 1280px) {
-    width: 395px;
+    flex-basis: calc((100% - 16px * 4) / 3);
+    /* width: 395px; */
     min-height: 287px;
   }
 `;
@@ -45,7 +46,6 @@ export const FriendTitle = styled.h3`
   font-weight: 700;
   color: var(--primary-color);
   text-align: center;
-  /* flex-grow: 1; */
   padding: 0 4px;
 
   @media screen and (min-width: 768px) {
@@ -70,7 +70,6 @@ export const FriendContentWrapper = styled.div`
   justify-content: flex-start;
   gap: 12px;
   width: 100%;
-  overflow: hidden;
 
   @media screen and (min-width: 768px) {
     gap: 14px;
@@ -107,6 +106,9 @@ export const TextWrapper = styled.div`
   display: flex;
   flex-direction: column;
 `;
+export const HoursWrapper = styled.div`
+  position: relative;
+`;
 
 export const FriendText = styled.p`
   :not(:first-of-type) {
@@ -139,8 +141,51 @@ export const FriendText = styled.p`
 
 export const FriendTime = styled(FriendText)`
   :hover {
-    color: var(--primary-color);
+    ${p =>
+      p.isHours
+        ? `color: var(--primary-color);
+          cursor: pointer;`
+        : 'color: var(--black-color)'};
   }
 `;
 
-// export const = ``;
+export const HoursOfWeek = styled.ul`
+  ${p =>
+    p.isOpen
+      ? `display: flex;
+      flex-direction: column;
+      gap: 4px;`
+      : `display: none;`}
+  position: absolute;
+  top: calc(100% + 3px);
+  padding: 12px;
+  background-color: #ffffff;
+  border: 1px solid #f59256;
+  box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.25);
+  border-radius: 8px;
+  @media screen and (min-width: 768px) {
+    top: calc(100% + 4px);
+  }
+`;
+
+export const HoursItem = styled.li`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 12px;
+
+  font-family: var(--font-base);
+  font-size: 12px;
+  line-height: 1.35;
+
+  font-weight: 500;
+  color: var(--black-color);
+
+  @media screen and (min-width: 768px) {
+    font-size: 14px;
+  }
+
+  @media screen and (min-width: 1280px) {
+    font-size: 16px;
+  }
+`;
