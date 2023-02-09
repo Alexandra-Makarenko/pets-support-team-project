@@ -1,11 +1,11 @@
-import { LogoLink, LogoAccent } from './Logo.styled';
+import { LogoText, LogoAccent } from './Logo.styled';
 
 export const Logo = () => {
   return (
     <div>
-      <LogoLink to="/">
+      <LogoText>
         pe<LogoAccent>t</LogoAccent>ly
-      </LogoLink>
+      </LogoText>
     </div>
   );
 };
