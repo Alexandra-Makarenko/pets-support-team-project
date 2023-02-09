@@ -2,13 +2,14 @@ import { useState } from 'react';
 import { MobileMenu } from 'components/MobileMenu/MobileMenu';
 import {
   MobMenuBtn,
-  Burger,
   NavBlock,
   UserMenuWrapper,
   MenuList,
   MenuItem,
   MenuLink,
 } from './Nav.styled';
+
+import { ReactComponent as Burger } from './burger-menu.svg';
 import { UserMenu } from 'components/UserMenu/UserMenu';
 import { AuthNav } from 'components/AuthNav/AuthNav';
 
@@ -41,7 +42,7 @@ export const Nav = () => {
         )}
       </UserMenuWrapper>
       <MobMenuBtn type="button" onClick={mobMenuToggler} isOpen={isOpen}>
-        <Burger sx={{ fontSize: 40 }} />
+        <Burger />
       </MobMenuBtn>
       {isOpen && <MobileMenu mobMenuToggler={mobMenuToggler} />}
     </NavBlock>

@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
-import MenuIcon from '@mui/icons-material/Menu';
+// import MenuIcon from 'components/Nav/burger-menu.svg';
 import { device } from '../../styles/device';
 
 export const NavBlock = styled.nav`
@@ -68,4 +68,4 @@ export const UserMenuWrapper = styled.div`
   }
 `;
 
-export const Burger = styled(MenuIcon)``;
+// export const Burger = styled(MenuIcon)``;
