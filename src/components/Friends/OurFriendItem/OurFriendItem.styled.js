@@ -111,9 +111,9 @@ export const HoursWrapper = styled.div`
 `;
 
 export const FriendText = styled.p`
-  :not(:first-of-type) {
-    margin-top: 4px;
-  }
+  margin-top: 4px;
+  /* :not(:first-of-type) {
+  } */
 
   font-family: var(--font-base);
   font-size: 12px;
@@ -123,17 +123,17 @@ export const FriendText = styled.p`
   color: var(--black-color);
 
   @media screen and (min-width: 768px) {
-    :not(:first-of-type) {
-      margin-top: 8px;
-    }
+    margin-top: 8px;
+    /* :not(:first-of-type) {
+    } */
 
     font-size: 14px;
   }
 
   @media screen and (min-width: 1280px) {
-    :not(:first-of-type) {
-      margin-top: 12px;
-    }
+    /* :not(:first-of-type) {
+    } */
+    margin-top: 12px;
 
     font-size: 16px;
   }
