@@ -7,8 +7,12 @@ import {
   Value,
 } from './Userpage.styled';
 import emptyPhoto from './emptyPhoto.jpg';
+import { useSelector } from 'react-redux';
+import { selectUser } from 'redux/auth/authSelectors';
 
 const UserPage = () => {
+  const { email, name, place, phone, dayofbirth, avatarURL } =
+    useSelector(selectUser);
   const Li = (fieldName, value, isActive) => (
     <li>
       <FieldName>{fieldName}</FieldName>
@@ -27,13 +31,17 @@ const UserPage = () => {
     <>
       <h2>My Information</h2>
       <MyInfoSection>
-        <UserPhoto src={emptyPhoto} alt="" />
+        {avatarURL ? (
+          <UserPhoto src={avatarURL} width={233} height={233} alt="" />
+        ) : (
+          <UserPhoto src={emptyPhoto} alt="" />
+        )}
         <ul>
-          {Li('Name:', '', true)}
-          {Li('Email:', '', false)}
-          {Li('Birthday:', '', true)}
-          {Li('Phone:', '', true)}
-          {Li('City:', '', true)}
+          {Li('Name:', name, true)}
+          {Li('Email:', email, false)}
+          {Li('Birthday:', dayofbirth, true)}
+          {Li('Phone:', phone, true)}
+          {Li('City:', place, true)}
         </ul>
       </MyInfoSection>
       <section>
