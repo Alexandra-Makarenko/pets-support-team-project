@@ -13,11 +13,92 @@ import desktop_vector_1 from '../../../assets/images/bg-pictures/desktop/desktop
 import desktop_vector_2 from '../../../assets/images/bg-pictures/desktop/desktop_vector_2.png';
 import desktop_vector_3 from '../../../assets/images/bg-pictures/desktop/desktop_vector_3.png';
 import { device } from 'styles/device';
+import PhoneInput from 'react-phone-input-2';
+import 'react-phone-input-2/lib/style.css';
+
+// export const Phone = styled(PhoneInput)`
+//   display: block;
+//   font-family: 'Manrope400';
+//   font-size: 14px;
+//   line-height: 19px;
+//   letter-spacing: ${props => props.theme.fonts.letterSpacing};
+//   width: 100%;
+//   margin-top: 16px;
+//   padding-top: 11px;
+//   padding-bottom: 12px;
+//   padding-left: 14px;
+//   color: ${props => props.theme.fontColors.inputTextColor};
+//   outline: none;
+//   background-color: ${props => props.theme.backgrounds.input};
+//   border: 1px solid rgba(245, 146, 86, 0.5);
+//   border-radius: 40px;
+
+//   @media ${device.tablet} {
+//     font-family: 'Manrope400';
+//     font-size: 18px;
+//     line-height: 25px;
+//     padding-top: 14px;
+//     padding-bottom: 13px;
+//     padding-left: 32px;
+//   }
+
+//   @media ${device.desktop} {
+//   }
+// `;
+
+export const PhoneInputField = props => {
+  return (
+    <PhoneInput
+      regions={['europe']}
+      country="ua"
+      value={props.value}
+      onChange={props.onChange}
+      inputStyle={{
+        fontFamily: 'Manrope400',
+        color: 'rgba(17, 17, 17, 0.6)',
+        letterSpacing: '0.04em',
+        width: '180px',
+        background: '#FDF7F2',
+        outline: 0,
+        border: 0,
+        padding: 0,
+        margin: 0,
+        height: '100%',
+        left: '48px',
+      }}
+      containerStyle={{
+        marginTop: '16px',
+        paddingTop: '12px',
+        paddingBottom: '12px',
+        paddingLeft: '10px',
+        background: '#FDF7F2',
+        border: '1px solid rgba(245, 146, 86, 0.5)',
+        borderRadius: '40px',
+        textAlign: 'left',
+      }}
+      buttonStyle={{
+        background: '#FDF7F2',
+        border: 0,
+        color: 'rgba(17, 17, 17, 0.6)',
+        borderRadius: '50%',
+      }}
+      dropdownStyle={{
+        height: '200px',
+        color: '#000000',
+        background: '#FDF7F2',
+        textAlign: 'left',
+        borderRadius: '6px',
+      }}
+    />
+  );
+};
 
 export const SectionRegisterForm = styled.section`
-  height: 100%;
+  /* position: relative; */
+  height: 100vh;
   padding-top: 42px;
-  padding-bottom: ${props => (props.currentStep === 0 ? `103px` : `59px`)};
+  /* padding-bottom: ${props =>
+    props.currentStep === 0 ? `103px` : `59px`}; */
   background-color: ${props => props.theme.backgrounds.input};
 
   background-image: ${props =>
@@ -25,13 +106,14 @@ export const SectionRegisterForm = styled.section`
       ? `url(${register_bg_step1_mob})`
       : `url(${register_bg_step2_mob})`};
 
-  background-size: 'contain';
+  background-size: 'cover';
   background-position: left 50% bottom 0px;
   background-repeat: no-repeat;
 
   @media ${device.tablet} {
     padding-top: 169px;
-    padding-bottom: ${props => (props.currentStep === 0 ? `266px` : `223px`)};
+    /* padding-bottom: ${props =>
+      props.currentStep === 0 ? `266px` : `223px`}; */
     background-image: url(${tablet_vector_3}), url(${tablet_vector_2}),
       url(${tablet_vector_4}), url(${tablet_vector_1}), url(${tablet_vector_5}),
       url(${tablet_vector_6});
@@ -42,7 +124,8 @@ export const SectionRegisterForm = styled.section`
 
   @media ${device.desktop} {
     padding-top: 46px;
-    padding-bottom: ${props => (props.currentStep === 0 ? `113px` : `51px`)};
+    /* padding-bottom: ${props =>
+      props.currentStep === 0 ? `113px` : `51px`}; */
     background-image: url(${desktop_vector_1}), url(${desktop_vector_2}),
       url(${desktop_vector_3}), url(${tablet_vector_5}), url(${tablet_vector_6});
 
@@ -53,18 +136,9 @@ export const SectionRegisterForm = styled.section`
 
 export const RegisterFormContainer = styled.div`
   max-width: 320px;
-  /* margin-bottom: ${props =>
-    props.currentStep === 0 ? `266px` : `223px`}; */
-  /* padding-left: 20px;
-  padding-right: 20px; */
   margin: 0px auto;
-  /* margin-left: auto;
-  margin-right: auto; */
-  text-align: center;
   padding-left: 20px;
   padding-right: 20px;
-  /* padding-bottom: ${props =>
-    props.currentStep === 0 ? `103px` : `59px`}; */
 
   @media ${device.tablet} {
     max-width: 768px;
@@ -78,6 +152,9 @@ export const RegisterFormContainer = styled.div`
 `;
 
 export const RegisterFormBox = styled.div`
+  /* position: absolute; */
+  top: 40px;
+  text-align: center;
   @media ${device.tablet} {
     background-color: ${props => props.theme.backgrounds.bodySecondary};
     box-shadow: 7px 4px 14px rgba(0, 0, 0, 0.11);
@@ -146,7 +223,9 @@ export const NextFormRegisterBtn = styled.button`
   margin-top: ${props => (props.currentStep === 0 ? '40px' : '28px')};
   width: 100%;
   color: ${props => props.theme.fontColors.white};
-  background-color: ${props => props.theme.backgrounds.buttonPrimary};
+  /* background-color: ${props => props.theme.backgrounds.buttonPrimary}; */
+  background-color: ${props =>
+    props.disabled ? '#A0A0A0' : props.theme.backgrounds.buttonPrimary};
   border-radius: 40px;
   padding-top: 8.5px;
   padding-bottom: 8.5px;
@@ -156,10 +235,16 @@ export const NextFormRegisterBtn = styled.button`
   letter-spacing: ${props => props.theme.fonts.letterSpacing};
   outline: none;
   border: none;
+  cursor: pointer;
   transition: all 0.3s ease-in-out;
+  ${props => (props.currentStep === 0 ? '40px' : '28px')}
   &:hover {
     transform: scale(1.03);
   }
+
+  /* &:hover {
+    transform: scale(1.03);
+  } */
 
   @media ${device.tablet} {
     margin-top: 40px;
@@ -187,6 +272,7 @@ export const BackFormRegisterBtn = styled.button`
   letter-spacing: ${props => props.theme.fonts.letterSpacing};
   outline: none;
   transition: all 0.3s ease-in-out;
+  cursor: pointer;
   &:hover {
     transform: scale(1.03);
   }

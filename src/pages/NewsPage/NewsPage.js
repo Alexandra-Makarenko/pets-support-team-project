@@ -7,7 +7,7 @@ import { fetchNewsEng, fetchNews } from './components/helpers/fetchNews';
 import { Section } from './NewsPage.styled';
 const NewsPage = () => {
   const [news, setNews] = useState([]);
-  // const [search, setSearch] = useState('');
+//   const [search, setSearch] = useState('');
 
   useEffect(() => {
     getNews();
@@ -22,14 +22,14 @@ const NewsPage = () => {
     setNews(result);
   };
 
-  // const handleSubmit = event => {
-  //   event.preventDefault();
-  //   getNews(search);
-  // };
+//   const handleSubmit = event => {
+//     event.preventDefault();
+//     getNews(search);
+//   };
 
-  // const updateQueryString = queue => {
-  //   setSearch(queue);
-  // };
+//   const updateQueryString = queue => {
+//     setSearch(queue);
+//   };
 
   return (
     <Section>

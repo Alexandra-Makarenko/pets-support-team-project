@@ -1,6 +1,7 @@
 import axios from 'axios';
 
 export const fetchNews = async searchQuery => {
+
   const news = await axios
     .get('/api/news', {
       params: {},
