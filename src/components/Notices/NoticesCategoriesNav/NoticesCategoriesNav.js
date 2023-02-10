@@ -21,12 +21,12 @@ export const NoticesCategoriesNav = () => {
         </li>
         {isLoggedIn && (
           <li>
-            <Link to="favorite-ads">favorite ads</Link>
+            <Link to="favorite">favorite ads</Link>
           </li>
         )}
         {isLoggedIn && (
           <li>
-            <Link to="my-ads">my ads</Link>
+            <Link to="own">my ads</Link>
           </li>
         )}
       </Container>

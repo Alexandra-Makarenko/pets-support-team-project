@@ -14,6 +14,7 @@ const NoticesCategoryList = () => {
   const location = useLocation();
 
   console.log(location.pathname);
+  console.log('categoryFilter', categoryFilter);
 
   let category = 'sell';
 
@@ -23,6 +24,10 @@ const NoticesCategoryList = () => {
     category = 'sell';
   } else if (categoryFilter === '/notices/in-good-hands') {
     category = 'in-good-hands';
+  } else if (categoryFilter === '/notices/favorite') {
+    category = 'favorite';
+  } else if (categoryFilter === '/notices/own') {
+    category = 'mynotices';
   } else {
     console.log('no category');
   }

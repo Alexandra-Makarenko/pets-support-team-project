@@ -50,8 +50,8 @@ export const App = () => {
           <Route path="sell" element={<NoticesCategoryList />} />
           <Route path="lost-found" element={<NoticesCategoryList />} />
           <Route path="in-good-hands" element={<NoticesCategoryList />} />
-          <Route path="favorite-ads" element={<NoticesCategoryList />} />
-          <Route path="my-ads" element={<NoticesCategoryList />} />
+          <Route path="favorite" element={<NoticesCategoryList />} />
+          <Route path="own" element={<NoticesCategoryList />} />
         </Route>
         <Route
           path="/user"
