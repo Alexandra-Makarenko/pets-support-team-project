@@ -1,19 +1,20 @@
 import styled from 'styled-components';
+import { device } from '../../styles/device';
 
 export const HeaderContainer = styled.header`
   display: flex;
   justify-content: space-between;
   align-items: center;
-
-  position: relative;
-
-  width: 320px;
-  background-color: #fdf7f2;
-
-  padding-top: 16px;
-  padding-left: 20px;
-  padding-right: 25px;
-  padding-bottom: 16px;
+  width: 100%;
+  margin-bottom: 42px;
   margin-left: auto;
   margin-right: auto;
+
+  @media ${device.tablet} {
+    margin-bottom: 92px;
+  }
+
+  @media ${device.desktop} {
+    margin-bottom: 59px;
+  }
 `;
