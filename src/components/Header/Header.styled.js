@@ -17,10 +17,15 @@ export const HeaderContainer = styled.header`
   @media ${device.tablet} {
     margin-bottom: 92px;
     max-width: 768px;
+    padding-top: 20px;
+    padding-left: 32px;
+    padding-right: 32px;
   }
 
   @media ${device.desktop} {
     margin-bottom: 59px;
     max-width: 1280px;
+    padding-left: 16px;
+    padding-right: 16px;
   }
 `;
