@@ -2,7 +2,7 @@ import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
 // axios.defaults.baseURL = 'https://connections-api.herokuapp.com/';
-axios.defaults.baseURL = 'http://localhost:3018/api';
+axios.defaults.baseURL = 'https://petly-5jqe.onrender.com/api';
 
 // Utility to add JWT
 const setAuthHeader = token => {
@@ -32,7 +32,7 @@ export const register = createAsyncThunk(
     } catch (error) {
       console.log(error);
       // return alert('Try entering a different email');
-      // return thunkAPI.rejectWithValue(error.message);
+      return thunkAPI.rejectWithValue(error.message);
     }
   }
 );
@@ -44,7 +44,7 @@ export const register = createAsyncThunk(
 export const logIn = createAsyncThunk(
   'auth/login',
   async (credentials, thunkAPI) => {
-    console.log(credentials);
+    // console.log(credentials);
     try {
       const response = await axios.post('/users/login', credentials);
       console.log(response.data);
@@ -95,8 +95,8 @@ export const refreshUser = createAsyncThunk(
       const response = await axios.get('/users/current');
       return response.data;
     } catch (error) {
-      return alert('User is not found');
-      // return thunkAPI.rejectWithValue(error.message);
+      // return alert('User is not found');
+      return thunkAPI.rejectWithValue(error.message);
     }
   }
 );
