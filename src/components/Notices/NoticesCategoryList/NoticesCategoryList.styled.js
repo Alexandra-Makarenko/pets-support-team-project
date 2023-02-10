@@ -8,4 +8,14 @@ import { device } from '../../../styles/device';
   }
 
 `;
+ export const PetsList = styled.ul`
+  margin-bottom: 32px;   
+
+     @media ${device.tablet} {
+        display: flex;   
+        flex-wrap:wrap;    
+        margin-left: -32px;
+        }
+}
+`;
  

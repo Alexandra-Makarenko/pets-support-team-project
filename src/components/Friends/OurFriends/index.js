@@ -1,0 +1,1 @@
+export { OurFriends } from './OurFriends';

@@ -1,13 +1,15 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { categoryFilters } from "./constants";
+// import { categoryFilters } from "./constants";
 
-const filtersInitialState = {
-  category: categoryFilters.sell,
-};
+// const filtersInitialState = {
+//   category: categoryFilters.sell,
+// };
 
 const filtersSlice = createSlice({
   name: "filters",
-  initialState: filtersInitialState,
+  initialState: {
+  category: '',
+},
   reducers: {
     setStatusFilter(state, action) {
       state.category = action.payload;
