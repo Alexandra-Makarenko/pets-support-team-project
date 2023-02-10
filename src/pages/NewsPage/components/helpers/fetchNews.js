@@ -3,11 +3,12 @@ import axios from 'axios';
 export const fetchNews = async searchQuery => {
 
   const news = await axios
-    .get('/api/news', {
+    .get('/news', {
       params: {},
     })
     .then(result => {
-      return result.data;
+      console.log(result.data.data)
+      return result.data.data;
     })
     .catch(error => {
       if (error.response) {
