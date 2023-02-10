@@ -18,8 +18,6 @@ export const Nav = () => {
   const [isOpen, setIsOnen] = useState(false);
   const { isLoggedIn } = useAuth();
 
-  console.log(isLoggedIn);
-
   const mobMenuToggler = () => {
     setIsOnen(isOpen => !isOpen);
   };
