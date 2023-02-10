@@ -1,18 +1,18 @@
 
 import { useSelector,useDispatch } from "react-redux";
-import { getPets,getCategoryFilter } from "redux/selectors";
+import { getNotices,getCategoryFilter } from "redux/notices/selectors";
 import { PetsListSection,PetsList } from "./NoticesCategoryList.styled";
 import { useEffect } from "react";
-import { fetchTasks } from "redux/operations"
+import { fetchNotices } from "redux/notices/operations"
 import { useLocation } from "react-router-dom";
-import { setStatusFilter } from "redux/filtersSlice";
+import { setStatusFilter } from "redux/notices/filtersSlice";
 import { NoticeCategoryItem } from "../NoticeCategoryItem/NoticeCategoryItem";
 
 
 const NoticesCategoryList = () => {
   
   const dispatch = useDispatch();
-  const pets = useSelector(getPets);
+  const pets = useSelector(getNotices);
   const categoryFilter = useSelector(getCategoryFilter);
   const location = useLocation();  
   
@@ -34,10 +34,9 @@ const NoticesCategoryList = () => {
   
 
   useEffect(() => {
-    dispatch(fetchTasks(category));
+    dispatch(fetchNotices(category));
   }, [dispatch,category])
-
-  
+   
   return (
     <PetsListSection>
     <PetsList>
