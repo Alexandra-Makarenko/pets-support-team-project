@@ -23,7 +23,7 @@ export const NoticeCategoryItem = ({pet}) => {
         </ImgWrap>
         <Wrap>
           <WrapInner>
-            <Title>title</Title>
+            <Title>{pet.title || 'Title must be here'}</Title>
             <Ul>
               <Li key={`${pet.id}+breed`}>
                 <Lable>Breed:</Lable>

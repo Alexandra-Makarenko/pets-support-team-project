@@ -1,6 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit';
-import { petsReducer } from './petsSlice';
-import { filtersReducer } from './filtersSlice';
+import { noticesReducer } from './notices/noticesSlice';
+import { filtersReducer } from './notices/filtersSlice';
 
 import {
   persistStore,
@@ -17,7 +17,7 @@ import { authReduser } from './auth/authSlice';
 export const store = configureStore({
   reducer: {
     auth: authReduser,
-    pets: petsReducer,
+    notices: noticesReducer,
     filters: filtersReducer,
   },
 
