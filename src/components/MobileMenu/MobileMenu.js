@@ -1,3 +1,4 @@
+import { useAuth } from 'hooks/useAuth';
 import { UserMenu } from 'components/UserMenu/UserMenu';
 import { AuthNav } from 'components/AuthNav/AuthNav';
 import {
@@ -9,7 +10,7 @@ import {
 } from './MobileMenu.styled';
 
 export const MobileMenu = mobMenuToggler => {
-  const isLoggedIn = false;
+  const { isLoggedIn } = useAuth();
 
   return (
     <MobMenuContainer>
@@ -36,7 +37,6 @@ export const MobileMenu = mobMenuToggler => {
           <MobMenulink to="friends" onClick={mobMenuToggler}>
             Our friend
           </MobMenulink>
-
         </MobMenuItem>
       </MobMenuList>
     </MobMenuContainer>
