@@ -1,25 +1,25 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { fetchTasks } from "./operations";
+import { fetchNotices } from "./operations";
 
 // const tasksInitialState = petsdata;
 
-const petsSlice = createSlice({
-  name: "pets",
+const noticesSlice = createSlice({
+  name: "notices",
   initialState: {
     items: [],
     isLoading: false,
     error: null,
   },
   extraReducers: {
-    [fetchTasks.pending](state) {
+    [fetchNotices.pending](state) {
       state.isLoading = true;
     },
-    [fetchTasks.fulfilled](state, action) {
+    [fetchNotices.fulfilled](state, action) {
       state.isLoading = false;
       state.error = null;
       state.items = action.payload;
     },
-    [fetchTasks.rejected](state, action) {
+    [fetchNotices.rejected](state, action) {
       state.isLoading = false;
       state.error = action.payload;
     },
@@ -27,4 +27,4 @@ const petsSlice = createSlice({
 });
 
 // export const { addTask, deleteTask, toggleCompleted } = petsSlice.actions;
-export const petsReducer = petsSlice.reducer;
+export const noticesReducer = noticesSlice.reducer;
