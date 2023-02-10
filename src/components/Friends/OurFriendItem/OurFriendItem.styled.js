@@ -120,7 +120,7 @@ export const FriendText = styled.p`
   line-height: 1.35;
 
   font-weight: 500;
-  color: var(--black-color);
+  color: ${p => p.theme.fontColors.primary};
 
   @media screen and (min-width: 768px) {
     margin-top: 8px;
@@ -140,12 +140,12 @@ export const FriendText = styled.p`
 `;
 
 export const FriendTime = styled(FriendText)`
-  :hover {
-    ${p =>
+  &:hover {
+    cursor: pointer;
+    color: ${p =>
       p.isHours
-        ? `color: var(--primary-color);
-          cursor: pointer;`
-        : 'color: var(--black-color)'};
+        ? p.theme.fontColors.buttonSecondary
+        : p.theme.fontColors.primary};
   }
 `;
 
