@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import { SearchForm } from 'components/Search/SearchForm';
 import NewsFeed from './components/NewsFeed';
 import { PagesTitle } from 'components/PagesTitle/PagesTitle';
-import { fetchNewsEng, fetchNews } from './components/helpers/fetchNews';
+import { fetchNews } from './components/helpers/fetchNews';
 import { Section } from './NewsPage.styled';
 const NewsPage = () => {
   const [news, setNews] = useState([]);
