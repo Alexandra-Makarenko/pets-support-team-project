@@ -37,6 +37,8 @@ $pre-desktop: 1279px;
   display: inline-block;
 }
 
+
+
 h1,
 h2,
 h3,
@@ -177,4 +179,3 @@ img {
 }
 
 `;
-

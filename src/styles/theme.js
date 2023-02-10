@@ -17,6 +17,7 @@ export const theme = Object.freeze({
     buttonSecondary: '#F59256',
     inputTextColor: 'rgba(17, 17, 17, 0.6)',
     blueLink: '#3091EB',
+    grey: '#535353',
   },
   hovers: {
     primary: '',
@@ -27,5 +28,8 @@ export const theme = Object.freeze({
   },
   fonts: {
     letterSpacing: '0.04em',
+  },
+  shadows: {
+    searchBox: '7px 4px 14px rgba(49, 21, 4, 0.07)',
   },
 });
