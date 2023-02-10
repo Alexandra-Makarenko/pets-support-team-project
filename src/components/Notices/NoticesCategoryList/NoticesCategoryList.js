@@ -1,48 +1,55 @@
-import { getTrendingFilms } from "api";
-import { useState, useEffect,useCallback  } from 'react';
-import { useLocation} from "react-router-dom";
+
+import { useSelector,useDispatch } from "react-redux";
+import { getPets,getCategoryFilter } from "redux/selectors";
+import { PetsListSection,PetsList } from "./NoticesCategoryList.styled";
+import { useEffect } from "react";
+import { fetchTasks } from "redux/operations"
+import { useLocation } from "react-router-dom";
+import { setStatusFilter } from "redux/filtersSlice";
+import { NoticeCategoryItem } from "../NoticeCategoryItem/NoticeCategoryItem";
 
 
 const NoticesCategoryList = () => {
-
-    const [filter, setFilter] = useState('');
-    const [isLoading, setIsLoading] = useState(false);
-    const [error, setError] = useState(null);
-    const [film, setFilm] = useState([]);
-    
- 
-    const categoryFilter = useLocation().pathname;
-   
   
-  const fetchFilms = useCallback(async () => {
-  try {
-    setIsLoading(true);
-    const film = await getTrendingFilms();
-    setFilm(film);
-  } catch {
-    setError('Failed to load film :(');
-  } finally {
-    setIsLoading(false);   
+  const dispatch = useDispatch();
+  const pets = useSelector(getPets);
+  const categoryFilter = useSelector(getCategoryFilter);
+  const location = useLocation();  
+  
+  console.log(location.pathname);
+
+  dispatch(setStatusFilter(location.pathname))
+
+  let category = 'sell';
+
+  if (categoryFilter === '/notices/lost-found') {
+    category = 'lost-found'
+  } else if (categoryFilter === '/notices/sell') {
+    category = 'sell'
+  } else if (categoryFilter === '/notices/in-good-hands') {
+    category = 'in-good-hands'
+  } else {
+    console.log('no category')
   }
-}, []);
   
-  useEffect(() => {
-      console.log(categoryFilter);
-      setFilter(categoryFilter);
-      console.log('state', filter);
-       fetchFilms();
-    }, [categoryFilter, filter,fetchFilms]);
 
+  useEffect(() => {
+    dispatch(fetchTasks(category));
+  }, [dispatch,category])
+
+  
   return (
-    <div>
-      {!isLoading ?  (!error ?  <div>
-      {film.map((film) => (
-            <div key={film.id}
-        > <li>{film.name}</li></div>         
-                ))}
-    </div>:<div>{error}</div>) :<div>Is loading</div>}
-      </div>
+    <PetsListSection>
+    <PetsList>
+      {pets.map((pet,idx) => (
+        <NoticeCategoryItem key={idx}  pet={pet}/>
+
+      ))}
+      </PetsList>
+    </PetsListSection>
     );
 };
+
+
 
 export default NoticesCategoryList;
