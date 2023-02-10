@@ -1,7 +1,8 @@
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 import { device } from '../../styles/device';
 
-export const LogoText = styled.p`
+export const LogoLink = styled(Link)`
   font-family: 'Poppins', sans-serif;
   font-size: 28px;
   font-weight: 700;
