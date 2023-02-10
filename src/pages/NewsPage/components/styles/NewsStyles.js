@@ -9,7 +9,7 @@ const News = styled.ul`
   }
 `;
 const NewsContainer = styled.div`
-  margin: 20px;
+  margin-bottom: 20px;
 `;
 const NewsItem = styled.li`
   margin-bottom: 40px;
