@@ -31,7 +31,7 @@ export const register = createAsyncThunk(
       return response.data;
     } catch (error) {
       console.log(error);
-      // return alert('Try entering a different email');
+      return alert('Try entering a different email');
       // return thunkAPI.rejectWithValue(error.message);
     }
   }
@@ -44,7 +44,7 @@ export const register = createAsyncThunk(
 export const logIn = createAsyncThunk(
   'auth/login',
   async (credentials, thunkAPI) => {
-    console.log(credentials);
+    // console.log(credentials);
     try {
       const response = await axios.post('/users/login', credentials);
       console.log(response.data);
