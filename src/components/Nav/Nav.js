@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useAuth } from 'hooks/useAuth';
 import { MobileMenu } from 'components/MobileMenu/MobileMenu';
 import {
   MobMenuBtn,
@@ -15,7 +16,7 @@ import { AuthNav } from 'components/AuthNav/AuthNav';
 
 export const Nav = () => {
   const [isOpen, setIsOnen] = useState(false);
-  const isLoggedIn = false;
+  const { isLoggedIn } = useAuth();
 
   const mobMenuToggler = () => {
     setIsOnen(isOpen => !isOpen);
