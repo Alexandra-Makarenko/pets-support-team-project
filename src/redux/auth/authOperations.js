@@ -31,8 +31,8 @@ export const register = createAsyncThunk(
       return response.data;
     } catch (error) {
       console.log(error);
-      return alert('Try entering a different email');
-      // return thunkAPI.rejectWithValue(error.message);
+      // return alert('Try entering a different email');
+      return thunkAPI.rejectWithValue(error.message);
     }
   }
 );
@@ -95,8 +95,8 @@ export const refreshUser = createAsyncThunk(
       const response = await axios.get('/users/current');
       return response.data;
     } catch (error) {
-      return alert('User is not found');
-      // return thunkAPI.rejectWithValue(error.message);
+      // return alert('User is not found');
+      return thunkAPI.rejectWithValue(error.message);
     }
   }
 );
