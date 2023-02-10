@@ -186,7 +186,7 @@ const RegisterStepTwo = props => {
                 name="name"
                 placeholder="Name"
                 type="text"
-                autoComplete="off"
+                autoComplete="on"
               />
               <FormError name="name" />
               <FormInput

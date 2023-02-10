@@ -28,7 +28,7 @@ export const Nav = () => {
           <MenuLink to="news">News</MenuLink>
         </MenuItem>
         <MenuItem>
-          <MenuLink to="notices">Find pet</MenuLink>
+          <MenuLink to="notices/sell">Find pet</MenuLink>
         </MenuItem>
         <MenuItem>
           <MenuLink to="friends">Our friend</MenuLink>
