@@ -6,21 +6,12 @@ import { fetchNotices } from 'redux/notices/operations';
 import { useLocation } from 'react-router-dom';
 import { setStatusFilter } from 'redux/notices/filtersSlice';
 import { NoticeCategoryItem } from '../NoticeCategoryItem/NoticeCategoryItem';
-import { useState } from 'react';
-import { MainModal } from 'components/MainModal/MainModal';
-import { ModalNotice } from 'components/Modals/ModalNotice/ModalNotice';
 
 const NoticesCategoryList = () => {
   const dispatch = useDispatch();
   const pets = useSelector(getNotices);
   const categoryFilter = useSelector(getCategoryFilter);
   const location = useLocation();
-
-  const [showModal, setShowModal] = useState(false);
-
-  const toggleModal = () => {
-    setShowModal(!showModal);
-  };
 
   useEffect(() => {
     dispatch(setStatusFilter(location.pathname));
@@ -51,15 +42,10 @@ const NoticesCategoryList = () => {
       <PetsListSection>
         <PetsList>
           {pets.map((pet, idx) => (
-            <NoticeCategoryItem key={idx} pet={pet} openModal={toggleModal} />
+            <NoticeCategoryItem key={idx} pet={pet} />
           ))}
         </PetsList>
       </PetsListSection>
-      {showModal && (
-        <MainModal onClose={toggleModal}>
-          <ModalNotice />
-        </MainModal>
-      )}
     </>
   );
 };
