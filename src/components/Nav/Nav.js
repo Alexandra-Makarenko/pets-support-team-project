@@ -32,7 +32,7 @@ export const Nav = () => {
           <MenuLink to="notices/sell">Find pet</MenuLink>
         </MenuItem>
         <MenuItem>
-          <MenuLink to="friends">Our friend</MenuLink>
+          <MenuLink to="friends">Our friends</MenuLink>
         </MenuItem>
       </MenuList>
       <UserMenuWrapper>
