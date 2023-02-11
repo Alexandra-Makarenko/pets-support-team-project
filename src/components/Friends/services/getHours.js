@@ -1,12 +1,12 @@
 // workDays - Array of Work hours by Days of week
-import { HoursItem } from './OurFriendItem.styled';
+import { HoursItem } from '../OurFriendItem/OurFriendItem.styled';
 
-const getHours = (workDays, NO_INFO_STRING) => {
+export const getHours = (workDays, NO_INFO_STRING) => {
   const hoursToString = ({ from, to }) => from.concat('-', to);
 
   //
   const getHoursOnDaysOfWeek = workDays => {
-    if (!workDays) return null;
+    if (!workDays || !workDays.length) return null;
 
     const DAYS = ['MN', 'TU', 'WE', 'TH', 'FR', 'SA', 'SU'];
 
@@ -46,5 +46,3 @@ const getHours = (workDays, NO_INFO_STRING) => {
     hoursOfWeek: getHoursOnDaysOfWeek(workDays),
   };
 };
-
-export default getHours;
