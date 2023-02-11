@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { device } from 'styles/device';
 
 export const FriendItem = styled.li`
   :not(:first-of-type) {
@@ -8,7 +9,7 @@ export const FriendItem = styled.li`
   width: 280px;
   min-height: 192px;
 
-  background-color: var(--white-color);
+  background-color: ${p => p.theme.backgrounds.bodySecondary};
   border-radius: 20px;
   padding: 12px 4px;
 
@@ -18,7 +19,7 @@ export const FriendItem = styled.li`
 
   box-shadow: 7px 4px 14px rgba(49, 21, 4, 0.07);
 
-  @media screen and (min-width: 768px) {
+  @media screen and ${device.tablet} {
     :not(:first-of-type) {
       margin-top: 0px;
     }
@@ -32,7 +33,7 @@ export const FriendItem = styled.li`
     border-radius: 40px;
   }
 
-  @media screen and (min-width: 1280px) {
+  @media screen and ${device.desktop} {
     flex-basis: calc((100% - 16px * 4) / 3);
     /* width: 395px; */
     min-height: 287px;
@@ -40,19 +41,19 @@ export const FriendItem = styled.li`
 `;
 
 export const FriendTitle = styled.h3`
-  font-family: var(--font-base);
+  font-family: inherit;
   font-size: 12px;
   line-height: 1.35;
   font-weight: 700;
-  color: var(--primary-color);
+  color: ${p => p.theme.fontColors.buttonSecondary};
   text-align: center;
   padding: 0 4px;
 
-  @media screen and (min-width: 768px) {
+  @media screen and ${device.tablet} {
     font-size: 16px;
   }
 
-  @media screen and (min-width: 1280px) {
+  @media screen and ${device.desktop} {
     font-size: 20px;
   }
 `;
@@ -61,7 +62,7 @@ export const FriendLink = styled.a`
   outline: none;
   text-decoration: none;
   color: inherit;
-  border-bottom: 1px solid var(--primary-color);
+  border-bottom: 1px solid ${p => p.theme.fontColors.buttonSecondary};
 `;
 
 export const FriendContentWrapper = styled.div`
@@ -71,11 +72,11 @@ export const FriendContentWrapper = styled.div`
   gap: 12px;
   width: 100%;
 
-  @media screen and (min-width: 768px) {
+  @media screen and ${device.tablet} {
     gap: 14px;
   }
 
-  @media screen and (min-width: 1280px) {
+  @media screen and ${device.desktop} {
     gap: 16px;
   }
 `;
@@ -85,12 +86,12 @@ export const ImgWrapper = styled.div`
   height: 78px;
   flex: 0 0 auto;
 
-  @media screen and (min-width: 768px) {
+  @media screen and ${device.tablet} {
     width: 120px;
     height: 85px;
   }
 
-  @media screen and (min-width: 1280px) {
+  @media screen and ${device.desktop} {
     width: 158px;
     height: 112px;
   }
@@ -111,59 +112,53 @@ export const HoursWrapper = styled.div`
 `;
 
 export const FriendText = styled.p`
-  :not(:first-of-type) {
-    margin-top: 4px;
-  }
+  margin-top: 4px;
 
-  font-family: var(--font-base);
+  font-family: inherit;
   font-size: 12px;
   line-height: 1.35;
 
   font-weight: 500;
-  color: var(--black-color);
+  color: ${p => p.theme.fontColors.primary};
 
-  @media screen and (min-width: 768px) {
-    :not(:first-of-type) {
-      margin-top: 8px;
-    }
-
+  @media screen and ${device.tablet} {
+    margin-top: 8px;
     font-size: 14px;
   }
 
-  @media screen and (min-width: 1280px) {
-    :not(:first-of-type) {
-      margin-top: 12px;
-    }
-
+  @media screen and ${device.desktop} {
+    margin-top: 12px;
     font-size: 16px;
   }
 `;
 
 export const FriendTime = styled(FriendText)`
-  :hover {
-    ${p =>
+  &:hover {
+    cursor: ${p => (p.isHours ? 'pointer' : 'auto')};
+    color: ${p =>
       p.isHours
-        ? `color: var(--primary-color);
-          cursor: pointer;`
-        : 'color: var(--black-color)'};
+        ? p.theme.fontColors.buttonSecondary
+        : p.theme.fontColors.primary};
   }
 `;
 
 export const HoursOfWeek = styled.ul`
+  position: absolute;
+  top: calc(100% + 3px);
+
   ${p =>
     p.isOpen
       ? `display: flex;
       flex-direction: column;
       gap: 4px;`
       : `display: none;`}
-  position: absolute;
-  top: calc(100% + 3px);
   padding: 12px;
-  background-color: #ffffff;
-  border: 1px solid #f59256;
+  background-color: ${p => p.theme.backgrounds.bodySecondary};
+  border: 1px solid ${p => p.theme.backgrounds.buttonPrimary};
   box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.25);
   border-radius: 8px;
-  @media screen and (min-width: 768px) {
+
+  @media screen and ${device.tablet} {
     top: calc(100% + 4px);
   }
 `;
@@ -174,18 +169,18 @@ export const HoursItem = styled.li`
   justify-content: space-between;
   gap: 12px;
 
-  font-family: var(--font-base);
+  font-family: inherit;
   font-size: 12px;
   line-height: 1.35;
 
   font-weight: 500;
-  color: var(--black-color);
+  color: ${p => p.theme.fontColors.primary};
 
-  @media screen and (min-width: 768px) {
+  @media screen and ${device.tablet} {
     font-size: 14px;
   }
 
-  @media screen and (min-width: 1280px) {
+  @media screen and ${device.desktop} {
     font-size: 16px;
   }
 `;

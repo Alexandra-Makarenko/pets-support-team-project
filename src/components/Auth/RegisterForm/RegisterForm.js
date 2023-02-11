@@ -113,7 +113,7 @@ const RegisterStepOne = props => {
                 id={emailInputId}
                 name="email"
                 placeholder="Email"
-                autoComplete="off"
+                autoComplete="on"
               />
               <FormError name="email" />
               <FormInput
