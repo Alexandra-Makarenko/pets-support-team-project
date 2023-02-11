@@ -2,85 +2,84 @@
 /* bring in normalize.css styles */
 
 @font-face {
-  font-family: "Manrope500";
-  src: local("Manrope500"),
-    url("./fonts/Manrope/Manrope-Medium.ttf") format("truetype");
+  font-family: 'Manrope500';
+  src: local('Manrope500'),
+    url('./fonts/Manrope/Manrope-Medium.ttf') format('truetype');
   font-weight: 500;
 }
 
 @font-face {
-  font-family: "Manrope400";
-  src: local("Manrope400"),
-    url("./fonts/Manrope/Manrope-Regular.ttf") format("truetype");
+  font-family: 'Manrope400';
+  src: local('Manrope400'),
+    url('./fonts/Manrope/Manrope-Regular.ttf') format('truetype');
   font-weight: 400;
 }
 
 @font-face {
-  font-family: "Manrope700";
-  src: local("Manrope700"),
-    url("./fonts/Manrope/Manrope-Bold.ttf") format("truetype");
+  font-family: 'Manrope700';
+  src: local('Manrope700'),
+    url('./fonts/Manrope/Manrope-Bold.ttf') format('truetype');
   font-weight: 700;
 }
 
 @font-face {
-  font-family: "Manrope600";
-  src: local("Manrope600"),
-    url("./fonts/Manrope/Manrope-SemiBold.ttf") format("truetype");
+  font-family: 'Manrope600';
+  src: local('Manrope600'),
+    url('./fonts/Manrope/Manrope-SemiBold.ttf') format('truetype');
   font-weight: 600;
 }
 
 @font-face {
-  font-family: "Inter500";
-  src: local("Inter500"),
-    url("./fonts/Inter/Inter-Medium.ttf") format("truetype");
+  font-family: 'Inter500';
+  src: local('Inter500'),
+    url('./fonts/Inter/Inter-Medium.ttf') format('truetype');
   font-weight: 500;
 }
 @font-face {
-  font-family: "Inter700";
-  src: local("Inter700"),
-    url("./fonts/Inter/Inter-Bold.ttf") format("truetype");
+  font-family: 'Inter700';
+  src: local('Inter700'), url('./fonts/Inter/Inter-Bold.ttf') format('truetype');
   font-weight: 700;
 }
 @font-face {
-  font-family: "Inter400";
-  src: local("Inter400"),
-    url("./fonts/Inter/Inter-Regular.ttf") format("truetype");
-  font-weight: 400;
-}
-
-
-@font-face {
-  font-family: "Montserrat400";
-  src: local("Montserrat400"),
-    url("./fonts/Montserrat/Montserrat-Regular.ttf") format("truetype");
+  font-family: 'Inter400';
+  src: local('Inter400'),
+    url('./fonts/Inter/Inter-Regular.ttf') format('truetype');
   font-weight: 400;
 }
 
 @font-face {
-  font-family: "Montserrat500";
-  src: local("Montserrat500"),
-    url("./fonts/Montserrat/Montserrat-Medium.ttf") format("truetype");
+  font-family: 'Montserrat400';
+  src: local('Montserrat400'),
+    url('./fonts/Montserrat/Montserrat-Regular.ttf') format('truetype');
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: 'Montserrat500';
+  src: local('Montserrat500'),
+    url('./fonts/Montserrat/Montserrat-Medium.ttf') format('truetype');
   font-weight: 500;
 }
 
 @font-face {
-  font-family: "Poppins400";
-  src: local("Poppins400"),
-    url("./fonts/Poppins/Poppins-Regular.ttf") format("truetype");
+  font-family: 'Poppins400';
+  src: local('Poppins400'),
+    url('./fonts/Poppins/Poppins-Regular.ttf') format('truetype');
   font-weight: 400;
 }
 
 @font-face {
-  font-family: "Poppins700";
-  src: local("Poppins700"),
-    url("./fonts/Poppins/Poppins-Bold.ttf") format("truetype");
+  font-family: 'Poppins700';
+  src: local('Poppins700'),
+    url('./fonts/Poppins/Poppins-Bold.ttf') format('truetype');
   font-weight: 700;
 }
-
 
 body {
-font-family: Manrope400;
+  font-family: Manrope400;
 }
+
+
 
 *,
 *::before,
@@ -235,3 +234,45 @@ img {
   color: var(--white-color);
   background-color: var(--primary-color);
 }
+
+/* =========== for PhoneInput =========== */
+.flag-dropdown .selected-flag {
+  background-color: transparent !important;
+  border-radius: 50% !important;
+}
+
+@media screen and (min-width: 768px) {
+  .react-tel-input > .form-control {
+    font-size: 18px !important;
+    line-height: 25px !important;
+  }
+
+  .react-tel-input {
+    padding-top: 14px !important;
+    padding-bottom: 14px !important;
+  }
+}
+
+.react-tel-input .invalid-number-message {
+  position: absolute;
+  z-index: 1;
+  font-size: 13px;
+  left: 25px;
+  top: -7px;
+  background: #fff;
+  padding: 0 5px;
+  color: #de0000;
+}
+
+.react-tel-input .special-label {
+  position: absolute;
+  z-index: 1;
+  top: -7px;
+  left: 25px;
+  display: block;
+  background: white;
+  padding: 0 5px;
+  font-size: 13px;
+  white-space: nowrap;
+}
+/* ====================================== */

@@ -1,8 +1,13 @@
 import { Route, Routes, Navigate } from 'react-router-dom';
 import { SharedLayout } from './SharedLayout/SharedLayout';
-import { lazy } from 'react';
+import { useEffect, lazy } from 'react';
+import { useDispatch } from 'react-redux';
+import { ToastContainer } from 'react-toastify';
+import { refreshUser } from 'redux/auth/authOperations';
+import { useAuth } from 'hooks/useAuth';
 import { RestrictedRoute } from './RestrictedRoute';
 import { PrivateRoute } from './PrivateRoute';
+import { Loader } from 'components/Loader/Loader';
 
 const Home = lazy(() => import('../pages/Home/Home'));
 const RegisterPage = lazy(() => import('../pages/RegisterPage/RegisterPage'));
@@ -46,7 +51,6 @@ export const App = () => {
           element={<PrivateRoute component={UserPage} redirectTo="/login" />}
         />
         <Route path="*" element={<Home />} />
-        <Route path="*" element={<Navigate to="/" />} />
       </Route>
     </Routes>
   );

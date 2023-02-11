@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-// import { theme } from 'styles/theme';
 import { device } from 'styles/device';
 
 export const Title = styled.h2`

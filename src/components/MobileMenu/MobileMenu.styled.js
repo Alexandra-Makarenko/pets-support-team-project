@@ -1,31 +1,46 @@
 import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
+import { device } from '../../styles/device';
 
 export const MobMenuContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
   position: absolute;
-  top: 74px;
+  z-index: 999;
+  top: 100px;
   left: 0;
   width: 100%;
   height: 100vh;
-  background-color: #fdf7f2;
+  background-color: ${props => props.theme.backgrounds.bodyPrimary};
+  padding: 4px 34px;
 
-  padding: 30px;
+  @media ${device.tablet} {
+    top: 160px;
+  }
+
+  @media ${device.desktop} {
+    display: none;
+  }
 `;
 
 export const UserMenuWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 12px;
   margin-bottom: 60px;
-`;
-
-export const MobMenuItem = styled.li`
-  box-sizing: border-box;
-
-  &:not(:last-child) {
-    margin-bottom: 40px;
+  @media ${device.tablet} {
+    display: none;
   }
 `;
+export const MobMenuList = styled.ul`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;
+`;
+
+export const MobMenuItem = styled.li``;
 
 export const MobMenulink = styled(NavLink)`
   display: inline-block;
@@ -33,13 +48,12 @@ export const MobMenulink = styled(NavLink)`
   font-weight: 500;
   font-size: 32px;
   line-height: 1.4;
-
-  color: inherit;
+  color: #181c27;
   text-decoration: none;
 
   &:hover,
   :focus {
     font-weight: 700;
-    color: #f59256;
+    color: ${props => props.theme.fontColors.buttonSecondary};
   }
 `;

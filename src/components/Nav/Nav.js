@@ -1,22 +1,51 @@
 import { useState } from 'react';
-
-import { MdMenu } from 'react-icons/md';
+import { useAuth } from 'hooks/useAuth';
 import { MobileMenu } from 'components/MobileMenu/MobileMenu';
-import { MobMenuBtn } from './Nav.styled';
+import {
+  MobMenuBtn,
+  NavBlock,
+  UserMenuWrapper,
+  MenuList,
+  MenuItem,
+  MenuLink,
+} from './Nav.styled';
+
+import { ReactComponent as Burger } from './burger-menu.svg';
+import { UserMenu } from 'components/UserMenu/UserMenu';
+import { AuthNav } from 'components/AuthNav/AuthNav';
 
 export const Nav = () => {
   const [isOpen, setIsOnen] = useState(false);
+  const { isLoggedIn } = useAuth();
 
-  const mobMenuBtnHandler = () => {
+  const mobMenuToggler = () => {
     setIsOnen(isOpen => !isOpen);
   };
 
   return (
-    <nav>
-      <MobMenuBtn type="button" onClick={mobMenuBtnHandler}>
-        <MdMenu size={30} />
+    <NavBlock>
+      <MenuList>
+        <MenuItem>
+          <MenuLink to="news">News</MenuLink>
+        </MenuItem>
+        <MenuItem>
+          <MenuLink to="notices">Find pet</MenuLink>
+        </MenuItem>
+        <MenuItem>
+          <MenuLink to="friends">Our friend</MenuLink>
+        </MenuItem>
+      </MenuList>
+      <UserMenuWrapper>
+        {isLoggedIn ? (
+          <UserMenu mobMenuToggler={mobMenuToggler} />
+        ) : (
+          <AuthNav mobMenuToggler={mobMenuToggler} />
+        )}
+      </UserMenuWrapper>
+      <MobMenuBtn type="button" onClick={mobMenuToggler} isOpen={isOpen}>
+        <Burger />
       </MobMenuBtn>
-      {isOpen && <MobileMenu />}
-    </nav>
+      {isOpen && <MobileMenu mobMenuToggler={mobMenuToggler} />}
+    </NavBlock>
   );
 };

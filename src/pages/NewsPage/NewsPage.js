@@ -3,21 +3,22 @@ import { useState, useEffect } from 'react';
 import { SearchForm } from 'components/Search/SearchForm';
 import NewsFeed from './components/NewsFeed';
 import { PagesTitle } from 'components/PagesTitle/PagesTitle';
-import { fetchNewsEng, fetchNews } from './components/helpers/fetchNews';
-
+import { fetchNews } from './components/helpers/fetchNews';
+import { Section } from './NewsPage.styled';
 const NewsPage = () => {
   const [news, setNews] = useState([]);
 //   const [search, setSearch] = useState('');
 
   useEffect(() => {
-
     getNews();
   }, []);
 
-
   const getNews = async searchQueue => {
     const result =
-      (await fetchNews(searchQueue)) || (await fetchNewsEng(searchQueue));
+      //for now will load from news api but need to change to local host
+      // (await fetchNews(searchQueue)) || (await fetchNewsEng(searchQueue));
+      await fetchNews(searchQueue);
+    //  (await fetchNewsEng(searchQueue));
     setNews(result);
   };
 
@@ -31,7 +32,7 @@ const NewsPage = () => {
 //   };
 
   return (
-    <section>
+    <Section>
       <PagesTitle>News</PagesTitle>
       <SearchForm />
       {/* <Searchbar
@@ -41,7 +42,7 @@ const NewsPage = () => {
       /> */}
 
       <NewsFeed news={news} />
-    </section>
+    </Section>
   );
 };
 export default NewsPage;

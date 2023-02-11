@@ -11,7 +11,6 @@ export const H2 = styled.h2`
   font-weight: 700;
   font-size: 68px;
   line-height: 1.47;
-  margin-left: 16px;
 
   @media ${device.preDesktop} {
     margin-top: 88px;
@@ -27,7 +26,21 @@ export const H2 = styled.h2`
 
 export const Section = styled.section`
   background-color: ${p => p.theme.backgrounds.bodyPrimary};
-  overflow: hidden;
+  background: url(${bgDesktopWave});
+  background-position: 100% calc(21vh + 100%);
+  background-repeat: no-repeat;
+
+  @media ${device.preDesktop} {
+    background: url(${bgTabWave});
+    background-position: 22% calc(9vh + 100%);
+  }
+
+  @media ${device.preTablet} {
+    background: url(${bgMobWave});
+    background-repeat: no-repeat;
+    background-position: 38% calc(2vh + 100%);
+    width: 100%;
+  }
 `;
 
 export const Img = styled.img`
@@ -68,25 +81,16 @@ export const Img = styled.img`
 export const Content = styled.div`
   display: flex;
   column-gap: 75px;
-  background: url(${bgDesktopWave});
-  background-position: 100% calc(21vh + 100%);
-  background-repeat: no-repeat;
 
   @media ${device.preDesktop} {
     flex-direction: column;
     justify-content: center;
     align-items: center;
     gap: 118px;
-    background: url(${bgTabWave});
-    background-position: 22% calc(9vh + 100%);
   }
 
   @media ${device.preTablet} {
     gap: 58px;
-    background: url(${bgMobWave});
-    background-repeat: no-repeat;
-    background-position: 38% calc(2vh + 100%);
-    width: 100%;
   }
 `;
 
@@ -96,6 +100,7 @@ export const Wrap = styled.div`
 
 export const Div = styled.div`
   display: none;
+
   @media ${device.desktop} {
     display: flex;
     position: absolute;
