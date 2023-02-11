@@ -60,7 +60,7 @@ export const NoticeCategoryItem = ({ pet }) => {
       </Item>
       {showModal && (
         <MainModal onClose={toggleModal}>
-          <ModalNotice />
+          <ModalNotice pet={pet} />
         </MainModal>
       )}
     </>
