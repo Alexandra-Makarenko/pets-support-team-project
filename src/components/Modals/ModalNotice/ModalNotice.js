@@ -1,8 +1,13 @@
+import { ModalNoticeBox } from './ModalNotice.styled';
+
 export const ModalNotice = () => {
   return (
-    <section>
+    <ModalNoticeBox>
       <h2>ModalNotice must be here</h2>
-      
-    </section>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit amet,
+        consectetur{' '}
+      </p>
+    </ModalNoticeBox>
   );
 };

@@ -9,12 +9,10 @@ export const Item = styled.li`
   box-shadow: 7px 4px 14px rgba(49, 21, 4, 0.07);
   border-radius: 0px 0px 40px 40px;
   overflow-wrap: break-word;
-  
 
   @media ${device.tablet} {
     flex-basis: calc(100% / 4 - 32px);
     margin-bottom: 32px;
-  
   }
 `;
 
@@ -92,4 +90,15 @@ export const ThumbBtn = styled.div`
   flex-grow: 1;
   gap: 12px;
   padding-bottom: 12px;
+  padding-left: 16px;
+  padding-right: 16px;
+`;
+
+export const LearnMoreBtn = styled.button`
+  width: 100%;
+  color: #f59256;
+  background: #ffffff;
+  border: 2px solid #f59256;
+  border-radius: 40px;
+  cursor: pointer;
 `;

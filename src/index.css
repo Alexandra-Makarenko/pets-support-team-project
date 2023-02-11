@@ -79,8 +79,6 @@ body {
   font-family: Manrope400;
 }
 
-
-
 *,
 *::before,
 *::after {
@@ -200,6 +198,10 @@ img {
   // @media screen and (max-width: 450px) {
   //   font-size: 0.9rem;
   // } */
+}
+
+.button {
+  padding: 0;
 }
 
 .btn-orange {
