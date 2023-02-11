@@ -78,7 +78,7 @@ export const ModalTextArea = styled(Field)`
   line-height: 19px;
   letter-spacing: ${props => props.theme.fonts.letterSpacing};
   width: 100%;
-  resize: vertical;
+  resize: none;
   margin-top: 16px;
   padding-top: 11px;
   padding-bottom: 12px;
@@ -124,6 +124,9 @@ export const NextFormModalBtn = styled.button`
   ${props => (props.currentStep === 0 ? '40px' : '28px')}
   &:hover {
     transform: scale(1.03);
+  }
+  &:active {
+    transform: scale(0.9);
   }
 `;
 
@@ -201,6 +204,7 @@ export const ModalText = styled.p`
 `;
 
 export const ModalLabel = styled.label`
+  display: flex;
   font-family: 'Manrope500';
   font-size: 18px;
   line-height: 27px;
