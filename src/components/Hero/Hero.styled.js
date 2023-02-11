@@ -79,12 +79,6 @@ export const Img = styled.img`
   }
 `;
 
-export const Container = styled.div`
-  margin-left: auto;
-  margin-right: auto;
-  max-width: 1280px;
-`;
-
 export const Content = styled.div`
   display: flex;
   column-gap: 75px;

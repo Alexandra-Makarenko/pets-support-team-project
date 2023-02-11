@@ -5,10 +5,10 @@ import {
   Div,
   Wrap,
   Section,
-  Container,
 } from 'components/Hero/Hero.styled';
 import AddImage from '../../images/hero/desktop/portrait.png';
 import Heart from '../../images/hero/desktop/heart.png';
+import { Container } from 'components/Container/Container';
 
 const Home = () => {
   return (
