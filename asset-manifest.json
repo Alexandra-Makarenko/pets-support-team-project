@@ -1,16 +1,16 @@
 {
   "files": {
     "main.css": "/pets-support-team-project/static/css/main.d0b31cc6.css",
-    "main.js": "/pets-support-team-project/static/js/main.03104bc9.js",
+    "main.js": "/pets-support-team-project/static/js/main.1a907618.js",
     "static/js/774.0fffa256.chunk.js": "/pets-support-team-project/static/js/774.0fffa256.chunk.js",
-    "static/js/61.bfa7ba9c.chunk.js": "/pets-support-team-project/static/js/61.bfa7ba9c.chunk.js",
-    "static/js/100.62f955c5.chunk.js": "/pets-support-team-project/static/js/100.62f955c5.chunk.js",
+    "static/js/61.474ef9ec.chunk.js": "/pets-support-team-project/static/js/61.474ef9ec.chunk.js",
+    "static/js/100.4f2b0e86.chunk.js": "/pets-support-team-project/static/js/100.4f2b0e86.chunk.js",
     "static/js/121.7e56d7c6.chunk.js": "/pets-support-team-project/static/js/121.7e56d7c6.chunk.js",
     "static/js/746.9397c928.chunk.js": "/pets-support-team-project/static/js/746.9397c928.chunk.js",
     "static/css/513.43505994.chunk.css": "/pets-support-team-project/static/css/513.43505994.chunk.css",
-    "static/js/513.df41f38b.chunk.js": "/pets-support-team-project/static/js/513.df41f38b.chunk.js",
+    "static/js/513.19544ac0.chunk.js": "/pets-support-team-project/static/js/513.19544ac0.chunk.js",
     "static/js/119.7eeb9b51.chunk.js": "/pets-support-team-project/static/js/119.7eeb9b51.chunk.js",
-    "static/js/558.2613141d.chunk.js": "/pets-support-team-project/static/js/558.2613141d.chunk.js",
+    "static/js/558.8226eee4.chunk.js": "/pets-support-team-project/static/js/558.8226eee4.chunk.js",
     "static/js/289.f40e3258.chunk.js": "/pets-support-team-project/static/js/289.f40e3258.chunk.js",
     "static/css/925.b41ba148.chunk.css": "/pets-support-team-project/static/css/925.b41ba148.chunk.css",
     "static/js/925.62e302b6.chunk.js": "/pets-support-team-project/static/js/925.62e302b6.chunk.js",
@@ -46,22 +46,22 @@
     "static/media/user-btn-icon.svg": "/pets-support-team-project/static/media/user-btn-icon.7cb83b3c6b1a33c3366bfcd09b185b7e.svg",
     "static/media/burger-menu.svg": "/pets-support-team-project/static/media/burger-menu.f6eea0fbe394c4ba6919de8d6e4fe0f3.svg",
     "main.d0b31cc6.css.map": "/pets-support-team-project/static/css/main.d0b31cc6.css.map",
-    "main.03104bc9.js.map": "/pets-support-team-project/static/js/main.03104bc9.js.map",
+    "main.1a907618.js.map": "/pets-support-team-project/static/js/main.1a907618.js.map",
     "774.0fffa256.chunk.js.map": "/pets-support-team-project/static/js/774.0fffa256.chunk.js.map",
-    "61.bfa7ba9c.chunk.js.map": "/pets-support-team-project/static/js/61.bfa7ba9c.chunk.js.map",
-    "100.62f955c5.chunk.js.map": "/pets-support-team-project/static/js/100.62f955c5.chunk.js.map",
+    "61.474ef9ec.chunk.js.map": "/pets-support-team-project/static/js/61.474ef9ec.chunk.js.map",
+    "100.4f2b0e86.chunk.js.map": "/pets-support-team-project/static/js/100.4f2b0e86.chunk.js.map",
     "121.7e56d7c6.chunk.js.map": "/pets-support-team-project/static/js/121.7e56d7c6.chunk.js.map",
     "746.9397c928.chunk.js.map": "/pets-support-team-project/static/js/746.9397c928.chunk.js.map",
     "513.43505994.chunk.css.map": "/pets-support-team-project/static/css/513.43505994.chunk.css.map",
-    "513.df41f38b.chunk.js.map": "/pets-support-team-project/static/js/513.df41f38b.chunk.js.map",
+    "513.19544ac0.chunk.js.map": "/pets-support-team-project/static/js/513.19544ac0.chunk.js.map",
     "119.7eeb9b51.chunk.js.map": "/pets-support-team-project/static/js/119.7eeb9b51.chunk.js.map",
-    "558.2613141d.chunk.js.map": "/pets-support-team-project/static/js/558.2613141d.chunk.js.map",
+    "558.8226eee4.chunk.js.map": "/pets-support-team-project/static/js/558.8226eee4.chunk.js.map",
     "289.f40e3258.chunk.js.map": "/pets-support-team-project/static/js/289.f40e3258.chunk.js.map",
     "925.b41ba148.chunk.css.map": "/pets-support-team-project/static/css/925.b41ba148.chunk.css.map",
     "925.62e302b6.chunk.js.map": "/pets-support-team-project/static/js/925.62e302b6.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.d0b31cc6.css",
-    "static/js/main.03104bc9.js"
+    "static/js/main.1a907618.js"
   ]
 }
