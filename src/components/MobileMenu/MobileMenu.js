@@ -29,7 +29,7 @@ export const MobileMenu = mobMenuToggler => {
           </MobMenulink>
         </MobMenuItem>
         <MobMenuItem>
-          <MobMenulink to="notices" onClick={mobMenuToggler}>
+          <MobMenulink to="notices/sell" onClick={mobMenuToggler}>
             Find pet
           </MobMenulink>
         </MobMenuItem>

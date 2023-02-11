@@ -1,12 +1,8 @@
 import { NavSection, Link, Container } from './NoticesCategoriesNav.styled';
-import { selectIsLoggedIn } from 'redux/auth/authSelectors';
-import { useSelector } from 'react-redux';
 import { useAuth } from 'hooks/useAuth';
 
 export const NoticesCategoriesNav = () => {
   const { isLoggedIn } = useAuth();
-  console.log(isLoggedIn);
-  // const isLoggedIn = useSelector(selectIsLoggedIn)
   return (
     <NavSection>
       <Container>

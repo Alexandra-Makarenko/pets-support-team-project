@@ -13,8 +13,9 @@ const NoticesCategoryList = () => {
   const categoryFilter = useSelector(getCategoryFilter);
   const location = useLocation();
 
-  console.log(location.pathname);
-  console.log('categoryFilter', categoryFilter);
+  useEffect(() => {
+    dispatch(setStatusFilter(location.pathname));
+  }, [dispatch, location.pathname]);
 
   let category = 'sell';
 
@@ -34,8 +35,7 @@ const NoticesCategoryList = () => {
 
   useEffect(() => {
     dispatch(fetchNotices(category));
-    dispatch(setStatusFilter(location.pathname));
-  }, [dispatch, category, location.pathname]);
+  }, [dispatch, category]);
 
   return (
     <PetsListSection>

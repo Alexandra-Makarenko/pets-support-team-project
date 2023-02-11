@@ -18,7 +18,6 @@ const noticesSlice = createSlice({
       state.isLoading = false;
       state.error = null;
       state.items = action.payload;
-      console.log(action.payload);
     },
     [fetchNotices.rejected](state, action) {
       state.isLoading = false;
