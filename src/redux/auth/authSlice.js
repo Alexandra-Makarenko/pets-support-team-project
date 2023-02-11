@@ -11,6 +11,7 @@ const authInitialState = {
     name: null,
     place: null,
     phone: null,
+    dateofbirth: null,
   },
   token: null,
   isLoggedIn: false,

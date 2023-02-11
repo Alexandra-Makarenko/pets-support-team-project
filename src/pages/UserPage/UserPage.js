@@ -1,7 +1,11 @@
 import { ReactComponent as AcceptSvg } from './accept.svg';
+import { ReactComponent as EditSvg } from './pencil.svg';
+
 import {
   FieldName,
+  ListItem,
   MyInfoSection,
+  PetPhoto,
   UserButton,
   UserPhoto,
   Value,
@@ -12,16 +16,112 @@ import { selectUser } from 'redux/auth/authSelectors';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 
-axios.defaults.baseURL = 'http://localhost:3018/api';
 const fetchPets = async () => {
   const res = await axios.get('user');
   return res.data.result.pets;
 };
 
+const updateUser = async user => {
+  const data = new FormData();
+  data.append('name', user.name);
+  data.append('phone', user.phone);
+  data.append('place', user.place);
+  data.append('dateofbirth', user.dateofbirth);
+  try {
+    const response = await axios({
+      method: 'PATCH',
+      url: '/users',
+      data: data,
+      headers: { 'Content-Type': 'multipart/form-data' },
+    });
+    return response.data;
+  } catch (error) {
+    return null;
+  }
+};
+
 const UserPage = () => {
   const [pets, setPets] = useState('');
-  const { email, name, place, phone, dayofbirth, avatarURL } =
-    useSelector(selectUser);
+  const [activeField, setActiveField] = useState(0);
+  const [inputName, setInputName] = useState(null);
+  const [inputBday, setInputBday] = useState(null);
+  const [inputPhone, setInputPhone] = useState(null);
+  const [inputCity, setInputCity] = useState(null);
+  const [email, setEmail] = useState(null);
+  const [name, setName] = useState(null);
+  const [place, setPlace] = useState(null);
+  const [phone, setPhone] = useState(null);
+  const [dateofbirth, setDateofbirth] = useState(null);
+  const [avatarURL, setAvatarURL] = useState(null);
+  const [readyForUpdate, setReadyForUpdate] = useState(false);
+
+  const handleChangeName = e => {
+    setInputName(e.target.value);
+  };
+  const handleChangBday = e => {
+    setInputBday(e.target.value);
+  };
+  const handleChangePhone = e => {
+    setInputPhone(e.target.value);
+  };
+  const handleChangeCity = e => {
+    setInputCity(e.target.value);
+  };
+
+  const User = useSelector(selectUser);
+
+  const handleSubmit = e => {
+    e.preventDefault();
+    setReadyForUpdate(true);
+  };
+
+  useEffect(() => {
+    setEmail(User.email);
+    setName(User.name);
+    setPlace(User.place);
+    setPhone(User.phone);
+    setDateofbirth(User.dateofbirth);
+    setAvatarURL(User.avatarURL);
+  }, [User]);
+
+  useEffect(() => {
+    if (!readyForUpdate) {
+      return;
+    }
+    async function updateData() {
+      const updatedUser = {
+        name: inputName,
+        phone: inputPhone,
+        place: inputCity,
+        dateofbirth: inputBday,
+      };
+      const data = await updateUser(updatedUser);
+      if (data) {
+        setName(data.name);
+        setPlace(data.place);
+        setPhone(data.phone);
+        setDateofbirth(data.dateofbirth);
+        setAvatarURL(data.avatarURL);
+      } else {
+        setInputName(name);
+        setInputBday(dateofbirth);
+        setInputPhone(phone);
+        setInputCity(place);
+      }
+    }
+    updateData();
+    setReadyForUpdate(false);
+  }, [
+    dateofbirth,
+    inputBday,
+    inputCity,
+    inputName,
+    inputPhone,
+    name,
+    phone,
+    place,
+    readyForUpdate,
+  ]);
 
   useEffect(() => {
     async function getPets() {
@@ -31,12 +131,7 @@ const UserPage = () => {
           ? data.map(({ name, date, breed, comment, avatarURL }) => {
               return (
                 <div>
-                  <img
-                    src={avatarURL || ''}
-                    width={161}
-                    height={161}
-                    alt="pet"
-                  />
+                  <PetPhoto src={avatarURL || ''} alt="pet" />
                   <ul>
                     <li>
                       <p>Name: {name || ''}</p>
@@ -59,19 +154,90 @@ const UserPage = () => {
     }
     getPets();
   }, []);
-  const Li = (fieldName, value, isActive) => (
-    <li>
-      <FieldName>{fieldName}</FieldName>
-      <Value>{value}</Value>
-      {isActive ? (
-        <UserButton>
-          <AcceptSvg fill="#F59256" />
-        </UserButton>
-      ) : (
-        <AcceptSvg />
-      )}
-    </li>
-  );
+  const Li = (
+    fieldName,
+    value,
+    isActive,
+    fieldNubmer,
+    handleChangeField,
+    field
+  ) => {
+    const acceptButtonFunction = () => {
+      if (isActive) {
+        if (activeField === 0) {
+          return (
+            <UserButton
+              type="submit"
+              onClick={() => {
+                setActiveField(fieldNubmer);
+              }}
+            >
+              <EditSvg fill="#F59256" />
+            </UserButton>
+          );
+        } else if (activeField === fieldNubmer) {
+          return (
+            <UserButton
+              type="button"
+              onClick={() => {
+                setActiveField(0);
+              }}
+            >
+              <AcceptSvg fill="#F59256" />
+            </UserButton>
+          );
+        } else {
+          return (
+            <UserButton type="button">
+              <EditSvg fill="#111111" />
+            </UserButton>
+          );
+        }
+      } else {
+        return (
+          <UserButton type="button">
+            <EditSvg fill="#111111" />
+          </UserButton>
+        );
+      }
+    };
+    const inputFieldFunction = () => {
+      if (fieldNubmer === activeField) {
+        const fieldValue = () => {
+          if (field === undefined || field === null) {
+            return value;
+          } else {
+            return field;
+          }
+        };
+        return (
+          <input
+            type="text"
+            value={fieldValue() || ''}
+            onChange={handleChangeField}
+          />
+        );
+      }
+      return <Value>{value || ''}</Value>;
+    };
+    const acceptBUtton = acceptButtonFunction(isActive, fieldNubmer, value);
+    const inputFIeld = inputFieldFunction(fieldNubmer);
+
+    return (
+      <ListItem key={fieldName}>
+        <form
+          onSubmit={e => {
+            handleSubmit(e);
+            setActiveField(0);
+          }}
+        >
+          <FieldName>{fieldName || ''}</FieldName>
+          {inputFIeld}
+          {acceptBUtton}
+        </form>
+      </ListItem>
+    );
+  };
 
   return (
     <>
@@ -83,11 +249,11 @@ const UserPage = () => {
           <UserPhoto src={emptyPhoto} alt="" />
         )}
         <ul>
-          {Li('Name:', name, true)}
-          {Li('Email:', email, false)}
-          {Li('Birthday:', dayofbirth, true)}
-          {Li('Phone:', phone, true)}
-          {Li('City:', place, true)}
+          {Li('Name:', name, true, 1, handleChangeName, inputName)}
+          {Li('Email:', email, false, 2)}
+          {Li('Birthday:', dateofbirth, true, 3, handleChangBday, inputBday)}
+          {Li('Phone:', phone, true, 4, handleChangePhone, inputPhone)}
+          {Li('City:', place, true, 5, handleChangeCity, inputCity)}
         </ul>
       </MyInfoSection>
       <h2>My pets</h2>

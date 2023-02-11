@@ -1,5 +1,14 @@
 import styled from 'styled-components';
 
+export const ListItem = styled.li`
+  height: 32px;
+  display: flex;
+  align-items: center;
+  &:not(:last-child) {
+    margin-bottom: 8px;
+  }
+`;
+
 export const MyInfoSection = styled.section`
   background-color: #fff;
 `;
@@ -24,4 +33,9 @@ export const UserButton = styled.button`
   border-radius: 50%;
   border: none;
   background-color: #fdf7f2;
+`;
+
+export const PetPhoto = styled.img`
+  max-width: 161px;
+  max-height: 161px;
 `;
