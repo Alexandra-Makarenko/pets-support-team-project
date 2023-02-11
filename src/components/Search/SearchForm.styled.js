@@ -41,7 +41,7 @@ export const SearchInput = styled.input`
 
 export const Form = styled.form`
   position: relative;
-  margin-bottom: 40px;
+  margin-bottom: ${props => props.mbtn.mobile}px;
   width: 280px;
   height: 40px;
 
@@ -50,11 +50,9 @@ export const Form = styled.form`
     height: 44px;
     margin-right: auto;
     margin-left: auto;
+    margin-bottom: ${props => props.mbtn.rest}px;
   }
-  @media ${device.desktop} {
-    margin-bottom: 60px;
-  }
-`;
+`;  
 
 export const SearchLogo = styled(Search)`
   position: absolute;
@@ -67,9 +65,6 @@ export const SearchLogo = styled(Search)`
     height: 24px;
   }
 `;
-
-
-
 
 export const CloseLineLogo = styled(CloseLine)`
   position: absolute;
