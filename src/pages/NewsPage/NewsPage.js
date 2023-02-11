@@ -17,11 +17,14 @@ const NewsPage = () => {
     setNews(result);
   };
 
-
   return (
     <Section>
       <PagesTitle>News</PagesTitle>
-      <SearchForm searchValue={searchValue} setSearchValue={setSearchValue} />
+      <SearchForm
+        searchValue={searchValue}
+        setSearchValue={setSearchValue}
+        mbtn={{ mobile: 40, rest: 60 }}
+      />
       <NewsFeed news={news} />
     </Section>
   );

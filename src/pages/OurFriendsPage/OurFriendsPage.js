@@ -1,10 +1,14 @@
+import { PagesTitle } from 'components/PagesTitle/PagesTitle';
+import { Container } from 'components/Container/Container';
 import { OurFriends } from 'components/Friends';
 
 const OurFriendsPage = () => {
   return (
     <section>
-      <h2>Our friends</h2>
-      <OurFriends />
+      <Container>
+        <PagesTitle>Our friends</PagesTitle>
+        <OurFriends />
+      </Container>
     </section>
   );
 };

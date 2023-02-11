@@ -22,9 +22,9 @@ const NoticesCategoryList = () => {
     setShowModal(!showModal);
   };
 
-  console.log(location.pathname);
-
-  dispatch(setStatusFilter(location.pathname));
+  useEffect(() => {
+    dispatch(setStatusFilter(location.pathname));
+  }, [dispatch, location.pathname]);
 
   let category = 'sell';
 
@@ -34,6 +34,10 @@ const NoticesCategoryList = () => {
     category = 'sell';
   } else if (categoryFilter === '/notices/in-good-hands') {
     category = 'in-good-hands';
+  } else if (categoryFilter === '/notices/favorite') {
+    category = 'favorite';
+  } else if (categoryFilter === '/notices/own') {
+    category = 'mynotices';
   } else {
     console.log('no category');
   }

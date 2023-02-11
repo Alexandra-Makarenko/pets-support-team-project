@@ -79,7 +79,7 @@ body {
   font-family: Manrope400;
 }
 
-*,
+main *,
 *::before,
 *::after {
   box-sizing: border-box;
@@ -108,7 +108,9 @@ ol {
   margin: 0;
 }
 body {
+  font-family: Manrope400;
   margin: 0;
+  background-color: #fdf7f2;
 }
 
 img {
@@ -172,36 +174,6 @@ img {
   @media screen and (min-width: 768px) {
     font-size: 4rem;
   }
-}
-
-.p-text {
-  /* // font-size: 0.8rem;
-  // text-align: left;
-  // color: var(--gray-color);
-  // line-height: 1.5;
-
-  // @media screen and (min-width: 2000px) {
-  //   font-size: 1.75rem;
-  // } */
-}
-
-.bold-text {
-  /* // font-size: 1rem;
-  // font-weight: 800;
-  // color: var(--black-color);
-  // text-align: left;
-
-  // @media screen and (min-width: 2000px) {
-  //   font-size: 2rem;
-  // }
-
-  // @media screen and (max-width: 450px) {
-  //   font-size: 0.9rem;
-  // } */
-}
-
-.button {
-  padding: 0;
 }
 
 .btn-orange {

@@ -7,9 +7,7 @@ import {
   CloseLineLogo,
 } from './SearchForm.styled';
 
-export const SearchForm = ({ searchValue, setSearchValue }) => {
-
-
+export const SearchForm = ({ searchValue, setSearchValue, mbtn }) => {
   const inputRef = useRef();
 
   const handleSearchChange = event => {
@@ -19,7 +17,7 @@ export const SearchForm = ({ searchValue, setSearchValue }) => {
   console.log(searchValue);
 
   return (
-    <Form>
+    <Form mbtn={mbtn}>
       {searchValue ? (
         <CloseLineLogo
           onClick={e => {
@@ -33,7 +31,7 @@ export const SearchForm = ({ searchValue, setSearchValue }) => {
 
       <SearchInput
         type="text"
-        name="searchNews"
+        name="search"
         placeholder="Search"
         onChange={handleSearchChange}
         ref={inputRef}

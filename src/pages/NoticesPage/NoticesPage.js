@@ -3,7 +3,7 @@ import { Outlet } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { NoticesSearch } from '../../components/Notices/NoticesSearch/NoticesSearch';
+import { SearchForm } from 'components/Search/SearchForm';
 import { Container } from '../../components/Container/Container';
 import { NoticesCategoriesNav } from '../../components/Notices/NoticesCategoriesNav/NoticesCategoriesNav';
 import { PagesTitle } from '../../components/PagesTitle/PagesTitle';
@@ -11,7 +11,6 @@ import { AddNoticeButton } from '../../components/Notices/AddNoticeButton/AddNot
 import { NavBox, TitleBox } from './NoticesPage.styled';
 import { Loader } from 'components/Loader/Loader';
 import { getNoticesIsLoading, getNoticesError } from 'redux/notices/selectors';
-// import NoticesCategoryList  from '../../components/Notices/NoticesCategoryList/NoticesCategoryList';
 
 const NoticesPage = () => {
   const isLoading = useSelector(getNoticesIsLoading);
@@ -22,7 +21,7 @@ const NoticesPage = () => {
       <TitleBox>
         <PagesTitle>Find your favorite pet</PagesTitle>
       </TitleBox>
-      <NoticesSearch />
+      <SearchForm mbtn={{ mobile: 28, rest: 40 }} />
       <NavBox>
         <NoticesCategoriesNav />
         <AddNoticeButton />
