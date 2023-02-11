@@ -113,7 +113,7 @@ const RegisterStepOne = props => {
                 id={emailInputId}
                 name="email"
                 placeholder="Email"
-                autoComplete="off"
+                autoComplete="on"
               />
               <FormError name="email" />
               <FormInput
@@ -186,7 +186,7 @@ const RegisterStepTwo = props => {
                 name="name"
                 placeholder="Name"
                 type="text"
-                autoComplete="on"
+                autoComplete="off"
               />
               <FormError name="name" />
               <FormInput
