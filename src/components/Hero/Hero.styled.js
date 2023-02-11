@@ -11,7 +11,6 @@ export const H2 = styled.h2`
   font-weight: 700;
   font-size: 68px;
   line-height: 1.47;
-  margin-left: 16px;
 
   @media ${device.preDesktop} {
     margin-top: 88px;
