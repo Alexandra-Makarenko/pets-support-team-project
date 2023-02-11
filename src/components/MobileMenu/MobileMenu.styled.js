@@ -7,6 +7,7 @@ export const MobMenuContainer = styled.div`
   flex-direction: column;
   align-items: center;
   position: absolute;
+  z-index: 999;
   top: 100px;
   left: 0;
   width: 100%;

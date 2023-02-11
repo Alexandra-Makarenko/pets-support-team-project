@@ -3,6 +3,7 @@ import { useState } from 'react';
 
 import { OurFriendItem } from 'components/Friends';
 import { FriendsList } from './OurFriends.styled.js';
+import { Loader } from 'components/Loader/Loader';
 
 import SPONSORS from 'data/sponsors.json';
 
@@ -17,7 +18,7 @@ export const OurFriends = () => {
   return (
     <>
       {!friends.length ? (
-        <>Requesting friends list...</>
+        <Loader />
       ) : (
         <FriendsList>
           {friends.map((friend, idx) => {
