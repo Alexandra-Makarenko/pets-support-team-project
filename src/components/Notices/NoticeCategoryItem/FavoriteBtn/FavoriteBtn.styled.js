@@ -13,16 +13,20 @@ export const Button = styled.button`
   outline: none;
   border: 0;
 
-  :hover {
-    transform: scale(1.2);
-  }
   span {
     display: flex;
     justify-content: center;
     align-items: center;
 
     svg {
-      fill: ${p => (p.isFavorite ? '#F59256' : 'none')};
+      &:hover {
+        fill: #f59256;
+        cursor: pointer;
+      }
     }
   }
 `;
+
+// :hover {
+//   transform: scale(1.2);
+// }
