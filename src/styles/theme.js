@@ -20,8 +20,8 @@ export const theme = Object.freeze({
     grey: '#535353',
   },
   hovers: {
-    primary: '',
-    secondary: '',
+    primary: '#f59356af',
+    secondary: '#ffffffd0',
   },
   transitions: {
     primary: '',

@@ -4,6 +4,49 @@ import bgDesktopWave from '../../images/hero/desktop/orangeWavesDesktop.png';
 import bgTabWave from '../../images/hero/desktop/bgWavesTablet.png';
 import bgMobWave from '../../images/hero/desktop/bgWavesMobile.png';
 
+export const ContainerHero = styled.div`
+  max-width: 320px;
+  margin-left: auto;
+  margin-right: auto;
+
+  @media ${device.tablet} {
+    max-width: 768px;
+    padding-left: 32px;
+    padding-right: 32px;
+  }
+  @media ${device.desktop} {
+    max-width: 1280px;
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+`;
+
+export const Section = styled.section`
+  background-color: ${p => p.theme.backgrounds.bodyPrimary};
+  background: url(${bgDesktopWave});
+  background-position: 100% calc(21vh + 100%);
+  background-repeat: no-repeat;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  height: calc(107vh - 27px);
+
+  @media ${device.preDesktop} {
+    background: url(${bgTabWave});
+    background-repeat: no-repeat;
+    background-position: 22% calc(9vh + 100%);
+    height: calc(100vh - 157px);
+    flex-direction: column;
+  }
+
+  @media ${device.preTablet} {
+    background: url(${bgMobWave});
+    background-repeat: no-repeat;
+    background-position: 38% calc(2vh + 100%);
+    height: calc(100vh - 96px);
+  }
+`;
+
 export const H2 = styled.h2`
   width: 588px;
   font-family: 'Manrope700';
@@ -21,25 +64,6 @@ export const H2 = styled.h2`
     font-size: 32px;
     line-height: 1.38;
     margin-top: 60px;
-  }
-`;
-
-export const Section = styled.section`
-  background-color: ${p => p.theme.backgrounds.bodyPrimary};
-  background: url(${bgDesktopWave});
-  background-position: 100% calc(21vh + 100%);
-  background-repeat: no-repeat;
-
-  @media ${device.preDesktop} {
-    background: url(${bgTabWave});
-    background-position: 22% calc(9vh + 100%);
-  }
-
-  @media ${device.preTablet} {
-    background: url(${bgMobWave});
-    background-repeat: no-repeat;
-    background-position: 38% calc(2vh + 100%);
-    width: 100%;
   }
 `;
 
