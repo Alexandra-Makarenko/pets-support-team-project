@@ -1,5 +1,9 @@
 import { useSelector, useDispatch } from 'react-redux';
-import { getNotices, getCategoryFilter } from 'redux/notices/selectors';
+import {
+  getNotices,
+  getCategoryFilter,
+  getSearchValueFilter,
+} from 'redux/notices/selectors';
 import { PetsListSection, PetsList } from './NoticesCategoryList.styled';
 import { useEffect } from 'react';
 import { fetchNotices } from 'redux/notices/operations';
@@ -11,6 +15,7 @@ const NoticesCategoryList = () => {
   const dispatch = useDispatch();
   const pets = useSelector(getNotices);
   const categoryFilter = useSelector(getCategoryFilter);
+  const searchValue = useSelector(getSearchValueFilter);
   const location = useLocation();
 
   useEffect(() => {
@@ -30,12 +35,13 @@ const NoticesCategoryList = () => {
   } else if (categoryFilter === '/notices/own') {
     category = 'mynotices';
   } else {
-    console.log('no category');
+    // console.log('no category');
   }
+  // console.log(searchValue);
 
   useEffect(() => {
-    dispatch(fetchNotices(category));
-  }, [dispatch, category]);
+    dispatch(fetchNotices({ category, searchValue }));
+  }, [dispatch, category, searchValue]);
 
   return (
     <PetsListSection>
