@@ -45,7 +45,7 @@ export const ModalNotice = (notice, user) => {
       </span>
       <button>Contact</button>
       <button>
-        Add to <img />
+        Add to <img alt="img"/>
       </button>
     </section>
 
