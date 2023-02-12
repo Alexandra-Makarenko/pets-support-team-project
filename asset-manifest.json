@@ -1,18 +1,18 @@
 {
   "files": {
     "main.css": "/pets-support-team-project/static/css/main.7c1792cb.css",
-    "main.js": "/pets-support-team-project/static/js/main.b5fe0ef4.js",
+    "main.js": "/pets-support-team-project/static/js/main.a8f8f5d6.js",
     "static/js/774.8c7205fc.chunk.js": "/pets-support-team-project/static/js/774.8c7205fc.chunk.js",
     "static/js/61.cd41c98f.chunk.js": "/pets-support-team-project/static/js/61.cd41c98f.chunk.js",
     "static/js/100.85b35167.chunk.js": "/pets-support-team-project/static/js/100.85b35167.chunk.js",
     "static/js/121.d5864407.chunk.js": "/pets-support-team-project/static/js/121.d5864407.chunk.js",
     "static/js/48.e8449f16.chunk.js": "/pets-support-team-project/static/js/48.e8449f16.chunk.js",
-    "static/js/298.35c8470a.chunk.js": "/pets-support-team-project/static/js/298.35c8470a.chunk.js",
+    "static/js/298.2061f41c.chunk.js": "/pets-support-team-project/static/js/298.2061f41c.chunk.js",
     "static/js/33.57f06afe.chunk.js": "/pets-support-team-project/static/js/33.57f06afe.chunk.js",
-    "static/js/554.545989d0.chunk.js": "/pets-support-team-project/static/js/554.545989d0.chunk.js",
+    "static/js/727.5b79111b.chunk.js": "/pets-support-team-project/static/js/727.5b79111b.chunk.js",
     "static/js/117.ac736388.chunk.js": "/pets-support-team-project/static/js/117.ac736388.chunk.js",
     "static/js/694.9d686f16.chunk.js": "/pets-support-team-project/static/js/694.9d686f16.chunk.js",
-    "static/js/888.15d6e68a.chunk.js": "/pets-support-team-project/static/js/888.15d6e68a.chunk.js",
+    "static/js/358.bc4eeb39.chunk.js": "/pets-support-team-project/static/js/358.bc4eeb39.chunk.js",
     "static/css/753.a69f80bd.chunk.css": "/pets-support-team-project/static/css/753.a69f80bd.chunk.css",
     "static/js/753.ec407ad2.chunk.js": "/pets-support-team-project/static/js/753.ec407ad2.chunk.js",
     "static/js/856.794da387.chunk.js": "/pets-support-team-project/static/js/856.794da387.chunk.js",
@@ -51,18 +51,18 @@
     "static/media/burger-menu.svg": "/pets-support-team-project/static/media/burger-menu.f6eea0fbe394c4ba6919de8d6e4fe0f3.svg",
     "static/media/accept.svg": "/pets-support-team-project/static/media/accept.7cfa759efbf4123f1434ca905ccc02d0.svg",
     "main.7c1792cb.css.map": "/pets-support-team-project/static/css/main.7c1792cb.css.map",
-    "main.b5fe0ef4.js.map": "/pets-support-team-project/static/js/main.b5fe0ef4.js.map",
+    "main.a8f8f5d6.js.map": "/pets-support-team-project/static/js/main.a8f8f5d6.js.map",
     "774.8c7205fc.chunk.js.map": "/pets-support-team-project/static/js/774.8c7205fc.chunk.js.map",
     "61.cd41c98f.chunk.js.map": "/pets-support-team-project/static/js/61.cd41c98f.chunk.js.map",
     "100.85b35167.chunk.js.map": "/pets-support-team-project/static/js/100.85b35167.chunk.js.map",
     "121.d5864407.chunk.js.map": "/pets-support-team-project/static/js/121.d5864407.chunk.js.map",
     "48.e8449f16.chunk.js.map": "/pets-support-team-project/static/js/48.e8449f16.chunk.js.map",
-    "298.35c8470a.chunk.js.map": "/pets-support-team-project/static/js/298.35c8470a.chunk.js.map",
+    "298.2061f41c.chunk.js.map": "/pets-support-team-project/static/js/298.2061f41c.chunk.js.map",
     "33.57f06afe.chunk.js.map": "/pets-support-team-project/static/js/33.57f06afe.chunk.js.map",
-    "554.545989d0.chunk.js.map": "/pets-support-team-project/static/js/554.545989d0.chunk.js.map",
+    "727.5b79111b.chunk.js.map": "/pets-support-team-project/static/js/727.5b79111b.chunk.js.map",
     "117.ac736388.chunk.js.map": "/pets-support-team-project/static/js/117.ac736388.chunk.js.map",
     "694.9d686f16.chunk.js.map": "/pets-support-team-project/static/js/694.9d686f16.chunk.js.map",
-    "888.15d6e68a.chunk.js.map": "/pets-support-team-project/static/js/888.15d6e68a.chunk.js.map",
+    "358.bc4eeb39.chunk.js.map": "/pets-support-team-project/static/js/358.bc4eeb39.chunk.js.map",
     "753.a69f80bd.chunk.css.map": "/pets-support-team-project/static/css/753.a69f80bd.chunk.css.map",
     "753.ec407ad2.chunk.js.map": "/pets-support-team-project/static/js/753.ec407ad2.chunk.js.map",
     "856.794da387.chunk.js.map": "/pets-support-team-project/static/js/856.794da387.chunk.js.map",
@@ -71,6 +71,6 @@
   },
   "entrypoints": [
     "static/css/main.7c1792cb.css",
-    "static/js/main.b5fe0ef4.js"
+    "static/js/main.a8f8f5d6.js"
   ]
 }
