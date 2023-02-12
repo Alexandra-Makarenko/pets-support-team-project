@@ -10,7 +10,9 @@ export const ModalNoticeBox = styled.div`
   padding-right: 20px;
 
   @media ${device.tablet} {
-    max-width: 608px;
+    max-width: 704px;
+    padding-top: 32px;
+    padding-bottom: 32px;
     padding-left: 20px;
     padding-right: 20px;
   }
@@ -19,17 +21,11 @@ export const ModalNoticeBox = styled.div`
 export const Wrap = styled.div`
   display: flex;
   flex-direction: column;
-  /* height: 100%; */
 `;
 
 export const SecondWrap = styled.div`
   @media ${device.tablet} {
     display: flex;
-  }
-
-  @media ${device.desktop} {
-    padding-top: 10.5px;
-    padding-bottom: 10.5px;
   }
 `;
 
@@ -40,12 +36,8 @@ export const ImgWrap = styled.div`
   border-radius: 0px 0px 40px 40px;
 
   @media ${device.tablet} {
-    margin-right: 20px;
-  }
-
-  @media ${device.desktop} {
-    padding-top: 10.5px;
-    padding-bottom: 10.5px;
+    width: 288px;
+    height: 328px;
   }
 `;
 
@@ -78,45 +70,51 @@ export const WrapInner = styled.div`
   padding-top: 16px;
 
   @media ${device.tablet} {
-    padding-bottom: 0;
-    padding-right: 35px;
-  }
-
-  @media ${device.desktop} {
-    padding-top: 10.5px;
-    padding-bottom: 10.5px;
+    margin-left: 20px;
+    padding-top: 0;
+    max-width: 320px;
   }
 `;
 
 export const Title = styled.h2`
   font-family: 'Manrope700';
-  /* font-weight: 700; */
+
   font-size: 24px;
   line-height: 33px;
   letter-spacing: -0.01em;
   color: #000000;
-  /* height: 76px; */
-  /* overflow: hidden; */
+
+  @media ${device.tablet} {
+    font-size: 28px;
+    line-height: 38px;
+  }
 `;
 
 export const Ul = styled.ul`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  margin-top: 16px;
+  margin-top: 20px;
   gap: 8px;
-  font-size: 16px;
   line-height: calc(22 / 16);
 `;
+
 export const Li = styled.li`
   display: flex;
   font-family: 'Manrope500';
   font-size: 14px;
   line-height: 19px;
+  color: #000000;
+
+  @media ${device.tablet} {
+    font-size: 16px;
+    line-height: 22px;
+  }
 `;
+
 export const Lable = styled.p`
   font-family: 'Manrope600';
-  width: 90px;
+  width: 94px;
   flex-shrink: 0;
 `;
 
@@ -138,9 +136,16 @@ export const ThumbBtn = styled.div`
 
 export const CommentsParagraph = styled.p`
   margin-top: 28px;
-  /* font-family: 'Manrope500'; */
+  font-family: 'Manrope400';
   font-size: 14px;
   line-height: 19px;
+
+  @media ${device.tablet} {
+    font-family: 'Manrope500';
+    font-size: 16px;
+    line-height: 24px;
+    letter-spacing: 0.04em;
+  }
 `;
 
 export const CommentsLable = styled.span`
@@ -151,11 +156,11 @@ export const CommentsLable = styled.span`
 export const WrapForBtn = styled.div`
   @media ${device.tablet} {
     display: flex;
-  }
-
-  @media ${device.desktop} {
-    padding-top: 10.5px;
-    padding-bottom: 10.5px;
+    flex-direction: row-reverse;
+    align-items: center;
+    justify-content: flex-start;
+    margin-top: 32px;
+    padding-right: 40px;
   }
 `;
 
@@ -184,12 +189,9 @@ export const ContactModalNoticeBtn = styled.button`
   } */
 
   @media ${device.tablet} {
-    margin-top: 40px;
-  }
-
-  @media ${device.desktop} {
-    padding-top: 10.5px;
-    padding-bottom: 10.5px;
+    margin-top: 0px;
+    margin-left: 12px;
+    width: 160px;
   }
 `;
 
@@ -217,12 +219,9 @@ export const AddModalNoticeBtn = styled.button`
   }
 
   @media ${device.tablet} {
-    margin-top: 16px;
-  }
+    margin-top: 0px;
 
-  @media ${device.desktop} {
-    padding-top: 10.5px;
-    padding-bottom: 10.5px;
+    width: 160px;
   }
 `;
 
@@ -231,8 +230,4 @@ export const HeartIcon = styled(AiFillHeart)`
   color: #f59256;
   width: 16px;
   height: 16px;
-
-  /* top: 50%;
-  left: 50%; */
-  /* transform: translate(-50%, -50%); */
 `;
