@@ -31,6 +31,7 @@ import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { logOut } from 'redux/auth/authOperations';
 import { Container } from 'components/Container/Container';
+import { MainModal } from 'components/MainModal/MainModal';
 
 const fetchPets = async () => {
   const res = await axios.get('user');
@@ -96,6 +97,11 @@ const UserPage = () => {
   const [avatarURL, setAvatarURL] = useState(null);
   const [readyForUpdate, setReadyForUpdate] = useState(false);
   const [image, setImage] = useState(null);
+  const [showModal, setShowModal] = useState(false);
+
+  const toggleModal = () => {
+    setShowModal(!showModal);
+  };
 
   const handleChangeName = e => {
     setInputName(e.target.value);
@@ -326,49 +332,55 @@ const UserPage = () => {
   };
 
   return (
-    <Container>
-      <UserContainer>
-        <div>
-          <UserInfoHeader>My Information:</UserInfoHeader>
-          <MyInfoSection>
-            {avatarURL ? (
-              <UserPhoto src={avatarURL} width={233} height={233} alt="" />
-            ) : (
-              <UserPhoto src={emptyPhoto} alt="" />
-            )}
-            <UploadLavel>
-              <MdPhotoCamera fill="#F59256" />
-              Edit photo
-              <HiddenInput type="file" onChange={handleChangeImage} />
-            </UploadLavel>
-
-            <ul>
-              {Li('Name:', name, true, 1, handleChangeName, inputName)}
-              {Li('Email:', email, false, 2)}
-              {Li(
-                'Birthday:',
-                dateofbirth,
-                true,
-                3,
-                handleChangBday,
-                inputBday
+    <>
+      <Container>
+        <UserContainer>
+          <div>
+            <UserInfoHeader>My Information:</UserInfoHeader>
+            <MyInfoSection>
+              {avatarURL ? (
+                <UserPhoto src={avatarURL} width={233} height={233} alt="" />
+              ) : (
+                <UserPhoto src={emptyPhoto} alt="" />
               )}
-              {Li('Phone:', phone, true, 4, handleChangePhone, inputPhone)}
-              {Li('City:', place, true, 5, handleChangeCity, inputCity)}
-            </ul>
-            <LogoutButton onClick={logoutRequest}>
-              <MdLogout fill="#F59256" /> Log out
-            </LogoutButton>
-          </MyInfoSection>
-        </div>
-        <div>
-          <UserPetsHeader>My pets:</UserPetsHeader>
-          <section>
-            <ul>{pets}</ul>
-          </section>
-        </div>
-      </UserContainer>
-    </Container>
+              <UploadLavel>
+                <MdPhotoCamera fill="#F59256" />
+                Edit photo
+                <HiddenInput type="file" onChange={handleChangeImage} />
+              </UploadLavel>
+
+              <ul>
+                {Li('Name:', name, true, 1, handleChangeName, inputName)}
+                {Li('Email:', email, false, 2)}
+                {Li(
+                  'Birthday:',
+                  dateofbirth,
+                  true,
+                  3,
+                  handleChangBday,
+                  inputBday
+                )}
+                {Li('Phone:', phone, true, 4, handleChangePhone, inputPhone)}
+                {Li('City:', place, true, 5, handleChangeCity, inputCity)}
+              </ul>
+              <LogoutButton onClick={logoutRequest}>
+                <MdLogout fill="#F59256" /> Log out
+              </LogoutButton>
+            </MyInfoSection>
+          </div>
+          <div>
+            <UserPetsHeader>My pets:</UserPetsHeader>
+            <button type="button" onClick={toggleModal}>
+              Add
+            </button>
+            <section>
+              <ul>{pets}</ul>
+            </section>
+          </div>
+        </UserContainer>
+      </Container>
+      {showModal && <MainModal onClose={toggleModal}></MainModal>}
+    </>
   );
 };
 export default UserPage;
