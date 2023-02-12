@@ -13,13 +13,16 @@ import {
   ThumbBtn,
 } from './NoticeCategoryItem.styled';
 
+import { FavoriteBtn } from './FavoriteBtn/FavoriteBtn';
+import { LearnMoreBtn } from './LearnMoreBtn/LearnMoreBtn';
+
 export const NoticeCategoryItem = ({ pet }) => {
   return (
     <Item>
       <ImgWrap>
         <CategoryLabel>{pet.category}</CategoryLabel>
         <Img src={pet.avatarURL} alt={pet.name} loading="lazy" />
-        {/* <FavoriteBtn/> */}
+        <FavoriteBtn />
       </ImgWrap>
       <Wrap>
         <WrapInner>
@@ -39,7 +42,9 @@ export const NoticeCategoryItem = ({ pet }) => {
             </Li>
           </Ul>
         </WrapInner>
-        <ThumbBtn>{/* <LearnMoreBtn/> */}</ThumbBtn>
+        <ThumbBtn>
+          <LearnMoreBtn />
+        </ThumbBtn>
       </Wrap>
     </Item>
   );
