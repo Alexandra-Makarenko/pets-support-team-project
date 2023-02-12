@@ -7,14 +7,12 @@ export const Item = styled.li`
   color: #111111;
   background-color: #ffffff;
   box-shadow: 7px 4px 14px rgba(49, 21, 4, 0.07);
-  border-radius: 0px 0px 40px 40px;
+  border-radius: 0px 0px 20px 20px;
   overflow-wrap: break-word;
-  
 
   @media ${device.tablet} {
     flex-basis: calc(100% / 4 - 32px);
     margin-bottom: 32px;
-  
   }
 `;
 
@@ -81,7 +79,7 @@ export const Lable = styled.p`
 `;
 
 export const Text = styled.p`
-  @media screen and (min-width: 768px) {
+  @media ${device.tablet} {
   }
 `;
 export const ThumbBtn = styled.div`
@@ -92,4 +90,15 @@ export const ThumbBtn = styled.div`
   flex-grow: 1;
   gap: 12px;
   padding-bottom: 12px;
+  padding-left: 16px;
+  padding-right: 16px;
+`;
+
+export const LearnMoreBtn = styled.button`
+  width: 100%;
+  color: #f59256;
+  background: #ffffff;
+  border: 2px solid #f59256;
+  border-radius: 40px;
+  cursor: pointer;
 `;

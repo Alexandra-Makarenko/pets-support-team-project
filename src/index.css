@@ -75,7 +75,11 @@
   font-weight: 700;
 }
 
-*,
+body {
+  font-family: Manrope400;
+}
+
+main *,
 *::before,
 *::after {
   box-sizing: border-box;
@@ -106,7 +110,7 @@ ol {
 body {
   font-family: Manrope400;
   margin: 0;
-  background-color:#FDF7F2;
+  background-color: #fdf7f2;
 }
 
 img {
@@ -171,8 +175,6 @@ img {
     font-size: 4rem;
   }
 }
-
-
 
 .btn-orange {
   width: 100%;
