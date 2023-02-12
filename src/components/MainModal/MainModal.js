@@ -1,5 +1,7 @@
 import { useEffect } from 'react';
 import { createPortal } from 'react-dom';
+import { ThemeProvider } from 'styled-components';
+import { theme } from '../../styles/theme';
 
 import {
   Overlay,
@@ -30,14 +32,16 @@ export function MainModal({ onClose, children }) {
   };
 
   return createPortal(
-    <Overlay onClick={handleBackdropClick}>
-      <ModalWindow>
-        <BtnCloseModal type="button" onClick={onClose}>
-          <ImgClose />
-        </BtnCloseModal>
-        {children}
-      </ModalWindow>
-    </Overlay>,
+    <ThemeProvider theme={theme}>
+      <Overlay onClick={handleBackdropClick}>
+        <ModalWindow>
+          <BtnCloseModal type="button" onClick={onClose}>
+            <ImgClose />
+          </BtnCloseModal>
+          {children}
+        </ModalWindow>
+      </Overlay>
+    </ThemeProvider>,
     modalRoot
   );
 }

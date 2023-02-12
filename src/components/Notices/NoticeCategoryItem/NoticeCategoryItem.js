@@ -13,15 +13,19 @@ import {
   ThumbBtn,
   LearnMoreBtn,
 } from './NoticeCategoryItem.styled';
+import { useDispatch } from 'react-redux';
+import { fetchOneNotice } from 'redux/notices/operations';
 
 import { useState } from 'react';
 import { MainModal } from 'components/MainModal/MainModal';
 import { ModalNotice } from 'components/Modals/ModalNotice/ModalNotice';
 
 export const NoticeCategoryItem = ({ pet }) => {
+  const dispatch = useDispatch();
   const [showModal, setShowModal] = useState(false);
 
   const toggleModal = () => {
+    dispatch(fetchOneNotice(pet._id));
     setShowModal(!showModal);
   };
 
@@ -37,15 +41,15 @@ export const NoticeCategoryItem = ({ pet }) => {
           <WrapInner>
             <Title>{pet.title || 'Title must be here'}</Title>
             <Ul>
-              <Li key={`${pet.id}+breed`}>
+              <Li key={`${pet._id}+breed`}>
                 <Lable>Breed:</Lable>
                 <Text>{pet.breed}</Text>
               </Li>
-              <Li key={`${pet.id}+place`}>
+              <Li key={`${pet._id}+place`}>
                 <Lable>Place:</Lable>
                 <Text>{pet.place}</Text>
               </Li>
-              <Li key={`${pet.id}+age`}>
+              <Li key={`${pet._id}+age`}>
                 <Lable>Age:</Lable>
                 <Text>{pet.dateofbirth}</Text>
               </Li>
@@ -60,7 +64,7 @@ export const NoticeCategoryItem = ({ pet }) => {
       </Item>
       {showModal && (
         <MainModal onClose={toggleModal}>
-          <ModalNotice pet={pet} />
+          <ModalNotice />
         </MainModal>
       )}
     </>

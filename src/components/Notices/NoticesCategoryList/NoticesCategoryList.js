@@ -10,6 +10,7 @@ import { NoticeCategoryItem } from '../NoticeCategoryItem/NoticeCategoryItem';
 const NoticesCategoryList = () => {
   const dispatch = useDispatch();
   const pets = useSelector(getNotices);
+
   const categoryFilter = useSelector(getCategoryFilter);
   const location = useLocation();
 
@@ -29,8 +30,6 @@ const NoticesCategoryList = () => {
     category = 'favorite';
   } else if (categoryFilter === '/notices/own') {
     category = 'mynotices';
-  } else {
-    console.log('no category');
   }
 
   useEffect(() => {

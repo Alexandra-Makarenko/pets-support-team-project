@@ -14,6 +14,7 @@ export const Overlay = styled.div`
   background-color: rgba(17, 17, 17, 0.6);
   backdrop-filter: blur(10px);
   z-index: 1200;
+  overflow: scroll;
 `;
 
 export const ModalWindow = styled.div`
