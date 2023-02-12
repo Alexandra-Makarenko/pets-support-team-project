@@ -5,15 +5,15 @@ import {
   Div,
   Wrap,
   Section,
+  ContainerHero,
 } from 'components/Hero/Hero.styled';
 import AddImage from '../../images/hero/desktop/portrait.png';
 import Heart from '../../images/hero/desktop/heart.png';
-import { Container } from 'components/Container/Container';
 
 const Home = () => {
   return (
     <Section>
-      <Container>
+      <ContainerHero>
         <Content>
           <H2>Take good care of your small pets</H2>
           <Wrap>
@@ -23,7 +23,7 @@ const Home = () => {
             </Div>
           </Wrap>
         </Content>
-      </Container>
+      </ContainerHero>
     </Section>
   );
 };

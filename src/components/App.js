@@ -1,4 +1,4 @@
-import { Route, Routes, Navigate } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import { SharedLayout } from './SharedLayout/SharedLayout';
 import { useEffect, lazy } from 'react';
 import { useDispatch } from 'react-redux';
@@ -21,38 +21,53 @@ const UserPage = lazy(() => import('../pages/UserPage/UserPage'));
 const NoticesCategoryList = lazy(() =>
   import('./Notices/NoticesCategoryList/NoticesCategoryList')
 );
+const NotFoundPage = lazy(() => import('../pages/NotFoundPage/NotFoundPage'));
 
 export const App = () => {
-  return (
-    <Routes>
-      <Route path="/" element={<SharedLayout />}>
-        <Route index element={<Home />} />
-        <Route
-          path="/register"
-          element={
-            <RestrictedRoute component={RegisterPage} redirectTo="/user" />
-          }
-        />
-        <Route
-          path="/login"
-          element={<RestrictedRoute component={LoginPage} redirectTo="/user" />}
-        />
-        <Route path="/friends" element={<OurFriendsPage />} />
-        <Route path="/news" element={<NewsPage />} />
-        <Route path="/notices" element={<NoticesPage />}>
-          <Route path="sell" element={<NoticesCategoryList />} />
-          <Route path="lost-found" element={<NoticesCategoryList />} />
-          <Route path="in-good-hands" element={<NoticesCategoryList />} />
-          <Route path="favorite-ads" element={<NoticesCategoryList />} />
-          <Route path="my-ads" element={<NoticesCategoryList />} />
+  const dispatch = useDispatch();
+
+  const { isRefreshing } = useAuth();
+
+  useEffect(() => {
+    dispatch(refreshUser());
+  }, [dispatch]);
+  return isRefreshing ? (
+    <Loader />
+  ) : (
+    <>
+      <Routes>
+        <Route path="/" element={<SharedLayout />}>
+          <Route index element={<Home />} />
+          <Route
+            path="/register"
+            element={
+              <RestrictedRoute component={RegisterPage} redirectTo="/user" />
+            }
+          />
+          <Route
+            path="/login"
+            element={
+              <RestrictedRoute component={LoginPage} redirectTo="/user" />
+            }
+          />
+          <Route path="/friends" element={<OurFriendsPage />} />
+          <Route path="/news" element={<NewsPage />} />
+          <Route path="/notices" element={<NoticesPage />}>
+            <Route path="sell" element={<NoticesCategoryList />} />
+            <Route path="lost-found" element={<NoticesCategoryList />} />
+            <Route path="in-good-hands" element={<NoticesCategoryList />} />
+            <Route path="favorite-ads" element={<NoticesCategoryList />} />
+            <Route path="my-ads" element={<NoticesCategoryList />} />
+          </Route>
+          <Route
+            path="/user"
+            element={<PrivateRoute component={UserPage} redirectTo="/login" />}
+          />
+          <Route path="*" element={<Home />} />
+          <Route path="*" element={<NotFoundPage />} />
         </Route>
-        <Route
-          path="/user"
-          element={<PrivateRoute component={UserPage} redirectTo="/login" />}
-        />
-        <Route path="*" element={<Home />} />
-        <Route path="*" element={<Navigate to="/" />} />
-      </Route>
-    </Routes>
+      </Routes>
+      <ToastContainer />
+    </>
   );
 };
