@@ -14,8 +14,6 @@ export const SearchForm = ({ searchValue, setSearchValue, mbtn }) => {
     setSearchValue(event.currentTarget.value.toLowerCase());
   };
 
-  console.log(searchValue);
-
   return (
     <Form mbtn={mbtn}>
       {searchValue ? (
