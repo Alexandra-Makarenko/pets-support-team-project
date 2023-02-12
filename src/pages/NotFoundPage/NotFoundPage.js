@@ -1,9 +1,9 @@
 import React from 'react';
-import { ButtonWrapper, LinkStyled } from './NotFoundPage.styled';
+import { ButtonWrapper, Link } from './NotFoundPage.styled';
 
 const NotFoundPage = () => {
   return (
-    <>
+    
       <section style={{ padding: '150px 0 50px', background: '#fff' }}>
         <h1 style={{ fontSize: '64px', textAlign: 'center' }}>404</h1>
         <div
@@ -26,11 +26,11 @@ const NotFoundPage = () => {
             the page you are looking for not avaible!
           </p>
           <ButtonWrapper>
-            <LinkStyled to={'/'}>Go to Home</LinkStyled>
+            <Link to={'/'}>Go to Home</Link>
           </ButtonWrapper>
         </div>
       </section>
-    </>
+   
   );
 };
 export default NotFoundPage;
