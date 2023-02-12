@@ -20,9 +20,6 @@ import { useState } from 'react';
 import { MainModal } from 'components/MainModal/MainModal';
 import { ModalNotice } from 'components/Modals/ModalNotice/ModalNotice';
 
-import { FavoriteBtn } from './FavoriteBtn/FavoriteBtn';
-import { LearnMoreBtn } from './LearnMoreBtn/LearnMoreBtn';
-
 export const NoticeCategoryItem = ({ pet }) => {
   const dispatch = useDispatch();
   const [showModal, setShowModal] = useState(false);

@@ -23,8 +23,8 @@ export const Wrap = styled.div`
 `;
 export const ImgWrap = styled.div`
   position: relative;
-  max-width: 100%;
-  height: auto;
+  width: 240px;
+  height: 240px;
   border-radius: 0px 0px 40px 40px;
 `;
 
@@ -45,8 +45,9 @@ export const CategoryLabel = styled.p`
 
 export const Img = styled.img`
   width: 100%;
-  /* height: 288px; */
-  object-fit: contain;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 0px 0px 40px 40px;
 `;
 
 export const WrapInner = styled.div`
