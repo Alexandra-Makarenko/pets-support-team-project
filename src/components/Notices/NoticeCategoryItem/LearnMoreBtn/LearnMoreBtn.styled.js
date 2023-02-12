@@ -12,9 +12,9 @@ export const Button = styled.button`
   color: #f59256;
   ransition: color ${p => p.theme.transition.first},
     background-color ${p => p.theme.transition.first};
-  :hover,
-  :focus {
-    color: #ffffff;
-    background-color: #f59256;
+  :hover {
+    border: 2px solid #ff6101;
+    color: #ff6101;
+    cursor: pointer;
   }
 `;
