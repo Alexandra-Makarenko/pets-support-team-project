@@ -1,20 +1,36 @@
 import { ReactComponent as AcceptSvg } from './accept.svg';
 import { ReactComponent as EditSvg } from './pencil.svg';
+import { MdLogout, MdPhotoCamera } from 'react-icons/md';
 
 import {
+  Field,
   FieldName,
+  HiddenInput,
+  InputValue,
   ListItem,
+  LogoutButton,
   MyInfoSection,
+  PetCard,
+  PetDescription,
+  PetField,
+  PetFieldName,
   PetPhoto,
+  PetPhotoContainer,
+  UploadLavel,
   UserButton,
+  UserContainer,
+  UserInfoHeader,
+  UserPetsHeader,
   UserPhoto,
   Value,
 } from './Userpage.styled';
 import emptyPhoto from './emptyPhoto.jpg';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { selectUser } from 'redux/auth/authSelectors';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
+import { logOut } from 'redux/auth/authOperations';
+import { Container } from 'components/Container/Container';
 
 const fetchPets = async () => {
   const res = await axios.get('user');
@@ -27,6 +43,29 @@ const updateUser = async user => {
   data.append('phone', user.phone);
   data.append('place', user.place);
   data.append('dateofbirth', user.dateofbirth);
+  data.append('avatar', user.avatar);
+  for (const value of data.values()) {
+    console.log(value);
+  }
+  try {
+    const response = await axios({
+      method: 'PATCH',
+      url: '/users',
+      data: data,
+      headers: { 'Content-Type': 'multipart/form-data' },
+    });
+    return response.data;
+  } catch (error) {
+    return null;
+  }
+};
+
+const updateImage = async user => {
+  const data = new FormData();
+  data.append('avatar', user.avatar);
+  for (const value of data.values()) {
+    console.log(value);
+  }
   try {
     const response = await axios({
       method: 'PATCH',
@@ -41,6 +80,8 @@ const updateUser = async user => {
 };
 
 const UserPage = () => {
+  const dispatch = useDispatch();
+
   const [pets, setPets] = useState('');
   const [activeField, setActiveField] = useState(0);
   const [inputName, setInputName] = useState(null);
@@ -54,6 +95,7 @@ const UserPage = () => {
   const [dateofbirth, setDateofbirth] = useState(null);
   const [avatarURL, setAvatarURL] = useState(null);
   const [readyForUpdate, setReadyForUpdate] = useState(false);
+  const [image, setImage] = useState(null);
 
   const handleChangeName = e => {
     setInputName(e.target.value);
@@ -68,7 +110,17 @@ const UserPage = () => {
     setInputCity(e.target.value);
   };
 
+  const handleChangeImage = e => {
+    if (e.target.files[0]) {
+      setImage(e.target.files[0]);
+    }
+  };
+
   const User = useSelector(selectUser);
+
+  const logoutRequest = () => {
+    dispatch(logOut());
+  };
 
   const handleSubmit = e => {
     e.preventDefault();
@@ -83,6 +135,23 @@ const UserPage = () => {
     setDateofbirth(User.dateofbirth);
     setAvatarURL(User.avatarURL);
   }, [User]);
+
+  useEffect(() => {
+    if (!image) {
+      return;
+    }
+    async function updateData() {
+      const updatedUser = {
+        avatar: image,
+      };
+      const data = await updateImage(updatedUser);
+      if (data) {
+        setAvatarURL(data.avatarURL);
+      }
+      setImage(null);
+    }
+    updateData();
+  }, [image]);
 
   useEffect(() => {
     if (!readyForUpdate) {
@@ -130,23 +199,37 @@ const UserPage = () => {
         data.length > 0
           ? data.map(({ name, date, breed, comment, avatarURL }) => {
               return (
-                <div>
-                  <PetPhoto src={avatarURL || ''} alt="pet" />
+                <PetCard>
+                  <PetPhotoContainer>
+                    <PetPhoto src={avatarURL || ''} alt="pet" />
+                  </PetPhotoContainer>
                   <ul>
-                    <li>
-                      <p>Name: {name || ''}</p>
-                    </li>
-                    <li>
-                      <p>Date of birth: {date || ''}</p>
-                    </li>
-                    <li>
-                      <p>Breed: {breed || ''}</p>
-                    </li>
-                    <li>
-                      <p>Comments: {comment || ''}</p>
-                    </li>
+                    <PetField>
+                      <p>
+                        <PetFieldName>Name: </PetFieldName>
+                        <PetDescription>{name || ''}</PetDescription>
+                      </p>
+                    </PetField>
+                    <PetField>
+                      <p>
+                        <PetFieldName>Date of birth: </PetFieldName>
+                        <PetDescription>{date || ''}</PetDescription>
+                      </p>
+                    </PetField>
+                    <PetField>
+                      <p>
+                        <PetFieldName>Breed: </PetFieldName>
+                        <PetDescription>{breed || ''}</PetDescription>
+                      </p>
+                    </PetField>
+                    <PetField>
+                      <p>
+                        <PetFieldName>Comments: </PetFieldName>
+                        <PetDescription>{comment || ''}</PetDescription>
+                      </p>
+                    </PetField>
                   </ul>
-                </div>
+                </PetCard>
               );
             })
           : null
@@ -211,11 +294,14 @@ const UserPage = () => {
           }
         };
         return (
-          <input
-            type="text"
-            value={fieldValue() || ''}
-            onChange={handleChangeField}
-          />
+          <>
+            <InputValue
+              id="imageInput"
+              type="text"
+              value={fieldValue() || ''}
+              onChange={handleChangeField}
+            />
+          </>
         );
       }
       return <Value>{value || ''}</Value>;
@@ -225,7 +311,7 @@ const UserPage = () => {
 
     return (
       <ListItem key={fieldName}>
-        <form
+        <Field
           onSubmit={e => {
             handleSubmit(e);
             setActiveField(0);
@@ -234,31 +320,55 @@ const UserPage = () => {
           <FieldName>{fieldName || ''}</FieldName>
           {inputFIeld}
           {acceptBUtton}
-        </form>
+        </Field>
       </ListItem>
     );
   };
 
   return (
-    <>
-      <h2>My Information</h2>
-      <MyInfoSection>
-        {avatarURL ? (
-          <UserPhoto src={avatarURL} width={233} height={233} alt="" />
-        ) : (
-          <UserPhoto src={emptyPhoto} alt="" />
-        )}
-        <ul>
-          {Li('Name:', name, true, 1, handleChangeName, inputName)}
-          {Li('Email:', email, false, 2)}
-          {Li('Birthday:', dateofbirth, true, 3, handleChangBday, inputBday)}
-          {Li('Phone:', phone, true, 4, handleChangePhone, inputPhone)}
-          {Li('City:', place, true, 5, handleChangeCity, inputCity)}
-        </ul>
-      </MyInfoSection>
-      <h2>My pets</h2>
-      <section>{pets}</section>
-    </>
+    <Container>
+      <UserContainer>
+        <div>
+          <UserInfoHeader>My Information:</UserInfoHeader>
+          <MyInfoSection>
+            {avatarURL ? (
+              <UserPhoto src={avatarURL} width={233} height={233} alt="" />
+            ) : (
+              <UserPhoto src={emptyPhoto} alt="" />
+            )}
+            <UploadLavel>
+              <MdPhotoCamera fill="#F59256" />
+              Edit photo
+              <HiddenInput type="file" onChange={handleChangeImage} />
+            </UploadLavel>
+
+            <ul>
+              {Li('Name:', name, true, 1, handleChangeName, inputName)}
+              {Li('Email:', email, false, 2)}
+              {Li(
+                'Birthday:',
+                dateofbirth,
+                true,
+                3,
+                handleChangBday,
+                inputBday
+              )}
+              {Li('Phone:', phone, true, 4, handleChangePhone, inputPhone)}
+              {Li('City:', place, true, 5, handleChangeCity, inputCity)}
+            </ul>
+            <LogoutButton onClick={logoutRequest}>
+              <MdLogout fill="#F59256" /> Log out
+            </LogoutButton>
+          </MyInfoSection>
+        </div>
+        <div>
+          <UserPetsHeader>My pets:</UserPetsHeader>
+          <section>
+            <ul>{pets}</ul>
+          </section>
+        </div>
+      </UserContainer>
+    </Container>
   );
 };
 export default UserPage;
