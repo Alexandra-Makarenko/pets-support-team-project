@@ -1,3 +1,4 @@
+
 import { Suspense, useState, useEffect } from 'react';
 import { Outlet } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
@@ -7,13 +8,19 @@ import { SearchForm } from 'components/Search/SearchForm';
 import { Container } from '../../components/Container/Container';
 import { NoticesCategoriesNav } from '../../components/Notices/NoticesCategoriesNav/NoticesCategoriesNav';
 import { PagesTitle } from '../../components/PagesTitle/PagesTitle';
-import { AddNoticeButton } from '../../components/Notices/AddNoticeButton/AddNoticeButton';
 import { NavBox, TitleBox } from './NoticesPage.styled';
 import { Loader } from 'components/Loader/Loader';
 import { getNoticesIsLoading, getNoticesError } from 'redux/notices/selectors';
+
+import AddNoticeButton from 'components/Notices/AddNoticeButton/AddNoticeButton';
+import { ModalAddNotice } from 'components/Modals/ModalAddNotice/ModalAddNotice';
+
 import { setSearch } from 'redux/notices/filtersSlice';
 
+
 const NoticesPage = () => {
+  const [isAddNoticeOpen, setIsAddNoticeOpen] = useState(false);
+
   const isLoading = useSelector(getNoticesIsLoading);
   const error = useSelector(getNoticesError);
   const [searchValue, setSearchValue] = useState('');
@@ -27,6 +34,11 @@ const NoticesPage = () => {
     dispatch(setSearch(searchValue));
   }, [dispatch, searchValue]);
 
+  const toggleAddNoticeModal = () => {
+    setIsAddNoticeOpen(!isAddNoticeOpen);
+    console.log(isAddNoticeOpen);
+  };
+
   return (
     <Container>
       <TitleBox>
@@ -39,15 +51,16 @@ const NoticesPage = () => {
       />
       <NavBox>
         <NoticesCategoriesNav />
-        <AddNoticeButton />
+        <AddNoticeButton onClick={toggleAddNoticeModal} />
       </NavBox>
 
       {isLoading && !error && <Loader />}
       {error &&
         !isLoading &&
         toast.error(`Something wrong, please try again later: ${error}`)}
-
       <Suspense fallback={<div>Loading subpage...</div>}>
+        {isAddNoticeOpen && <ModalAddNotice onClick={toggleAddNoticeModal} />}
+
         <Outlet />
       </Suspense>
     </Container>
