@@ -7,7 +7,7 @@ export const Item = styled.li`
   color: #111111;
   background-color: #ffffff;
   box-shadow: 7px 4px 14px rgba(49, 21, 4, 0.07);
-  border-radius: 0px 0px 40px 40px;
+  border-radius: 0px 0px 20px 20px;
   overflow-wrap: break-word;
 
   @media ${device.tablet} {
@@ -79,7 +79,7 @@ export const Lable = styled.p`
 `;
 
 export const Text = styled.p`
-  @media screen and (min-width: 768px) {
+  @media ${device.tablet} {
   }
 `;
 export const ThumbBtn = styled.div`
