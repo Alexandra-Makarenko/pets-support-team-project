@@ -15,6 +15,8 @@ import {
   ContactModalNoticeBtn,
   AddModalNoticeBtn,
   HeartIcon,
+  WrapForBtn,
+  SecondWrap,
 } from './ModalNotice.styled';
 
 import { useSelector } from 'react-redux';
@@ -26,12 +28,13 @@ export const ModalNotice = () => {
 
   return (
     <ModalNoticeBox>
-      <ImgWrap>
-        <CategoryLabel>{oneNotice.category}</CategoryLabel>
-        <Img src={oneNotice.avatarURL} alt={oneNotice.name} loading="lazy" />
-        {/* <FavoriteBtn/> */}
-      </ImgWrap>
-      <Wrap>
+      <SecondWrap>
+        <ImgWrap>
+          <CategoryLabel>{oneNotice.category}</CategoryLabel>
+          <Img src={oneNotice.avatarURL} alt={oneNotice.name} loading="lazy" />
+          {/* <FavoriteBtn/> */}
+        </ImgWrap>
+
         <WrapInner>
           <Title>{oneNotice.title || 'Title must be here'}</Title>
           <Ul>
@@ -70,18 +73,20 @@ export const ModalNotice = () => {
               </Li>
             )}
           </Ul>
-          <CommentsParagraph>
-            <CommentsLable>Comments: </CommentsLable>
-            {oneNotice.comments || ''}
-          </CommentsParagraph>
         </WrapInner>
-      </Wrap>
-      <ContactModalNoticeBtn type="tel" onClick={() => {}}>
-        Contact
-      </ContactModalNoticeBtn>
-      <AddModalNoticeBtn type="button" onClick={() => {}}>
-        Add to <HeartIcon />
-      </AddModalNoticeBtn>
+      </SecondWrap>
+      <CommentsParagraph>
+        <CommentsLable>Comments: </CommentsLable>
+        {oneNotice.comments || ''}
+      </CommentsParagraph>
+      <WrapForBtn>
+        <ContactModalNoticeBtn type="tel" onClick={() => {}}>
+          Contact
+        </ContactModalNoticeBtn>
+        <AddModalNoticeBtn type="button" onClick={() => {}}>
+          Add to <HeartIcon />
+        </AddModalNoticeBtn>
+      </WrapForBtn>
     </ModalNoticeBox>
   );
 };

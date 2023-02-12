@@ -3,7 +3,7 @@ import { device } from 'styles/device';
 import { AiFillHeart } from 'react-icons/ai';
 
 export const ModalNoticeBox = styled.div`
-  max-width: 240px;
+  max-width: 280px;
   padding-top: 60px;
   padding-bottom: 40px;
   padding-left: 20px;
@@ -11,21 +11,42 @@ export const ModalNoticeBox = styled.div`
 
   @media ${device.tablet} {
     max-width: 608px;
-    padding-left: 80px;
-    padding-right: 80px;
+    padding-left: 20px;
+    padding-right: 20px;
   }
 `;
 
 export const Wrap = styled.div`
   display: flex;
   flex-direction: column;
-  height: 100%;
+  /* height: 100%; */
 `;
+
+export const SecondWrap = styled.div`
+  @media ${device.tablet} {
+    display: flex;
+  }
+
+  @media ${device.desktop} {
+    padding-top: 10.5px;
+    padding-bottom: 10.5px;
+  }
+`;
+
 export const ImgWrap = styled.div`
   position: relative;
   width: 240px;
   height: 240px;
   border-radius: 0px 0px 40px 40px;
+
+  @media ${device.tablet} {
+    margin-right: 20px;
+  }
+
+  @media ${device.desktop} {
+    padding-top: 10.5px;
+    padding-bottom: 10.5px;
+  }
 `;
 
 export const CategoryLabel = styled.p`
@@ -55,6 +76,16 @@ export const WrapInner = styled.div`
   flex-direction: column;
   flex-grow: 1;
   padding-top: 16px;
+
+  @media ${device.tablet} {
+    padding-bottom: 0;
+    padding-right: 35px;
+  }
+
+  @media ${device.desktop} {
+    padding-top: 10.5px;
+    padding-bottom: 10.5px;
+  }
 `;
 
 export const Title = styled.h2`
@@ -117,6 +148,17 @@ export const CommentsLable = styled.span`
   /* font-weight: bold; */
 `;
 
+export const WrapForBtn = styled.div`
+  @media ${device.tablet} {
+    display: flex;
+  }
+
+  @media ${device.desktop} {
+    padding-top: 10.5px;
+    padding-bottom: 10.5px;
+  }
+`;
+
 export const ContactModalNoticeBtn = styled.button`
   font-family: 'Manrope500';
   margin-top: 40px;
@@ -162,8 +204,8 @@ export const AddModalNoticeBtn = styled.button`
   background-color: #ffffff;
   border: 2px solid #f59256;
   border-radius: 40px;
-  padding-top: 9px;
-  padding-bottom: 9px;
+  padding-top: 7px;
+  padding-bottom: 7px;
   font-size: 16px;
   line-height: 22px;
   letter-spacing: 0.04em;
