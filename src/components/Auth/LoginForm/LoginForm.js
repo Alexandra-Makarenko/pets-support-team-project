@@ -54,7 +54,7 @@ export const LoginForm = () => {
                   id={emailInputId}
                   name="email"
                   placeholder="Email"
-                  autoComplete="off"
+                  autoComplete="on"
                 />
                 <FormError name="email" />
                 <FormInput

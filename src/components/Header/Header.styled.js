@@ -12,7 +12,6 @@ export const HeaderContainer = styled.header`
   padding-top: 16px;
   padding-left: 20px;
   padding-right: 20px;
-  background-color: ${props => props.theme.backgrounds.bodyPrimary};
 
   @media ${device.tablet} {
     margin-bottom: 92px;

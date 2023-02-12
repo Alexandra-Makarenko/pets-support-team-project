@@ -1,17 +1,13 @@
-import { NavSection, Link, Container } from "./NoticesCategoriesNav.styled";
-import { selectIsLoggedIn } from "redux/auth/authSelectors";
-import { useSelector } from "react-redux";
-
-
-
+import { NavSection, Link, Container } from './NoticesCategoriesNav.styled';
+import { useAuth } from 'hooks/useAuth';
 
 export const NoticesCategoriesNav = () => {
-  const isLoggedIn = useSelector(selectIsLoggedIn)
+  const { isLoggedIn } = useAuth();
   return (
     <NavSection>
       <Container>
         <li>
-        <Link to="sell">sell</Link>
+          <Link to="sell">sell</Link>
         </li>
         <li>
           <Link to="lost-found">lost found</Link>
@@ -19,14 +15,16 @@ export const NoticesCategoriesNav = () => {
         <li>
           <Link to="in-good-hands">in good hands</Link>
         </li>
-        {!isLoggedIn && <li>
-          <Link to="favorite-ads">favorite ads</Link>
-        </li>
-        }
-        {!isLoggedIn && <li>
-          <Link to="my-ads">my ads</Link>
-        </li>
-        }
+        {isLoggedIn && (
+          <li>
+            <Link to="favorite">favorite ads</Link>
+          </li>
+        )}
+        {isLoggedIn && (
+          <li>
+            <Link to="own">my ads</Link>
+          </li>
+        )}
       </Container>
     </NavSection>
   );

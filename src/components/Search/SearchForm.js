@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { useRef } from 'react';
 
 import {
@@ -8,16 +7,17 @@ import {
   CloseLineLogo,
 } from './SearchForm.styled';
 
-export const SearchForm = () => {
-  const [searchValue, setSearchValue] = useState('');
+export const SearchForm = ({ searchValue, setSearchValue, mbtn }) => {
   const inputRef = useRef();
 
   const handleSearchChange = event => {
     setSearchValue(event.currentTarget.value.toLowerCase());
   };
 
+  console.log(searchValue);
+
   return (
-    <Form>
+    <Form mbtn={mbtn}>
       {searchValue ? (
         <CloseLineLogo
           onClick={e => {
@@ -31,7 +31,7 @@ export const SearchForm = () => {
 
       <SearchInput
         type="text"
-        name="searchNews"
+        name="search"
         placeholder="Search"
         onChange={handleSearchChange}
         ref={inputRef}

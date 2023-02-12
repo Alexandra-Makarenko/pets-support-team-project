@@ -13,7 +13,7 @@ import {
   HoursWrapper,
 } from './OurFriendItem.styled.js';
 
-import getHours from './getHours';
+import { getHours } from 'components/Friends/services';
 import defaultImage from 'data/default-image_550.png';
 
 const NO_INFO_STRING = '---------------';
