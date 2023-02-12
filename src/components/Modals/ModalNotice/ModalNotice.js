@@ -1,3 +1,4 @@
+
 export const ModalNotice = (notice, user) => {
   return (
     <section>
@@ -47,5 +48,6 @@ export const ModalNotice = (notice, user) => {
         Add to <img />
       </button>
     </section>
+
   );
 };

@@ -19,6 +19,7 @@ import './fonts/Montserrat/Montserrat-Medium.ttf';
 import './fonts/Montserrat/Montserrat-Regular.ttf';
 import './fonts/Poppins/Poppins-Bold.ttf';
 import './fonts/Poppins/Poppins-Regular.ttf';
+import 'modern-normalize';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>

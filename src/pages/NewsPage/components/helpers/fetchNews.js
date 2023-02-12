@@ -15,11 +15,11 @@ export const fetchNews = async searchQuery => {
       }
     });
 
-  if (!searchQuery) {
+  if (searchQuery === '') {
     return news;
   } else {
     return news.filter(
-      article => article.title.indexOf(searchQuery) > 0
+      article => article.title.toLowerCase().indexOf(searchQuery) >= 0
     );
   }
 };
