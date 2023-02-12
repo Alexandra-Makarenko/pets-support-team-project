@@ -32,6 +32,7 @@ import { useEffect, useState } from 'react';
 import { logOut } from 'redux/auth/authOperations';
 import { Container } from 'components/Container/Container';
 import { MainModal } from 'components/MainModal/MainModal';
+import { UserPageAddPet } from './UserPageAddPet';
 
 const fetchPets = async () => {
   const res = await axios.get('user');
@@ -379,7 +380,11 @@ const UserPage = () => {
           </div>
         </UserContainer>
       </Container>
-      {showModal && <MainModal onClose={toggleModal}></MainModal>}
+      {showModal && (
+        <MainModal onClose={toggleModal}>
+          <UserPageAddPet />
+        </MainModal>
+      )}
     </>
   );
 };
