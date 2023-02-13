@@ -12,8 +12,9 @@ export const Button = styled.button`
     props.primary
       ? props.theme.fontColors.white
       : props.theme.fontColors.primary};
+  box-sizing: border-box;
   border: 2px solid ${props => props.theme.backgrounds.buttonPrimary};
-  padding: ${props => (props.icon ? '6px 36px' : '6px 28px')};
+  padding: ${props => (props.icon ? '6px 36px' : '6px 26px')};
   border-radius: 40px;
   font-weight: 500;
   font-size: 14px;
