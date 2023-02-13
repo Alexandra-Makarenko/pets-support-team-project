@@ -181,8 +181,8 @@ export const UserButton = styled.button`
 `;
 
 export const PetPhoto = styled.img`
-  max-width: 161px;
-  max-height: 161px;
+  width: 161px;
+  height: 161px;
   border-radius: 40px;
 `;
 
