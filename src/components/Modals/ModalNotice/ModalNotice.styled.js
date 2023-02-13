@@ -117,11 +117,14 @@ export const CommentsLable = styled.span`
   /* font-weight: bold; */
 `;
 
-export const ContactModalNoticeBtn = styled.button`
+export const ContactModalNoticeBtn = styled.a`
+  display: block;
   font-family: 'Manrope500';
   margin-top: 40px;
   width: 100%;
   color: #ffffff;
+  text-decoration:none;
+  text-align:center;
   background-color: #f59256;
   border-radius: 40px;
   padding-top: 9px;

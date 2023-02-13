@@ -76,7 +76,7 @@ export const ModalNotice = () => {
           </CommentsParagraph>
         </WrapInner>
       </Wrap>
-      <ContactModalNoticeBtn type="tel" onClick={() => {}}>
+      <ContactModalNoticeBtn href={`tel:${oneNotice.phone}`}>
         Contact
       </ContactModalNoticeBtn>
       <AddModalNoticeBtn type="button" onClick={() => {}}>
