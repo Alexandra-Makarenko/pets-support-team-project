@@ -2,6 +2,7 @@ import { ReactComponent as AcceptSvg } from './accept.svg';
 import { ReactComponent as EditSvg } from './pencil.svg';
 import { ReactComponent as TrashCan } from './trashCan.svg';
 import { MdLogout, MdPhotoCamera } from 'react-icons/md';
+import { BsPlusLg } from 'react-icons/bs';
 
 import {
   AddPetButton,
@@ -13,6 +14,8 @@ import {
   InputValue,
   ListItem,
   LogoutButton,
+  LogoutContainer,
+  MyInfoDataSection,
   MyInfoSection,
   PetCard,
   PetDescription,
@@ -21,9 +24,11 @@ import {
   PetHeaderContainer,
   PetPhoto,
   PetPhotoContainer,
-  UploadLavel,
+  PetPhotoPlaceholder,
+  UploadLavel as UploadLabel,
   UserButton,
   UserContainer,
+  UserDataContainer,
   UserInfoHeader,
   UserPetsHeader,
   UserPhoto,
@@ -223,7 +228,11 @@ const UserPage = () => {
               return (
                 <PetCard>
                   <PetPhotoContainer>
-                    <PetPhoto src={avatarURL || ''} alt="pet" />
+                    {avatarURL ? (
+                      <PetPhoto src={avatarURL || ''} alt="pet" />
+                    ) : (
+                      <PetPhotoPlaceholder></PetPhotoPlaceholder>
+                    )}
                   </PetPhotoContainer>
                   <ul>
                     <PetField>
@@ -358,46 +367,49 @@ const UserPage = () => {
     <>
       <Container>
         <UserContainer>
-          <div>
+          <UserDataContainer>
             <UserInfoHeader>My Information:</UserInfoHeader>
             <MyInfoSection>
               {avatarURL ? (
-                <UserPhoto src={avatarURL} width={233} height={233} alt="" />
+                <UserPhoto src={avatarURL} alt="" />
               ) : (
                 <UserPhoto src={emptyPhoto} alt="" />
               )}
-              <UploadLavel>
+              <UploadLabel>
                 <MdPhotoCamera fill="#F59256" />
                 Edit photo
                 <HiddenInput type="file" onChange={handleChangeImage} />
-              </UploadLavel>
-
-              <ul>
-                {Li('Name:', name, true, 1, handleChangeName, inputName)}
-                {Li('Email:', email, false, 2)}
-                {Li(
-                  'Birthday:',
-                  dateofbirth,
-                  true,
-                  3,
-                  handleChangBday,
-                  inputBday
-                )}
-                {Li('Phone:', phone, true, 4, handleChangePhone, inputPhone)}
-                {Li('City:', place, true, 5, handleChangeCity, inputCity)}
-              </ul>
-              <LogoutButton onClick={logoutRequest}>
-                <MdLogout fill="#F59256" /> Log out
-              </LogoutButton>
+              </UploadLabel>
+              <MyInfoDataSection>
+                <ul>
+                  {Li('Name:', name, true, 1, handleChangeName, inputName)}
+                  {Li('Email:', email, false, 2)}
+                  {Li(
+                    'Birthday:',
+                    dateofbirth,
+                    true,
+                    3,
+                    handleChangBday,
+                    inputBday
+                  )}
+                  {Li('Phone:', phone, true, 4, handleChangePhone, inputPhone)}
+                  {Li('City:', place, true, 5, handleChangeCity, inputCity)}
+                </ul>
+                <LogoutContainer>
+                  <LogoutButton onClick={logoutRequest}>
+                    <MdLogout fill="#F59256" /> Log out
+                  </LogoutButton>
+                </LogoutContainer>
+              </MyInfoDataSection>
             </MyInfoSection>
-          </div>
+          </UserDataContainer>
           <div>
             <PetHeaderContainer>
               <UserPetsHeader>My pets:</UserPetsHeader>
               <AddPetHeader>
                 Add pet
                 <AddPetButton type="button" onClick={toggleModal}>
-                  Add
+                  <BsPlusLg width={24} height={24} />
                 </AddPetButton>
               </AddPetHeader>
             </PetHeaderContainer>

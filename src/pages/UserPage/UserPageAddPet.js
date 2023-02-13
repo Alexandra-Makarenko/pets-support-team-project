@@ -19,33 +19,14 @@ import { ReactComponent as PlusSvg } from './plus.svg';
 import { HiddenInput } from './Userpage.styled';
 import { useDispatch } from 'react-redux';
 import { postPet } from 'redux/userPets/operations';
+import { stepOnePetSchema, stepTwoPetSchema } from 'Validations/PetValidation';
+import { FormError } from 'Validations/RegisterValidation';
 
 const { Formik, Form } = require('formik');
 const { useState, useEffect } = require('react');
 
-// const addPet = async petData => {
-//   const data = new FormData();
-//   data.append('name', petData.name);
-//   data.append('date', petData.date);
-//   data.append('breed', petData.breed);
-//   data.append('comment', petData.comment);
-//   data.append('avatar', petData.avatar);
-//   try {
-//     const response = await axios({
-//       method: 'POST',
-//       url: '/user',
-//       data: data,
-//       headers: { 'Content-Type': 'multipart/form-data' },
-//     });
-//     return response.data;
-//   } catch (error) {
-//     return null;
-//   }
-// };
-
 export const UserPageAddPet = ({ onClick }) => {
   const dispatch = useDispatch();
-  // const petsData = useSelector(getPet);
 
   const [petData, setPetData] = useState({
     name: '',
@@ -53,7 +34,7 @@ export const UserPageAddPet = ({ onClick }) => {
     breed: '',
     comment: '',
   });
-  const [currentStep, setCurrentStep] = useState(0);
+  const [currentstep, setCurrentStep] = useState(0);
 
   const makeRequest = formData => {
     const body = {
@@ -64,15 +45,11 @@ export const UserPageAddPet = ({ onClick }) => {
       avatar: formData.avatar,
     };
     console.log('Form Submitted', body);
-    // addPet(body);
     const data = new FormData();
     console.log(body);
     for (const prop in body) {
       data.append(prop, body[prop]);
     }
-    // for (var pair of data.entries()) {
-    //   console.log(pair[0] + ', ' + pair[1]);
-    // }
     dispatch(postPet(data));
     onClick();
   };
@@ -95,13 +72,13 @@ export const UserPageAddPet = ({ onClick }) => {
 
   const submitSteps = [
     <AddPetStepOne
-      currentStep={currentStep}
+      currentstep={currentstep}
       nextStep={handleNextStep}
       petData={petData}
       closeOnClick={onClick}
     />,
     <AddPetStepTwo
-      currentStep={currentStep}
+      currentstep={currentstep}
       nextStep={handleNextStep}
       prevStep={handlePrevStep}
       petData={petData}
@@ -110,10 +87,7 @@ export const UserPageAddPet = ({ onClick }) => {
   ];
 
   return (
-    // <SectionRegisterForm currentStep={currentStep}>
-    //   {registerSteps[currentStep]}
-    // </SectionRegisterForm>
-    <section currentStep={currentStep}>{submitSteps[currentStep]}</section>
+    <section currentstep={currentstep}>{submitSteps[currentstep]}</section>
   );
 };
 
@@ -124,21 +98,28 @@ const AddPetStepOne = props => {
   return (
     <AddPetContainerStepOne>
       <AddPetHeaderStepOne>Add Pet</AddPetHeaderStepOne>
-      <Formik initialValues={props.petData} onSubmit={handleSubmit}>
+      <Formik
+        initialValues={props.petData}
+        onSubmit={handleSubmit}
+        validationSchema={stepOnePetSchema}
+      >
         {({ isValid, dirty }) => (
           <Form autoComplete="off">
             <PetInputLabel>Name pet</PetInputLabel>
+            <FormError name="name" />
             <PetInputField name="name" placeholder="Type name pet" />
             <PetInputLabel>Date of birth</PetInputLabel>
+            <FormError name="date" />
             <PetInputField name="date" placeholder="Type date of birth" />
             <PetInputLabel>Breed</PetInputLabel>
+            <FormError name="breed" />
             <PetInputField name="breed" placeholder="Type breed" />
             <PetButtonBlock>
               <PetButtonBack type="button" onClick={props.closeOnClick}>
                 Cancel
               </PetButtonBack>
               <PetButtonNext
-                currentStep={props.currentStep}
+                currentstep={props.currentstep}
                 type="submit"
                 disabled={!isValid}
               >
@@ -186,7 +167,7 @@ const AddPetStepOne = props => {
   //             />
   //             <FormError name="confirmPassword" />
   //             <NextFormRegisterBtn
-  //               currentStep={props.currentStep}
+  //               currentstep={props.currentstep}
   //               type="submit"
   //               disabled={!isValid}
   //             >
@@ -276,10 +257,11 @@ const AddPetStepTwo = props => {
               )}
             </PetPhotoLabel>
             <PetInputLabel>Comments</PetInputLabel>
+            <FormError name="comment" />
             <PetCommentField
-              as="textarea"
               name="comment"
               placeholder="Type comments"
+              as="textarea"
             />
             <PetButtonBlock>
               <PetButtonBack
@@ -289,9 +271,9 @@ const AddPetStepTwo = props => {
                 Back
               </PetButtonBack>
               <PetButtonNext
-                currentStep={props.currentStep}
+                currentstep={props.currentstep}
                 type="submit"
-                disabled={!dirty || !isValid}
+                disabled={!isValid}
               >
                 Done
               </PetButtonNext>
@@ -352,7 +334,7 @@ const AddPetStepTwo = props => {
 //             <ErrorText>{errors.phone}</ErrorText>
 
 //             <NextFormRegisterBtn
-//               currentStep={props.currentStep}
+//               currentstep={props.currentstep}
 //               type="submit"
 //               disabled={!dirty || !isValid}
 //             >
