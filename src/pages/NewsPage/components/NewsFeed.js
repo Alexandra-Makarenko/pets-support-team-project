@@ -1,4 +1,5 @@
 import { nanoid } from 'nanoid';
+import { Loader } from 'components/Loader/Loader';
 import {
   GradientBar,
   News,
@@ -13,11 +14,15 @@ import {
 } from './styles/NewsStyles';
 import { articleSplit } from './helpers/articleSplit';
 
-export default function NewsList({ news }) {
+export default function NewsList({ news, status }) {
+  console.log(status);
   return (
     <NewsContainer>
-      {!news && <Empty>Щось пішло не так. Спробуйте пізніше</Empty>}
-      {news && news.length === 0 && (
+      {status === 'loading' && <Loader />}
+      {status === 'resolved' && !news && (
+        <Empty>Щось пішло не так. Спробуйте пізніше</Empty>
+      )}
+      {status === 'resolved' && news && news.length === 0 && (
         <Empty>Ми не знайшли новин по вашому запиту</Empty>
       )}
       {news && (
