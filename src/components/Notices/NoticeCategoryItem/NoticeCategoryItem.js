@@ -19,6 +19,7 @@ import { fetchOneNotice } from 'redux/notices/operations';
 import { useState } from 'react';
 import { MainModal } from 'components/MainModal/MainModal';
 import { ModalNotice } from 'components/Modals/ModalNotice/ModalNotice';
+import Plug from '../../../logo/plug_picture_pet.png';
 
 export const NoticeCategoryItem = ({ pet }) => {
   const dispatch = useDispatch();
@@ -34,8 +35,12 @@ export const NoticeCategoryItem = ({ pet }) => {
       <Item>
         <ImgWrap>
           <CategoryLabel>{pet.category}</CategoryLabel>
-          <Img src={pet.avatarURL} alt={pet.name} loading="lazy" />
-          {/* <FavoriteBtn/> */}
+
+          {pet.avatarURL ? (
+            <Img src={pet.avatarURL} alt={pet.title} loading="lazy" />
+          ) : (
+            <Img src={Plug} alt="animal" />
+          )}
         </ImgWrap>
         <Wrap>
           <WrapInner>
