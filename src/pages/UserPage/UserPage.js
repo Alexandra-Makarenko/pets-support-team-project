@@ -45,7 +45,6 @@ const updateUser = async user => {
   data.append('phone', user.phone);
   data.append('place', user.place);
   data.append('dateofbirth', user.dateofbirth);
-  data.append('avatar', user.avatar);
   for (const value of data.values()) {
     console.log(value);
   }
@@ -166,10 +165,10 @@ const UserPage = () => {
     }
     async function updateData() {
       const updatedUser = {
-        name: inputName,
-        phone: inputPhone,
-        place: inputCity,
-        dateofbirth: inputBday,
+        name: inputName || name,
+        phone: inputPhone || phone,
+        place: inputCity || place,
+        dateofbirth: inputBday || dateofbirth,
       };
       const data = await updateUser(updatedUser);
       if (data) {

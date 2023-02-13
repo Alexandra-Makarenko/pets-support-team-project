@@ -1,5 +1,27 @@
+import axios from 'axios';
+
 const { Formik, Form, Field } = require('formik');
-const { useState } = require('react');
+const { useState, useEffect } = require('react');
+
+const addPet = async petData => {
+  const data = new FormData();
+  data.append('name', petData.name);
+  data.append('date', petData.date);
+  data.append('breed', petData.breed);
+  data.append('comment', petData.comment);
+  data.append('avatar', petData.avatar);
+  try {
+    const response = await axios({
+      method: 'POST',
+      url: '/user',
+      data: data,
+      headers: { 'Content-Type': 'multipart/form-data' },
+    });
+    return response.data;
+  } catch (error) {
+    return null;
+  }
+};
 
 export const UserPageAddPet = () => {
   const [petData, setPetData] = useState({
@@ -7,7 +29,6 @@ export const UserPageAddPet = () => {
     date: '',
     breed: '',
     comment: '',
-    avatar: '',
   });
   const [currentStep, setCurrentStep] = useState(0);
 
@@ -20,7 +41,7 @@ export const UserPageAddPet = () => {
       avatar: formData.avatar,
     };
     console.log('Form Submitted', body);
-    //   dispatch(register(body));
+    addPet(body);
   };
 
   const handleNextStep = (newData, final = false) => {
@@ -50,6 +71,7 @@ export const UserPageAddPet = () => {
       nextStep={handleNextStep}
       prevStep={handlePrevStep}
       petData={petData}
+      setPetData={setPetData}
     />,
   ];
 
@@ -147,9 +169,34 @@ const AddPetStepOne = props => {
 };
 
 const AddPetStepTwo = props => {
+  const [picture, setPicture] = useState(undefined);
   const handleSubmit = values => {
-    props.nextStep(values, true);
+    props.nextStep({ ...values, avatar: props.petData.avatar }, true);
   };
+
+  //   const handleChangePicture = e => {
+  //     props.setPetData({ avatar: e.target.files[0] });
+
+  //     const reader = new FileReader();
+  //     if (e.target.files[0]) {
+  //       reader.readAsDataURL(e.target.files[0]);
+  //       reader.onloadend = () => {
+  //         const base64data = reader.result;
+  //         setPicture(base64data);
+  //       };
+  //     }
+  //     };
+
+  useEffect(() => {
+    const reader = new FileReader();
+    if (props.petData.avatar) {
+      reader.readAsDataURL(props.petData.avatar);
+      reader.onloadend = () => {
+        const base64data = reader.result;
+        setPicture(base64data);
+      };
+    }
+  }, [props.petData.avatar]);
 
   return (
     <div>
@@ -166,9 +213,23 @@ const AddPetStepTwo = props => {
           context,
         }) => (
           <Form autoComplete="off">
-            <Field />
-            <Field />
-            <Field />
+            <input
+              type="file"
+              name="image"
+              accept=".jpg, .jpeg, .png"
+              size={2097152}
+              onChange={e => {
+                if (e.target.files[0]) {
+                  props.setPetData({
+                    ...props.petData,
+                    avatar: e.target.files[0],
+                  });
+                }
+              }}
+            />
+            {picture ? <img src={picture} alt="" /> : null}
+            <p>Comment</p>
+            <Field name="comment" />
             <button
               currentStep={props.currentStep}
               type="submit"
