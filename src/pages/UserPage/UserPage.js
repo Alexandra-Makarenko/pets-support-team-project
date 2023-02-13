@@ -33,11 +33,13 @@ import { logOut } from 'redux/auth/authOperations';
 import { Container } from 'components/Container/Container';
 import { MainModal } from 'components/MainModal/MainModal';
 import { UserPageAddPet } from './UserPageAddPet';
+import { getPets } from 'redux/userPets/selectors';
+import { fetchPets } from 'redux/userPets/operations';
 
-const fetchPets = async () => {
-  const res = await axios.get('user');
-  return res.data.result.pets;
-};
+// const fetchPets = async () => {
+//   const res = await axios.get('user');
+//   return res.data.result.pets;
+// };
 
 const updateUser = async user => {
   const data = new FormData();
@@ -82,6 +84,7 @@ const updateImage = async user => {
 
 const UserPage = () => {
   const dispatch = useDispatch();
+  const petsData = useSelector(getPets);
 
   const [pets, setPets] = useState('');
   const [activeField, setActiveField] = useState(0);
@@ -132,6 +135,10 @@ const UserPage = () => {
     e.preventDefault();
     setReadyForUpdate(true);
   };
+
+  useEffect(() => {
+    dispatch(fetchPets());
+  }, [dispatch]);
 
   useEffect(() => {
     setEmail(User.email);
@@ -200,7 +207,8 @@ const UserPage = () => {
 
   useEffect(() => {
     async function getPets() {
-      const data = await fetchPets();
+      const data = petsData;
+      console.log(data);
       setPets(
         data.length > 0
           ? data.map(({ name, date, breed, comment, avatarURL }) => {
@@ -242,7 +250,7 @@ const UserPage = () => {
       );
     }
     getPets();
-  }, []);
+  }, [petsData]);
   const Li = (
     fieldName,
     value,

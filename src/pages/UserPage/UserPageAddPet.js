@@ -15,6 +15,9 @@ import {
 } from './UserPageAddPet.styled';
 import { ReactComponent as PlusSvg } from './plus.svg';
 import { HiddenInput } from './Userpage.styled';
+import { useDispatch, useSelector } from 'react-redux';
+import { getPet } from 'redux/userPets/selectors';
+import { postPet } from 'redux/userPets/operations';
 
 const { Formik, Form, Field } = require('formik');
 const { useState, useEffect } = require('react');
@@ -40,6 +43,9 @@ const addPet = async petData => {
 };
 
 export const UserPageAddPet = ({ onClick }) => {
+  const dispatch = useDispatch();
+  // const petsData = useSelector(getPet);
+
   const [petData, setPetData] = useState({
     name: '',
     date: '',
@@ -57,7 +63,17 @@ export const UserPageAddPet = ({ onClick }) => {
       avatar: formData.avatar,
     };
     console.log('Form Submitted', body);
-    addPet(body);
+    // addPet(body);
+    const data = new FormData();
+    console.log(body);
+    for (const prop in body) {
+      data.append(prop, body[prop]);
+    }
+    // for (var pair of data.entries()) {
+    //   console.log(pair[0] + ', ' + pair[1]);
+    // }
+    dispatch(postPet(data));
+    onClick();
   };
 
   const handleNextStep = (newData, final = false) => {
