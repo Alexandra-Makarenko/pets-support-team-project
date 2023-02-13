@@ -96,6 +96,7 @@ export const PhoneInputField = props => {
 export const SectionRegisterForm = styled.section`
   /* position: relative; */
   height: 100vh;
+  /* max-height: calc(100vh - 68px); */
   padding-top: 42px;
   /* padding-bottom: ${props =>
     props.currentStep === 0 ? `103px` : `59px`}; */

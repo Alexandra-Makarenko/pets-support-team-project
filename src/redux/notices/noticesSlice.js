@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { fetchNotices } from './operations';
+import { fetchNotices, fetchOneNotice } from './operations';
 
 // const tasksInitialState = petsdata;
 
@@ -7,6 +7,7 @@ const noticesSlice = createSlice({
   name: 'notices',
   initialState: {
     items: [],
+    oneNotice: {},
     isLoading: false,
     error: null,
   },
@@ -20,6 +21,18 @@ const noticesSlice = createSlice({
       state.items = action.payload;
     },
     [fetchNotices.rejected](state, action) {
+      state.isLoading = false;
+      state.error = action.payload;
+    },
+    [fetchOneNotice.pending](state) {
+      state.isLoading = true;
+    },
+    [fetchOneNotice.fulfilled](state, action) {
+      state.isLoading = false;
+      state.error = null;
+      state.oneNotice = action.payload;
+    },
+    [fetchOneNotice.rejected](state, action) {
       state.isLoading = false;
       state.error = action.payload;
     },

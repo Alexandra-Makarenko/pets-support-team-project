@@ -21,6 +21,7 @@ const UserPage = lazy(() => import('../pages/UserPage/UserPage'));
 const NoticesCategoryList = lazy(() =>
   import('./Notices/NoticesCategoryList/NoticesCategoryList')
 );
+const NotFoundPage = lazy(() => import('../pages/NotFoundPage/NotFoundPage'));
 
 export const App = () => {
   const dispatch = useDispatch();
@@ -62,7 +63,8 @@ export const App = () => {
             path="/user"
             element={<PrivateRoute component={UserPage} redirectTo="/login" />}
           />
-          <Route path="*" element={<Home />} />
+          {/* <Route path="*" element={<Home />} /> */}
+          <Route path="*" element={<NotFoundPage />} />
         </Route>
       </Routes>
       <ToastContainer />
