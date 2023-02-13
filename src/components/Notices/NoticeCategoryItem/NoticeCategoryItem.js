@@ -65,7 +65,6 @@ export const NoticeCategoryItem = ({ pet, favoritePets }) => {
           ) : (
             <AddFavoriteIconBtn onClick={addToFavorite} />
           )}
-          <Img src={pet.avatarURL} alt={pet.name} loading="lazy" />
 
           {pet.avatarURL ? (
             <Img src={pet.avatarURL} alt={pet.title} loading="lazy" />
