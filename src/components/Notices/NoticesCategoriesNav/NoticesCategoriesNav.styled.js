@@ -1,10 +1,11 @@
 import styled from 'styled-components';
 import { NavLink } from "react-router-dom";
+import { device } from '../../../styles/device';
 
  export const NavSection = styled.section`
   padding-top:30px;
 `;
- export const Container = styled.ul`
+ export const Container = styled.div`
   display: flex;
   flex-wrap: wrap;
   gap: 12px;
@@ -13,6 +14,31 @@ import { NavLink } from "react-router-dom";
   font-weight: 500;
   font-size: 14px;
   letter-spacing: 0.04em;
+ 
+`;
+ export const DesktopContainer = styled.ul`
+  display: none;  
+   @media ${device.desktop} {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    gap: 12px;
+  }
+`;
+export const TabletContainer = styled.ul`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  gap: 12px;
+   @media ${device.desktop} {
+    display: none;
+  }  
+`;
+
+ export const AuthContainer = styled.ul`
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
  
 `;
 export const Link = styled(NavLink)`
