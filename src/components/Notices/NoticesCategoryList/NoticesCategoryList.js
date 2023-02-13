@@ -19,11 +19,11 @@ const NoticesCategoryList = () => {
   const searchValue = useSelector(getSearchValueFilter);
   const location = useLocation();
 
+  let category = '';
+
   useEffect(() => {
     dispatch(setStatusFilter(location.pathname));
   }, [dispatch, location.pathname]);
-
-  let category = 'sell';
 
   if (categoryFilter === '/notices/lost-found') {
     category = 'lost-found';
@@ -37,7 +37,7 @@ const NoticesCategoryList = () => {
     category = 'mynotices';
 
   } else {
-    console.log('no category');
+    category = 'sell';
   }
 
 

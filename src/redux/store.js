@@ -22,7 +22,6 @@ export const store = configureStore({
     filters: filtersReducer,
     pets: petsReducer,
   },
-
   middleware(getDefaultMiddleware) {
     return getDefaultMiddleware({
       serializableCheck: {
