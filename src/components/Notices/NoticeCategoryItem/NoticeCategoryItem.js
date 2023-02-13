@@ -22,14 +22,16 @@ import {
 import { AddFavoriteIconBtn } from './AddFavoriteIconBtn/AddFavoriteIconBtn';
 import { RemoveFavoriteIconBtn } from './RemoveFavoriteIconBtn/RemoveFavoriteIconBtn';
 import { RemoveFavoriteBtn } from './RemoveFavoriteBtn/FavoriteBtn';
+import { useAuth } from 'hooks/useAuth';
 
 import { useState } from 'react';
 import { MainModal } from 'components/MainModal/MainModal';
 import { ModalNotice } from 'components/Modals/ModalNotice/ModalNotice';
 
 export const NoticeCategoryItem = ({ pet, favoritePets }) => {
+  const { isLoggedIn } = useAuth();
+
   const isFavorite = favoritePets.find(item => item._id === pet._id);
-  // console.log(favoritePets);
 
   const dispatch = useDispatch();
   const [showModal, setShowModal] = useState(false);
@@ -40,6 +42,10 @@ export const NoticeCategoryItem = ({ pet, favoritePets }) => {
   };
 
   const addToFavorite = () => {
+    if (!isLoggedIn) {
+      alert('Login to your account or register');
+      return;
+    }
     dispatch(fetchAddFavoriteNotice(pet._id));
   };
 
@@ -53,7 +59,7 @@ export const NoticeCategoryItem = ({ pet, favoritePets }) => {
         <ImgWrap>
           <CategoryLabel>{pet.category}</CategoryLabel>
 
-          {isFavorite ? (
+          {isFavorite && isLoggedIn ? (
             <RemoveFavoriteIconBtn onClick={removeFromFavorite} />
           ) : (
             <AddFavoriteIconBtn onClick={addToFavorite} />

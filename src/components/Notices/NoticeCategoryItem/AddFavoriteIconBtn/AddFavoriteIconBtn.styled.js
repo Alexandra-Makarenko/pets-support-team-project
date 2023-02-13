@@ -20,7 +20,6 @@ export const Button = styled.button`
 
     svg {
       &:hover {
-        fill: #f59256;
         cursor: pointer;
       }
     }

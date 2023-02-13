@@ -11,9 +11,11 @@ import { fetchNotices, fetchFavoriteNotices } from 'redux/notices/operations';
 import { useLocation } from 'react-router-dom';
 import { setStatusFilter } from 'redux/notices/filtersSlice';
 import { NoticeCategoryItem } from '../NoticeCategoryItem/NoticeCategoryItem';
+import { useAuth } from 'hooks/useAuth';
 
 const NoticesCategoryList = () => {
   const dispatch = useDispatch();
+  const { isLoggedIn } = useAuth();
   const pets = useSelector(getNotices);
   const favoritePets = useSelector(getFavoriteNotices);
 
@@ -46,8 +48,9 @@ const NoticesCategoryList = () => {
 
   useEffect(() => {
     dispatch(fetchNotices({ category, searchValue }));
+    if (!isLoggedIn) return;
     dispatch(fetchFavoriteNotices({ searchValue }));
-  }, [dispatch, category, searchValue]);
+  }, [dispatch, category, searchValue, isLoggedIn]);
 
   return (
     <>

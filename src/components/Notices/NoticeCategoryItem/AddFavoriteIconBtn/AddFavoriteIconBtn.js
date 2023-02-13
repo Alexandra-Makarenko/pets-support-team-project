@@ -1,9 +1,9 @@
 import { ReactComponent as Favorite } from './favorite.svg';
 import { Button } from './AddFavoriteIconBtn.styled';
 
-export const AddFavoriteIconBtn = ({ favorite, onClick }) => {
+export const AddFavoriteIconBtn = ({ onClick }) => {
   return (
-    <Button type="button" isFavorite={favorite} onClick={onClick}>
+    <Button type="button" onClick={onClick}>
       <span>
         <Favorite />
       </span>
