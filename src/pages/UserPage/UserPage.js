@@ -1,8 +1,12 @@
 import { ReactComponent as AcceptSvg } from './accept.svg';
 import { ReactComponent as EditSvg } from './pencil.svg';
+import { ReactComponent as TrashCan } from './trashCan.svg';
 import { MdLogout, MdPhotoCamera } from 'react-icons/md';
 
 import {
+  AddPetButton,
+  AddPetHeader,
+  DeletePetButton,
   Field,
   FieldName,
   HiddenInput,
@@ -14,6 +18,7 @@ import {
   PetDescription,
   PetField,
   PetFieldName,
+  PetHeaderContainer,
   PetPhoto,
   PetPhotoContainer,
   UploadLavel,
@@ -34,7 +39,7 @@ import { Container } from 'components/Container/Container';
 import { MainModal } from 'components/MainModal/MainModal';
 import { UserPageAddPet } from './UserPageAddPet';
 import { getPets } from 'redux/userPets/selectors';
-import { fetchPets } from 'redux/userPets/operations';
+import { deletePet, fetchPets } from 'redux/userPets/operations';
 
 // const fetchPets = async () => {
 //   const res = await axios.get('user');
@@ -207,11 +212,14 @@ const UserPage = () => {
 
   useEffect(() => {
     async function getPets() {
+      const removePet = id => {
+        dispatch(deletePet(id));
+      };
       const data = petsData;
       console.log(data);
       setPets(
         data.length > 0
-          ? data.map(({ name, date, breed, comment, avatarURL }) => {
+          ? data.map(({ name, date, breed, comment, avatarURL, _id }) => {
               return (
                 <PetCard>
                   <PetPhotoContainer>
@@ -243,6 +251,13 @@ const UserPage = () => {
                       </p>
                     </PetField>
                   </ul>
+                  <DeletePetButton
+                    onClick={() => {
+                      removePet(_id);
+                    }}
+                  >
+                    <TrashCan fill="rgba(17, 17, 17, 0.6)" />
+                  </DeletePetButton>
                 </PetCard>
               );
             })
@@ -250,7 +265,7 @@ const UserPage = () => {
       );
     }
     getPets();
-  }, [petsData]);
+  }, [dispatch, petsData]);
   const Li = (
     fieldName,
     value,
@@ -377,10 +392,15 @@ const UserPage = () => {
             </MyInfoSection>
           </div>
           <div>
-            <UserPetsHeader>My pets:</UserPetsHeader>
-            <button type="button" onClick={toggleModal}>
-              Add
-            </button>
+            <PetHeaderContainer>
+              <UserPetsHeader>My pets:</UserPetsHeader>
+              <AddPetHeader>
+                Add pet
+                <AddPetButton type="button" onClick={toggleModal}>
+                  Add
+                </AddPetButton>
+              </AddPetHeader>
+            </PetHeaderContainer>
             <section>
               <ul>{pets}</ul>
             </section>

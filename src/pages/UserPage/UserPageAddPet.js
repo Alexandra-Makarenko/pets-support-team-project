@@ -8,9 +8,11 @@ import {
   PetButtonBack,
   PetButtonBlock,
   PetButtonNext,
+  PetCommentField,
   PetInputField,
   PetInputLabel,
   PetPhoto,
+  PetPhotoLabel,
   PetPhotoPlaceholder,
 } from './UserPageAddPet.styled';
 import { ReactComponent as PlusSvg } from './plus.svg';
@@ -18,7 +20,7 @@ import { HiddenInput } from './Userpage.styled';
 import { useDispatch } from 'react-redux';
 import { postPet } from 'redux/userPets/operations';
 
-const { Formik, Form, Field } = require('formik');
+const { Formik, Form } = require('formik');
 const { useState, useEffect } = require('react');
 
 // const addPet = async petData => {
@@ -264,7 +266,7 @@ const AddPetStepTwo = props => {
                 }
               }}
             />
-            <label htmlFor="uploadImage">
+            <PetPhotoLabel htmlFor="uploadImage">
               {picture ? (
                 <PetPhoto src={picture} alt="" />
               ) : (
@@ -272,10 +274,20 @@ const AddPetStepTwo = props => {
                   <PlusSvg />
                 </PetPhotoPlaceholder>
               )}
-            </label>
-            <p>Comment</p>
-            <Field name="comment" />
+            </PetPhotoLabel>
+            <PetInputLabel>Comments</PetInputLabel>
+            <PetCommentField
+              as="textarea"
+              name="comment"
+              placeholder="Type comments"
+            />
             <PetButtonBlock>
+              <PetButtonBack
+                type="button"
+                onClick={() => props.prevStep(values)}
+              >
+                Back
+              </PetButtonBack>
               <PetButtonNext
                 currentStep={props.currentStep}
                 type="submit"
@@ -283,13 +295,6 @@ const AddPetStepTwo = props => {
               >
                 Done
               </PetButtonNext>
-
-              <PetButtonBack
-                type="button"
-                onClick={() => props.prevStep(values)}
-              >
-                Back
-              </PetButtonBack>
             </PetButtonBlock>
           </Form>
         )}

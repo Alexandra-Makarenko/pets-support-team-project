@@ -181,28 +181,51 @@ export const UserButton = styled.button`
 `;
 
 export const PetPhoto = styled.img`
-  width: 161px;
-  height: 161px;
-  border-radius: 40px;
+  width: 240px;
+  height: 240px;
+  border-radius: 20px;
+  @media ${device.tablet} {
+    width: 161px;
+    height: 161px;
+    border-radius: 40px;
+  }
+  @media ${device.desktop} {
+  }
 `;
 
 export const PetPhotoContainer = styled.div`
-  width: 161px;
-  height: 161px;
-  margin-right: 32px;
+  width: 240px;
+  height: 240px;
+  margin-bottom: 20px;
+  @media ${device.tablet} {
+    width: 161px;
+    height: 161px;
+    margin-right: 32px;
+  }
+  @media ${device.desktop} {
+  }
 `;
 
 export const PetCard = styled.li`
+  position: relative;
   display: flex;
+  flex-direction: column;
   min-height: 201px;
-  width: 821px;
   background: #ffffff;
   box-shadow: 7px 4px 14px rgba(0, 0, 0, 0.11);
   border-radius: 40px;
+  width: 280px;
   &:not(:last-child) {
     margin-bottom: 22px;
   }
   padding: 20px;
+  @media ${device.tablet} {
+    flex-direction: row;
+    width: 704px;
+  }
+  @media ${device.desktop} {
+    width: 821px;
+  }
 `;
 
 export const PetField = styled.li`
@@ -248,3 +271,58 @@ export const LogoutButton = styled.button`
     color: ${props => props.theme.fontColors.buttonSecondary};
   }
 `;
+
+export const DeletePetButton = styled.button`
+  position: absolute;
+  top: 272px;
+  right: 20px;
+  display: block;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  border: none;
+  background-color: transparent;
+  svg {
+    fill: rgba(17, 17, 17, 0.6);
+    transition: fill 200ms cubic-bezier(0.4, 0, 0.2, 1);
+    width: 20px;
+    height: 20px;
+    &:hover {
+      fill: ${props => props.theme.fontColors.buttonSecondary};
+    }
+  }
+  @media ${device.tablet} {
+    top: 20px;
+    right: 20px;
+    background-color: #fdf7f2;
+    width: 44px;
+    height: 44px;
+    svg {
+      width: 24px;
+      height: 24px;
+    }
+  }
+`;
+
+export const PetHeaderContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+`;
+
+export const AddPetHeader = styled.p`
+  font-family: 'Manrope500';
+  font-size: 20px;
+  line-height: 27px;
+  letter-spacing: 0.04em;
+  margin-bottom: 32px;
+
+  @media ${device.tablet} {
+    letter-spacing: 0;
+    margin-bottom: 24px;
+  }
+  @media ${device.desktop} {
+    margin-bottom: 24px;
+  }
+`;
+
+export const AddPetButton = styled.button``;
