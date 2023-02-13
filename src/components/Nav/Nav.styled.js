@@ -36,8 +36,8 @@ export const MenuLink = styled(NavLink)`
 
   &:hover,
   :focus {
-    font-weight: 700;
     color: ${props => props.theme.fontColors.buttonSecondary};
+    text-shadow: 1px 0 0 ${props => props.theme.fontColors.buttonSecondary};
   }
 `;
 
