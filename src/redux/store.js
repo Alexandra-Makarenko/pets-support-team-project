@@ -13,14 +13,15 @@ import {
 } from 'redux-persist';
 
 import { authReduser } from './auth/authSlice';
+import { petsReducer } from './userPets/userPetSlice';
 
 export const store = configureStore({
   reducer: {
     auth: authReduser,
     notices: noticesReducer,
     filters: filtersReducer,
+    pets: petsReducer,
   },
-
   middleware(getDefaultMiddleware) {
     return getDefaultMiddleware({
       serializableCheck: {

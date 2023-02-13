@@ -29,21 +29,26 @@ export const Section = styled.section`
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  height: calc(107vh - 27px);
+  /* height: calc(107vh - 27px); */
+
+  /* height: 100%;
+  justify-content: space-between; */
 
   @media ${device.preDesktop} {
     background: url(${bgTabWave});
     background-repeat: no-repeat;
     background-position: 22% calc(9vh + 100%);
-    height: calc(100vh - 157px);
+    /* height: calc(100vh - 157px); */
     flex-direction: column;
+    /* margin-top: 88px; */
+    /* overflow: scroll; */
   }
 
   @media ${device.preTablet} {
     background: url(${bgMobWave});
     background-repeat: no-repeat;
     background-position: 38% calc(2vh + 100%);
-    height: calc(100vh - 96px);
+    /* height: calc(100vh - 96px); */
   }
 `;
 
@@ -56,7 +61,7 @@ export const H2 = styled.h2`
   line-height: 1.47;
 
   @media ${device.preDesktop} {
-    margin-top: 88px;
+    /* margin-top: 88px; */
   }
 
   @media ${device.preTablet} {
@@ -105,6 +110,8 @@ export const Img = styled.img`
 export const Content = styled.div`
   display: flex;
   column-gap: 75px;
+  justify-content: space-between;
+  height: 100%;
 
   @media ${device.preDesktop} {
     flex-direction: column;
