@@ -1,7 +1,8 @@
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
-// import MenuIcon from 'components/Nav/burger-menu.svg';
 import { device } from '../../styles/device';
+import { ReactComponent as BurgerIco } from './burger-menu.svg';
+import { ReactComponent as CloseIco } from './x.svg';
 
 export const NavBlock = styled.nav`
   display: flex;
@@ -45,12 +46,28 @@ export const MobMenuBtn = styled.button`
   color: ${props => props.theme.fontColors.secondary};
   background-color: transparent;
   border: none;
-  padding: 0 5px 0 0;
+  padding: 0;
   margin: 0;
   cursor: pointer;
 
   @media ${device.desktop} {
     display: none;
+  }
+`;
+
+export const Burger = styled(BurgerIco)`
+  display: block;
+  padding: 0;
+  margin-right: 5px;
+  color: inherit;
+`;
+
+export const Close = styled(CloseIco)`
+  display: block;
+  color: inherit;
+
+  @media ${device.tablet} {
+    padding: 0 10px 0 0;
   }
 `;
 
