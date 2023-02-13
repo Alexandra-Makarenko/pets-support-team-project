@@ -31,11 +31,15 @@ import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { logOut } from 'redux/auth/authOperations';
 import { Container } from 'components/Container/Container';
+import { MainModal } from 'components/MainModal/MainModal';
+import { UserPageAddPet } from './UserPageAddPet';
+import { getPets } from 'redux/userPets/selectors';
+import { fetchPets } from 'redux/userPets/operations';
 
-const fetchPets = async () => {
-  const res = await axios.get('user');
-  return res.data.result.pets;
-};
+// const fetchPets = async () => {
+//   const res = await axios.get('user');
+//   return res.data.result.pets;
+// };
 
 const updateUser = async user => {
   const data = new FormData();
@@ -43,7 +47,6 @@ const updateUser = async user => {
   data.append('phone', user.phone);
   data.append('place', user.place);
   data.append('dateofbirth', user.dateofbirth);
-  data.append('avatar', user.avatar);
   for (const value of data.values()) {
     console.log(value);
   }
@@ -81,6 +84,7 @@ const updateImage = async user => {
 
 const UserPage = () => {
   const dispatch = useDispatch();
+  const petsData = useSelector(getPets);
 
   const [pets, setPets] = useState('');
   const [activeField, setActiveField] = useState(0);
@@ -96,6 +100,11 @@ const UserPage = () => {
   const [avatarURL, setAvatarURL] = useState(null);
   const [readyForUpdate, setReadyForUpdate] = useState(false);
   const [image, setImage] = useState(null);
+  const [showModal, setShowModal] = useState(false);
+
+  const toggleModal = () => {
+    setShowModal(!showModal);
+  };
 
   const handleChangeName = e => {
     setInputName(e.target.value);
@@ -126,6 +135,10 @@ const UserPage = () => {
     e.preventDefault();
     setReadyForUpdate(true);
   };
+
+  useEffect(() => {
+    dispatch(fetchPets());
+  }, [dispatch]);
 
   useEffect(() => {
     setEmail(User.email);
@@ -159,10 +172,10 @@ const UserPage = () => {
     }
     async function updateData() {
       const updatedUser = {
-        name: inputName,
-        phone: inputPhone,
-        place: inputCity,
-        dateofbirth: inputBday,
+        name: inputName || name,
+        phone: inputPhone || phone,
+        place: inputCity || place,
+        dateofbirth: inputBday || dateofbirth,
       };
       const data = await updateUser(updatedUser);
       if (data) {
@@ -194,7 +207,8 @@ const UserPage = () => {
 
   useEffect(() => {
     async function getPets() {
-      const data = await fetchPets();
+      const data = petsData;
+      console.log(data);
       setPets(
         data.length > 0
           ? data.map(({ name, date, breed, comment, avatarURL }) => {
@@ -236,7 +250,7 @@ const UserPage = () => {
       );
     }
     getPets();
-  }, []);
+  }, [petsData]);
   const Li = (
     fieldName,
     value,
@@ -326,49 +340,59 @@ const UserPage = () => {
   };
 
   return (
-    <Container>
-      <UserContainer>
-        <div>
-          <UserInfoHeader>My Information:</UserInfoHeader>
-          <MyInfoSection>
-            {avatarURL ? (
-              <UserPhoto src={avatarURL} width={233} height={233} alt="" />
-            ) : (
-              <UserPhoto src={emptyPhoto} alt="" />
-            )}
-            <UploadLavel>
-              <MdPhotoCamera fill="#F59256" />
-              Edit photo
-              <HiddenInput type="file" onChange={handleChangeImage} />
-            </UploadLavel>
-
-            <ul>
-              {Li('Name:', name, true, 1, handleChangeName, inputName)}
-              {Li('Email:', email, false, 2)}
-              {Li(
-                'Birthday:',
-                dateofbirth,
-                true,
-                3,
-                handleChangBday,
-                inputBday
+    <>
+      <Container>
+        <UserContainer>
+          <div>
+            <UserInfoHeader>My Information:</UserInfoHeader>
+            <MyInfoSection>
+              {avatarURL ? (
+                <UserPhoto src={avatarURL} width={233} height={233} alt="" />
+              ) : (
+                <UserPhoto src={emptyPhoto} alt="" />
               )}
-              {Li('Phone:', phone, true, 4, handleChangePhone, inputPhone)}
-              {Li('City:', place, true, 5, handleChangeCity, inputCity)}
-            </ul>
-            <LogoutButton onClick={logoutRequest}>
-              <MdLogout fill="#F59256" /> Log out
-            </LogoutButton>
-          </MyInfoSection>
-        </div>
-        <div>
-          <UserPetsHeader>My pets:</UserPetsHeader>
-          <section>
-            <ul>{pets}</ul>
-          </section>
-        </div>
-      </UserContainer>
-    </Container>
+              <UploadLavel>
+                <MdPhotoCamera fill="#F59256" />
+                Edit photo
+                <HiddenInput type="file" onChange={handleChangeImage} />
+              </UploadLavel>
+
+              <ul>
+                {Li('Name:', name, true, 1, handleChangeName, inputName)}
+                {Li('Email:', email, false, 2)}
+                {Li(
+                  'Birthday:',
+                  dateofbirth,
+                  true,
+                  3,
+                  handleChangBday,
+                  inputBday
+                )}
+                {Li('Phone:', phone, true, 4, handleChangePhone, inputPhone)}
+                {Li('City:', place, true, 5, handleChangeCity, inputCity)}
+              </ul>
+              <LogoutButton onClick={logoutRequest}>
+                <MdLogout fill="#F59256" /> Log out
+              </LogoutButton>
+            </MyInfoSection>
+          </div>
+          <div>
+            <UserPetsHeader>My pets:</UserPetsHeader>
+            <button type="button" onClick={toggleModal}>
+              Add
+            </button>
+            <section>
+              <ul>{pets}</ul>
+            </section>
+          </div>
+        </UserContainer>
+      </Container>
+      {showModal && (
+        <MainModal onClose={toggleModal}>
+          <UserPageAddPet onClick={toggleModal} />
+        </MainModal>
+      )}
+    </>
   );
 };
 export default UserPage;
