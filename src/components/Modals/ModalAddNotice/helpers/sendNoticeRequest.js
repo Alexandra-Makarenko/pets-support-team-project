@@ -13,7 +13,7 @@ export const postNoticeHandler = noticeInfo => {
   }
 
   const noticeData = {
-    avatarURL: noticeInfo.avatar,
+    avatarURL: noticeInfo.avatarURL,
     breed: noticeInfo.breed,
     category: noticeInfo.category,
     comments: noticeInfo.comments,
@@ -26,12 +26,17 @@ export const postNoticeHandler = noticeInfo => {
   };
 
   for (const field in noticeData) {
-    noticeFormData.append(field, noticeData[field]);
+    if (noticeData[`${field}`] !== '') {
+      noticeFormData.append(field, noticeData[field]);
+    }
   }
   postNotice(noticeFormData);
 };
 
 const postNotice = async noticeInfo => {
+  for (var pair of noticeInfo.entries()) {
+    console.log(pair[0] + ', ' + pair[1]);
+  }
   await axios
     .post('/notices', noticeInfo, {
       headers: {
@@ -46,5 +51,4 @@ const postNotice = async noticeInfo => {
         console.log(error.response);
       }
     });
-  console.log(noticeInfo);
 };

@@ -39,7 +39,7 @@ export const ModalAddNotice = ({ onClick }) => {
     sex: '',
     place: '',
     price: '',
-    avatar: undefined,
+    avatarURL: '',
     comments: '',
   });
 
@@ -211,7 +211,7 @@ const StepTwo = props => {
             .string('Enter a price as number')
             .required('Please type price in format price$'),
           // .min(1, 'Price must be at least 1')
-          avatar: yup.mixed(),
+          avatarURL: yup.mixed(),
           comments: yup.string().min(4, 'Must be more than 4 characters'),
         })
       );
@@ -226,7 +226,7 @@ const StepTwo = props => {
               regionRules,
               'Format must be City, region. For example: Brovary, Kyiv'
             ),
-          avatar: yup.mixed(),
+          avatarURL: yup.mixed(),
           comments: yup.string().min(4, 'Must be more than 4 characters'),
         })
       );
@@ -234,7 +234,7 @@ const StepTwo = props => {
   }, [props.data.category]);
 
   const handleSubmit = values => {
-    console.log(values);
+    console.log({...values, avatarURL:picture });
     props.next(values, true);
   };
 
@@ -244,6 +244,7 @@ const StepTwo = props => {
       reader.readAsDataURL(e.target.files[0]);
       reader.onloadend = () => {
         const base64data = reader.result;
+       
         setPicture(base64data);
       };
     }
@@ -310,13 +311,13 @@ const StepTwo = props => {
             </label>
             <ModalFileInput
               type="file"
-              name="avatar"
+              name="avatarURL"
               id="imageId"
               accept=".jpg, .jpeg, .png"
               onChange={handleChangePicture}
             />
           </ModalImageBlock>
-          <ErrorMessage name="avatar" />
+          <ErrorMessage name="avatarURL" />
 
           <ModalLabel>Comments</ModalLabel>
           <ModalTextArea
