@@ -9,7 +9,6 @@ import {
   MenuItem,
   MenuLink,
   Burger,
-  Close,
 } from './Nav.styled';
 
 import { UserMenu } from 'components/UserMenu/UserMenu';
@@ -43,8 +42,8 @@ export const Nav = () => {
           <AuthNav mobMenuToggler={mobMenuToggler} />
         )}
       </UserMenuWrapper>
-      <MobMenuBtn type="button" onClick={mobMenuToggler} isOpen={isOpen}>
-        {!isOpen ? <Burger /> : <Close />}
+      <MobMenuBtn type="button" onClick={mobMenuToggler}>
+        <Burger />
       </MobMenuBtn>
       {isOpen && <MobileMenu mobMenuToggler={mobMenuToggler} />}
     </NavBlock>
