@@ -20,7 +20,6 @@ export const store = configureStore({
     notices: noticesReducer,
     filters: filtersReducer,
   },
-
   middleware(getDefaultMiddleware) {
     return getDefaultMiddleware({
       serializableCheck: {

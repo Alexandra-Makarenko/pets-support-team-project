@@ -11,6 +11,7 @@ export const SearchInput = styled.input`
   box-shadow: ${props => props.theme.shadows.searchBox};
   padding-left: 12px;
   outline: none;
+  cursor: pointer;
   font-family: 'Manrope500';
   background: ${props => props.theme.backgrounds.bodySecondary};
   &::-webkit-input-placeholder,
@@ -52,13 +53,14 @@ export const Form = styled.form`
     margin-left: auto;
     margin-bottom: ${props => props.mbtn.rest}px;
   }
-`;  
+`;
 
 export const SearchLogo = styled(Search)`
   position: absolute;
   top: 50%;
   right: 0;
   transform: translate(-14px, -50%);
+  cursor: pointer;
 
   @media ${device.tablet} {
     width: 24px;
@@ -73,6 +75,7 @@ export const CloseLineLogo = styled(CloseLine)`
   width: 20px;
   height: 20px;
   transform: translate(-14px, -50%);
+  cursor: pointer;
 
   @media ${device.tablet} {
     width: 24px;
