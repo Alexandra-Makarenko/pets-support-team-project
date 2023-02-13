@@ -1,4 +1,4 @@
-import axios from 'axios';
+// import axios from 'axios';
 import {
   AddPetContainerStepOne,
   AddPetContainerStepTwo,
@@ -15,32 +15,31 @@ import {
 } from './UserPageAddPet.styled';
 import { ReactComponent as PlusSvg } from './plus.svg';
 import { HiddenInput } from './Userpage.styled';
-import { useDispatch, useSelector } from 'react-redux';
-import { getPet } from 'redux/userPets/selectors';
+import { useDispatch } from 'react-redux';
 import { postPet } from 'redux/userPets/operations';
 
 const { Formik, Form, Field } = require('formik');
 const { useState, useEffect } = require('react');
 
-const addPet = async petData => {
-  const data = new FormData();
-  data.append('name', petData.name);
-  data.append('date', petData.date);
-  data.append('breed', petData.breed);
-  data.append('comment', petData.comment);
-  data.append('avatar', petData.avatar);
-  try {
-    const response = await axios({
-      method: 'POST',
-      url: '/user',
-      data: data,
-      headers: { 'Content-Type': 'multipart/form-data' },
-    });
-    return response.data;
-  } catch (error) {
-    return null;
-  }
-};
+// const addPet = async petData => {
+//   const data = new FormData();
+//   data.append('name', petData.name);
+//   data.append('date', petData.date);
+//   data.append('breed', petData.breed);
+//   data.append('comment', petData.comment);
+//   data.append('avatar', petData.avatar);
+//   try {
+//     const response = await axios({
+//       method: 'POST',
+//       url: '/user',
+//       data: data,
+//       headers: { 'Content-Type': 'multipart/form-data' },
+//     });
+//     return response.data;
+//   } catch (error) {
+//     return null;
+//   }
+// };
 
 export const UserPageAddPet = ({ onClick }) => {
   const dispatch = useDispatch();
