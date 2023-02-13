@@ -381,7 +381,7 @@ const UserPage = () => {
       </Container>
       {showModal && (
         <MainModal onClose={toggleModal}>
-          <UserPageAddPet />
+          <UserPageAddPet onClick={toggleModal} />
         </MainModal>
       )}
     </>

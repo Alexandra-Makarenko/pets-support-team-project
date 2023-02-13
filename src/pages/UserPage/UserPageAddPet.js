@@ -1,4 +1,20 @@
 import axios from 'axios';
+import {
+  AddPetContainerStepOne,
+  AddPetContainerStepTwo,
+  AddPetHeaderStepOne,
+  AddPetHeaderStepTwo,
+  AddPhotoHeader,
+  PetButtonBack,
+  PetButtonBlock,
+  PetButtonNext,
+  PetInputField,
+  PetInputLabel,
+  PetPhoto,
+  PetPhotoPlaceholder,
+} from './UserPageAddPet.styled';
+import { ReactComponent as PlusSvg } from './plus.svg';
+import { HiddenInput } from './Userpage.styled';
 
 const { Formik, Form, Field } = require('formik');
 const { useState, useEffect } = require('react');
@@ -23,7 +39,7 @@ const addPet = async petData => {
   }
 };
 
-export const UserPageAddPet = () => {
+export const UserPageAddPet = ({ onClick }) => {
   const [petData, setPetData] = useState({
     name: '',
     date: '',
@@ -65,6 +81,7 @@ export const UserPageAddPet = () => {
       currentStep={currentStep}
       nextStep={handleNextStep}
       petData={petData}
+      closeOnClick={onClick}
     />,
     <AddPetStepTwo
       currentStep={currentStep}
@@ -88,29 +105,33 @@ const AddPetStepOne = props => {
     props.nextStep(values);
   };
   return (
-    <div>
-      <h2>Add Pet</h2>
+    <AddPetContainerStepOne>
+      <AddPetHeaderStepOne>Add Pet</AddPetHeaderStepOne>
       <Formik initialValues={props.petData} onSubmit={handleSubmit}>
         {({ isValid, dirty }) => (
           <Form autoComplete="off">
-            <p>Name pet</p>
-            <Field name="name" />
-            <p>Date of birth</p>
-            <Field name="date" />
-            <p>Breed</p>
-            <Field name="breed" />
-            <button type="button">Cancel</button>
-            <button
-              currentStep={props.currentStep}
-              type="submit"
-              disabled={!isValid}
-            >
-              Next
-            </button>
+            <PetInputLabel>Name pet</PetInputLabel>
+            <PetInputField name="name" placeholder="Type name pet" />
+            <PetInputLabel>Date of birth</PetInputLabel>
+            <PetInputField name="date" placeholder="Type date of birth" />
+            <PetInputLabel>Breed</PetInputLabel>
+            <PetInputField name="breed" placeholder="Type breed" />
+            <PetButtonBlock>
+              <PetButtonBack type="button" onClick={props.closeOnClick}>
+                Cancel
+              </PetButtonBack>
+              <PetButtonNext
+                currentStep={props.currentStep}
+                type="submit"
+                disabled={!isValid}
+              >
+                Next
+              </PetButtonNext>
+            </PetButtonBlock>
           </Form>
         )}
       </Formik>
-    </div>
+    </AddPetContainerStepOne>
   );
 
   // return (
@@ -199,9 +220,9 @@ const AddPetStepTwo = props => {
   }, [props.petData.avatar]);
 
   return (
-    <div>
-      <h2>Add Pet</h2>
-      <h3>Add photo and some comments</h3>
+    <AddPetContainerStepTwo>
+      <AddPetHeaderStepTwo>Add Pet</AddPetHeaderStepTwo>
+      <AddPhotoHeader>Add photo and some comments</AddPhotoHeader>
       <Formik initialValues={props.petData} onSubmit={handleSubmit}>
         {({
           values,
@@ -213,8 +234,9 @@ const AddPetStepTwo = props => {
           context,
         }) => (
           <Form autoComplete="off">
-            <input
+            <HiddenInput
               type="file"
+              id="uploadImage"
               name="image"
               accept=".jpg, .jpeg, .png"
               size={2097152}
@@ -227,24 +249,37 @@ const AddPetStepTwo = props => {
                 }
               }}
             />
-            {picture ? <img src={picture} alt="" /> : null}
+            <label htmlFor="uploadImage">
+              {picture ? (
+                <PetPhoto src={picture} alt="" />
+              ) : (
+                <PetPhotoPlaceholder>
+                  <PlusSvg />
+                </PetPhotoPlaceholder>
+              )}
+            </label>
             <p>Comment</p>
             <Field name="comment" />
-            <button
-              currentStep={props.currentStep}
-              type="submit"
-              disabled={!dirty || !isValid}
-            >
-              Done
-            </button>
+            <PetButtonBlock>
+              <PetButtonNext
+                currentStep={props.currentStep}
+                type="submit"
+                disabled={!dirty || !isValid}
+              >
+                Done
+              </PetButtonNext>
 
-            <button type="button" onClick={() => props.prevStep(values)}>
-              Back
-            </button>
+              <PetButtonBack
+                type="button"
+                onClick={() => props.prevStep(values)}
+              >
+                Back
+              </PetButtonBack>
+            </PetButtonBlock>
           </Form>
         )}
       </Formik>
-    </div>
+    </AddPetContainerStepTwo>
   );
 };
 
