@@ -1,20 +1,21 @@
 import axios from 'axios';
 
 export const postNotice = async noticeInfo => {
-  const notice = await axios
-    .post('/notices', {
-      params: {},
-      body: { ...noticeInfo },
+  for (var pair of noticeInfo.entries()) {
+    console.log(pair[0] + ', ' + pair[1]);
+  }
+  await axios
+    .post('/notices', noticeInfo, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
     })
     .then(result => {
-      return result.data.data;
+      console.log(result);
     })
     .catch(error => {
       if (error.response) {
-        console.log(error.response.status);
-        console.log(error.response.statusText);
+        console.log(error.response);
       }
     });
-  console.log({ ...noticeInfo });
-  return notice;
 };
