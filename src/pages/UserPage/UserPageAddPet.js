@@ -19,7 +19,7 @@ import { ReactComponent as PlusSvg } from './plus.svg';
 import { HiddenInput } from './Userpage.styled';
 import { useDispatch } from 'react-redux';
 import { postPet } from 'redux/userPets/operations';
-import { stepOnePetSchema, stepTwoPetSchema } from 'Validations/PetValidation';
+import { stepOnePetSchema } from 'Validations/PetValidation';
 import { FormError } from 'Validations/RegisterValidation';
 
 const { Formik, Form } = require('formik');
