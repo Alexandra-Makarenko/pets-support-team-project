@@ -1,19 +1,25 @@
 import { Suspense, useState, useEffect } from 'react';
 import { Outlet } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { toast } from 'react-toastify';
+import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { SearchForm } from 'components/Search/SearchForm';
 import { Container } from '../../components/Container/Container';
 import { NoticesCategoriesNav } from '../../components/Notices/NoticesCategoriesNav/NoticesCategoriesNav';
 import { PagesTitle } from '../../components/PagesTitle/PagesTitle';
-import { AddNoticeButton } from '../../components/Notices/AddNoticeButton/AddNoticeButton';
 import { NavBox, TitleBox } from './NoticesPage.styled';
 import { Loader } from 'components/Loader/Loader';
 import { getNoticesIsLoading, getNoticesError } from 'redux/notices/selectors';
+import { selectIsLoggedIn } from 'redux/auth/authSelectors';
+import AddNoticeButton from 'components/Notices/AddNoticeButton/AddNoticeButton';
+import { ModalAddNotice } from 'components/Modals/ModalAddNotice/ModalAddNotice';
+
 import { setSearch } from 'redux/notices/filtersSlice';
 
 const NoticesPage = () => {
+  const [isAddNoticeOpen, setIsAddNoticeOpen] = useState(false);
+  const isLoggedIn = useSelector(selectIsLoggedIn);
+
   const isLoading = useSelector(getNoticesIsLoading);
   const error = useSelector(getNoticesError);
   const [searchValue, setSearchValue] = useState('');
@@ -27,8 +33,17 @@ const NoticesPage = () => {
     dispatch(setSearch(searchValue));
   }, [dispatch, searchValue]);
 
+  const toggleAddNoticeModal = () => {
+    setIsAddNoticeOpen(!isAddNoticeOpen);
+  };
+  const logify = () =>
+    toast.warn('You need to log in to use this function!', {
+      position: toast.POSITION.TOP_CENTER,
+    });
+
   return (
     <Container>
+      <ToastContainer />
       <TitleBox>
         <PagesTitle>Find your favorite pet</PagesTitle>
       </TitleBox>
@@ -39,15 +54,16 @@ const NoticesPage = () => {
       />
       <NavBox>
         <NoticesCategoriesNav />
-        <AddNoticeButton />
+        <AddNoticeButton onClick={isLoggedIn ? toggleAddNoticeModal : logify} />
       </NavBox>
 
       {isLoading && !error && <Loader />}
       {error &&
         !isLoading &&
         toast.error(`Something wrong, please try again later: ${error}`)}
-
       <Suspense fallback={<div>Loading subpage...</div>}>
+        {isAddNoticeOpen && <ModalAddNotice onClick={toggleAddNoticeModal} />}
+
         <Outlet />
       </Suspense>
     </Container>

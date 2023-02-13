@@ -1,11 +1,13 @@
-import { Add } from './AddNoticeButton.styled';
+import { AddNotice } from './AddNoticeButton.styled';
+import { BsPlusLg } from 'react-icons/bs';
 
-
-export const AddNoticeButton = () => {
+function AddNoticeButton({ onClick }) {
   return (
-    <Add>
-      <p>Add</p>
-      
-    </Add>
+    <AddNotice onClick={onClick}>
+      <BsPlusLg style={{ width: 32, height: 32, color: 'white' }} />
+      <p style={{ color: 'white' }}>Add pet</p>
+    </AddNotice>
   );
-};
+}
+
+export default AddNoticeButton;
