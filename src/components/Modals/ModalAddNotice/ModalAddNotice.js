@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import { Formik, Form, ErrorMessage } from 'formik';
 import * as yup from 'yup';
 import { IoMdFemale, IoMdMale } from 'react-icons/io';
-import { postNotice } from './helpers/sendNoticeRequest';
+import { postNoticeHandler } from './helpers/sendNoticeRequest';
 import {
   BackFormModalBtn,
   NextFormModalBtn,
@@ -31,15 +31,15 @@ const regionRules = /^()(\w+(,|\s)\s*)+\w+$/;
 
 export const ModalAddNotice = ({ onClick }) => {
   const [data, setData] = useState({
-    categories: '',
+    category: '',
     title: '',
     name: '',
     dateofbirth: '',
     breed: '',
     sex: '',
-    location: '',
-    price: 0,
-    avatarURL: '',
+    place: '',
+    price: '',
+    avatar: undefined,
     comments: '',
   });
 
@@ -48,11 +48,10 @@ export const ModalAddNotice = ({ onClick }) => {
   const handleNextStep = (newData, final = false) => {
     setData(prev => ({ ...prev, ...newData }));
     if (final) {
-      postNotice(newData);
+      postNoticeHandler(newData);
       return;
     }
     setCurrentStep(prev => prev + 1);
-    console.log('data', newData);
   };
 
   const handlePrevStep = newData => {
@@ -90,7 +89,7 @@ export const ModalAddNotice = ({ onClick }) => {
 
 const StepOne = props => {
   const stepOneAddNoticeSchema = yup.object().shape({
-    categories: yup.string().required('Chose one option'),
+    category: yup.string().required('Chose one option'),
     title: yup.string().required('Please enter add title'),
     name: yup
       .string()
@@ -122,18 +121,13 @@ const StepOne = props => {
             Here you can create new add for pets that you have
           </ModalText>
           <CategoriesOfAdd role="group">
-            <ModalRadio
-              type="radio"
-              name="categories"
-              value="sell"
-              id="idSell"
-            />
+            <ModalRadio type="radio" name="category" value="sell" id="idSell" />
             <ModalRadioCategoriesTitle htmlFor="idSell">
               Sell
             </ModalRadioCategoriesTitle>
             <ModalRadio
               type="radio"
-              name="categories"
+              name="category"
               value="in-good-hands"
               id="idInGoodHands"
             />
@@ -143,14 +137,14 @@ const StepOne = props => {
 
             <ModalRadio
               type="radio"
-              name="categories"
+              name="category"
               value="lost-found"
               id="idLostFound"
             />
             <ModalRadioCategoriesTitle htmlFor="idLostFound">
               Lost/Found
             </ModalRadioCategoriesTitle>
-            <ErrorMessage name="categories" />
+            <ErrorMessage name="category" />
           </CategoriesOfAdd>
 
           <ModalLabel>
@@ -196,24 +190,63 @@ const StepOne = props => {
 };
 
 const StepTwo = props => {
-  const stepTwoAddNoticeSchema = yup.object().shape({
-    sex: yup.string().required('Chose one option'),
-    location: yup
-      .string()
-      .required('Please enter location')
-      .matches(
-        regionRules,
-        'Format must be City, region. For example: Brovary, Kyiv'
-      ),
-    price: yup
-      .number('Enter a price as number')
-      .min(1, 'Price must be at least 1'),
-    image: yup.mixed(),
-    comments: yup.string().min(4, 'Must be more than 4 characters'),
-  });
+  const [stepTwoAddNoticeSchema, setStepTwoAddNoticeSchema] = useState(
+    yup.object()
+  );
+  const [picture, setPicture] = useState(undefined);
+
+  useEffect(() => {
+    if (props.data.category === 'sell') {
+      setStepTwoAddNoticeSchema(
+        yup.object().shape({
+          sex: yup.string().required('Chose one option'),
+          place: yup
+            .string()
+            .required('Please enter location')
+            .matches(
+              regionRules,
+              'Format must be City, region. For example: Brovary, Kyiv'
+            ),
+          price: yup
+            .string('Enter a price as number')
+            .required('Please type price in format price$'),
+          // .min(1, 'Price must be at least 1')
+          avatar: yup.mixed(),
+          comments: yup.string().min(4, 'Must be more than 4 characters'),
+        })
+      );
+    } else {
+      setStepTwoAddNoticeSchema(
+        yup.object().shape({
+          sex: yup.string().required('Chose one option'),
+          place: yup
+            .string()
+            .required('Please enter location')
+            .matches(
+              regionRules,
+              'Format must be City, region. For example: Brovary, Kyiv'
+            ),
+          avatar: yup.mixed(),
+          comments: yup.string().min(4, 'Must be more than 4 characters'),
+        })
+      );
+    }
+  }, [props.data.category]);
 
   const handleSubmit = values => {
+    console.log(values);
     props.next(values, true);
+  };
+
+  const handleChangePicture = e => {
+    const reader = new FileReader();
+    if (e.target.files[0]) {
+      reader.readAsDataURL(e.target.files[0]);
+      reader.onloadend = () => {
+        const base64data = reader.result;
+        setPicture(base64data);
+      };
+    }
   };
 
   return (
@@ -249,17 +282,17 @@ const StepTwo = props => {
           </ModalLabel>
           <ModalFormInput
             type="text"
-            name="location"
+            name="place"
             placeholder="Enter location"
           />
-          <ErrorMessage name="location" />
-          {props.data.categories === 'sell' && (
+          <ErrorMessage name="place" />
+          {props.data.category === 'sell' && (
             <>
               <ModalLabel>
                 Price<p style={{ color: '#F59256' }}>*</p>
               </ModalLabel>
               <ModalFormInput
-                type="number"
+                type="text"
                 name="price"
                 placeholder="Enter price"
               />
@@ -269,17 +302,21 @@ const StepTwo = props => {
           <ModalLabel>Load pets image</ModalLabel>
           <ModalImageBlock>
             <label htmlFor="imageId">
-              <BsPlusLgModal htmlFor="imageId" />
+              {picture ? (
+                <img src={picture} alt="" />
+              ) : (
+                <BsPlusLgModal htmlFor="imageId" />
+              )}
             </label>
             <ModalFileInput
               type="file"
-              name="avatarURL"
+              name="avatar"
               id="imageId"
-              hidden
-              accept="image/*"
+              accept=".jpg, .jpeg, .png"
+              onChange={handleChangePicture}
             />
           </ModalImageBlock>
-          <ErrorMessage name="avatarURL" />
+          <ErrorMessage name="avatar" />
 
           <ModalLabel>Comments</ModalLabel>
           <ModalTextArea
