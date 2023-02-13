@@ -12,6 +12,8 @@ import {
   Text,
   ThumbBtn,
   LearnMoreBtn,
+  AddToFavoriteBtn,
+  HeartIcon,
 } from './NoticeCategoryItem.styled';
 import { useDispatch } from 'react-redux';
 import { fetchOneNotice } from 'redux/notices/operations';
@@ -34,6 +36,14 @@ export const NoticeCategoryItem = ({ pet }) => {
       <Item>
         <ImgWrap>
           <CategoryLabel>{pet.category}</CategoryLabel>
+          <AddToFavoriteBtn
+            type="button"
+            onClick={() => {
+              console.log('first');
+            }}
+          >
+            <HeartIcon />
+          </AddToFavoriteBtn>
           <Img src={pet.avatarURL} alt={pet.name} loading="lazy" />
           {/* <FavoriteBtn/> */}
         </ImgWrap>

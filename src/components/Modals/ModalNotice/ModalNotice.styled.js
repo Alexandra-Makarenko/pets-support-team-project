@@ -10,7 +10,7 @@ export const ModalNoticeBox = styled.div`
   padding-right: 20px;
 
   @media ${device.tablet} {
-    max-width: 704px;
+    min-width: 704px;
     padding-top: 32px;
     padding-bottom: 32px;
     padding-left: 20px;
@@ -72,13 +72,13 @@ export const WrapInner = styled.div`
   @media ${device.tablet} {
     margin-left: 20px;
     padding-top: 0;
-    max-width: 320px;
+    width: 320px;
   }
 `;
 
 export const Title = styled.h2`
   font-family: 'Manrope700';
-
+  padding-right: 35px;
   font-size: 24px;
   line-height: 33px;
   letter-spacing: -0.01em;
@@ -122,6 +122,18 @@ export const Text = styled.p`
   @media screen and (min-width: 768px) {
   }
 `;
+
+export const TextLink = styled.a`
+  text-decoration: none;
+  color: #000000;
+  &:hover {
+    color: #f59256;
+    text-decoration: underline;
+  }
+  @media screen and (min-width: 768px) {
+  }
+`;
+
 export const ThumbBtn = styled.div`
   display: flex;
   flex-direction: column;
@@ -164,8 +176,9 @@ export const WrapForBtn = styled.div`
   }
 `;
 
-export const ContactModalNoticeBtn = styled.button`
+export const ContactModalNoticeBtn = styled.a`
   font-family: 'Manrope500';
+  display: block;
   margin-top: 40px;
   width: 100%;
   color: #ffffff;
@@ -180,6 +193,8 @@ export const ContactModalNoticeBtn = styled.button`
   border: none;
   cursor: pointer;
   transition: all 0.3s ease-in-out;
+  text-decoration: none;
+  text-align: center;
   &:hover {
     transform: scale(1.03);
   }

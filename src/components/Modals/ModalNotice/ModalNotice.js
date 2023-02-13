@@ -17,6 +17,7 @@ import {
   HeartIcon,
   WrapForBtn,
   SecondWrap,
+  TextLink,
 } from './ModalNotice.styled';
 
 import { useSelector } from 'react-redux';
@@ -60,11 +61,15 @@ export const ModalNotice = () => {
             </Li>
             <Li key={`${oneNotice._id}+email`}>
               <Lable>Email:</Lable>
-              <Text>{oneNotice.email || '----------'}</Text>
+              <TextLink href={`mailto:${oneNotice.phone}`}>
+                {oneNotice.email || '----------'}
+              </TextLink>
             </Li>
             <Li key={`${oneNotice._id}+phone`}>
               <Lable>Phone:</Lable>
-              <Text>{oneNotice.phone || '----------'}</Text>
+              <TextLink href={`tel:${oneNotice.phone}`}>
+                {oneNotice.phone || '----------'}
+              </TextLink>
             </Li>
             {oneNotice.category === 'sell' && (
               <Li key={`${oneNotice._id}+sell`}>
@@ -80,7 +85,7 @@ export const ModalNotice = () => {
         {oneNotice.comments || ''}
       </CommentsParagraph>
       <WrapForBtn>
-        <ContactModalNoticeBtn type="tel" onClick={() => {}}>
+        <ContactModalNoticeBtn href={`tel:${oneNotice.phone}`}>
           Contact
         </ContactModalNoticeBtn>
         <AddModalNoticeBtn type="button" onClick={() => {}}>

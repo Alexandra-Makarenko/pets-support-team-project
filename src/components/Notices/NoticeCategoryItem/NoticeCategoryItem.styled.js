@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { device } from '../../../styles/device';
+import { AiOutlineHeart } from 'react-icons/ai';
 
 export const Item = styled.li`
   margin-left: 32px;
@@ -38,6 +39,32 @@ export const CategoryLabel = styled.p`
   background: rgba(255, 255, 255, 0.6);
   backdrop-filter: blur(2px);
   border-radius: 0px 40px 40px 0px;
+`;
+
+export const AddToFavoriteBtn = styled.button`
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: 50%;
+  top: 12px;
+  right: 12px;
+  background-color: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(2px);
+  width: 44px;
+  height: 44px;
+  cursor: pointer;
+`;
+
+export const HeartIcon = styled(AiOutlineHeart)`
+  color: #f59256;
+  /* background-color: #fdf7f2; */
+  /* backdrop-filter: blur(2px); */
+
+  /* backdrop-filter: blur(2px); */
+  width: 32px;
+  height: 28px;
 `;
 
 export const Img = styled.img`
