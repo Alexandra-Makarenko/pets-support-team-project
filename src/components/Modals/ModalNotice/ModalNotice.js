@@ -1,6 +1,5 @@
 import {
   ModalNoticeBox,
-  Wrap,
   ImgWrap,
   CategoryLabel,
   Img,
@@ -22,10 +21,15 @@ import {
 
 import { useSelector } from 'react-redux';
 import { getOneNotice } from 'redux/notices/selectors';
+import { RemoveFavoriteBtn } from './RemoveFavoriteBtn/FavoriteBtn';
 
-export const ModalNotice = () => {
+export const ModalNotice = ({
+  isFavorite,
+  addToFavorite,
+  removeFromFavorite,
+}) => {
   const oneNotice = useSelector(getOneNotice);
-  console.log(oneNotice);
+  // console.log(oneNotice);
 
   return (
     <ModalNoticeBox>
@@ -88,9 +92,13 @@ export const ModalNotice = () => {
         <ContactModalNoticeBtn href={`tel:${oneNotice.phone}`}>
           Contact
         </ContactModalNoticeBtn>
-        <AddModalNoticeBtn type="button" onClick={() => {}}>
-          Add to <HeartIcon />
-        </AddModalNoticeBtn>
+        {isFavorite ? (
+          <RemoveFavoriteBtn onClick={removeFromFavorite} />
+        ) : (
+          <AddModalNoticeBtn type="button" onClick={addToFavorite}>
+            Add to <HeartIcon />
+          </AddModalNoticeBtn>
+        )}
       </WrapForBtn>
     </ModalNoticeBox>
   );

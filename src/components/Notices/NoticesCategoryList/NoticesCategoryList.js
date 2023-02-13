@@ -3,10 +3,11 @@ import {
   getNotices,
   getCategoryFilter,
   getSearchValueFilter,
+  getFavoriteNotices,
 } from 'redux/notices/selectors';
 import { PetsListSection, PetsList } from './NoticesCategoryList.styled';
 import { useEffect } from 'react';
-import { fetchNotices } from 'redux/notices/operations';
+import { fetchNotices, fetchFavoriteNotices } from 'redux/notices/operations';
 import { useLocation } from 'react-router-dom';
 import { setStatusFilter } from 'redux/notices/filtersSlice';
 import { NoticeCategoryItem } from '../NoticeCategoryItem/NoticeCategoryItem';
@@ -14,6 +15,10 @@ import { NoticeCategoryItem } from '../NoticeCategoryItem/NoticeCategoryItem';
 const NoticesCategoryList = () => {
   const dispatch = useDispatch();
   const pets = useSelector(getNotices);
+  const favoritePets = useSelector(getFavoriteNotices);
+
+  // console.log('pets', pets);
+  // console.log('favoritePets', favoritePets);
 
   const categoryFilter = useSelector(getCategoryFilter);
   const searchValue = useSelector(getSearchValueFilter);
@@ -35,23 +40,34 @@ const NoticesCategoryList = () => {
     category = 'favorite';
   } else if (categoryFilter === '/notices/own') {
     category = 'mynotices';
-
   } else {
     console.log('no category');
   }
 
-
   useEffect(() => {
     dispatch(fetchNotices({ category, searchValue }));
+    dispatch(fetchFavoriteNotices({ searchValue }));
   }, [dispatch, category, searchValue]);
 
   return (
     <>
       <PetsListSection>
         <PetsList>
-          {pets.map((pet, idx) => (
-            <NoticeCategoryItem key={idx} pet={pet} />
-          ))}
+          {categoryFilter !== '/notices/favorite'
+            ? pets.map((pet, idx) => (
+                <NoticeCategoryItem
+                  key={idx}
+                  pet={pet}
+                  favoritePets={favoritePets}
+                />
+              ))
+            : favoritePets.map((pet, idx) => (
+                <NoticeCategoryItem
+                  key={idx}
+                  pet={pet}
+                  favoritePets={favoritePets}
+                />
+              ))}
         </PetsList>
       </PetsListSection>
     </>
