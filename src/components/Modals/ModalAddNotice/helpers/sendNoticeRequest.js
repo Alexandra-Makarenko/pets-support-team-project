@@ -15,6 +15,6 @@ export const postNotice = async noticeInfo => {
         console.log(error.response.statusText);
       }
     });
-
+  console.log({ ...noticeInfo });
   return notice;
 };
