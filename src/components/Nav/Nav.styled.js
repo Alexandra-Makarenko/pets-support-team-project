@@ -26,6 +26,7 @@ export const MenuList = styled.ul`
 export const MenuItem = styled.li``;
 
 export const MenuLink = styled(NavLink)`
+  display: inline-block;
   color: #181c27;
   text-decoration: none;
   font-weight: 500;

@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { Formik, Form, ErrorMessage } from 'formik';
 import * as yup from 'yup';
 import { IoMdFemale, IoMdMale } from 'react-icons/io';
-
+import { postNotice } from './helpers/sendNoticeRequest';
 import {
   BackFormModalBtn,
   NextFormModalBtn,
@@ -34,35 +34,21 @@ export const ModalAddNotice = ({ onClick }) => {
     categories: '',
     title: '',
     name: '',
-    birthday: '',
+    dateofbirth: '',
     breed: '',
     sex: '',
     location: '',
     price: 0,
-    image: '',
+    avatarURL: '',
     comments: '',
   });
 
   const [currentStep, setCurrentStep] = useState(0);
-  const makeRequest = formData => {
-    const body = {
-      categories: formData.categories,
-      title: formData.title,
-      name: formData.name,
-      birthday: formData.birthday,
-      breed: formData.breed,
-      sex: formData.sex,
-      location: formData.location,
-      image: formData.image,
-      comments: formData.comments,
-    };
-    console.log(body);
-  };
 
   const handleNextStep = (newData, final = false) => {
     setData(prev => ({ ...prev, ...newData }));
     if (final) {
-      makeRequest(newData);
+      postNotice(newData);
       return;
     }
     setCurrentStep(prev => prev + 1);
@@ -110,7 +96,7 @@ const StepOne = props => {
       .string()
       .min(2, 'Must be more than 2 characters')
       .matches(nameRules, 'Only latin characters are allowed for this field'),
-    birthday: yup
+    dateofbirth: yup
       .date('Enter date in format dd/mm/yyyy, dd-mm-yyyy or dd.mm.yyyy')
       .max(new Date(), 'Birthday must be earlier than today')
       .label('Date of birth'),
@@ -167,7 +153,9 @@ const StepOne = props => {
             <ErrorMessage name="categories" />
           </CategoriesOfAdd>
 
-          <ModalLabel>Title of add</ModalLabel>
+          <ModalLabel>
+            Title of add<p style={{ color: '#F59256' }}>*</p>
+          </ModalLabel>
           <ModalFormInput
             type="text"
             name="title"
@@ -184,10 +172,10 @@ const StepOne = props => {
           <ModalLabel>Date of birth</ModalLabel>
           <ModalFormInput
             type="text"
-            name="birthday"
+            name="dateofbirth"
             placeholder="Enter pet birthday"
           />
-          <ErrorMessage name="birthday" />
+          <ErrorMessage name="dateofbirth" />
           <ModalLabel>Breed</ModalLabel>
           <ModalFormInput
             type="text"
@@ -236,24 +224,29 @@ const StepTwo = props => {
     >
       {({ values }) => (
         <Form>
-          <ModalLabel>The sex</ModalLabel>
+          <ModalLabel>
+            The sex<p style={{ color: '#F59256' }}>*</p>
+          </ModalLabel>
           <ModalRadioSex>
-            <ModalRadio type="radio" name="sex" value="male" id="idMale" />
+            <ModalRadio type="radio" name="sex" value="Male" id="idMale" />
 
             <ModalRadioSexTitle htmlFor="idMale">
               <IoMdMale style={{ width: 40, height: 40, color: '#23C2EF' }} />
               Male
             </ModalRadioSexTitle>
 
-            <ModalRadio type="radio" name="sex" value="female" id="idFemale" />
+            <ModalRadio type="radio" name="sex" value="Female" id="idFemale" />
 
             <ModalRadioSexTitle htmlFor="idFemale">
               <IoMdFemale style={{ width: 40, height: 40, color: '#FF8787' }} />
               Female
             </ModalRadioSexTitle>
-            <ErrorMessage name="sex" />
           </ModalRadioSex>
-          <ModalLabel>Location</ModalLabel>
+          <ErrorMessage name="sex" />
+
+          <ModalLabel>
+            Location<p style={{ color: '#F59256' }}>*</p>
+          </ModalLabel>
           <ModalFormInput
             type="text"
             name="location"
@@ -262,7 +255,9 @@ const StepTwo = props => {
           <ErrorMessage name="location" />
           {props.data.categories === 'sell' && (
             <>
-              <ModalLabel>Price</ModalLabel>
+              <ModalLabel>
+                Price<p style={{ color: '#F59256' }}>*</p>
+              </ModalLabel>
               <ModalFormInput
                 type="number"
                 name="price"
@@ -276,9 +271,15 @@ const StepTwo = props => {
             <label htmlFor="imageId">
               <BsPlusLgModal htmlFor="imageId" />
             </label>
-            <ModalFileInput type="file" name="image" id="imageId" hidden />
+            <ModalFileInput
+              type="file"
+              name="avatarURL"
+              id="imageId"
+              hidden
+              accept="image/*"
+            />
           </ModalImageBlock>
-          <ErrorMessage name="image" />
+          <ErrorMessage name="avatarURL" />
 
           <ModalLabel>Comments</ModalLabel>
           <ModalTextArea

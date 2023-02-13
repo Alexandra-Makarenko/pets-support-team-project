@@ -26,6 +26,7 @@ export const Button = styled.button`
   &:hover,
   :focus {
     background-color: ${props => props.theme.hovers.primary};
+    color: ${props => props.theme.fontColors.white};
   }
 
   @media ${device.tablet} {
