@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
-
+import FormData from 'form-data';
 import { Formik, Form, ErrorMessage } from 'formik';
 import * as yup from 'yup';
 import { IoMdFemale, IoMdMale } from 'react-icons/io';
-import { postNoticeHandler } from './helpers/sendNoticeRequest';
+import { postNotice } from './helpers/sendNoticeRequest';
 import {
   BackFormModalBtn,
   NextFormModalBtn,
@@ -39,7 +39,6 @@ export const ModalAddNotice = ({ onClick }) => {
     sex: '',
     place: '',
     price: '',
-    avatarURL: '',
     comments: '',
   });
 
@@ -59,6 +58,39 @@ export const ModalAddNotice = ({ onClick }) => {
     setCurrentStep(prev => prev - 1);
   };
 
+  const postNoticeHandler = noticeInfo => {
+    let sexBool = false;
+    let priceFinal = '';
+    if (noticeInfo.sex === 'Male') {
+      sexBool = true;
+    }
+    if (noticeInfo.category === 'sell') {
+      priceFinal = noticeInfo.price;
+    }
+    console.log(noticeInfo.avatarURL);
+
+    const noticeData = {
+      title: noticeInfo.title,
+      name: noticeInfo.name,
+      dateofbirth: noticeInfo.dateofbirth,
+      breed: noticeInfo.breed,
+      place: noticeInfo.place,
+      price: priceFinal,
+      sex: sexBool,
+      comments: noticeInfo.comments,
+      category: noticeInfo.category,
+    };
+
+    const noticeFormData = new FormData();
+    for (const field in noticeData) {
+      if (noticeData[`${field}`] !== '') {
+        noticeFormData.append(field, noticeData[field]);
+      }
+    }
+    noticeFormData.append('avatar', noticeInfo.avatarURL);
+    postNotice(noticeFormData);
+  };
+
   const steps = [
     <StepOne
       currentStep={currentStep}
@@ -71,6 +103,7 @@ export const ModalAddNotice = ({ onClick }) => {
       next={handleNextStep}
       prev={handlePrevStep}
       data={data}
+      setData={setData}
     />,
   ];
 
@@ -211,7 +244,7 @@ const StepTwo = props => {
             .string('Enter a price as number')
             .required('Please type price in format price$'),
           // .min(1, 'Price must be at least 1')
-          avatarURL: yup.mixed(),
+          // avatarURL: yup.mixed(),
           comments: yup.string().min(4, 'Must be more than 4 characters'),
         })
       );
@@ -226,7 +259,7 @@ const StepTwo = props => {
               regionRules,
               'Format must be City, region. For example: Brovary, Kyiv'
             ),
-          avatarURL: yup.mixed(),
+          // avatarURL: yup.mixed(),
           comments: yup.string().min(4, 'Must be more than 4 characters'),
         })
       );
@@ -234,21 +267,33 @@ const StepTwo = props => {
   }, [props.data.category]);
 
   const handleSubmit = values => {
-    console.log({...values, avatarURL:picture });
-    props.next(values, true);
+    props.next({ ...values, avatarURL: props.data.avatarURL }, true);
   };
 
-  const handleChangePicture = e => {
-    const reader = new FileReader();
-    if (e.target.files[0]) {
-      reader.readAsDataURL(e.target.files[0]);
-      reader.onloadend = () => {
-        const base64data = reader.result;
-       
+  // const handleImageChange = e => {
+  //   const reader = new FileReader();
+  //   if (e.target.files[0]) {
+  //     reader.readAsDataURL(e.target.files[0]);
+  //     reader.onloadend = () => {
+  //       const base64data = reader.result;
+  //       setPicture(base64data);
+  //     };
+  //     props.setData({
+  //       ...props.data,
+  //       avatarURL: e.target.files[0],
+  //     });
+  //   }
+  // };
+  useEffect(() => {
+    const modalReader = new FileReader();
+    if (props.data.avatarURL) {
+      modalReader.readAsDataURL(props.data.avatarURL);
+      modalReader.onloadend = () => {
+        const base64data = modalReader.result;
         setPicture(base64data);
       };
     }
-  };
+  }, [props.data.avatarURL]);
 
   return (
     <Formik
@@ -314,7 +359,14 @@ const StepTwo = props => {
               name="avatarURL"
               id="imageId"
               accept=".jpg, .jpeg, .png"
-              onChange={handleChangePicture}
+              onChange={e => {
+                if (e.target.files[0]) {
+                  props.setData({
+                    ...props.data,
+                    avatarURL: e.target.files[0],
+                  });
+                }
+              }}
             />
           </ModalImageBlock>
           <ErrorMessage name="avatarURL" />
