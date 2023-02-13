@@ -3,7 +3,7 @@ import { device } from '../../../styles/device';
 import { AiOutlineHeart } from 'react-icons/ai';
 
 export const Item = styled.li`
-  margin-left: 32px;
+  margin-bottom: 32px;
   height: 100%;
   color: #111111;
   background-color: #ffffff;
@@ -13,7 +13,8 @@ export const Item = styled.li`
 
   @media ${device.tablet} {
     flex-basis: calc(100% / 4 - 32px);
-    margin-bottom: 32px;
+    margin-left: 32px;
+   
   }
 `;
 

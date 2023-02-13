@@ -26,6 +26,7 @@ export const MenuList = styled.ul`
 export const MenuItem = styled.li``;
 
 export const MenuLink = styled(NavLink)`
+  display: inline-block;
   color: #181c27;
   text-decoration: none;
   font-weight: 500;
@@ -35,8 +36,8 @@ export const MenuLink = styled(NavLink)`
 
   &:hover,
   :focus {
-    font-weight: 700;
     color: ${props => props.theme.fontColors.buttonSecondary};
+    text-shadow: 1px 0 0 ${props => props.theme.fontColors.buttonSecondary};
   }
 `;
 

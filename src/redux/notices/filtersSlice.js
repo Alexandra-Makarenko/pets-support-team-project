@@ -1,19 +1,20 @@
 import { createSlice } from '@reduxjs/toolkit';
-// import { categoryFilters } from "./constants";
 
-// const filtersInitialState = {
-//   category: categoryFilters.sell,
-// };
+const categoryFilter =
+  localStorage.getItem('category') !== '/notices/sell'
+    ? JSON.parse(localStorage.getItem('category'))
+    : 'sell';
 
 const filtersSlice = createSlice({
   name: 'filters',
   initialState: {
-    category: '',
+    category: categoryFilter,
     searchValue: '',
   },
   reducers: {
     setStatusFilter(state, action) {
       state.category = action.payload;
+      localStorage.setItem('category', JSON.stringify(state.category));
     },
     setSearch(state, action) {
       state.searchValue = action.payload;

@@ -182,6 +182,8 @@ export const ContactModalNoticeBtn = styled.a`
   margin-top: 40px;
   width: 100%;
   color: #ffffff;
+  text-decoration: none;
+  text-align: center;
   background-color: #f59256;
   border-radius: 40px;
   padding-top: 9px;

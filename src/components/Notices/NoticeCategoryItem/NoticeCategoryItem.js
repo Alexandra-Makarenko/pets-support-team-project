@@ -27,6 +27,7 @@ import { useAuth } from 'hooks/useAuth';
 import { useState } from 'react';
 import { MainModal } from 'components/MainModal/MainModal';
 import { ModalNotice } from 'components/Modals/ModalNotice/ModalNotice';
+import Plug from '../../../logo/plug_picture_pet.png';
 
 export const NoticeCategoryItem = ({ pet, favoritePets }) => {
   const { isLoggedIn } = useAuth();
@@ -59,12 +60,18 @@ export const NoticeCategoryItem = ({ pet, favoritePets }) => {
         <ImgWrap>
           <CategoryLabel>{pet.category}</CategoryLabel>
 
-          {isFavorite && isLoggedIn ? (
+          {isFavorite ? (
             <RemoveFavoriteIconBtn onClick={removeFromFavorite} />
           ) : (
             <AddFavoriteIconBtn onClick={addToFavorite} />
           )}
           <Img src={pet.avatarURL} alt={pet.name} loading="lazy" />
+
+          {pet.avatarURL ? (
+            <Img src={pet.avatarURL} alt={pet.title} loading="lazy" />
+          ) : (
+            <Img src={Plug} alt="animal" />
+          )}
         </ImgWrap>
         <Wrap>
           <WrapInner>
