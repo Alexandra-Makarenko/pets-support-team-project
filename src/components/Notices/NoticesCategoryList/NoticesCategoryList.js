@@ -15,8 +15,10 @@ import { useAuth } from 'hooks/useAuth';
 
 const NoticesCategoryList = () => {
   const dispatch = useDispatch();
-  const { isLoggedIn } = useAuth();
+  const { isLoggedIn, user } = useAuth();
+
   const pets = useSelector(getNotices);
+
   const favoritePets = useSelector(getFavoriteNotices);
 
   // console.log('pets', pets);
@@ -62,6 +64,7 @@ const NoticesCategoryList = () => {
                   key={idx}
                   pet={pet}
                   favoritePets={favoritePets}
+                  user={user}
                 />
               ))
             : favoritePets.map((pet, idx) => (
@@ -69,6 +72,7 @@ const NoticesCategoryList = () => {
                   key={idx}
                   pet={pet}
                   favoritePets={favoritePets}
+                  user={user}
                 />
               ))}
         </PetsList>

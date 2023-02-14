@@ -13,6 +13,7 @@ import {
   CommentsLable,
   ContactModalNoticeBtn,
   AddModalNoticeBtn,
+  RemoveFavoriteBtn,
   HeartIcon,
   WrapForBtn,
   SecondWrap,
@@ -21,7 +22,6 @@ import {
 
 import { useSelector } from 'react-redux';
 import { getOneNotice } from 'redux/notices/selectors';
-import { RemoveFavoriteBtn } from './RemoveFavoriteBtn/FavoriteBtn';
 
 export const ModalNotice = ({
   isFavorite,
@@ -29,7 +29,11 @@ export const ModalNotice = ({
   removeFromFavorite,
 }) => {
   const oneNotice = useSelector(getOneNotice);
+
+  // console.log(oneNotice.sex);
   // console.log(oneNotice);
+
+  const theSex = oneNotice.sex ? 'male' : 'female';
 
   return (
     <ModalNoticeBox>
@@ -61,7 +65,7 @@ export const ModalNotice = ({
             </Li>
             <Li key={`${oneNotice._id}+sex`}>
               <Lable>The sex:</Lable>
-              <Text>{oneNotice.sex || '----------'}</Text>
+              <Text>{theSex}</Text>
             </Li>
             <Li key={`${oneNotice._id}+email`}>
               <Lable>Email:</Lable>
@@ -93,10 +97,12 @@ export const ModalNotice = ({
           Contact
         </ContactModalNoticeBtn>
         {isFavorite ? (
-          <RemoveFavoriteBtn onClick={removeFromFavorite} />
+          <RemoveFavoriteBtn type="button" onClick={removeFromFavorite}>
+            Delete <HeartIcon />
+          </RemoveFavoriteBtn>
         ) : (
           <AddModalNoticeBtn type="button" onClick={addToFavorite}>
-            Add to <HeartIcon />
+            Add to <HeartIcon isfavorite={isFavorite} />
           </AddModalNoticeBtn>
         )}
       </WrapForBtn>

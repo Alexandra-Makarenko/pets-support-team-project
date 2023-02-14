@@ -18,10 +18,11 @@ import {
   fetchOneNotice,
   fetchAddFavoriteNotice,
   fetchRemoveFavoriteNotice,
+  removeMyAddNotice,
 } from 'redux/notices/operations';
 import { AddFavoriteIconBtn } from './AddFavoriteIconBtn/AddFavoriteIconBtn';
 import { RemoveFavoriteIconBtn } from './RemoveFavoriteIconBtn/RemoveFavoriteIconBtn';
-import { RemoveFavoriteBtn } from './RemoveFavoriteBtn/FavoriteBtn';
+import { RemoveMyNoticeBtn } from './RemoveMyNoticeBtn/RemoveMyNoticeBtn';
 import { useAuth } from 'hooks/useAuth';
 
 import { useState } from 'react';
@@ -29,14 +30,19 @@ import { MainModal } from 'components/MainModal/MainModal';
 import { ModalNotice } from 'components/Modals/ModalNotice/ModalNotice';
 import Plug from '../../../logo/plug_picture_pet.png';
 
-export const NoticeCategoryItem = ({ pet, favoritePets }) => {
+export const NoticeCategoryItem = ({ pet, favoritePets, user }) => {
+  // console.log('user._id', user);
+  // console.log('owner', pet.owner);
+  // console.log(user._id === pet.owner);
+
   const { isLoggedIn } = useAuth();
 
   const isFavorite = favoritePets.find(item => item._id === pet._id);
+  const isMyAds = user._id === pet.owner;
+  // console.log(isMyAds);
 
   const dispatch = useDispatch();
   const [showModal, setShowModal] = useState(false);
-
   const toggleModal = () => {
     dispatch(fetchOneNotice(pet._id));
     setShowModal(!showModal);
@@ -54,6 +60,9 @@ export const NoticeCategoryItem = ({ pet, favoritePets }) => {
     dispatch(fetchRemoveFavoriteNotice(pet._id));
   };
 
+  const removeFromMyAdsNotices = () => {
+    dispatch(removeMyAddNotice(pet._id));
+  };
   const noLinesCategory = category => {
     if (category === 'lost-found') {
       return 'Lost/Found';
@@ -70,7 +79,7 @@ export const NoticeCategoryItem = ({ pet, favoritePets }) => {
           <CategoryLabel>{noLinesCategory(pet.category)}</CategoryLabel>
 
           {isFavorite ? (
-            <RemoveFavoriteIconBtn onClick={removeFromFavorite} />
+            <RemoveFavoriteIconBtn removeFromFavorite={removeFromFavorite} />
           ) : (
             <AddFavoriteIconBtn onClick={addToFavorite} />
           )}
@@ -103,7 +112,7 @@ export const NoticeCategoryItem = ({ pet, favoritePets }) => {
             <LearnMoreBtn type="button" onClick={toggleModal}>
               Learn more
             </LearnMoreBtn>
-            {isFavorite && <RemoveFavoriteBtn onClick={removeFromFavorite} />}
+            {isMyAds && <RemoveMyNoticeBtn onClick={removeFromMyAdsNotices} />}
           </ThumbBtn>
         </Wrap>
       </Item>
@@ -111,6 +120,7 @@ export const NoticeCategoryItem = ({ pet, favoritePets }) => {
         <MainModal onClose={toggleModal}>
           <ModalNotice
             isFavorite={isFavorite}
+            isMyAds={isMyAds}
             addToFavorite={addToFavorite}
             removeFromFavorite={removeFromFavorite}
           />

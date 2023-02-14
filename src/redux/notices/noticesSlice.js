@@ -5,6 +5,7 @@ import {
   fetchOneNotice,
   fetchAddFavoriteNotice,
   fetchRemoveFavoriteNotice,
+  removeMyAddNotice,
 } from './operations';
 
 // const tasksInitialState = petsdata;
@@ -82,6 +83,20 @@ const noticesSlice = createSlice({
       state.favoriteNotices.splice(index, 1);
     },
     [fetchRemoveFavoriteNotice.rejected](state, action) {
+      // state.isLoading = false;
+      state.error = action.payload;
+    },
+    [removeMyAddNotice.pending](state, action) {
+      // state.isLoading = true;
+    },
+    [removeMyAddNotice.fulfilled](state, action) {
+      // console.log(action.meta.arg);
+      // console.log(state.items);
+      state.error = null;
+      const index = state.items.findIndex(pet => pet._id === action.meta.arg);
+      state.items.splice(index, 1);
+    },
+    [removeMyAddNotice.rejected](state, action) {
       // state.isLoading = false;
       state.error = action.payload;
     },

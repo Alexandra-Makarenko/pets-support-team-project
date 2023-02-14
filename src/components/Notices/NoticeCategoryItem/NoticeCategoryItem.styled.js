@@ -14,7 +14,6 @@ export const Item = styled.li`
   @media ${device.tablet} {
     flex-basis: calc(100% / 4 - 32px);
     margin-left: 32px;
-   
   }
 `;
 
@@ -114,14 +113,14 @@ export const Text = styled.p`
 `;
 
 export const ThumbBtn = styled.div`
-  margin-top: ${props => (props.isFavorite ? '20px' : '50px')};
+  margin-top: ${props => (props.isMyAds ? '50px' : '20px')};
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   flex-grow: 1;
   gap: 12px;
-  padding-bottom: ${props => (props.isFavorite ? '12px' : '32px')};
+  padding-bottom: ${props => (props.isMyAds ? '12px' : '32px')};
   padding-left: 16px;
   padding-right: 16px;
 
