@@ -254,12 +254,14 @@ const UserPage = () => {
                         <PetDescription>{breed || ''}</PetDescription>
                       </p>
                     </PetField>
-                    <PetField>
-                      <p>
-                        <PetFieldName>Comments: </PetFieldName>
-                        <PetDescription>{comment || ''}</PetDescription>
-                      </p>
-                    </PetField>
+                    {comment ? (
+                      <PetField>
+                        <p>
+                          <PetFieldName>Comments: </PetFieldName>
+                          <PetDescription>{comment || ''}</PetDescription>
+                        </p>
+                      </PetField>
+                    ) : null}
                   </ul>
                   <DeletePetButton
                     onClick={() => {
