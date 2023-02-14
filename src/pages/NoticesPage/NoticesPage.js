@@ -73,7 +73,14 @@ const NoticesPage = () => {
       )}
 
       <Suspense fallback={<div>Loading subpage...</div>}>
-        {isAddNoticeOpen && <ModalAddNotice onClick={toggleAddNoticeModal} />}
+
+        {isAddNoticeOpen && (
+          <ModalAddNotice
+            onClick={toggleAddNoticeModal}
+            isOpen={isAddNoticeOpen}
+          />
+        )}
+
         <Outlet />
       </Suspense>
     </Container>
