@@ -75,3 +75,15 @@ export const fetchRemoveFavoriteNotice = createAsyncThunk(
     }
   }
 );
+
+export const removeMyAddNotice = createAsyncThunk(
+  'notices/removeMyAddNotice',
+  async (id, thunkAPI) => {
+    try {
+      const response = await axios.delete(`/notices/pet/${id}`);
+      return response.data;
+    } catch (e) {
+      return thunkAPI.rejectWithValue(e.message);
+    }
+  }
+);
