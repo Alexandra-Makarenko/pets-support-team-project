@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import FormData from 'form-data';
-import { Formik, Form, ErrorMessage } from 'formik';
+import { Formik, Form } from 'formik';
 import * as yup from 'yup';
 
 import { postNotice } from './helpers/sendNoticeRequest';
@@ -27,6 +27,7 @@ import {
   ModalButtonSection,
   IoMdFemaleModal,
   IoMdMaleModal,
+  FormError,
 } from './ModalAddNotice.styled';
 
 const nameRules = /^[aA-zZ\s]+$/;
@@ -180,7 +181,7 @@ const StepOne = props => {
             <ModalRadioCategoriesTitle htmlFor="idLostFound">
               Lost/Found
             </ModalRadioCategoriesTitle>
-            <ErrorMessage name="category" />
+            <FormError name="category" />
           </CategoriesOfAdd>
 
           <ModalLabel>
@@ -191,28 +192,28 @@ const StepOne = props => {
             name="title"
             placeholder="Enter title of add"
           />
-          <ErrorMessage name="title" />
+          <FormError name="title" />
           <ModalLabel>Name pet</ModalLabel>
           <ModalFormInput
             type="text"
             name="name"
             placeholder="Enter name of pet"
           />
-          <ErrorMessage name="name" />
+          <FormError name="name" />
           <ModalLabel>Date of birth</ModalLabel>
           <ModalFormInput
             type="text"
             name="dateofbirth"
             placeholder="Enter pet birthday"
           />
-          <ErrorMessage name="dateofbirth" />
+          <FormError name="dateofbirth" />
           <ModalLabel>Breed</ModalLabel>
           <ModalFormInput
             type="text"
             name="breed"
             placeholder="Enter pet breed"
           />
-          <ErrorMessage name="breed" />
+          <FormError name="breed" />
           <ModalButtonSection>
             <NextFormModalBtn type="submit" currentStep={props.currentStep}>
               Next
@@ -311,7 +312,7 @@ const StepTwo = props => {
               Female
             </ModalRadioSexTitle>
           </ModalRadioSex>
-          <ErrorMessage name="sex" />
+          <FormError name="sex" />
 
           <ModalLabel>
             Location<p style={{ color: '#F59256' }}>*</p>
@@ -321,7 +322,7 @@ const StepTwo = props => {
             name="place"
             placeholder="Enter location"
           />
-          <ErrorMessage name="place" />
+          <FormError name="place" />
           {props.data.category === 'sell' && (
             <>
               <ModalLabel>
@@ -332,7 +333,7 @@ const StepTwo = props => {
                 name="price"
                 placeholder="Enter price"
               />
-              <ErrorMessage name="price" />
+              <FormError name="price" />
             </>
           )}
           <ModalLabel>Load pets image</ModalLabel>
@@ -359,7 +360,7 @@ const StepTwo = props => {
               }}
             />
           </ModalImageBlock>
-          <ErrorMessage name="avatarURL" />
+          <FormError name="avatarURL" />
 
           <ModalLabel>Comments</ModalLabel>
           <ModalTextArea
@@ -368,7 +369,7 @@ const StepTwo = props => {
             placeholder="Enter needed comments"
           />
 
-          <ErrorMessage name="comments" />
+          <FormError name="comments" />
           <ModalButtonSection>
             <NextFormModalBtn type="submit" currentStep={props.currentStep}>
               Done

@@ -1,9 +1,28 @@
 import styled from 'styled-components';
-import { Field } from 'formik';
+import { Field, ErrorMessage } from 'formik';
 import { device } from 'styles/device';
 import { BsPlusLg } from 'react-icons/bs';
 import { RxCross1 } from 'react-icons/rx';
 import { IoMdFemale, IoMdMale } from 'react-icons/io';
+
+export const FormError = ({ name, message }) => {
+  return (
+    <ErrorMessage
+      name={name}
+      render={message => <ErrorText>{message}</ErrorText>}
+    />
+  );
+};
+const ErrorText = styled.p`
+  font-family: 'Manrope400';
+  display: block;
+  font-size: 14px;
+  line-height: 18px;
+  letter-spacing: 0.04em;
+  margin-top: 4px;
+  color: red;
+`;
+
 export const AddNoticeModal = styled.section`
   position: fixed;
   top: 0;
