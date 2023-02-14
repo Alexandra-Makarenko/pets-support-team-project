@@ -34,7 +34,6 @@ import {
 const nameRules = /^[aA-zZ\s]+$/;
 const regionRules = /^()(\w+(,|\s)\s*)+\w+$/;
 
-
 export const ModalAddNotice = ({ onClick, isOpen }) => {
   const [data, setData] = useState({
     category: '',
@@ -44,7 +43,7 @@ export const ModalAddNotice = ({ onClick, isOpen }) => {
     breed: '',
     sex: '',
     place: '',
-    price: '',
+    price: 0,
     comments: '',
   });
 
@@ -67,13 +66,10 @@ export const ModalAddNotice = ({ onClick, isOpen }) => {
 
   const postNoticeHandler = noticeInfo => {
     let sexBool = false;
-    let priceFinal = '';
     if (noticeInfo.sex === 'Male') {
       sexBool = true;
     }
-    if (noticeInfo.category === 'sell') {
-      priceFinal = noticeInfo.price;
-    }
+
     console.log(noticeInfo.avatarURL);
 
     const noticeData = {
@@ -82,7 +78,6 @@ export const ModalAddNotice = ({ onClick, isOpen }) => {
       dateofbirth: noticeInfo.dateofbirth,
       breed: noticeInfo.breed,
       place: noticeInfo.place,
-      price: priceFinal,
       sex: sexBool,
       comments: noticeInfo.comments,
       category: noticeInfo.category,
@@ -96,6 +91,9 @@ export const ModalAddNotice = ({ onClick, isOpen }) => {
     }
     if (noticeInfo.avatarURL) {
       noticeFormData.append('avatar', noticeInfo.avatarURL);
+    }
+    if (noticeInfo.category === 'sell') {
+      noticeFormData.append('price', noticeInfo.price);
     }
 
     postNotice(noticeFormData);
@@ -151,6 +149,7 @@ const StepOne = props => {
     name: yup
       .string()
       .min(2, 'Must be more than 2 characters')
+      .max(48, 'Must not be longer than 48 characters')
       .matches(nameRules, 'Only latin characters are allowed for this field'),
     dateofbirth: yup
       .date('Date must be of format dd.mm.yyyy')
@@ -165,6 +164,7 @@ const StepOne = props => {
     breed: yup
       .string()
       .min(2, 'Must be more than 2 characters')
+      .max(24, 'Must not be longer than 24 characters')
       .matches(nameRules, 'Only latin characters are allowed for this field'),
   });
 
@@ -273,7 +273,8 @@ const StepTwo = props => {
               'Format must be City, region. For example: Brovary, Kyiv'
             ),
           price: yup
-            .string('Enter a price as number')
+            .number('Enter a price as number')
+            .positive()
             .required('Please type price in format price$'),
           avatarURL: yup.mixed(),
           comments: yup.string().min(4, 'Must be more than 4 characters'),
