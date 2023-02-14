@@ -376,7 +376,10 @@ export const DeletePetButton = styled.button`
     transition: fill 200ms cubic-bezier(0.4, 0, 0.2, 1);
     width: 20px;
     height: 20px;
-    &:hover {
+  }
+
+  &:hover {
+    svg {
       fill: ${props => props.theme.fontColors.buttonSecondary};
     }
   }
@@ -394,9 +397,16 @@ export const DeletePetButton = styled.button`
 `;
 
 export const PetHeaderContainer = styled.div`
+  width: 280px;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  @media ${device.tablet} {
+    width: 703px;
+  }
+  @media ${device.desktop} {
+    width: 805px;
+  }
 `;
 
 export const AddPetHeader = styled.p`
@@ -431,7 +441,10 @@ export const AddPetButton = styled.button`
   svg {
     fill: #fff;
     transition: fill 200ms cubic-bezier(0.4, 0, 0.2, 1);
-    &:hover {
+  }
+
+  &:hover {
+    svg {
       fill: #111;
     }
   }

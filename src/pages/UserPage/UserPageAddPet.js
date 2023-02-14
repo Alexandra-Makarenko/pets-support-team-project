@@ -48,7 +48,9 @@ export const UserPageAddPet = ({ onClick }) => {
     const data = new FormData();
     console.log(body);
     for (const prop in body) {
-      data.append(prop, body[prop]);
+      if (body[prop]) {
+        data.append(prop, body[prop]);
+      }
     }
     dispatch(postPet(data));
     onClick();
@@ -97,7 +99,7 @@ const AddPetStepOne = props => {
   };
   return (
     <AddPetContainerStepOne>
-      <AddPetHeaderStepOne>Add Pet</AddPetHeaderStepOne>
+      <AddPetHeaderStepOne>Add pet</AddPetHeaderStepOne>
       <Formik
         initialValues={props.petData}
         onSubmit={handleSubmit}
@@ -219,7 +221,7 @@ const AddPetStepTwo = props => {
 
   return (
     <AddPetContainerStepTwo>
-      <AddPetHeaderStepTwo>Add Pet</AddPetHeaderStepTwo>
+      <AddPetHeaderStepTwo>Add pet</AddPetHeaderStepTwo>
       <AddPhotoHeader>Add photo and some comments</AddPhotoHeader>
       <Formik initialValues={props.petData} onSubmit={handleSubmit}>
         {({
@@ -261,7 +263,7 @@ const AddPetStepTwo = props => {
             <PetCommentField
               name="comment"
               placeholder="Type comments"
-              as="textarea"
+              component="textarea"
             />
             <PetButtonBlock>
               <PetButtonBack

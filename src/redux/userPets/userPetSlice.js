@@ -33,9 +33,7 @@ const petsSlice = createSlice({
       state.isLoading = false;
       state.error = null;
       state.newPet = action.payload;
-      console.log(action.payload);
-      console.log(action.payload.data);
-      state.items.push(action.payload.data);
+      state.items.unshift(action.payload.data);
     },
     [postPet.rejected](state, action) {
       state.isLoading = false;
