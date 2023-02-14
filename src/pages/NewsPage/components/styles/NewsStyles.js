@@ -12,6 +12,10 @@ const NewsContainer = styled.div`
   margin-bottom: 20px;
 `;
 const NewsItem = styled.li`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  max-height: 100%;
   margin-bottom: 40px;
   @media (min-width: 768px) {
     flex-basis: calc((100% - 2 * 32px) / 2);
@@ -38,7 +42,6 @@ const GradientBar = styled.div`
   }
 `;
 const NewsTitle = styled.h3`
-  margin-top: 4px;
   margin-bottom: 16px;
   font-family: 'Manrope', sans-serif;
   font-weight: 700;
