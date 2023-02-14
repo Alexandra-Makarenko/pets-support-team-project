@@ -160,9 +160,11 @@ export const InputValue = styled.input`
 `;
 
 export const HiddenInput = styled.input`
-  opacity: 0;
   position: absolute;
-  z-index: -1;
+  clip: rect(0 0 0 0);
+  width: 1px;
+  height: 1px;
+  margin: -1px;
 `;
 
 export const UploadLavel = styled.label`
