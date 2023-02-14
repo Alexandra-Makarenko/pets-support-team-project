@@ -62,8 +62,8 @@ export const AddPetHeaderStepTwo = styled.h2`
 
 export const AddPhotoHeader = styled.h3`
   font-family: 'Manrope500';
-  font-size: 24px;
-  line-height: 33px;
+  font-size: 16px;
+  line-height: 22px;
   text-align: center;
   color: ${props => props.theme.fontColors.primary};
   margin-bottom: 20px;
@@ -104,6 +104,15 @@ export const PetPhoto = styled.img`
   }
 `;
 
+export const PetPhotoLabel = styled.label`
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+  @media ${device.tablet} {
+    margin-bottom: 40px;
+  }
+`;
+
 export const PetInputLabel = styled.p`
   font-family: 'Manrope500';
   font-size: 18px;
@@ -139,6 +148,32 @@ export const PetInputField = styled(Field)`
     line-height: 26px;
     margin-bottom: 28px;
     padding: 10px 16px;
+  }
+
+  @media ${device.desktop} {
+  }
+`;
+
+export const PetCommentField = styled(Field)`
+  font-family: 'Manrope400';
+  font-size: 14px;
+  letter-spacing: ${props => props.theme.fonts.letterSpacing};
+  width: 240px;
+  height: 100px;
+  padding: 12px 14px;
+  color: ${props => props.theme.fontColors.primary};
+  outline: none;
+  background-color: ${props => props.theme.backgrounds.input};
+  border: 1px solid rgba(245, 146, 86, 0.5);
+  border-radius: 40px;
+
+  @media ${device.tablet} {
+    font-family: 'Manrope400';
+    font-size: 18px;
+    width: 394px;
+    height: 116px;
+    line-height: 26px;
+    padding: 16px;
   }
 
   @media ${device.desktop} {

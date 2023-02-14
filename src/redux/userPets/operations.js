@@ -6,6 +6,7 @@ export const fetchPets = createAsyncThunk(
   async (_, thunkAPI) => {
     try {
       const res = await axios.get('user');
+      console.log(res.data.result.pets);
       return res.data.result.pets;
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);
@@ -24,6 +25,20 @@ export const postPet = createAsyncThunk(
         headers: { 'Content-Type': 'multipart/form-data' },
       });
       return response.data;
+    } catch (e) {
+      return thunkAPI.rejectWithValue(e.message);
+    }
+  }
+);
+
+export const deletePet = createAsyncThunk(
+  'user/deletePet',
+  async (id, thunkAPI) => {
+    try {
+      const data = { pet_id: id };
+      console.log(data);
+      const res = await axios.delete('user', { data: data });
+      return res;
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);
     }
