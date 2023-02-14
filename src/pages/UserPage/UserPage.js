@@ -53,16 +53,16 @@ import { deletePet, fetchPets } from 'redux/userPets/operations';
 // };
 
 const updateUser = async user => {
-  console.log('user:', user);
+  // console.log('user:', user);
   const data = new FormData();
   for (const prop in user) {
     if (user[prop]) {
       data.append(prop, user[prop]);
     }
   }
-  for (const value of data.values()) {
-    console.log(value);
-  }
+  // for (const value of data.values()) {
+  //   console.log(value);
+  // }
   try {
     const response = await axios({
       method: 'PATCH',
@@ -79,9 +79,9 @@ const updateUser = async user => {
 const updateImage = async user => {
   const data = new FormData();
   data.append('avatar', user.avatar);
-  for (const value of data.values()) {
-    console.log(value);
-  }
+  // for (const value of data.values()) {
+  //   console.log(value);
+  // }
   try {
     const response = await axios({
       method: 'PATCH',
@@ -209,7 +209,7 @@ const UserPage = () => {
         dispatch(deletePet(id));
       };
       const data = petsData;
-      console.log(data);
+      // console.log(data);
       setPets(
         data.length > 0
           ? data.map(({ name, date, breed, comment, avatarURL, _id }) => {
