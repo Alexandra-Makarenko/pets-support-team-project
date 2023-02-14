@@ -33,7 +33,7 @@ import {
 const nameRules = /^[aA-zZ\s]+$/;
 const regionRules = /^()(\w+(,|\s)\s*)+\w+$/;
 
-export const ModalAddNotice = ({ onClick }) => {
+export const ModalAddNotice = ({ onClick, isOpen }) => {
   const [data, setData] = useState({
     category: '',
     title: '',
@@ -52,6 +52,7 @@ export const ModalAddNotice = ({ onClick }) => {
     setData(prev => ({ ...prev, ...newData }));
     if (final) {
       postNoticeHandler(newData);
+      onClick();
       return;
     }
     setCurrentStep(prev => prev + 1);
@@ -110,6 +111,20 @@ export const ModalAddNotice = ({ onClick }) => {
       setData={setData}
     />,
   ];
+
+  useEffect(() => {
+    const onModalCloseBtn = button => {
+      if (button.keyCode === 27) {
+        onClick();
+      }
+    };
+
+    if (isOpen) {
+      window.addEventListener('keydown', onModalCloseBtn);
+    } else {
+      window.removeEventListener('keydown', onModalCloseBtn);
+    }
+  }, [onClick, isOpen]);
 
   return (
     <AddNoticeModal>
