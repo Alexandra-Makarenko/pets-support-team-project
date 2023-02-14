@@ -20,11 +20,15 @@ export const MenuList = styled.ul`
   @media ${device.desktop} {
     display: flex;
     align-items: center;
-    gap: 80px;
+    /* margin-right: ; */
   }
 `;
 
-export const MenuItem = styled.li``;
+export const MenuItem = styled.li`
+  &:not(:last-child) {
+    margin-right: 80px;
+  }
+`;
 
 export const MenuLink = styled(NavLink)`
   display: inline-block;
