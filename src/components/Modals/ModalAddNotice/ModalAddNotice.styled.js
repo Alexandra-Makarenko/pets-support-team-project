@@ -1,8 +1,28 @@
 import styled from 'styled-components';
-import { Field } from 'formik';
+import { Field, ErrorMessage } from 'formik';
 import { device } from 'styles/device';
 import { BsPlusLg } from 'react-icons/bs';
 import { RxCross1 } from 'react-icons/rx';
+import { IoMdFemale, IoMdMale } from 'react-icons/io';
+
+export const FormError = ({ name, message }) => {
+  return (
+    <ErrorMessage
+      name={name}
+      render={message => <ErrorText>{message}</ErrorText>}
+    />
+  );
+};
+const ErrorText = styled.p`
+  font-family: 'Manrope400';
+  display: block;
+  font-size: 14px;
+  line-height: 18px;
+  letter-spacing: 0.04em;
+  margin-top: 4px;
+  color: red;
+`;
+
 export const AddNoticeModal = styled.section`
   position: fixed;
   top: 0;
@@ -16,15 +36,26 @@ export const AddNoticeModal = styled.section`
   z-index: 1200;
 `;
 export const AddNoticeModalWindow = styled.div`
-  position: absolute;
+  position: fixed;
   background-color: ${props => props.theme.backgrounds.input};
-
+  overflow: auto;
   width: 280px;
-  max-height: calc(100vh - 24px);
+  max-height: 100vh;
   padding: 40px 20px 40px 20px;
   border-radius: 20px;
+  @media ${device.tablet} {
+    width: 608px;
+    padding: 40px 80px 40px 80px;
+  }
 `;
-
+export const ModalButtonSection = styled.div`
+  @media ${device.tablet} {
+    display: flex;
+    flex-direction: row-reverse;
+    margin-top: 40px;
+    justify-content: center;
+  }
+`;
 export const ModalTitle = styled.label`
   margin-bottom: 40px;
   font-family: 'Manrope700';
@@ -60,10 +91,10 @@ export const ModalFormInput = styled(Field)`
 
   @media ${device.tablet} {
     font-family: 'Manrope400';
-    font-size: 18px;
-    line-height: 25px;
-    padding-top: 14px;
-    padding-bottom: 13px;
+    font-size: 16px;
+    line-height: 26px;
+    padding-top: 11px;
+    padding-bottom: 16px;
     padding-left: 32px;
   }
 
@@ -113,7 +144,6 @@ export const NextFormModalBtn = styled.button`
   border-radius: 40px;
   padding-top: 8.5px;
   padding-bottom: 8.5px;
-  font-weight: 500;
   font-size: 20px;
   line-height: 27px;
   letter-spacing: ${props => props.theme.fonts.letterSpacing};
@@ -128,11 +158,16 @@ export const NextFormModalBtn = styled.button`
   &:active {
     transform: scale(0.9);
   }
+  @media ${device.tablet} {
+    margin-top: 0px;
+    width: 180px;
+  }
 `;
 
 export const BackFormModalBtn = styled.button`
   font-family: 'Manrope500';
   margin-top: 12px;
+  margin-bottom: 20px;
   width: 100%;
   color: ${props => props.theme.fontColors.secondary};
   background-color: ${props => props.theme.backgrounds.bodyPrimary};
@@ -140,7 +175,6 @@ export const BackFormModalBtn = styled.button`
   border-radius: 40px;
   padding-top: 8.5px;
   padding-bottom: 8.5px;
-  font-weight: 500;
   font-size: 20px;
   line-height: 27px;
   letter-spacing: ${props => props.theme.fonts.letterSpacing};
@@ -150,14 +184,11 @@ export const BackFormModalBtn = styled.button`
   &:hover {
     transform: scale(1.03);
   }
-
   @media ${device.tablet} {
-    margin-top: 16px;
-  }
-
-  @media ${device.desktop} {
-    padding-top: 10.5px;
-    padding-bottom: 10.5px;
+    width: 180px;
+    margin-bottom: 0px;
+    margin-top: 0px;
+    margin-right: 20px;
   }
 `;
 
@@ -261,7 +292,7 @@ export const BsPlusLgModal = styled(BsPlusLg)`
 export const ModalImageBlock = styled.div`
   margin-top: 8px;
   margin-bottom: 30px;
-  padding: 22px;
+  padding: 20px;
 `;
 
 export const RxCross1Modal = styled(RxCross1)`
@@ -279,4 +310,23 @@ export const ModalCrossClose = styled.button`
   padding: 4px;
   background-color: #ffffff;
   border: none;
+`;
+
+export const IoMdMaleModal = styled(IoMdMale)`
+  width: 40px;
+  height: 40px;
+  color: #23c2ef;
+  @media ${device.tablet} {
+    width: 60px;
+    height: 60px;
+  }
+`;
+export const IoMdFemaleModal = styled(IoMdFemale)`
+  width: 40px;
+  height: 40px;
+  color: #ff8787;
+  @media ${device.tablet} {
+    width: 60px;
+    height: 60px;
+  }
 `;

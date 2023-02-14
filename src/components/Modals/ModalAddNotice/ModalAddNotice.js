@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import FormData from 'form-data';
-import { Formik, Form, ErrorMessage } from 'formik';
+import { Formik, Form } from 'formik';
 import * as yup from 'yup';
-import { IoMdFemale, IoMdMale } from 'react-icons/io';
+
 import { postNotice } from './helpers/sendNoticeRequest';
 import {
   BackFormModalBtn,
@@ -24,6 +24,10 @@ import {
   AddNoticeModalWindow,
   ModalCrossClose,
   RxCross1Modal,
+  ModalButtonSection,
+  IoMdFemaleModal,
+  IoMdMaleModal,
+  FormError,
 } from './ModalAddNotice.styled';
 
 const nameRules = /^[aA-zZ\s]+$/;
@@ -177,7 +181,7 @@ const StepOne = props => {
             <ModalRadioCategoriesTitle htmlFor="idLostFound">
               Lost/Found
             </ModalRadioCategoriesTitle>
-            <ErrorMessage name="category" />
+            <FormError name="category" />
           </CategoriesOfAdd>
 
           <ModalLabel>
@@ -188,34 +192,36 @@ const StepOne = props => {
             name="title"
             placeholder="Enter title of add"
           />
-          <ErrorMessage name="title" />
+          <FormError name="title" />
           <ModalLabel>Name pet</ModalLabel>
           <ModalFormInput
             type="text"
             name="name"
             placeholder="Enter name of pet"
           />
-          <ErrorMessage name="name" />
+          <FormError name="name" />
           <ModalLabel>Date of birth</ModalLabel>
           <ModalFormInput
             type="text"
             name="dateofbirth"
             placeholder="Enter pet birthday"
           />
-          <ErrorMessage name="dateofbirth" />
+          <FormError name="dateofbirth" />
           <ModalLabel>Breed</ModalLabel>
           <ModalFormInput
             type="text"
             name="breed"
             placeholder="Enter pet breed"
           />
-          <ErrorMessage name="breed" />
-          <NextFormModalBtn type="submit" currentStep={props.currentStep}>
-            Next
-          </NextFormModalBtn>
-          <BackFormModalBtn type="button" onClick={props.closeOnClick}>
-            Cancel
-          </BackFormModalBtn>
+          <FormError name="breed" />
+          <ModalButtonSection>
+            <NextFormModalBtn type="submit" currentStep={props.currentStep}>
+              Next
+            </NextFormModalBtn>
+            <BackFormModalBtn type="button" onClick={props.closeOnClick}>
+              Cancel
+            </BackFormModalBtn>
+          </ModalButtonSection>
         </Form>
       )}
     </Formik>
@@ -243,8 +249,7 @@ const StepTwo = props => {
           price: yup
             .string('Enter a price as number')
             .required('Please type price in format price$'),
-          // .min(1, 'Price must be at least 1')
-          // avatarURL: yup.mixed(),
+          avatarURL: yup.mixed(),
           comments: yup.string().min(4, 'Must be more than 4 characters'),
         })
       );
@@ -259,7 +264,7 @@ const StepTwo = props => {
               regionRules,
               'Format must be City, region. For example: Brovary, Kyiv'
             ),
-          // avatarURL: yup.mixed(),
+          avatarURL: yup.mixed(),
           comments: yup.string().min(4, 'Must be more than 4 characters'),
         })
       );
@@ -270,20 +275,6 @@ const StepTwo = props => {
     props.next({ ...values, avatarURL: props.data.avatarURL }, true);
   };
 
-  // const handleImageChange = e => {
-  //   const reader = new FileReader();
-  //   if (e.target.files[0]) {
-  //     reader.readAsDataURL(e.target.files[0]);
-  //     reader.onloadend = () => {
-  //       const base64data = reader.result;
-  //       setPicture(base64data);
-  //     };
-  //     props.setData({
-  //       ...props.data,
-  //       avatarURL: e.target.files[0],
-  //     });
-  //   }
-  // };
   useEffect(() => {
     const modalReader = new FileReader();
     if (props.data.avatarURL) {
@@ -310,18 +301,18 @@ const StepTwo = props => {
             <ModalRadio type="radio" name="sex" value="Male" id="idMale" />
 
             <ModalRadioSexTitle htmlFor="idMale">
-              <IoMdMale style={{ width: 40, height: 40, color: '#23C2EF' }} />
+              <IoMdMaleModal />
               Male
             </ModalRadioSexTitle>
 
             <ModalRadio type="radio" name="sex" value="Female" id="idFemale" />
 
             <ModalRadioSexTitle htmlFor="idFemale">
-              <IoMdFemale style={{ width: 40, height: 40, color: '#FF8787' }} />
+              <IoMdFemaleModal />
               Female
             </ModalRadioSexTitle>
           </ModalRadioSex>
-          <ErrorMessage name="sex" />
+          <FormError name="sex" />
 
           <ModalLabel>
             Location<p style={{ color: '#F59256' }}>*</p>
@@ -331,7 +322,7 @@ const StepTwo = props => {
             name="place"
             placeholder="Enter location"
           />
-          <ErrorMessage name="place" />
+          <FormError name="place" />
           {props.data.category === 'sell' && (
             <>
               <ModalLabel>
@@ -342,7 +333,7 @@ const StepTwo = props => {
                 name="price"
                 placeholder="Enter price"
               />
-              <ErrorMessage name="price" />
+              <FormError name="price" />
             </>
           )}
           <ModalLabel>Load pets image</ModalLabel>
@@ -369,7 +360,7 @@ const StepTwo = props => {
               }}
             />
           </ModalImageBlock>
-          <ErrorMessage name="avatarURL" />
+          <FormError name="avatarURL" />
 
           <ModalLabel>Comments</ModalLabel>
           <ModalTextArea
@@ -378,13 +369,15 @@ const StepTwo = props => {
             placeholder="Enter needed comments"
           />
 
-          <ErrorMessage name="comments" />
-          <NextFormModalBtn type="submit" currentStep={props.currentStep}>
-            Done
-          </NextFormModalBtn>
-          <BackFormModalBtn type="button" onClick={() => props.prev(values)}>
-            Back
-          </BackFormModalBtn>
+          <FormError name="comments" />
+          <ModalButtonSection>
+            <NextFormModalBtn type="submit" currentStep={props.currentStep}>
+              Done
+            </NextFormModalBtn>
+            <BackFormModalBtn type="button" onClick={() => props.prev(values)}>
+              Back
+            </BackFormModalBtn>
+          </ModalButtonSection>
         </Form>
       )}
     </Formik>
