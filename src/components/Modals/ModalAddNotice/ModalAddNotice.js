@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import FormData from 'form-data';
 import { Formik, Form } from 'formik';
 import * as yup from 'yup';
+import { parse, isDate } from 'date-fns';
 
 import { postNotice } from './helpers/sendNoticeRequest';
 import {
@@ -32,6 +33,8 @@ import {
 
 const nameRules = /^[aA-zZ\s]+$/;
 const regionRules = /^()(\w+(,|\s)\s*)+\w+$/;
+const dateRegEx =
+  /^\s*(3[01]|[12][0-9]|0?[1-9])\.(1[012]|0?[1-9])\.((?:19|20)\d{2})\s*$/;
 
 export const ModalAddNotice = ({ onClick, isOpen }) => {
   const [data, setData] = useState({
@@ -151,9 +154,15 @@ const StepOne = props => {
       .min(2, 'Must be more than 2 characters')
       .matches(nameRules, 'Only latin characters are allowed for this field'),
     dateofbirth: yup
-      .date('Enter date in format dd/mm/yyyy, dd-mm-yyyy or dd.mm.yyyy')
-      .max(new Date(), 'Birthday must be earlier than today')
-      .label('Date of birth'),
+      .date('Date must be of format dd.mm.yyyy')
+      .transform((value, originalValue) => {
+        const parsedDate = isDate(originalValue)
+          ? originalValue
+          : parse(originalValue, 'dd.MM.yyyy', new Date());
+        return parsedDate;
+      })
+      .max(new Date(), 'Date must be earlier than today')
+      .typeError('Invalid date'),
     breed: yup
       .string()
       .min(2, 'Must be more than 2 characters')
