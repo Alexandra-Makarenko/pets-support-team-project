@@ -202,6 +202,7 @@ export const UserPhoto = styled.img`
   margin-left: auto;
   margin-right: auto;
   margin-bottom: 70px;
+  object-fit: cover;
 
   @media ${device.tablet} {
     margin-right: 20px;
@@ -248,6 +249,7 @@ export const PetPhoto = styled.img`
   width: 240px;
   height: 240px;
   border-radius: 20px;
+  object-fit: cover;
   @media ${device.tablet} {
     width: 161px;
     height: 161px;
