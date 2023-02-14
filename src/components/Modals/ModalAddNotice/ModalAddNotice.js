@@ -159,6 +159,7 @@ const StepOne = props => {
           : parse(originalValue, 'dd.MM.yyyy', new Date());
         return parsedDate;
       })
+      .min('01.01.1970', 'Please enter date later than 01.01.1970')
       .max(new Date(), 'Date must be earlier than today')
       .typeError('Invalid date'),
     breed: yup
