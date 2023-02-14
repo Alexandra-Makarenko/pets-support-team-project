@@ -93,7 +93,7 @@ export const ModalAddNotice = ({ onClick, isOpen }) => {
       noticeFormData.append('avatar', noticeInfo.avatarURL);
     }
     if (noticeInfo.category === 'sell') {
-      noticeFormData.append('price', noticeInfo.price);
+      noticeFormData.append('price', parseInt(noticeInfo.price, 10));
     }
 
     postNotice(noticeFormData);
