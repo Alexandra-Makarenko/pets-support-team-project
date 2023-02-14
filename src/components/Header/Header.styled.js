@@ -16,7 +16,7 @@ export const HeaderContainer = styled.header`
   @media ${device.tablet} {
     margin-bottom: 92px;
     max-width: 768px;
-    padding-top: 20px;
+    padding-top: 24px;
     padding-left: 32px;
     padding-right: 32px;
   }

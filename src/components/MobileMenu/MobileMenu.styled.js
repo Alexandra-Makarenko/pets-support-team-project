@@ -8,19 +8,33 @@ export const MobMenuContainer = styled.div`
   align-items: center;
   position: absolute;
   z-index: 999;
-  top: 100px;
+  top: 0;
   left: 0;
   width: 100%;
   height: 100vh;
   background-color: ${props => props.theme.backgrounds.bodyPrimary};
-  padding: 4px 34px;
-
-  @media ${device.tablet} {
-    top: 160px;
-  }
 
   @media ${device.desktop} {
     display: none;
+  }
+`;
+
+export const MobMenuHeader = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 320px;
+  padding-top: 16px;
+  padding-left: 20px;
+  padding-right: 20px;
+  margin-bottom: 46px;
+
+  @media ${device.tablet} {
+    width: 768px;
+    padding-top: 24px;
+    padding-left: 32px;
+    padding-right: 32px;
+    margin-bottom: 46px;
   }
 `;
 
@@ -55,5 +69,18 @@ export const MobMenulink = styled(NavLink)`
   :focus {
     font-weight: 700;
     color: ${props => props.theme.fontColors.buttonSecondary};
+  }
+`;
+
+export const MobMenuBtn = styled.button`
+  color: ${props => props.theme.fontColors.secondary};
+  background-color: transparent;
+  border: none;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+
+  @media ${device.desktop} {
+    display: none;
   }
 `;

@@ -8,9 +8,9 @@ import {
   MenuList,
   MenuItem,
   MenuLink,
+  Burger,
 } from './Nav.styled';
 
-import { ReactComponent as Burger } from './burger-menu.svg';
 import { UserMenu } from 'components/UserMenu/UserMenu';
 import { AuthNav } from 'components/AuthNav/AuthNav';
 
@@ -42,7 +42,7 @@ export const Nav = () => {
           <AuthNav mobMenuToggler={mobMenuToggler} />
         )}
       </UserMenuWrapper>
-      <MobMenuBtn type="button" onClick={mobMenuToggler} isOpen={isOpen}>
+      <MobMenuBtn type="button" onClick={mobMenuToggler}>
         <Burger />
       </MobMenuBtn>
       {isOpen && <MobileMenu mobMenuToggler={mobMenuToggler} />}

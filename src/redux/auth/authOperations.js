@@ -1,5 +1,13 @@
 import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+const notify = message => {
+  toast.warn(message, {
+    position: toast.POSITION.TOP_CENTER,
+  });
+};
 
 axios.defaults.baseURL = 'https://petly-5jqe.onrender.com/api';
 
@@ -30,6 +38,7 @@ export const register = createAsyncThunk(
       return response.data;
     } catch (error) {
       console.log(error);
+      notify(error.message);
       // return alert('Try entering a different email');
       return thunkAPI.rejectWithValue(error.message);
     }

@@ -1,5 +1,8 @@
 import { nanoid } from 'nanoid';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { Loader } from 'components/Loader/Loader';
+import { SearchNotFound } from 'components/SearchNotFound/SearchNotFound';
 import {
   GradientBar,
   News,
@@ -10,20 +13,22 @@ import {
   NewsItem,
   NewsTitle,
   NewsMore,
-  Empty,
 } from './styles/NewsStyles';
 import { articleSplit } from './helpers/articleSplit';
 
-export default function NewsList({ news, status }) {
-  console.log(status);
+export default function NewsList({ news, status, searchValue }) {
+  const logify = () => {
+    return toast.warn('Something went wrong. Try again later.', {
+      position: toast.POSITION.TOP_CENTER,
+    });
+  };
+
   return (
     <NewsContainer>
       {status === 'loading' && <Loader />}
-      {status === 'resolved' && !news && (
-        <Empty>Щось пішло не так. Спробуйте пізніше</Empty>
-      )}
+      {status === 'resolved' && !news && logify}
       {status === 'resolved' && news && news.length === 0 && (
-        <Empty>Ми не знайшли новин по вашому запиту</Empty>
+        <SearchNotFound searchValue={searchValue} />
       )}
       {news && (
         <News>
