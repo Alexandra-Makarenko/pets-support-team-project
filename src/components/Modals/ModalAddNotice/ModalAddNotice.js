@@ -92,7 +92,10 @@ export const ModalAddNotice = ({ onClick, isOpen }) => {
         noticeFormData.append(field, noticeData[field]);
       }
     }
-    noticeFormData.append('avatar', noticeInfo.avatarURL);
+    if (noticeInfo.avatarURL) {
+      noticeFormData.append('avatar', noticeInfo.avatarURL);
+    }
+
     postNotice(noticeFormData);
   };
 
