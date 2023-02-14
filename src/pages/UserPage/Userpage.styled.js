@@ -215,8 +215,12 @@ export const UserPhoto = styled.img`
 `;
 
 export const UserButton = styled.button`
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 20px;
   height: 20px;
+  padding: 0;
   svg {
     width: 12.5px;
     height: 12.5px;

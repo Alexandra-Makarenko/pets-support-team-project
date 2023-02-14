@@ -53,14 +53,16 @@ import { deletePet, fetchPets } from 'redux/userPets/operations';
 // };
 
 const updateUser = async user => {
+  // console.log('user:', user);
   const data = new FormData();
-  data.append('name', user.name);
-  data.append('phone', user.phone);
-  data.append('place', user.place);
-  data.append('dateofbirth', user.dateofbirth);
-  for (const value of data.values()) {
-    console.log(value);
+  for (const prop in user) {
+    if (user[prop]) {
+      data.append(prop, user[prop]);
+    }
   }
+  // for (const value of data.values()) {
+  //   console.log(value);
+  // }
   try {
     const response = await axios({
       method: 'PATCH',
@@ -77,9 +79,9 @@ const updateUser = async user => {
 const updateImage = async user => {
   const data = new FormData();
   data.append('avatar', user.avatar);
-  for (const value of data.values()) {
-    console.log(value);
-  }
+  // for (const value of data.values()) {
+  //   console.log(value);
+  // }
   try {
     const response = await axios({
       method: 'PATCH',
@@ -112,6 +114,7 @@ const UserPage = () => {
   const [readyForUpdate, setReadyForUpdate] = useState(false);
   const [image, setImage] = useState(null);
   const [showModal, setShowModal] = useState(false);
+  const [uploadData, setuploadData] = useState({});
 
   const toggleModal = () => {
     setShowModal(!showModal);
@@ -182,13 +185,7 @@ const UserPage = () => {
       return;
     }
     async function updateData() {
-      const updatedUser = {
-        name: inputName || name,
-        phone: inputPhone || phone,
-        place: inputCity || place,
-        dateofbirth: inputBday || dateofbirth,
-      };
-      const data = await updateUser(updatedUser);
+      const data = await updateUser(uploadData);
       if (data) {
         setName(data.name);
         setPlace(data.place);
@@ -204,17 +201,7 @@ const UserPage = () => {
     }
     updateData();
     setReadyForUpdate(false);
-  }, [
-    dateofbirth,
-    inputBday,
-    inputCity,
-    inputName,
-    inputPhone,
-    name,
-    phone,
-    place,
-    readyForUpdate,
-  ]);
+  }, [dateofbirth, name, phone, place, readyForUpdate, uploadData]);
 
   useEffect(() => {
     async function getPets() {
@@ -222,7 +209,7 @@ const UserPage = () => {
         dispatch(deletePet(id));
       };
       const data = petsData;
-      console.log(data);
+      // console.log(data);
       setPets(
         data.length > 0
           ? data.map(({ name, date, breed, comment, avatarURL, _id }) => {
@@ -279,6 +266,7 @@ const UserPage = () => {
     getPets();
   }, [dispatch, petsData]);
   const Li = (
+    categoryName,
     fieldName,
     value,
     isActive,
@@ -355,6 +343,7 @@ const UserPage = () => {
       <ListItem key={fieldName}>
         <Field
           onSubmit={e => {
+            setuploadData({ [categoryName]: field });
             handleSubmit(e);
             setActiveField(0);
           }}
@@ -386,9 +375,18 @@ const UserPage = () => {
               </UploadLabel>
               <MyInfoDataSection>
                 <ul>
-                  {Li('Name:', name, true, 1, handleChangeName, inputName)}
-                  {Li('Email:', email, false, 2)}
                   {Li(
+                    'name',
+                    'Name:',
+                    name,
+                    true,
+                    1,
+                    handleChangeName,
+                    inputName
+                  )}
+                  {Li('email', 'Email:', email, false, 2)}
+                  {Li(
+                    'dateofbirth',
                     'Birthday:',
                     dateofbirth,
                     true,
@@ -396,8 +394,24 @@ const UserPage = () => {
                     handleChangBday,
                     inputBday
                   )}
-                  {Li('Phone:', phone, true, 4, handleChangePhone, inputPhone)}
-                  {Li('City:', place, true, 5, handleChangeCity, inputCity)}
+                  {Li(
+                    'phone',
+                    'Phone:',
+                    phone,
+                    true,
+                    4,
+                    handleChangePhone,
+                    inputPhone
+                  )}
+                  {Li(
+                    'place',
+                    'City:',
+                    place,
+                    true,
+                    5,
+                    handleChangeCity,
+                    inputCity
+                  )}
                 </ul>
                 <LogoutContainer>
                   <LogoutButton onClick={logoutRequest}>
