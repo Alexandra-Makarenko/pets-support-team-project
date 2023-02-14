@@ -202,6 +202,7 @@ export const UserPhoto = styled.img`
   margin-left: auto;
   margin-right: auto;
   margin-bottom: 70px;
+  object-fit: cover;
 
   @media ${device.tablet} {
     margin-right: 20px;
@@ -214,8 +215,12 @@ export const UserPhoto = styled.img`
 `;
 
 export const UserButton = styled.button`
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 20px;
   height: 20px;
+  padding: 0;
   svg {
     width: 12.5px;
     height: 12.5px;
@@ -248,6 +253,7 @@ export const PetPhoto = styled.img`
   width: 240px;
   height: 240px;
   border-radius: 20px;
+  object-fit: cover;
   @media ${device.tablet} {
     width: 161px;
     height: 161px;

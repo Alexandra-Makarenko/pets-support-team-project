@@ -97,6 +97,7 @@ export const PetPhoto = styled.img`
   width: 208px;
   height: 208px;
   border-radius: 20px;
+  object-fit: cover;
   @media ${device.tablet} {
     width: 182px;
     height: 182px;

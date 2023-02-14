@@ -45,7 +45,7 @@ export const Section = styled.section`
     background: url(${bgMobWave});
     background-repeat: no-repeat;
     background-position: 38% calc(2vh + 100%);
-    height: 100vh;
+    height: calc(100vh - 100px);
   }
 `;
 

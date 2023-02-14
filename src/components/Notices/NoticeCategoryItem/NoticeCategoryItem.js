@@ -63,12 +63,20 @@ export const NoticeCategoryItem = ({ pet, favoritePets, user }) => {
   const removeFromMyAdsNotices = () => {
     dispatch(removeMyAddNotice(pet._id));
   };
+  const noLinesCategory = category => {
+    if (category === 'lost-found') {
+      return 'Lost/Found';
+    } else if (category === 'in-good-hands') {
+      return 'In good hands';
+    }
+    return 'Sell';
+  };
 
   return (
     <>
       <Item>
         <ImgWrap>
-          <CategoryLabel>{pet.category}</CategoryLabel>
+          <CategoryLabel>{noLinesCategory(pet.category)}</CategoryLabel>
 
           {isFavorite ? (
             <RemoveFavoriteIconBtn removeFromFavorite={removeFromFavorite} />
