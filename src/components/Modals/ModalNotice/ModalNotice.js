@@ -82,7 +82,7 @@ export const ModalNotice = ({
             {oneNotice.category === 'sell' && (
               <Li key={`${oneNotice._id}+sell`}>
                 <Lable>Price:</Lable>
-                <Text>{oneNotice.price || '----------'}</Text>
+                <Text>{oneNotice.price + ' ₴' || '----------'}</Text>
               </Li>
             )}
           </Ul>

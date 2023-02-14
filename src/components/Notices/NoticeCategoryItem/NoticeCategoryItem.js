@@ -106,6 +106,12 @@ export const NoticeCategoryItem = ({ pet, favoritePets, user }) => {
                 <Lable>Age:</Lable>
                 <Text>{pet.dateofbirth}</Text>
               </Li>
+              {pet.category === 'sell' && (
+                <Li key={`${pet._id}+sell`}>
+                  <Lable>Price:</Lable>
+                  <Text>{pet.price + ' ₴' || '----------'}</Text>
+                </Li>
+              )}
             </Ul>
           </WrapInner>
           <ThumbBtn isFavorite={isFavorite}>
