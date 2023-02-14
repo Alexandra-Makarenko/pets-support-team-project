@@ -22,6 +22,8 @@ export const Nav = () => {
     setIsOnen(isOpen => !isOpen);
   };
 
+
+
   return (
     <NavBlock>
       <MenuList>
@@ -29,10 +31,18 @@ export const Nav = () => {
           <MenuLink to="news">News</MenuLink>
         </MenuItem>
         <MenuItem>
-          <MenuLink to="notices/sell">Find pet</MenuLink>
+          <MenuLink
+            to="notices/sell"
+          >
+            Find pet
+          </MenuLink>
         </MenuItem>
         <MenuItem>
-          <MenuLink to="friends">Our friends</MenuLink>
+          <MenuLink
+            to="friends"
+          >
+            Our friends
+          </MenuLink>
         </MenuItem>
       </MenuList>
       <UserMenuWrapper>
