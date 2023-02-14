@@ -8,7 +8,7 @@ export const AuthNav = mobMenuToggler => {
         <Button primary>Login</Button>
       </AuthNavBtn>
       <AuthNavBtn to="register" onClick={mobMenuToggler}>
-        <Button>Register</Button>
+        <Button>Registration</Button>
       </AuthNavBtn>
     </>
   );

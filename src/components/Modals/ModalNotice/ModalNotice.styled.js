@@ -3,29 +3,42 @@ import { device } from 'styles/device';
 import { AiFillHeart } from 'react-icons/ai';
 
 export const ModalNoticeBox = styled.div`
-  max-width: 240px;
+  max-width: 280px;
   padding-top: 60px;
   padding-bottom: 40px;
   padding-left: 20px;
   padding-right: 20px;
 
   @media ${device.tablet} {
-    max-width: 608px;
-    padding-left: 80px;
-    padding-right: 80px;
+    min-width: 704px;
+    padding-top: 32px;
+    padding-bottom: 32px;
+    padding-left: 20px;
+    padding-right: 20px;
   }
 `;
 
 export const Wrap = styled.div`
   display: flex;
   flex-direction: column;
-  height: 100%;
 `;
+
+export const SecondWrap = styled.div`
+  @media ${device.tablet} {
+    display: flex;
+  }
+`;
+
 export const ImgWrap = styled.div`
   position: relative;
   width: 240px;
   height: 240px;
   border-radius: 0px 0px 40px 40px;
+
+  @media ${device.tablet} {
+    width: 288px;
+    height: 328px;
+  }
 `;
 
 export const CategoryLabel = styled.p`
@@ -55,37 +68,53 @@ export const WrapInner = styled.div`
   flex-direction: column;
   flex-grow: 1;
   padding-top: 16px;
+
+  @media ${device.tablet} {
+    margin-left: 20px;
+    padding-top: 0;
+    width: 320px;
+  }
 `;
 
 export const Title = styled.h2`
   font-family: 'Manrope700';
-  /* font-weight: 700; */
+  padding-right: 35px;
   font-size: 24px;
   line-height: 33px;
   letter-spacing: -0.01em;
   color: #000000;
-  /* height: 76px; */
-  /* overflow: hidden; */
+
+  @media ${device.tablet} {
+    font-size: 28px;
+    line-height: 38px;
+  }
 `;
 
 export const Ul = styled.ul`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  margin-top: 16px;
+  margin-top: 20px;
   gap: 8px;
-  font-size: 16px;
   line-height: calc(22 / 16);
 `;
+
 export const Li = styled.li`
   display: flex;
   font-family: 'Manrope500';
   font-size: 14px;
   line-height: 19px;
+  color: #000000;
+
+  @media ${device.tablet} {
+    font-size: 16px;
+    line-height: 22px;
+  }
 `;
+
 export const Lable = styled.p`
   font-family: 'Manrope600';
-  width: 90px;
+  width: 94px;
   flex-shrink: 0;
 `;
 
@@ -93,6 +122,18 @@ export const Text = styled.p`
   @media screen and (min-width: 768px) {
   }
 `;
+
+export const TextLink = styled.a`
+  text-decoration: none;
+  color: #000000;
+  &:hover {
+    color: #f59256;
+    text-decoration: underline;
+  }
+  @media screen and (min-width: 768px) {
+  }
+`;
+
 export const ThumbBtn = styled.div`
   display: flex;
   flex-direction: column;
@@ -107,9 +148,16 @@ export const ThumbBtn = styled.div`
 
 export const CommentsParagraph = styled.p`
   margin-top: 28px;
-  /* font-family: 'Manrope500'; */
+  font-family: 'Manrope400';
   font-size: 14px;
   line-height: 19px;
+
+  @media ${device.tablet} {
+    font-family: 'Manrope500';
+    font-size: 16px;
+    line-height: 24px;
+    letter-spacing: 0.04em;
+  }
 `;
 
 export const CommentsLable = styled.span`
@@ -117,11 +165,25 @@ export const CommentsLable = styled.span`
   /* font-weight: bold; */
 `;
 
-export const ContactModalNoticeBtn = styled.button`
+export const WrapForBtn = styled.div`
+  @media ${device.tablet} {
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+    justify-content: flex-start;
+    margin-top: 32px;
+    padding-right: 40px;
+  }
+`;
+
+export const ContactModalNoticeBtn = styled.a`
   font-family: 'Manrope500';
+  display: block;
   margin-top: 40px;
   width: 100%;
   color: #ffffff;
+  text-decoration: none;
+  text-align: center;
   background-color: #f59256;
   border-radius: 40px;
   padding-top: 9px;
@@ -133,6 +195,8 @@ export const ContactModalNoticeBtn = styled.button`
   border: none;
   cursor: pointer;
   transition: all 0.3s ease-in-out;
+  text-decoration: none;
+  text-align: center;
   &:hover {
     transform: scale(1.03);
   }
@@ -142,12 +206,9 @@ export const ContactModalNoticeBtn = styled.button`
   } */
 
   @media ${device.tablet} {
-    margin-top: 40px;
-  }
-
-  @media ${device.desktop} {
-    padding-top: 10.5px;
-    padding-bottom: 10.5px;
+    margin-top: 0px;
+    margin-left: 12px;
+    width: 160px;
   }
 `;
 
@@ -162,8 +223,8 @@ export const AddModalNoticeBtn = styled.button`
   background-color: #ffffff;
   border: 2px solid #f59256;
   border-radius: 40px;
-  padding-top: 9px;
-  padding-bottom: 9px;
+  padding-top: 7px;
+  padding-bottom: 7px;
   font-size: 16px;
   line-height: 22px;
   letter-spacing: 0.04em;
@@ -175,12 +236,9 @@ export const AddModalNoticeBtn = styled.button`
   }
 
   @media ${device.tablet} {
-    margin-top: 16px;
-  }
+    margin-top: 0px;
 
-  @media ${device.desktop} {
-    padding-top: 10.5px;
-    padding-bottom: 10.5px;
+    width: 160px;
   }
 `;
 
@@ -189,8 +247,4 @@ export const HeartIcon = styled(AiFillHeart)`
   color: #f59256;
   width: 16px;
   height: 16px;
-
-  /* top: 50%;
-  left: 50%; */
-  /* transform: translate(-50%, -50%); */
 `;

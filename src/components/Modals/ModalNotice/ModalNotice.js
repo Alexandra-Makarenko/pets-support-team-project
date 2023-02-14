@@ -1,6 +1,5 @@
 import {
   ModalNoticeBox,
-  Wrap,
   ImgWrap,
   CategoryLabel,
   Img,
@@ -15,23 +14,32 @@ import {
   ContactModalNoticeBtn,
   AddModalNoticeBtn,
   HeartIcon,
+  WrapForBtn,
+  SecondWrap,
+  TextLink,
 } from './ModalNotice.styled';
 
 import { useSelector } from 'react-redux';
 import { getOneNotice } from 'redux/notices/selectors';
+import { RemoveFavoriteBtn } from './RemoveFavoriteBtn/FavoriteBtn';
 
-export const ModalNotice = () => {
+export const ModalNotice = ({
+  isFavorite,
+  addToFavorite,
+  removeFromFavorite,
+}) => {
   const oneNotice = useSelector(getOneNotice);
-  console.log(oneNotice);
+  // console.log(oneNotice);
 
   return (
     <ModalNoticeBox>
-      <ImgWrap>
-        <CategoryLabel>{oneNotice.category}</CategoryLabel>
-        <Img src={oneNotice.avatarURL} alt={oneNotice.name} loading="lazy" />
-        {/* <FavoriteBtn/> */}
-      </ImgWrap>
-      <Wrap>
+      <SecondWrap>
+        <ImgWrap>
+          <CategoryLabel>{oneNotice.category}</CategoryLabel>
+          <Img src={oneNotice.avatarURL} alt={oneNotice.name} loading="lazy" />
+          {/* <FavoriteBtn/> */}
+        </ImgWrap>
+
         <WrapInner>
           <Title>{oneNotice.title || 'Title must be here'}</Title>
           <Ul>
@@ -57,11 +65,15 @@ export const ModalNotice = () => {
             </Li>
             <Li key={`${oneNotice._id}+email`}>
               <Lable>Email:</Lable>
-              <Text>{oneNotice.email || '----------'}</Text>
+              <TextLink href={`mailto:${oneNotice.phone}`}>
+                {oneNotice.email || '----------'}
+              </TextLink>
             </Li>
             <Li key={`${oneNotice._id}+phone`}>
               <Lable>Phone:</Lable>
-              <Text>{oneNotice.phone || '----------'}</Text>
+              <TextLink href={`tel:${oneNotice.phone}`}>
+                {oneNotice.phone || '----------'}
+              </TextLink>
             </Li>
             {oneNotice.category === 'sell' && (
               <Li key={`${oneNotice._id}+sell`}>
@@ -70,18 +82,24 @@ export const ModalNotice = () => {
               </Li>
             )}
           </Ul>
-          <CommentsParagraph>
-            <CommentsLable>Comments: </CommentsLable>
-            {oneNotice.comments || ''}
-          </CommentsParagraph>
         </WrapInner>
-      </Wrap>
-      <ContactModalNoticeBtn type="tel" onClick={() => {}}>
-        Contact
-      </ContactModalNoticeBtn>
-      <AddModalNoticeBtn type="button" onClick={() => {}}>
-        Add to <HeartIcon />
-      </AddModalNoticeBtn>
+      </SecondWrap>
+      <CommentsParagraph>
+        <CommentsLable>Comments: </CommentsLable>
+        {oneNotice.comments || ''}
+      </CommentsParagraph>
+      <WrapForBtn>
+        <ContactModalNoticeBtn href={`tel:${oneNotice.phone}`}>
+          Contact
+        </ContactModalNoticeBtn>
+        {isFavorite ? (
+          <RemoveFavoriteBtn onClick={removeFromFavorite} />
+        ) : (
+          <AddModalNoticeBtn type="button" onClick={addToFavorite}>
+            Add to <HeartIcon />
+          </AddModalNoticeBtn>
+        )}
+      </WrapForBtn>
     </ModalNoticeBox>
   );
 };

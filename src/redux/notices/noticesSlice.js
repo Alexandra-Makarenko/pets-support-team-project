@@ -1,5 +1,11 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { fetchNotices, fetchOneNotice } from './operations';
+import {
+  fetchNotices,
+  fetchFavoriteNotices,
+  fetchOneNotice,
+  fetchAddFavoriteNotice,
+  fetchRemoveFavoriteNotice,
+} from './operations';
 
 // const tasksInitialState = petsdata;
 
@@ -8,6 +14,7 @@ const noticesSlice = createSlice({
   initialState: {
     items: [],
     oneNotice: {},
+    favoriteNotices: [],
     isLoading: false,
     error: null,
   },
@@ -24,16 +31,58 @@ const noticesSlice = createSlice({
       state.isLoading = false;
       state.error = action.payload;
     },
-    [fetchOneNotice.pending](state) {
+
+    [fetchFavoriteNotices.pending](state) {
       state.isLoading = true;
     },
-    [fetchOneNotice.fulfilled](state, action) {
+    [fetchFavoriteNotices.fulfilled](state, action) {
       state.isLoading = false;
+      state.error = null;
+      state.favoriteNotices = action.payload;
+      // console.log(action.payload);
+    },
+    [fetchFavoriteNotices.rejected](state, action) {
+      state.isLoading = false;
+      state.error = action.payload;
+    },
+
+    [fetchOneNotice.pending](state) {
+      // state.isLoading = true;
+    },
+    [fetchOneNotice.fulfilled](state, action) {
+      // state.isLoading = false;
       state.error = null;
       state.oneNotice = action.payload;
     },
     [fetchOneNotice.rejected](state, action) {
-      state.isLoading = false;
+      // state.isLoading = false;
+      state.error = action.payload;
+    },
+    [fetchAddFavoriteNotice.pending](state) {
+      // state.isLoading = true;
+    },
+    [fetchAddFavoriteNotice.fulfilled](state, action) {
+      // state.isLoading = false;
+      state.error = null;
+      state.favoriteNotices.unshift(action.payload);
+      // state.favoriteNotices = action.payload;
+    },
+    [fetchAddFavoriteNotice.rejected](state, action) {
+      // state.isLoading = false;
+      state.error = action.payload;
+    },
+    [fetchRemoveFavoriteNotice.pending](state) {
+      // state.isLoading = true;
+    },
+    [fetchRemoveFavoriteNotice.fulfilled](state, action) {
+      state.error = null;
+      const index = state.favoriteNotices.findIndex(
+        pet => pet._id === action.payload.id
+      );
+      state.favoriteNotices.splice(index, 1);
+    },
+    [fetchRemoveFavoriteNotice.rejected](state, action) {
+      // state.isLoading = false;
       state.error = action.payload;
     },
   },
