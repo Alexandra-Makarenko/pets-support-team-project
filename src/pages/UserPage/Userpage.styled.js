@@ -18,6 +18,8 @@ export const UserContainer = styled.div`
 
 export const Field = styled.form`
   height: 20px;
+  display: flex;
+  align-items: center;
   @media ${device.tablet} {
     height: 32px;
   }
@@ -231,6 +233,17 @@ export const UserButton = styled.button`
   }
 `;
 
+export const UserButtonPlaceholder = styled.button`
+  width: 20px;
+  height: 20px;
+  border: none;
+  background-color: transparent;
+  @media ${device.tablet} {
+    width: 32px;
+    height: 32px;
+  }
+`;
+
 export const PetPhoto = styled.img`
   width: 240px;
   height: 240px;
@@ -363,7 +376,10 @@ export const DeletePetButton = styled.button`
     transition: fill 200ms cubic-bezier(0.4, 0, 0.2, 1);
     width: 20px;
     height: 20px;
-    &:hover {
+  }
+
+  &:hover {
+    svg {
       fill: ${props => props.theme.fontColors.buttonSecondary};
     }
   }
@@ -381,9 +397,16 @@ export const DeletePetButton = styled.button`
 `;
 
 export const PetHeaderContainer = styled.div`
+  width: 280px;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  @media ${device.tablet} {
+    width: 703px;
+  }
+  @media ${device.desktop} {
+    width: 805px;
+  }
 `;
 
 export const AddPetHeader = styled.p`
@@ -418,7 +441,10 @@ export const AddPetButton = styled.button`
   svg {
     fill: #fff;
     transition: fill 200ms cubic-bezier(0.4, 0, 0.2, 1);
-    &:hover {
+  }
+
+  &:hover {
+    svg {
       fill: #111;
     }
   }

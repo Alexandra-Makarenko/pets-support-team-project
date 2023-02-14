@@ -27,6 +27,7 @@ import {
   PetPhotoPlaceholder,
   UploadLavel as UploadLabel,
   UserButton,
+  UserButtonPlaceholder,
   UserContainer,
   UserDataContainer,
   UserInfoHeader,
@@ -253,12 +254,14 @@ const UserPage = () => {
                         <PetDescription>{breed || ''}</PetDescription>
                       </p>
                     </PetField>
-                    <PetField>
-                      <p>
-                        <PetFieldName>Comments: </PetFieldName>
-                        <PetDescription>{comment || ''}</PetDescription>
-                      </p>
-                    </PetField>
+                    {comment ? (
+                      <PetField>
+                        <p>
+                          <PetFieldName>Comments: </PetFieldName>
+                          <PetDescription>{comment || ''}</PetDescription>
+                        </p>
+                      </PetField>
+                    ) : null}
                   </ul>
                   <DeletePetButton
                     onClick={() => {
@@ -316,9 +319,10 @@ const UserPage = () => {
         }
       } else {
         return (
-          <UserButton type="button">
-            <EditSvg fill="#111111" />
-          </UserButton>
+          <UserButtonPlaceholder
+            type="button"
+            disabled={true}
+          ></UserButtonPlaceholder>
         );
       }
     };

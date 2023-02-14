@@ -30,9 +30,9 @@ export const AddPetContainerStepTwo = styled.div`
 `;
 
 export const AddPetHeaderStepOne = styled.h2`
-  font-family: 'Manrope500';
-  font-size: 16px;
-  line-height: 22px;
+  font-family: 'Manrope400';
+  font-size: 24px;
+  line-height: 33px;
   text-align: center;
   color: ${props => props.theme.fontColors.primary};
   margin-bottom: 28px;
@@ -46,7 +46,7 @@ export const AddPetHeaderStepOne = styled.h2`
 `;
 
 export const AddPetHeaderStepTwo = styled.h2`
-  font-family: 'Manrope500';
+  font-family: 'Manrope400';
   font-size: 24px;
   line-height: 33px;
   text-align: center;
@@ -61,7 +61,7 @@ export const AddPetHeaderStepTwo = styled.h2`
 `;
 
 export const AddPhotoHeader = styled.h3`
-  font-family: 'Manrope500';
+  font-family: 'Manrope400';
   font-size: 16px;
   line-height: 22px;
   text-align: center;
@@ -85,8 +85,8 @@ export const PetPhotoPlaceholder = styled.div`
   border-radius: 20px;
   background-color: ${props => props.theme.backgrounds.input};
   @media ${device.tablet} {
-    width: 162px;
-    height: 162px;
+    width: 182px;
+    height: 182px;
     border-radius: 40px;
   }
   @media ${device.desktop} {
@@ -98,8 +98,8 @@ export const PetPhoto = styled.img`
   height: 208px;
   border-radius: 20px;
   @media ${device.tablet} {
-    width: 162px;
-    height: 162px;
+    width: 182px;
+    height: 182px;
     border-radius: 40px;
   }
 `;
@@ -122,6 +122,7 @@ export const PetInputLabel = styled.p`
   @media ${device.tablet} {
     font-size: 24px;
     line-height: 26px;
+    margin-bottom: 12px;
   }
   @media ${device.desktop} {
   }
@@ -143,11 +144,12 @@ export const PetInputField = styled(Field)`
 
   @media ${device.tablet} {
     font-family: 'Manrope400';
-    font-size: 18px;
-    width: 448px;
+    font-size: 16px;
     line-height: 26px;
+    width: 448px;
     margin-bottom: 28px;
     padding: 10px 16px;
+    letter-spacing: 0;
   }
 
   @media ${device.desktop} {
@@ -157,6 +159,7 @@ export const PetInputField = styled(Field)`
 export const PetCommentField = styled(Field)`
   font-family: 'Manrope400';
   font-size: 14px;
+  line-height: 26px;
   letter-spacing: ${props => props.theme.fonts.letterSpacing};
   width: 240px;
   height: 100px;
@@ -165,14 +168,14 @@ export const PetCommentField = styled(Field)`
   outline: none;
   background-color: ${props => props.theme.backgrounds.input};
   border: 1px solid rgba(245, 146, 86, 0.5);
-  border-radius: 40px;
+  border-radius: 20px;
 
   @media ${device.tablet} {
     font-family: 'Manrope400';
-    font-size: 18px;
+    font-size: 16px;
+    line-height: 26px;
     width: 394px;
     height: 116px;
-    line-height: 26px;
     padding: 16px;
   }
 
@@ -207,8 +210,12 @@ export const PetButtonBack = styled.button`
   font-family: 'Manrope500';
   border-radius: 40px;
   color: ${props => props.theme.fontColors.secondary};
-  background-color: ${props => props.theme.backgrounds.bodyPrimary};
+  background-color: transparent;
   border: 2px solid #f59256;
+  &:hover,
+  :focus {
+    background-color: ${props => props.theme.backgrounds.input};
+  }
   @media ${device.tablet} {
     width: 180px;
   }
@@ -230,6 +237,11 @@ export const PetButtonNext = styled.button`
     props.disabled ? '#A0A0A0' : props.theme.backgrounds.buttonPrimary};
   border: none;
   margin-bottom: 12px;
+  &:hover,
+  :focus {
+    background-color: ${props => props.theme.hovers.primary};
+    color: ${props => props.theme.fontColors.white};
+  }
   @media ${device.tablet} {
     font-size: 20px;
     line-height: 27px;
