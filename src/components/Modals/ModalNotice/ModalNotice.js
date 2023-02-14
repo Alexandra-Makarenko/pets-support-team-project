@@ -29,7 +29,11 @@ export const ModalNotice = ({
   removeFromFavorite,
 }) => {
   const oneNotice = useSelector(getOneNotice);
+
+  // console.log(oneNotice.sex);
   // console.log(oneNotice);
+
+  const theSex = oneNotice.sex ? 'male' : 'female';
 
   return (
     <ModalNoticeBox>
@@ -61,7 +65,7 @@ export const ModalNotice = ({
             </Li>
             <Li key={`${oneNotice._id}+sex`}>
               <Lable>The sex:</Lable>
-              <Text>{oneNotice.sex || '----------'}</Text>
+              <Text>{theSex}</Text>
             </Li>
             <Li key={`${oneNotice._id}+email`}>
               <Lable>Email:</Lable>
