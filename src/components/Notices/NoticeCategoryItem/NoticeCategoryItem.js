@@ -14,14 +14,26 @@ import {
   LearnMoreBtn,
 } from './NoticeCategoryItem.styled';
 import { useDispatch } from 'react-redux';
-import { fetchOneNotice } from 'redux/notices/operations';
+import {
+  fetchOneNotice,
+  fetchAddFavoriteNotice,
+  fetchRemoveFavoriteNotice,
+} from 'redux/notices/operations';
+import { AddFavoriteIconBtn } from './AddFavoriteIconBtn/AddFavoriteIconBtn';
+import { RemoveFavoriteIconBtn } from './RemoveFavoriteIconBtn/RemoveFavoriteIconBtn';
+import { RemoveFavoriteBtn } from './RemoveFavoriteBtn/FavoriteBtn';
+import { useAuth } from 'hooks/useAuth';
 
 import { useState } from 'react';
 import { MainModal } from 'components/MainModal/MainModal';
 import { ModalNotice } from 'components/Modals/ModalNotice/ModalNotice';
 import Plug from '../../../logo/plug_picture_pet.png';
 
-export const NoticeCategoryItem = ({ pet }) => {
+export const NoticeCategoryItem = ({ pet, favoritePets }) => {
+  const { isLoggedIn } = useAuth();
+
+  const isFavorite = favoritePets.find(item => item._id === pet._id);
+
   const dispatch = useDispatch();
   const [showModal, setShowModal] = useState(false);
 
@@ -30,11 +42,29 @@ export const NoticeCategoryItem = ({ pet }) => {
     setShowModal(!showModal);
   };
 
+  const addToFavorite = () => {
+    if (!isLoggedIn) {
+      alert('Login to your account or register');
+      return;
+    }
+    dispatch(fetchAddFavoriteNotice(pet._id));
+  };
+
+  const removeFromFavorite = () => {
+    dispatch(fetchRemoveFavoriteNotice(pet._id));
+  };
+
   return (
     <>
       <Item>
         <ImgWrap>
           <CategoryLabel>{pet.category}</CategoryLabel>
+
+          {isFavorite ? (
+            <RemoveFavoriteIconBtn onClick={removeFromFavorite} />
+          ) : (
+            <AddFavoriteIconBtn onClick={addToFavorite} />
+          )}
 
           {pet.avatarURL ? (
             <Img src={pet.avatarURL} alt={pet.title} loading="lazy" />
@@ -60,16 +90,21 @@ export const NoticeCategoryItem = ({ pet }) => {
               </Li>
             </Ul>
           </WrapInner>
-          <ThumbBtn>
+          <ThumbBtn isFavorite={isFavorite}>
             <LearnMoreBtn type="button" onClick={toggleModal}>
               Learn more
             </LearnMoreBtn>
+            {isFavorite && <RemoveFavoriteBtn onClick={removeFromFavorite} />}
           </ThumbBtn>
         </Wrap>
       </Item>
       {showModal && (
         <MainModal onClose={toggleModal}>
-          <ModalNotice />
+          <ModalNotice
+            isFavorite={isFavorite}
+            addToFavorite={addToFavorite}
+            removeFromFavorite={removeFromFavorite}
+          />
         </MainModal>
       )}
     </>

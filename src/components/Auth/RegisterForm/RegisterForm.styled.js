@@ -238,7 +238,7 @@ export const NextFormRegisterBtn = styled.button`
   border: none;
   cursor: pointer;
   transition: all 0.3s ease-in-out;
-  ${props => (props.currentStep === 0 ? '40px' : '28px')}
+
   &:hover {
     transform: scale(1.03);
   }

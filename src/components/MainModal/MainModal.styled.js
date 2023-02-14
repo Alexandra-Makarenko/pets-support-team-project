@@ -19,18 +19,18 @@ export const Overlay = styled.div`
 
 export const ModalWindow = styled.div`
   position: fixed;
-  top: 160px;
+  top: 70px;
   background-color: #ffffff;
   border-radius: 20px;
   z-index: 1201;
 
   @media ${device.tablet} {
-    top: 264px;
+    top: 90px;
     border-radius: 40px;
   }
 
   @media ${device.desktop} {
-    top: 329px;
+    /* top: 329px; */
   }
 `;
 
