@@ -47,6 +47,7 @@ export const MenuLink = styled(NavLink)`
 `;
 
 export const MobMenuBtn = styled.button`
+  z-index: 99;
   color: ${props => props.theme.fontColors.secondary};
   background-color: transparent;
   border: none;
