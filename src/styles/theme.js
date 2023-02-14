@@ -18,6 +18,7 @@ export const theme = Object.freeze({
     inputTextColor: 'rgba(17, 17, 17, 0.6)',
     blueLink: '#3091EB',
     grey: '#535353',
+    navFont: '#181C27',
   },
   hovers: {
     primary: '#f59356af',

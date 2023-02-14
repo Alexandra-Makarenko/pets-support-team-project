@@ -4,6 +4,7 @@ import { device } from '../../styles/device';
 import { ReactComponent as BurgerIco } from './burger-menu.svg';
 import { ReactComponent as CloseIco } from './x.svg';
 
+
 export const NavBlock = styled.nav`
   display: flex;
   align-items: center;
@@ -43,6 +44,20 @@ export const MenuLink = styled(NavLink)`
   :focus {
     color: ${props => props.theme.fontColors.buttonSecondary};
     text-shadow: 1px 0 0 ${props => props.theme.fontColors.buttonSecondary};
+  }
+
+  @media ${device.desktop} {
+    font-family: 'Manrope700';
+    line-height: 27px;
+    color: ${props => props.theme.fontColors.navFont};
+  }
+  &:focus {
+    color: none;
+    text-shadow: none;
+  }
+  &.active {
+    color: ${props => props.theme.fontColors.buttonSecondary};
+    text-decoration: underline;
   }
 `;
 
