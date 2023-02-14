@@ -28,7 +28,7 @@ const NewsPage = () => {
         setSearchValue={setSearchValue}
         mbtn={{ mobile: 40, rest: 60 }}
       />
-      <NewsFeed news={news} status={status} />
+      <NewsFeed news={news} status={status} searchValue={searchValue} />
     </Section>
   );
 };
