@@ -18,6 +18,8 @@ export const UserContainer = styled.div`
 
 export const Field = styled.form`
   height: 20px;
+  display: flex;
+  align-items: center;
   @media ${device.tablet} {
     height: 32px;
   }
@@ -228,6 +230,17 @@ export const UserButton = styled.button`
       width: 20px;
       height: 20px;
     }
+  }
+`;
+
+export const UserButtonPlaceholder = styled.button`
+  width: 20px;
+  height: 20px;
+  border: none;
+  background-color: transparent;
+  @media ${device.tablet} {
+    width: 32px;
+    height: 32px;
   }
 `;
 
