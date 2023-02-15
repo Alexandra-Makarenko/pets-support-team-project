@@ -28,19 +28,3 @@ The project helps to buy, sell, or find a lost pet.
 6. path="/register" - RegisterPage
 7. path="/login" - LoginPage
 
-### Home
-
-On the main page there is a header with navigation. Navigation has routes to
-News, Find pet section and Our friends.
-
-### Find pet
-
-On this page there is a filter with category to be viewed.
-
-### Our friends
-
-On this page there is an information about our sponsors.
-
-### News
-
-On this page there is an information about our sponsors.

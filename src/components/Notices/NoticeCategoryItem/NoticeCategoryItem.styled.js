@@ -14,7 +14,6 @@ export const Item = styled.li`
   @media ${device.tablet} {
     flex-basis: calc(100% / 4 - 32px);
     margin-left: 32px;
-   
   }
 `;
 
@@ -60,10 +59,6 @@ export const AddToFavoriteBtn = styled.button`
 
 export const HeartIcon = styled(AiOutlineHeart)`
   color: #f59256;
-  /* background-color: #fdf7f2; */
-  /* backdrop-filter: blur(2px); */
-
-  /* backdrop-filter: blur(2px); */
   width: 32px;
   height: 28px;
 `;
@@ -114,14 +109,14 @@ export const Text = styled.p`
 `;
 
 export const ThumbBtn = styled.div`
-  margin-top: ${props => (props.isFavorite ? '20px' : '50px')};
+  margin-top: ${props => (props.isMyAds ? '50px' : '20px')};
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   flex-grow: 1;
   gap: 12px;
-  padding-bottom: ${props => (props.isFavorite ? '12px' : '32px')};
+  padding-bottom: ${props => (props.isMyAds ? '12px' : '32px')};
   padding-left: 16px;
   padding-right: 16px;
 
@@ -146,18 +141,97 @@ export const LearnMoreBtn = styled.button`
   cursor: pointer;
 `;
 
-// export const RemoveFavoriteBtn = styled.button`
-//   font-family: 'Manrope500';
-//   width: 100%;
-//   padding-top: 8px;
-//   padding-bottom: 8px;
-//   color: #ff6101;
-//   background: #ffffff;
-//   border: 2px solid #ff6101;
-//   border-radius: 40px;
-//   font-size: 16px;
-//   line-height: 22px;
-//   letter-spacing: 0.04em;
+export const BoxConfirmAlert = styled.div`
+  display: flex;
+  flex-direction: column;
+  /* text-align: center; */
+  max-width: 280px;
+  padding-top: 60px;
+  padding-bottom: 60px;
+  padding-left: 20px;
+  padding-right: 20px;
+  background-color: #fdf7f2;
+  border-radius: 20px;
+  box-shadow: 7px 4px 14px rgba(0, 0, 0, 0.11);
 
-//   cursor: pointer;
-// `;
+  @media ${device.tablet} {
+    max-width: 608px;
+    padding-left: 80px;
+    padding-right: 80px;
+  }
+`;
+
+export const TitleConfirmAlert = styled.h3`
+  font-family: 'Manrope500';
+  text-align: center;
+  font-size: 24px;
+  line-height: 33px;
+  letter-spacing: 0.01em;
+  color: #111111;
+
+  @media ${device.tablet} {
+  }
+`;
+
+export const WrapConfirmAlertBtn = styled.div`
+  @media ${device.tablet} {
+    display: flex;
+    margin-top: 60px;
+  }
+`;
+
+export const YesBtnConfirmAlert = styled.button`
+  font-family: 'Manrope500';
+  margin-top: 60px;
+  width: 100%;
+  color: #ffffff;
+  background-color: #f59256;
+  border-radius: 40px;
+  padding-top: 9.5px;
+  padding-bottom: 9.5px;
+  font-size: 16px;
+  line-height: 22px;
+  letter-spacing: 0.04em;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  &:hover {
+    transform: scale(1.03);
+  }
+
+  @media ${device.tablet} {
+    margin-top: 0px;
+    width: 180px;
+    font-size: 18px;
+    line-height: 25px;
+  }
+`;
+
+export const NoBtnConfirmAlert = styled.button`
+  font-family: 'Manrope500';
+  margin-top: 18px;
+  width: 100%;
+  color: #111111;
+  background-color: #ffffff;
+  border: 2px solid #f59256;
+  border-radius: 40px;
+  padding-top: 7.5px;
+  padding-bottom: 7.5px;
+  font-size: 16px;
+  line-height: 22px;
+  letter-spacing: 0.04em;
+  outline: none;
+  cursor: pointer;
+  &:hover {
+    transform: scale(1.03);
+  }
+  @media ${device.tablet} {
+    width: 180px;
+    margin-bottom: 0px;
+    margin-top: 0px;
+    margin-left: 20px;
+    font-size: 18px;
+    line-height: 25px;
+  }
+`;

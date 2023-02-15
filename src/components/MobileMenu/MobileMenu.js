@@ -46,7 +46,7 @@ export const MobileMenu = ({ mobMenuToggler }) => {
         </MobMenuItem>
         <MobMenuItem>
           <MobMenulink to="friends" onClick={mobMenuToggler}>
-            Our friend
+            Our friends
           </MobMenulink>
         </MobMenuItem>
       </MobMenuList>

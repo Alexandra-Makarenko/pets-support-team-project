@@ -15,36 +15,8 @@ import desktop_vector_3 from '../../../assets/images/bg-pictures/desktop/desktop
 import { device } from 'styles/device';
 import PhoneInput from 'react-phone-input-2';
 import 'react-phone-input-2/lib/style.css';
-
-// export const Phone = styled(PhoneInput)`
-//   display: block;
-//   font-family: 'Manrope400';
-//   font-size: 14px;
-//   line-height: 19px;
-//   letter-spacing: ${props => props.theme.fonts.letterSpacing};
-//   width: 100%;
-//   margin-top: 16px;
-//   padding-top: 11px;
-//   padding-bottom: 12px;
-//   padding-left: 14px;
-//   color: ${props => props.theme.fontColors.inputTextColor};
-//   outline: none;
-//   background-color: ${props => props.theme.backgrounds.input};
-//   border: 1px solid rgba(245, 146, 86, 0.5);
-//   border-radius: 40px;
-
-//   @media ${device.tablet} {
-//     font-family: 'Manrope400';
-//     font-size: 18px;
-//     line-height: 25px;
-//     padding-top: 14px;
-//     padding-bottom: 13px;
-//     padding-left: 32px;
-//   }
-
-//   @media ${device.desktop} {
-//   }
-// `;
+import { BiShow } from 'react-icons/bi';
+import { BiHide } from 'react-icons/bi';
 
 export const PhoneInputField = props => {
   return (
@@ -94,12 +66,8 @@ export const PhoneInputField = props => {
 };
 
 export const SectionRegisterForm = styled.section`
-  /* position: relative; */
-  height: 100vh;
-  /* max-height: calc(100vh - 68px); */
-  padding-top: 42px;
-  /* padding-bottom: ${props =>
-    props.currentStep === 0 ? `103px` : `59px`}; */
+  min-height: calc(100vh - 100px);
+
   background-color: ${props => props.theme.backgrounds.input};
 
   background-image: ${props =>
@@ -112,9 +80,12 @@ export const SectionRegisterForm = styled.section`
   background-repeat: no-repeat;
 
   @media ${device.tablet} {
-    padding-top: 169px;
-    /* padding-bottom: ${props =>
-      props.currentStep === 0 ? `266px` : `223px`}; */
+    min-height: calc(100vh - 237px);
+    min-height: ${props =>
+      props.currentStep === 0 ? `calc(100vh - 237px)` : `calc(100vh - 220px)`};
+
+    margin-top: ${props => (props.currentStep === 0 ? `169px` : `152px`)};
+
     background-image: url(${tablet_vector_3}), url(${tablet_vector_2}),
       url(${tablet_vector_4}), url(${tablet_vector_1}), url(${tablet_vector_5}),
       url(${tablet_vector_6});
@@ -124,9 +95,9 @@ export const SectionRegisterForm = styled.section`
   }
 
   @media ${device.desktop} {
-    padding-top: 46px;
-    /* padding-bottom: ${props =>
-      props.currentStep === 0 ? `113px` : `51px`}; */
+    min-height: calc(100vh - 131px);
+    margin-top: ${props => (props.currentStep === 0 ? `46px` : `44px`)};
+
     background-image: url(${desktop_vector_1}), url(${desktop_vector_2}),
       url(${desktop_vector_3}), url(${tablet_vector_5}), url(${tablet_vector_6});
 
@@ -153,7 +124,6 @@ export const RegisterFormContainer = styled.div`
 `;
 
 export const RegisterFormBox = styled.div`
-  /* position: absolute; */
   top: 40px;
   text-align: center;
   @media ${device.tablet} {
@@ -214,8 +184,39 @@ export const FormInput = styled(Field)`
     padding-bottom: 13px;
     padding-left: 32px;
   }
+`;
 
-  @media ${device.desktop} {
+export const WrapInputPassword = styled.div`
+  position: relative;
+`;
+
+export const ShowPasswordIcon = styled(BiShow)`
+  position: absolute;
+  right: 20px;
+  top: 8.5px;
+  color: #f59256;
+  width: 26px;
+  height: 26px;
+  @media ${device.tablet} {
+    top: 10px;
+
+    width: 32px;
+    height: 32px;
+  }
+`;
+
+export const HidePasswordIcon = styled(BiHide)`
+  position: absolute;
+  right: 20px;
+  top: 8.5px;
+  color: #f59256;
+  width: 26px;
+  height: 26px;
+  @media ${device.tablet} {
+    top: 10px;
+
+    width: 32px;
+    height: 32px;
   }
 `;
 
@@ -224,7 +225,7 @@ export const NextFormRegisterBtn = styled.button`
   margin-top: ${props => (props.currentStep === 0 ? '40px' : '28px')};
   width: 100%;
   color: ${props => props.theme.fontColors.white};
-  /* background-color: ${props => props.theme.backgrounds.buttonPrimary}; */
+
   background-color: ${props =>
     props.disabled ? '#A0A0A0' : props.theme.backgrounds.buttonPrimary};
   border-radius: 40px;

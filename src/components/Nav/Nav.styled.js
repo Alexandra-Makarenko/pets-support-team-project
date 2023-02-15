@@ -4,6 +4,7 @@ import { device } from '../../styles/device';
 import { ReactComponent as BurgerIco } from './burger-menu.svg';
 import { ReactComponent as CloseIco } from './x.svg';
 
+
 export const NavBlock = styled.nav`
   display: flex;
   align-items: center;
@@ -20,11 +21,15 @@ export const MenuList = styled.ul`
   @media ${device.desktop} {
     display: flex;
     align-items: center;
-    gap: 80px;
+    /* margin-right: ; */
   }
 `;
 
-export const MenuItem = styled.li``;
+export const MenuItem = styled.li`
+  &:not(:last-child) {
+    margin-right: 80px;
+  }
+`;
 
 export const MenuLink = styled(NavLink)`
   display: inline-block;
@@ -40,9 +45,24 @@ export const MenuLink = styled(NavLink)`
     color: ${props => props.theme.fontColors.buttonSecondary};
     text-shadow: 1px 0 0 ${props => props.theme.fontColors.buttonSecondary};
   }
+
+  @media ${device.desktop} {
+    font-family: 'Manrope700';
+    line-height: 27px;
+    color: ${props => props.theme.fontColors.navFont};
+  }
+  &:focus {
+    color: none;
+    text-shadow: none;
+  }
+  &.active {
+    color: ${props => props.theme.fontColors.buttonSecondary};
+    text-decoration: underline;
+  }
 `;
 
 export const MobMenuBtn = styled.button`
+  z-index: 99;
   color: ${props => props.theme.fontColors.secondary};
   background-color: transparent;
   border: none;

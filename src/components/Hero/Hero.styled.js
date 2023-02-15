@@ -45,7 +45,7 @@ export const Section = styled.section`
     background: url(${bgMobWave});
     background-repeat: no-repeat;
     background-position: 38% calc(2vh + 100%);
-    height: 100vh;
+    height: calc(100vh - 110px);
   }
 `;
 
@@ -57,8 +57,13 @@ export const H2 = styled.h2`
   font-size: 68px;
   line-height: 1.47;
 
+  @media ${device.desktop} {
+    margin-right: 34px;
+  }
+
   @media ${device.preDesktop} {
     margin-top: 88px;
+    margin-bottom: 75px;
   }
 
   @media ${device.preTablet} {
@@ -106,13 +111,11 @@ export const Img = styled.img`
 
 export const Content = styled.div`
   display: flex;
-  column-gap: 75px;
 
   @media ${device.preDesktop} {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 118px;
   }
 
   @media ${device.preTablet} {

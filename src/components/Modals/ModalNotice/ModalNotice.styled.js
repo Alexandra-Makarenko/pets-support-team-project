@@ -242,6 +242,35 @@ export const AddModalNoticeBtn = styled.button`
   }
 `;
 
+export const RemoveFavoriteBtn = styled.button`
+  font-family: 'Manrope500';
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 12px;
+  width: 100%;
+  color: #ff6101;
+  background-color: #ffffff;
+  border: 2px solid #ff6101;
+  border-radius: 40px;
+  padding-top: 7px;
+  padding-bottom: 7px;
+  font-size: 16px;
+  line-height: 22px;
+  letter-spacing: 0.04em;
+  outline: none;
+  transition: all 0.3s ease-in-out;
+  cursor: pointer;
+  &:hover {
+    transform: scale(1.03);
+  }
+
+  @media ${device.tablet} {
+    margin-top: 0px;
+
+    width: 160px;
+  }
+`;
 export const HeartIcon = styled(AiFillHeart)`
   margin-left: 8px;
   color: #f59256;

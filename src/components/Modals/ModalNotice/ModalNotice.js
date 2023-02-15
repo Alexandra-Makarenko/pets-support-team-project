@@ -13,6 +13,7 @@ import {
   CommentsLable,
   ContactModalNoticeBtn,
   AddModalNoticeBtn,
+  RemoveFavoriteBtn,
   HeartIcon,
   WrapForBtn,
   SecondWrap,
@@ -21,15 +22,25 @@ import {
 
 import { useSelector } from 'react-redux';
 import { getOneNotice } from 'redux/notices/selectors';
-import { RemoveFavoriteBtn } from './RemoveFavoriteBtn/FavoriteBtn';
 
 export const ModalNotice = ({
   isFavorite,
   addToFavorite,
   removeFromFavorite,
+  toggleModal,
+  categoryFilter,
 }) => {
   const oneNotice = useSelector(getOneNotice);
-  // console.log(oneNotice);
+
+  const handleAddToFavorite = () => {
+    removeFromFavorite();
+    console.log(categoryFilter);
+    if (categoryFilter === '/notices/favorite') {
+      toggleModal();
+    }
+  };
+
+  const theSex = oneNotice.sex ? 'male' : 'female';
 
   return (
     <ModalNoticeBox>
@@ -37,7 +48,6 @@ export const ModalNotice = ({
         <ImgWrap>
           <CategoryLabel>{oneNotice.category}</CategoryLabel>
           <Img src={oneNotice.avatarURL} alt={oneNotice.name} loading="lazy" />
-          {/* <FavoriteBtn/> */}
         </ImgWrap>
 
         <WrapInner>
@@ -61,7 +71,7 @@ export const ModalNotice = ({
             </Li>
             <Li key={`${oneNotice._id}+sex`}>
               <Lable>The sex:</Lable>
-              <Text>{oneNotice.sex || '----------'}</Text>
+              <Text>{theSex}</Text>
             </Li>
             <Li key={`${oneNotice._id}+email`}>
               <Lable>Email:</Lable>
@@ -78,7 +88,7 @@ export const ModalNotice = ({
             {oneNotice.category === 'sell' && (
               <Li key={`${oneNotice._id}+sell`}>
                 <Lable>Price:</Lable>
-                <Text>{oneNotice.price || '----------'}</Text>
+                <Text>{oneNotice.price + ' ₴' || '----------'}</Text>
               </Li>
             )}
           </Ul>
@@ -93,10 +103,12 @@ export const ModalNotice = ({
           Contact
         </ContactModalNoticeBtn>
         {isFavorite ? (
-          <RemoveFavoriteBtn onClick={removeFromFavorite} />
+          <RemoveFavoriteBtn type="button" onClick={handleAddToFavorite}>
+            Delete <HeartIcon />
+          </RemoveFavoriteBtn>
         ) : (
           <AddModalNoticeBtn type="button" onClick={addToFavorite}>
-            Add to <HeartIcon />
+            Add to <HeartIcon isfavorite={isFavorite} />
           </AddModalNoticeBtn>
         )}
       </WrapForBtn>

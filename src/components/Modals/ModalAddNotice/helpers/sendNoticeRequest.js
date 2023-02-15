@@ -12,6 +12,9 @@ export const postNotice = async noticeInfo => {
     })
     .then(result => {
       console.log(result);
+      if (result.status === 201) {
+        console.log(result.data);
+      }
     })
     .catch(error => {
       if (error.response) {

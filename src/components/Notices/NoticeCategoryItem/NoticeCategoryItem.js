@@ -12,39 +12,92 @@ import {
   Text,
   ThumbBtn,
   LearnMoreBtn,
+  BoxConfirmAlert,
+  YesBtnConfirmAlert,
+  NoBtnConfirmAlert,
+  TitleConfirmAlert,
+  WrapConfirmAlertBtn,
 } from './NoticeCategoryItem.styled';
 import { useDispatch } from 'react-redux';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import {
   fetchOneNotice,
   fetchAddFavoriteNotice,
   fetchRemoveFavoriteNotice,
+  removeMyAddNotice,
 } from 'redux/notices/operations';
 import { AddFavoriteIconBtn } from './AddFavoriteIconBtn/AddFavoriteIconBtn';
 import { RemoveFavoriteIconBtn } from './RemoveFavoriteIconBtn/RemoveFavoriteIconBtn';
-import { RemoveFavoriteBtn } from './RemoveFavoriteBtn/FavoriteBtn';
+import { RemoveMyNoticeBtn } from './RemoveMyNoticeBtn/RemoveMyNoticeBtn';
 import { useAuth } from 'hooks/useAuth';
 
 import { useState } from 'react';
 import { MainModal } from 'components/MainModal/MainModal';
 import { ModalNotice } from 'components/Modals/ModalNotice/ModalNotice';
 import Plug from '../../../logo/plug_picture_pet.png';
+import { confirmAlert } from 'react-confirm-alert';
+import 'react-confirm-alert/src/react-confirm-alert.css';
 
-export const NoticeCategoryItem = ({ pet, favoritePets }) => {
+export const NoticeCategoryItem = ({
+  pet,
+  favoritePets,
+  user,
+  categoryFilter,
+}) => {
   const { isLoggedIn } = useAuth();
 
   const isFavorite = favoritePets.find(item => item._id === pet._id);
+  const isMyAds = user._id === pet.owner;
 
   const dispatch = useDispatch();
   const [showModal, setShowModal] = useState(false);
+
+  const notify = () =>
+    toast.warn('You need to log in to use this function!', {
+      position: 'top-center',
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: 'colored',
+    });
 
   const toggleModal = () => {
     dispatch(fetchOneNotice(pet._id));
     setShowModal(!showModal);
   };
 
+  const removeFromMyAdsNotices = () => {
+    confirmAlert({
+      customUI: ({ onClose }) => {
+        return (
+          <BoxConfirmAlert>
+            <TitleConfirmAlert>
+              You want to delete this notice?
+            </TitleConfirmAlert>
+            <WrapConfirmAlertBtn>
+              <YesBtnConfirmAlert
+                onClick={() => {
+                  dispatch(removeMyAddNotice(pet._id));
+                  onClose();
+                }}
+              >
+                Yes, Delete it!
+              </YesBtnConfirmAlert>
+              <NoBtnConfirmAlert onClick={onClose}>No</NoBtnConfirmAlert>
+            </WrapConfirmAlertBtn>
+          </BoxConfirmAlert>
+        );
+      },
+    });
+  };
+
   const addToFavorite = () => {
     if (!isLoggedIn) {
-      alert('Login to your account or register');
+      notify();
       return;
     }
     dispatch(fetchAddFavoriteNotice(pet._id));
@@ -54,14 +107,26 @@ export const NoticeCategoryItem = ({ pet, favoritePets }) => {
     dispatch(fetchRemoveFavoriteNotice(pet._id));
   };
 
+  // const removeFromMyAdsNotices = () => {
+  //   dispatch(removeMyAddNotice(pet._id));
+  // };
+  const noLinesCategory = category => {
+    if (category === 'lost-found') {
+      return 'Lost/Found';
+    } else if (category === 'in-good-hands') {
+      return 'In good hands';
+    }
+    return 'Sell';
+  };
+
   return (
     <>
       <Item>
         <ImgWrap>
-          <CategoryLabel>{pet.category}</CategoryLabel>
+          <CategoryLabel>{noLinesCategory(pet.category)}</CategoryLabel>
 
           {isFavorite ? (
-            <RemoveFavoriteIconBtn onClick={removeFromFavorite} />
+            <RemoveFavoriteIconBtn removeFromFavorite={removeFromFavorite} />
           ) : (
             <AddFavoriteIconBtn onClick={addToFavorite} />
           )}
@@ -88,22 +153,43 @@ export const NoticeCategoryItem = ({ pet, favoritePets }) => {
                 <Lable>Age:</Lable>
                 <Text>{pet.dateofbirth}</Text>
               </Li>
+              {pet.category === 'sell' && (
+                <Li key={`${pet._id}+sell`}>
+                  <Lable>Price:</Lable>
+                  <Text>{pet.price + ' ₴' || '----------'}</Text>
+                </Li>
+              )}
             </Ul>
           </WrapInner>
           <ThumbBtn isFavorite={isFavorite}>
             <LearnMoreBtn type="button" onClick={toggleModal}>
               Learn more
             </LearnMoreBtn>
-            {isFavorite && <RemoveFavoriteBtn onClick={removeFromFavorite} />}
+            {isMyAds && <RemoveMyNoticeBtn onClick={removeFromMyAdsNotices} />}
           </ThumbBtn>
         </Wrap>
+        <ToastContainer
+          position="top-center"
+          autoClose={3000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="colored"
+        />
       </Item>
       {showModal && (
         <MainModal onClose={toggleModal}>
           <ModalNotice
             isFavorite={isFavorite}
+            isMyAds={isMyAds}
             addToFavorite={addToFavorite}
             removeFromFavorite={removeFromFavorite}
+            toggleModal={toggleModal}
+            categoryFilter={categoryFilter}
           />
         </MainModal>
       )}

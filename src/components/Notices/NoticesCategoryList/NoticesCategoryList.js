@@ -15,12 +15,11 @@ import { useAuth } from 'hooks/useAuth';
 
 const NoticesCategoryList = () => {
   const dispatch = useDispatch();
-  const { isLoggedIn } = useAuth();
-  const pets = useSelector(getNotices);
-  const favoritePets = useSelector(getFavoriteNotices);
+  const { isLoggedIn, user } = useAuth();
 
-  // console.log('pets', pets);
-  // console.log('favoritePets', favoritePets);
+  const pets = useSelector(getNotices);
+
+  const favoritePets = useSelector(getFavoriteNotices);
 
   const categoryFilter = useSelector(getCategoryFilter);
   const searchValue = useSelector(getSearchValueFilter);
@@ -62,6 +61,8 @@ const NoticesCategoryList = () => {
                   key={idx}
                   pet={pet}
                   favoritePets={favoritePets}
+                  user={user}
+                  categoryFilter={categoryFilter}
                 />
               ))
             : favoritePets.map((pet, idx) => (
@@ -69,6 +70,8 @@ const NoticesCategoryList = () => {
                   key={idx}
                   pet={pet}
                   favoritePets={favoritePets}
+                  user={user}
+                  categoryFilter={categoryFilter}
                 />
               ))}
         </PetsList>

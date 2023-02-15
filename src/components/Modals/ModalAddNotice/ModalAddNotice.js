@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import FormData from 'form-data';
 import { Formik, Form } from 'formik';
 import * as yup from 'yup';
+import { parse, isDate } from 'date-fns';
 
 import { postNotice } from './helpers/sendNoticeRequest';
 import {
@@ -42,7 +43,7 @@ export const ModalAddNotice = ({ onClick, isOpen }) => {
     breed: '',
     sex: '',
     place: '',
-    price: '',
+    price: 0,
     comments: '',
   });
 
@@ -65,13 +66,10 @@ export const ModalAddNotice = ({ onClick, isOpen }) => {
 
   const postNoticeHandler = noticeInfo => {
     let sexBool = false;
-    let priceFinal = '';
     if (noticeInfo.sex === 'Male') {
       sexBool = true;
     }
-    if (noticeInfo.category === 'sell') {
-      priceFinal = noticeInfo.price;
-    }
+
     console.log(noticeInfo.avatarURL);
 
     const noticeData = {
@@ -80,7 +78,6 @@ export const ModalAddNotice = ({ onClick, isOpen }) => {
       dateofbirth: noticeInfo.dateofbirth,
       breed: noticeInfo.breed,
       place: noticeInfo.place,
-      price: priceFinal,
       sex: sexBool,
       comments: noticeInfo.comments,
       category: noticeInfo.category,
@@ -92,7 +89,13 @@ export const ModalAddNotice = ({ onClick, isOpen }) => {
         noticeFormData.append(field, noticeData[field]);
       }
     }
-    noticeFormData.append('avatar', noticeInfo.avatarURL);
+    if (noticeInfo.avatarURL) {
+      noticeFormData.append('avatar', noticeInfo.avatarURL);
+    }
+    if (noticeInfo.category === 'sell') {
+      noticeFormData.append('price', parseInt(noticeInfo.price, 10));
+    }
+
     postNotice(noticeFormData);
   };
 
@@ -146,15 +149,27 @@ const StepOne = props => {
     name: yup
       .string()
       .min(2, 'Must be more than 2 characters')
-      .matches(nameRules, 'Only latin characters are allowed for this field'),
+      .max(48, 'Must not be longer than 48 characters')
+      .matches(nameRules, 'Only latin characters are allowed for this field')
+      .required('This field is required'),
     dateofbirth: yup
-      .date('Enter date in format dd/mm/yyyy, dd-mm-yyyy or dd.mm.yyyy')
-      .max(new Date(), 'Birthday must be earlier than today')
-      .label('Date of birth'),
+      .date('Date must be of format dd.mm.yyyy')
+      .transform((value, originalValue) => {
+        const parsedDate = isDate(originalValue)
+          ? originalValue
+          : parse(originalValue, 'dd.MM.yyyy', new Date());
+        return parsedDate;
+      })
+      .min('01.01.1970', 'Please enter date later than 01.01.1970')
+      .max(new Date(), 'Date must be earlier than today')
+      .required('Date of birth is required')
+      .typeError('Invalid date'),
     breed: yup
       .string()
       .min(2, 'Must be more than 2 characters')
-      .matches(nameRules, 'Only latin characters are allowed for this field'),
+      .max(24, 'Must not be longer than 24 characters')
+      .matches(nameRules, 'Only latin characters are allowed for this field')
+      .required('Breed is required'),
   });
 
   const handleSubmit = values => {
@@ -262,10 +277,14 @@ const StepTwo = props => {
               'Format must be City, region. For example: Brovary, Kyiv'
             ),
           price: yup
-            .string('Enter a price as number')
-            .required('Please type price in format price$'),
+            .number('Enter a price as number')
+            .positive('Price must be lager than 0')
+            .required('Price is required'),
           avatarURL: yup.mixed(),
-          comments: yup.string().min(4, 'Must be more than 4 characters'),
+          comments: yup
+            .string()
+            .min(4, 'Must be more than 4 characters')
+            .required('Comments is required'),
         })
       );
     } else {
@@ -280,7 +299,10 @@ const StepTwo = props => {
               'Format must be City, region. For example: Brovary, Kyiv'
             ),
           avatarURL: yup.mixed(),
-          comments: yup.string().min(4, 'Must be more than 4 characters'),
+          comments: yup
+            .string()
+            .min(4, 'Must be more than 4 characters')
+            .required('Comments is required'),
         })
       );
     }
@@ -360,6 +382,7 @@ const StepTwo = props => {
                 <BsPlusLgModal htmlFor="imageId" />
               )}
             </label>
+
             <ModalFileInput
               type="file"
               name="avatarURL"
@@ -376,7 +399,6 @@ const StepTwo = props => {
             />
           </ModalImageBlock>
           <FormError name="avatarURL" />
-
           <ModalLabel>Comments</ModalLabel>
           <ModalTextArea
             component="textarea"
