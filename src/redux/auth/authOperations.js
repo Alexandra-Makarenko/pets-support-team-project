@@ -81,8 +81,8 @@ export const password = createAsyncThunk(
       console.log(response.data);
       return response.data;
     } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
-      // return alert('You entered an incorrect email');
+      // return thunkAPI.rejectWithValue(error.message);
+      return alert('You entered an incorrect email');
     }
   }
 );
