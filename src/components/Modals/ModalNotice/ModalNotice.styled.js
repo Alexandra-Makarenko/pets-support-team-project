@@ -8,6 +8,7 @@ export const ModalNoticeBox = styled.div`
   padding-bottom: 40px;
   padding-left: 20px;
   padding-right: 20px;
+  overflow:auto;
 
   @media ${device.tablet} {
     min-width: 704px;
