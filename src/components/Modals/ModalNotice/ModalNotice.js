@@ -27,11 +27,18 @@ export const ModalNotice = ({
   isFavorite,
   addToFavorite,
   removeFromFavorite,
+  toggleModal,
+  categoryFilter,
 }) => {
   const oneNotice = useSelector(getOneNotice);
 
-  // console.log(oneNotice.sex);
-  // console.log(oneNotice);
+  const handleAddToFavorite = () => {
+    removeFromFavorite();
+    console.log(categoryFilter);
+    if (categoryFilter === '/notices/favorite') {
+      toggleModal();
+    }
+  };
 
   const theSex = oneNotice.sex ? 'male' : 'female';
 
@@ -41,7 +48,6 @@ export const ModalNotice = ({
         <ImgWrap>
           <CategoryLabel>{oneNotice.category}</CategoryLabel>
           <Img src={oneNotice.avatarURL} alt={oneNotice.name} loading="lazy" />
-          {/* <FavoriteBtn/> */}
         </ImgWrap>
 
         <WrapInner>
@@ -97,7 +103,7 @@ export const ModalNotice = ({
           Contact
         </ContactModalNoticeBtn>
         {isFavorite ? (
-          <RemoveFavoriteBtn type="button" onClick={removeFromFavorite}>
+          <RemoveFavoriteBtn type="button" onClick={handleAddToFavorite}>
             Delete <HeartIcon />
           </RemoveFavoriteBtn>
         ) : (

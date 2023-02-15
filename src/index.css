@@ -254,3 +254,7 @@ img {
   white-space: nowrap;
 }
 /* ====================================== */
+
+.react-confirm-alert-overlay {
+  background: rgba(17, 17, 17, 0.6) !important;
+}

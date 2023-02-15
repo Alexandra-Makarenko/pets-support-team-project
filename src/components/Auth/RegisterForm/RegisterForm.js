@@ -24,6 +24,9 @@ import {
   ReqisterLoginLink,
   BackFormRegisterBtn,
   RegisterFormBox,
+  WrapInputPassword,
+  ShowPasswordIcon,
+  HidePasswordIcon,
 } from './RegisterForm.styled';
 
 export const RegisterForm = () => {
@@ -90,12 +93,18 @@ export const RegisterForm = () => {
 };
 
 const RegisterStepOne = props => {
+  const [showPassword, setShowPassword] = useState(false);
+
   const emailInputId = nanoid();
   const passwordInputId = nanoid();
   const confirmPasswordInputId = nanoid();
 
   const handleSubmit = values => {
     props.nextStep(values);
+  };
+
+  const toogleShowPassword = () => {
+    setShowPassword(!showPassword);
   };
 
   return (
@@ -116,21 +125,35 @@ const RegisterStepOne = props => {
                 autoComplete="on"
               />
               <FormError name="email" />
-              <FormInput
-                id={passwordInputId}
-                name="password"
-                placeholder="Password"
-                type="password"
-                autoComplete="off"
-              />
+              <WrapInputPassword>
+                <FormInput
+                  id={passwordInputId}
+                  name="password"
+                  placeholder="Password"
+                  type={showPassword ? 'text' : 'password'}
+                  autoComplete="off"
+                />
+                {showPassword ? (
+                  <HidePasswordIcon onClick={toogleShowPassword} />
+                ) : (
+                  <ShowPasswordIcon onClick={toogleShowPassword} />
+                )}
+              </WrapInputPassword>
               <FormError name="password" />
-              <FormInput
-                id={confirmPasswordInputId}
-                name="confirmPassword"
-                placeholder="Confirm Password"
-                type="password"
-                autoComplete="off"
-              />
+              <WrapInputPassword>
+                <FormInput
+                  id={confirmPasswordInputId}
+                  name="confirmPassword"
+                  placeholder="Confirm Password"
+                  type={showPassword ? 'text' : 'password'}
+                  autoComplete="off"
+                />
+                {showPassword ? (
+                  <HidePasswordIcon onClick={toogleShowPassword} />
+                ) : (
+                  <ShowPasswordIcon onClick={toogleShowPassword} />
+                )}
+              </WrapInputPassword>
               <FormError name="confirmPassword" />
               <NextFormRegisterBtn
                 currentStep={props.currentStep}
