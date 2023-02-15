@@ -47,18 +47,7 @@ const noticesSlice = createSlice({
     [fetchFavoriteNotices.fulfilled](state, action) {
       state.isLoading = false;
       state.error = null;
-      console.log('action.payload', action.payload);
       state.favoriteNotices = action.payload;
-      // if (action.payload.page === 1) {
-      //   state.favoriteNotices.notices = action.payload;
-      // } else {
-      //   if (action?.payload?.notices) {
-      //     for (let i = 0; i < action.payload.notices.length; i++) {
-      //       state.favoriteNotices.notices.push(action.payload.notices[i]);
-      //     }
-      //   }
-      // }
-      // console.log(action.payload);
     },
     [fetchFavoriteNotices.rejected](state, action) {
       state.isLoading = false;

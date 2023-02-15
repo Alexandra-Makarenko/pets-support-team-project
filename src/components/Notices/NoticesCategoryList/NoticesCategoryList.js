@@ -18,6 +18,7 @@ import { LoadMore } from 'components/LoadMore/LoadMore';
 const NoticesCategoryList = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(null);
+  const [category, setCategory] = useState('');
 
   const dispatch = useDispatch();
   const { isLoggedIn, user } = useAuth();
@@ -30,8 +31,6 @@ const NoticesCategoryList = () => {
   const categoryFilter = useSelector(getCategoryFilter);
   const searchValue = useSelector(getSearchValueFilter);
   const location = useLocation();
-
-  let category = '';
 
   const onLoadMore = () => {
     setCurrentPage(prevPage => prevPage + 1);
@@ -57,26 +56,30 @@ const NoticesCategoryList = () => {
     return;
   };
 
-  if (categoryFilter === '/notices/lost-found') {
-    category = 'lost-found';
-  } else if (categoryFilter === '/notices/sell') {
-    category = 'sell';
-  } else if (categoryFilter === '/notices/in-good-hands') {
-    category = 'in-good-hands';
-  } else if (categoryFilter === '/notices/favorite') {
-    category = 'favorite';
-  } else if (categoryFilter === '/notices/own') {
-    category = 'mynotices';
-  } else {
-    category = 'sell';
-  }
+  useEffect(() => {
+    if (categoryFilter === '/notices/lost-found') {
+      setCategory('lost-found');
+    } else if (categoryFilter === '/notices/sell') {
+      setCategory('sell');
+    } else if (categoryFilter === '/notices/in-good-hands') {
+      setCategory('in-good-hands');
+    } else if (categoryFilter === '/notices/favorite') {
+      setCategory('favorite');
+    } else if (categoryFilter === '/notices/own') {
+      setCategory('mynotices');
+    } else {
+      setCategory('sell');
+    }
+  }, [categoryFilter]);
 
   useEffect(() => {
     setCurrentPage(1);
   }, [category]);
 
   useEffect(() => {
-    dispatch(fetchNotices({ category, searchValue, currentPage }));
+    if (category) {
+      dispatch(fetchNotices({ category, searchValue, currentPage }));
+    }
     if (!isLoggedIn) return;
     dispatch(fetchFavoriteNotices({ searchValue }));
   }, [dispatch, category, searchValue, isLoggedIn, currentPage]);
