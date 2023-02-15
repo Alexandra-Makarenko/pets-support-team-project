@@ -4,7 +4,6 @@ import { AuthNavBtn } from './AuthNav.styled';
 
 export const AuthNav = mobMenuToggler => {
   const { pathname } = useLocation();
-  console.log(pathname === '/register');
 
   return (
     <>
