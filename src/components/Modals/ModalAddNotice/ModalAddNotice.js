@@ -302,7 +302,7 @@ const StepTwo = props => {
           avatarURL: yup.mixed(),
           comments: yup
             .string()
-            .min(4, 'Must be more than 4 characters')
+            .min(8, 'Must be more than 8 characters')
             .max(120, 'Must not be longer than 120 characters')
             .required('Comments is required'),
         })
