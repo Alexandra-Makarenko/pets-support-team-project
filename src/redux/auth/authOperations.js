@@ -29,16 +29,26 @@ const clearAuthHeader = () => {
 export const register = createAsyncThunk(
   'auth/register',
   async (credentials, thunkAPI) => {
-    console.log(credentials);
     try {
-      const response = await axios.post('/users/signup', credentials);
-      console.log(response.data);
+      const responseRegister = await axios.post('/users/signup', credentials);
+      console.log(responseRegister.data);
       // After successful registration, add the token to the HTTP header
-      setAuthHeader(response.data.token);
-      return response.data;
+      setAuthHeader(responseRegister.data.token);
+
+      const loginBody = {
+        email: credentials.email,
+        password: credentials.password,
+      };
+
+      const responseLogin = await axios.post('/users/login', loginBody);
+      setAuthHeader(responseLogin.data.token);
+      return {
+        registerRespons: responseRegister.data,
+        loginRespons: responseLogin.data,
+      };
     } catch (error) {
-      console.log(error);
-      notify(error.message);
+      console.log(error.message);
+      notify('Email in use');
       // return alert('Try entering a different email');
       return thunkAPI.rejectWithValue(error.message);
     }
@@ -60,8 +70,9 @@ export const logIn = createAsyncThunk(
       setAuthHeader(response.data.token);
       return response.data;
     } catch (error) {
-      return alert('You entered an incorrect username or password');
-      // return thunkAPI.rejectWithValue(error.message);
+      // return alert('You entered an incorrect username or password');
+      notify('You entered an incorrect username or password');
+      return thunkAPI.rejectWithValue(error.message);
     }
   }
 );
@@ -103,8 +114,8 @@ export const refreshUser = createAsyncThunk(
       const response = await axios.get('/users/current');
       return response.data;
     } catch (error) {
-      // return alert('User is not found');
-      return thunkAPI.rejectWithValue(error.message);
+      // console.log('Unauthorized');
+      return thunkAPI.rejectWithValue('Unauthorized');
     }
   }
 );
