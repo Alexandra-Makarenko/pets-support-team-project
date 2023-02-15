@@ -41,7 +41,7 @@ export const FriendItem = styled.li`
 `;
 
 export const FriendTitle = styled.h3`
-  font-family: inherit;
+  font-family: 'Manrope700';
   font-size: 12px;
   line-height: 1.35;
   font-weight: 700;
@@ -114,7 +114,7 @@ export const HoursWrapper = styled.div`
 export const FriendText = styled.p`
   margin-top: 4px;
 
-  font-family: inherit;
+  font-family: 'Manrope500';
   font-size: 12px;
   line-height: 1.35;
 
@@ -169,7 +169,7 @@ export const HoursItem = styled.li`
   justify-content: space-between;
   gap: 12px;
 
-  font-family: inherit;
+  font-family: 'Manrope500';
   font-size: 12px;
   line-height: 1.35;
 
