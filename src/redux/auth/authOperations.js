@@ -78,7 +78,7 @@ export const password = createAsyncThunk(
     console.log(credentials);
     try {
       const response = await axios.post('/users/new_password', credentials);
-      console.log(response.data);
+      alert('Check your email');
       return response.data;
     } catch (error) {
       // return thunkAPI.rejectWithValue(error.message);
