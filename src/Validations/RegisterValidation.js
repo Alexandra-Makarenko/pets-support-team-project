@@ -5,7 +5,7 @@ import { ErrorText } from './AuthErrorMessage.styled';
 const nameRules = /^[aA-zZ\s]+$/;
 const passwordRules = /^(\S+$)/g;
 const emailRules = /^(?!-)(?!.*@[^,]*,)/;
-const emailRules2 = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
+const emailRules2 = /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/;
 const regionRules = /^()(\w+(,|\s)\s*)+\w+$/;
 const regionRulesOnlyLetters = /^[a-zA-Z\s]{3,},[a-zA-Z\s]{4,}$/;
 
