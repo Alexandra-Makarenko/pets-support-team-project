@@ -274,7 +274,7 @@ export const ModalRadioSex = styled.div`
   margin-top: 8px;
 `;
 
-export const ModalFileInput = styled.input.attrs({ type: 'file' })`
+export const ModalFileInput = styled.input`
   opacity: 0;
   position: fixed;
   width: 0;
