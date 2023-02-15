@@ -12,11 +12,12 @@ import desktop_vector_1 from '../../../assets/images/bg-pictures/desktop/desktop
 import desktop_vector_2 from '../../../assets/images/bg-pictures/desktop/desktop_vector_2.png';
 import desktop_vector_3 from '../../../assets/images/bg-pictures/desktop/desktop_vector_3.png';
 import { device } from 'styles/device';
+import { BiShow } from 'react-icons/bi';
+import { BiHide } from 'react-icons/bi';
 
 export const SectionLoginForm = styled.section`
-  min-height: 100vh;
-  padding-top: 42px;
-  padding-bottom: 159px;
+  min-height: calc(100vh - 100px);
+
   background-color: ${props => props.theme.backgrounds.input};
 
   background-image: url(${register_bg_step1_mob});
@@ -26,8 +27,9 @@ export const SectionLoginForm = styled.section`
   background-repeat: no-repeat;
 
   @media ${device.tablet} {
-    padding-top: 204px;
-    padding-bottom: 299px;
+    min-height: calc(100vh - 272px);
+    margin-top: 204px;
+
     background-image: url(${tablet_vector_3}), url(${tablet_vector_2}),
       url(${tablet_vector_4}), url(${tablet_vector_1}), url(${tablet_vector_5}),
       url(${tablet_vector_6});
@@ -37,8 +39,9 @@ export const SectionLoginForm = styled.section`
   }
 
   @media ${device.desktop} {
-    padding-top: 80px;
-    padding-bottom: 147px;
+    min-height: calc(100vh - 152px);
+    margin-top: 80px;
+
     background-image: url(${desktop_vector_1}), url(${desktop_vector_2}),
       url(${desktop_vector_3}), url(${tablet_vector_5}), url(${tablet_vector_6});
 
@@ -50,18 +53,12 @@ export const SectionLoginForm = styled.section`
 export const LoginFormContainer = styled.div`
   max-width: 320px;
   padding: 0px 20px;
-  /* margin-bottom: ${props =>
-    props.currentStep === 0 ? `266px` : `223px`}; */
-  /* padding-left: 20px;
-  padding-right: 20px; */
+
   margin: 0px auto;
-  /* margin-left: auto;
-  margin-right: auto; */
+
   text-align: center;
   padding-left: 20px;
   padding-right: 20px;
-  /* padding-bottom: ${props =>
-    props.currentStep === 0 ? `103px` : `59px`}; */
 
   @media ${device.tablet} {
     max-width: 768px;
@@ -132,8 +129,39 @@ export const FormInput = styled(Field)`
     padding-bottom: 13px;
     padding-left: 32px;
   }
+`;
 
-  @media ${device.desktop} {
+export const WrapInputPassword = styled.div`
+  position: relative;
+`;
+
+export const ShowPasswordIcon = styled(BiShow)`
+  position: absolute;
+  right: 20px;
+  top: 8.5px;
+  color: #f59256;
+  width: 26px;
+  height: 26px;
+  @media ${device.tablet} {
+    top: 10px;
+
+    width: 32px;
+    height: 32px;
+  }
+`;
+
+export const HidePasswordIcon = styled(BiHide)`
+  position: absolute;
+  right: 20px;
+  top: 8.5px;
+  color: #f59256;
+  width: 26px;
+  height: 26px;
+  @media ${device.tablet} {
+    top: 10px;
+
+    width: 32px;
+    height: 32px;
   }
 `;
 

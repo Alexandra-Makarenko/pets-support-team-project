@@ -12,8 +12,15 @@ import {
   Text,
   ThumbBtn,
   LearnMoreBtn,
+  BoxConfirmAlert,
+  YesBtnConfirmAlert,
+  NoBtnConfirmAlert,
+  TitleConfirmAlert,
+  WrapConfirmAlertBtn,
 } from './NoticeCategoryItem.styled';
 import { useDispatch } from 'react-redux';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import {
   fetchOneNotice,
   fetchAddFavoriteNotice,
@@ -29,28 +36,68 @@ import { useState } from 'react';
 import { MainModal } from 'components/MainModal/MainModal';
 import { ModalNotice } from 'components/Modals/ModalNotice/ModalNotice';
 import Plug from '../../../logo/plug_picture_pet.png';
+import { confirmAlert } from 'react-confirm-alert';
+import 'react-confirm-alert/src/react-confirm-alert.css';
 
-export const NoticeCategoryItem = ({ pet, favoritePets, user }) => {
-  // console.log('user._id', user);
-  // console.log('owner', pet.owner);
-  // console.log(user._id === pet.owner);
-
+export const NoticeCategoryItem = ({
+  pet,
+  favoritePets,
+  user,
+  categoryFilter,
+}) => {
   const { isLoggedIn } = useAuth();
 
   const isFavorite = favoritePets.find(item => item._id === pet._id);
   const isMyAds = user._id === pet.owner;
-  // console.log(isMyAds);
 
   const dispatch = useDispatch();
   const [showModal, setShowModal] = useState(false);
+
+  const notify = () =>
+    toast.warn('You need to log in to use this function!', {
+      position: 'top-center',
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: 'colored',
+    });
+
   const toggleModal = () => {
     dispatch(fetchOneNotice(pet._id));
     setShowModal(!showModal);
   };
 
+  const removeFromMyAdsNotices = () => {
+    confirmAlert({
+      customUI: ({ onClose }) => {
+        return (
+          <BoxConfirmAlert>
+            <TitleConfirmAlert>
+              You want to delete this notice?
+            </TitleConfirmAlert>
+            <WrapConfirmAlertBtn>
+              <YesBtnConfirmAlert
+                onClick={() => {
+                  dispatch(removeMyAddNotice(pet._id));
+                  onClose();
+                }}
+              >
+                Yes, Delete it!
+              </YesBtnConfirmAlert>
+              <NoBtnConfirmAlert onClick={onClose}>No</NoBtnConfirmAlert>
+            </WrapConfirmAlertBtn>
+          </BoxConfirmAlert>
+        );
+      },
+    });
+  };
+
   const addToFavorite = () => {
     if (!isLoggedIn) {
-      alert('Login to your account or register');
+      notify();
       return;
     }
     dispatch(fetchAddFavoriteNotice(pet._id));
@@ -60,9 +107,9 @@ export const NoticeCategoryItem = ({ pet, favoritePets, user }) => {
     dispatch(fetchRemoveFavoriteNotice(pet._id));
   };
 
-  const removeFromMyAdsNotices = () => {
-    dispatch(removeMyAddNotice(pet._id));
-  };
+  // const removeFromMyAdsNotices = () => {
+  //   dispatch(removeMyAddNotice(pet._id));
+  // };
   const noLinesCategory = category => {
     if (category === 'lost-found') {
       return 'Lost/Found';
@@ -121,6 +168,18 @@ export const NoticeCategoryItem = ({ pet, favoritePets, user }) => {
             {isMyAds && <RemoveMyNoticeBtn onClick={removeFromMyAdsNotices} />}
           </ThumbBtn>
         </Wrap>
+        <ToastContainer
+          position="top-center"
+          autoClose={3000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="colored"
+        />
       </Item>
       {showModal && (
         <MainModal onClose={toggleModal}>
@@ -129,6 +188,8 @@ export const NoticeCategoryItem = ({ pet, favoritePets, user }) => {
             isMyAds={isMyAds}
             addToFavorite={addToFavorite}
             removeFromFavorite={removeFromFavorite}
+            toggleModal={toggleModal}
+            categoryFilter={categoryFilter}
           />
         </MainModal>
       )}

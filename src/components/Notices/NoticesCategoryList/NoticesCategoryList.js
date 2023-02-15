@@ -21,9 +21,6 @@ const NoticesCategoryList = () => {
 
   const favoritePets = useSelector(getFavoriteNotices);
 
-  // console.log('pets', pets);
-  // console.log('favoritePets', favoritePets);
-
   const categoryFilter = useSelector(getCategoryFilter);
   const searchValue = useSelector(getSearchValueFilter);
   const location = useLocation();
@@ -65,6 +62,7 @@ const NoticesCategoryList = () => {
                   pet={pet}
                   favoritePets={favoritePets}
                   user={user}
+                  categoryFilter={categoryFilter}
                 />
               ))
             : favoritePets.map((pet, idx) => (
@@ -73,6 +71,7 @@ const NoticesCategoryList = () => {
                   pet={pet}
                   favoritePets={favoritePets}
                   user={user}
+                  categoryFilter={categoryFilter}
                 />
               ))}
         </PetsList>
