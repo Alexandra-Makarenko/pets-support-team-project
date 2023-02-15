@@ -44,15 +44,16 @@ export const RegisterForm = () => {
   const [currentStep, setCurrentStep] = useState(0);
 
   const makeRequest = formData => {
-    const body = {
+    const bodyRegister = {
       email: formData.email,
       password: formData.password,
       name: formData.name,
       place: formData.region,
       phone: formData.phone,
     };
-    console.log('Form Submitted', body);
-    dispatch(register(body));
+
+    console.log('Form Submitted', bodyRegister);
+    dispatch(register(bodyRegister));
   };
 
   const handleNextStep = (newData, final = false) => {
@@ -236,7 +237,7 @@ const RegisterStepTwo = props => {
               <NextFormRegisterBtn
                 currentStep={props.currentStep}
                 type="submit"
-                disabled={!dirty || !isValid}
+                disabled={!isValid}
               >
                 Register
               </NextFormRegisterBtn>
