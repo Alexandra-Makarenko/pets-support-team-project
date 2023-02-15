@@ -142,7 +142,7 @@ export const InputValue = styled.input`
   margin-right: 9px;
   padding: 0px 0px 0px 17px;
   height: 20px;
-  background-color: #f5925680;
+  background-color: ${props => props.theme.backgrounds.input};
   border: 1px solid ${props => props.theme.fontColors.buttonSecondary};
   border-radius: 16px;
 
@@ -223,6 +223,7 @@ export const UserButton = styled.button`
   width: 20px;
   height: 20px;
   padding: 0;
+
   svg {
     width: 12.5px;
     height: 12.5px;
