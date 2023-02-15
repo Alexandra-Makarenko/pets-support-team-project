@@ -267,11 +267,11 @@ export const PetPhoto = styled.img`
 `;
 
 export const PetPhotoContainer = styled.div`
-  width: 240px;
+  min-width: 240px;
   height: 240px;
   margin-bottom: 20px;
   @media ${device.tablet} {
-    width: 161px;
+    min-width: 161px;
     height: 161px;
     margin-right: 32px;
     margin-bottom: 0;
@@ -327,6 +327,7 @@ export const PetFieldName = styled.span`
 `;
 
 export const PetDescription = styled.span`
+  word-break: break-all;
   font-family: 'Manrope400';
   font-size: 14px;
   line-height: 19px;

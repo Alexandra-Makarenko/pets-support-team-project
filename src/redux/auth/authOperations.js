@@ -9,7 +9,7 @@ const notify = message => {
   });
 };
 
-axios.defaults.baseURL = 'https://petly-5jqe.onrender.com/api';
+axios.defaults.baseURL = 'http://localhost:3018/api';
 
 // Utility to add JWT
 const setAuthHeader = token => {

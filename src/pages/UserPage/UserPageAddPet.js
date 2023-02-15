@@ -21,6 +21,7 @@ import { useDispatch } from 'react-redux';
 import { postPet } from 'redux/userPets/operations';
 import { stepOnePetSchema, stepTwoPetSchema } from 'Validations/PetValidation';
 import { FormError } from 'Validations/RegisterValidation';
+import { toast } from 'react-toastify';
 
 const { Formik, Form } = require('formik');
 const { useState, useEffect } = require('react');
@@ -177,10 +178,24 @@ const AddPetStepTwo = props => {
               accept=".jpg, .jpeg, .png"
               size={2097152}
               onChange={e => {
-                if (e.target.files[0]) {
-                  props.setPetData({
-                    ...props.petData,
-                    avatar: e.target.files[0],
+                if (e.target.files[0].size < 2097152) {
+                  if (e.target.files[0]) {
+                    props.setPetData({
+                      ...props.petData,
+                      avatar: e.target.files[0],
+                    });
+                  }
+                } else {
+                  console.log(e.target.files[0].size);
+                  toast.warn('File size should be less than 2Mb!', {
+                    position: 'top-center',
+                    autoClose: 3000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: 'colored',
                   });
                 }
               }}

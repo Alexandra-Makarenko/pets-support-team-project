@@ -4,9 +4,13 @@ import axios from 'axios';
 export const fetchNotices = createAsyncThunk(
   'notices/fetchAll',
 
-  async ({ category, searchValue }, thunkAPI) => {
+  async ({ category, searchValue, currentPage, options = {} }, thunkAPI) => {
     try {
-      const response = await axios.get(`/notices/${category}`);
+      console.log(`/notices/${category}?page=${currentPage}`);
+      const response = await axios.get(
+        `/notices/${category}?page=${currentPage}`,
+        options
+      );
       if (!searchValue) {
         return response.data;
       } else {
@@ -27,6 +31,7 @@ export const fetchFavoriteNotices = createAsyncThunk(
     try {
       const response = await axios.get(`/notices/favorite`);
       console.log(searchValue);
+      console.log(response.data);
       if (!searchValue) {
         return response.data;
       } else {
