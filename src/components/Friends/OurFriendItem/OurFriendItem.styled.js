@@ -106,6 +106,7 @@ export const FriendImg = styled.img`
 export const TextWrapper = styled.div`
   display: flex;
   flex-direction: column;
+  width: 100%;
 `;
 export const HoursWrapper = styled.div`
   position: relative;

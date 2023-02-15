@@ -16,7 +16,7 @@ import {
 import { getHours } from 'components/Friends/services';
 import defaultImage from 'data/default-image_550.png';
 
-const NO_INFO_STRING = '---------------';
+const NO_INFO_STRING = '----------------';
 
 export const OurFriendItem = ({
   title,
