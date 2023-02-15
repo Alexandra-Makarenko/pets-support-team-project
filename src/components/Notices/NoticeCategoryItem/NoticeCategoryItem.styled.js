@@ -12,8 +12,12 @@ export const Item = styled.li`
   overflow-wrap: break-word;
 
   @media ${device.tablet} {
-    flex-basis: calc(100% / 4 - 32px);
+    flex-basis: calc(100% / 2 - 32px);
     margin-left: 32px;
+  }
+
+   @media ${device.desktop} {
+    flex-basis: calc(100% / 4 - 32px);
   }
 `;
 
