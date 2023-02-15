@@ -9,6 +9,8 @@ const notify = message => {
   });
 };
 
+// заглушка для розробки
+// axios.defaults.baseURL = 'http://localhost:3000/api';
 axios.defaults.baseURL = 'https://petly-5jqe.onrender.com/api';
 
 // Utility to add JWT
@@ -62,6 +64,25 @@ export const logIn = createAsyncThunk(
     } catch (error) {
       return alert('You entered an incorrect username or password');
       // return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
+/*
+ * POST @ /users/new_password
+ * body: { email }
+ */
+export const password = createAsyncThunk(
+  '/users/new_password',
+  async (credentials, thunkAPI) => {
+    console.log(credentials);
+    try {
+      const response = await axios.post('/users/new_password', credentials);
+      console.log(response.data);
+      return response.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+      // return alert('You entered an incorrect email');
     }
   }
 );

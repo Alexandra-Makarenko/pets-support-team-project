@@ -172,7 +172,6 @@ export const LoginBoxText = styled.div`
 `;
 
 export const LoginLinkText = styled.p`
-  margin-bottom: 10px;
   font-family: 'Manrope400';
   font-weight: 400;
   font-size: 12px;
