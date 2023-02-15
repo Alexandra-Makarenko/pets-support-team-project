@@ -149,7 +149,7 @@ const StepOne = props => {
     name: yup
       .string()
       .min(2, 'Must be more than 2 characters')
-      .max(48, 'Must not be longer than 48 characters')
+      .max(16, 'Must not be longer than 16 characters')
       .matches(nameRules, 'Only latin characters are allowed for this field')
       .required('This field is required'),
     dateofbirth: yup
@@ -277,13 +277,14 @@ const StepTwo = props => {
               'Format must be City, region. For example: Brovary, Kyiv'
             ),
           price: yup
-            .number('Enter a price as number')
-            .positive('Price must be lager than 0')
+            .string('Enter a price')
+            .matches(/^(?!(0))[0-9]+$/, 'Price must not start with 0 or -')
             .required('Price is required'),
           avatarURL: yup.mixed(),
           comments: yup
             .string()
-            .min(4, 'Must be more than 4 characters')
+            .min(8, 'Must be more than 8 characters')
+            .max(120, 'Must not be longer than 120 characters')
             .required('Comments is required'),
         })
       );
@@ -302,6 +303,7 @@ const StepTwo = props => {
           comments: yup
             .string()
             .min(4, 'Must be more than 4 characters')
+            .max(120, 'Must not be longer than 120 characters')
             .required('Comments is required'),
         })
       );
