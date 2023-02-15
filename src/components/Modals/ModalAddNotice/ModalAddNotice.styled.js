@@ -97,9 +97,25 @@ export const ModalFormInput = styled(Field)`
     padding-bottom: 16px;
     padding-left: 32px;
   }
-
-  @media ${device.desktop} {
-  }
+`;
+export const ModalDateField = styled(Field)`
+  display: block;
+  font-family: 'Manrope400';
+  font-size: 14px;
+  line-height: 19px;
+  line-height: 19px;
+  letter-spacing: ${props => props.theme.fonts.letterSpacing};
+  width: 100%;
+  padding-top: 11px;
+  padding-bottom: 12px;
+  padding-left: 14px;
+  margin-bottom: 16px;
+  margin-top: 8px;
+  color: ${props => props.theme.fontColors.inputTextColor};
+  outline: none;
+  background-color: ${props => props.theme.backgrounds.input};
+  border: 1px solid rgba(245, 146, 86, 0.5);
+  border-radius: 40px;
 `;
 
 export const ModalTextArea = styled(Field)`
