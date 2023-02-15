@@ -25,6 +25,7 @@ export const Wrap = styled.div`
 `;
 
 export const SecondWrap = styled.div`
+  overflow:auto; 
   @media ${device.tablet} {
     display: flex;
   }
