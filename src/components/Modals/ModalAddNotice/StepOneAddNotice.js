@@ -93,7 +93,6 @@ export const StepOne = props => {
             </ModalRadioCategoriesTitle>
             <FormError name="category" />
           </CategoriesOfAdd>
-
           <ModalLabel>
             Title of add<p style={{ color: '#F59256' }}>*</p>
           </ModalLabel>
@@ -117,6 +116,7 @@ export const StepOne = props => {
             name="dateofbirth"
             min="1970-01-01"
             max={new Date().toISOString().split('T')[0]}
+            lang="en-GB"
             noValidate
           />
           <FormError name="dateofbirth" />
