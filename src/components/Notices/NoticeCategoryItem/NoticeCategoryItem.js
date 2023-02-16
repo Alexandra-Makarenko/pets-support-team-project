@@ -53,10 +53,22 @@ export const NoticeCategoryItem = ({
   const dispatch = useDispatch();
   const [showModal, setShowModal] = useState(false);
 
-  const notify = () =>
+  const notifyNeedLogin = () =>
     toast.warn('You need to log in to use this function!', {
       position: 'top-center',
       autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: 'colored',
+    });
+
+  const notifyDeclarationIsDelete = () =>
+    toast.success('Declaration deleted!', {
+      position: 'bottom-left',
+      autoClose: 5000,
       hideProgressBar: false,
       closeOnClick: true,
       pauseOnHover: true,
@@ -83,6 +95,7 @@ export const NoticeCategoryItem = ({
                 onClick={() => {
                   dispatch(removeMyAddNotice(pet._id));
                   onClose();
+                  notifyDeclarationIsDelete();
                 }}
               >
                 Yes, Delete it!
@@ -97,7 +110,7 @@ export const NoticeCategoryItem = ({
 
   const addToFavorite = () => {
     if (!isLoggedIn) {
-      notify();
+      notifyNeedLogin();
       return;
     }
     dispatch(fetchAddFavoriteNotice(pet._id));

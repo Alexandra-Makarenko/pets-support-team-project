@@ -17,7 +17,7 @@ export const Item = styled.li`
     margin-left: 32px;
   }
 
-   @media ${device.desktop} {
+  @media ${device.desktop} {
     flex-basis: calc(100% / 4 - 32px);
   }
 `;
@@ -61,6 +61,12 @@ export const AddToFavoriteBtn = styled.button`
   width: 44px;
   height: 44px;
   cursor: pointer;
+
+  &:hover,
+  &:focus {
+    transform: scale(1.02);
+    border: 2px solid #ffffff;
+  }
 `;
 
 export const HeartIcon = styled(AiOutlineHeart)`
@@ -144,7 +150,16 @@ export const LearnMoreBtn = styled.button`
   background: #ffffff;
   border: 2px solid #f59256;
   border-radius: 40px;
+  transition: transform ${p => p.theme.transition.first};
   cursor: pointer;
+
+  &:hover,
+  &:focus {
+    transform: scale(1.03);
+    border: 2px solid ${p => p.theme.hoverButtonColor.primary};
+    color: ${p => p.theme.hoverButtonColor.primary};
+    cursor: pointer;
+  }
 `;
 
 export const BoxConfirmAlert = styled.div`
@@ -193,17 +208,19 @@ export const YesBtnConfirmAlert = styled.button`
   color: #ffffff;
   background-color: #f59256;
   border-radius: 40px;
-  padding-top: 9.5px;
-  padding-bottom: 9.5px;
+  padding-top: 7.5px;
+  padding-bottom: 7.5px;
   font-size: 16px;
   line-height: 22px;
   letter-spacing: 0.04em;
   outline: none;
-  border: none;
-  cursor: pointer;
-  transition: all 0.3s ease-in-out;
+  border: 2px solid #f59256;
+  transition: transform 250ms cubic-bezier(0.57, 0.21, 0.69, 1.25);
+
   &:hover {
+    cursor: pointer;
     transform: scale(1.03);
+    border: 2px solid #ff6101;
   }
 
   @media ${device.tablet} {
@@ -222,15 +239,18 @@ export const NoBtnConfirmAlert = styled.button`
   background-color: #ffffff;
   border: 2px solid #f59256;
   border-radius: 40px;
-  padding-top: 7.5px;
-  padding-bottom: 7.5px;
+  padding-top: 4.5px;
+  padding-bottom: 4.5px;
   font-size: 16px;
   line-height: 22px;
   letter-spacing: 0.04em;
   outline: none;
-  cursor: pointer;
+  transition: transform 250ms cubic-bezier(0.57, 0.21, 0.69, 1.25);
+
   &:hover {
+    cursor: pointer;
     transform: scale(1.03);
+    border: 2px solid #ff6101;
   }
   @media ${device.tablet} {
     width: 180px;

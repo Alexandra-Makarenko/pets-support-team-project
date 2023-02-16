@@ -8,7 +8,8 @@ export const ModalNoticeBox = styled.div`
   padding-bottom: 40px;
   padding-left: 20px;
   padding-right: 20px;
-  overflow:auto;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
 
   @media ${device.tablet} {
     min-width: 704px;
@@ -187,24 +188,24 @@ export const ContactModalNoticeBtn = styled.a`
   text-align: center;
   background-color: #f59256;
   border-radius: 40px;
-  padding-top: 9px;
-  padding-bottom: 9px;
+  padding-top: 7px;
+  padding-bottom: 7px;
   font-size: 16px;
   line-height: 22px;
   letter-spacing: 0.04em;
   outline: none;
-  border: none;
   cursor: pointer;
-  transition: all 0.3s ease-in-out;
   text-decoration: none;
   text-align: center;
-  &:hover {
-    transform: scale(1.03);
-  }
+  border: 2px solid #f59256;
+  transition: transform ${p => p.theme.transition.first};
 
-  /* &:hover {
+  &:hover,
+  &:focus {
     transform: scale(1.03);
-  } */
+    border: 2px solid ${p => p.theme.hoverButtonColor.primary};
+    cursor: pointer;
+  }
 
   @media ${device.tablet} {
     margin-top: 0px;
@@ -230,10 +231,13 @@ export const AddModalNoticeBtn = styled.button`
   line-height: 22px;
   letter-spacing: 0.04em;
   outline: none;
-  transition: all 0.3s ease-in-out;
-  cursor: pointer;
-  &:hover {
+  transition: transform ${p => p.theme.transition.first};
+
+  &:hover,
+  &:focus {
     transform: scale(1.03);
+    border: 2px solid ${p => p.theme.hoverButtonColor.primary};
+    cursor: pointer;
   }
 
   @media ${device.tablet} {
@@ -250,7 +254,7 @@ export const RemoveFavoriteBtn = styled.button`
   justify-content: center;
   margin-top: 12px;
   width: 100%;
-  color: #ff6101;
+  color: #111111;
   background-color: #ffffff;
   border: 2px solid #ff6101;
   border-radius: 40px;
@@ -260,10 +264,13 @@ export const RemoveFavoriteBtn = styled.button`
   line-height: 22px;
   letter-spacing: 0.04em;
   outline: none;
-  transition: all 0.3s ease-in-out;
-  cursor: pointer;
-  &:hover {
+  transition: transform ${p => p.theme.transition.first};
+
+  &:hover,
+  &:focus {
     transform: scale(1.03);
+    border: 2px solid ${p => p.theme.hoverButtonColor.primary};
+    cursor: pointer;
   }
 
   @media ${device.tablet} {
