@@ -20,6 +20,9 @@ export const theme = Object.freeze({
     grey: '#535353',
     navFont: '#181C27',
   },
+  hoverButtonColor: {
+    primary: '#FF6101',
+  },
   hovers: {
     primary: '#f59356af',
     secondary: '#ffffffd0',

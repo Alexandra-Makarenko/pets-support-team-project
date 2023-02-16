@@ -29,7 +29,7 @@ export const PhoneInputField = props => {
         fontFamily: 'Manrope400',
         color: 'rgba(17, 17, 17, 0.6)',
         letterSpacing: '0.04em',
-        width: '180px',
+        width: '200px',
         background: '#FDF7F2',
         outline: 0,
         border: 0,
@@ -176,6 +176,14 @@ export const FormInput = styled(Field)`
   border: 1px solid rgba(245, 146, 86, 0.5);
   border-radius: 40px;
 
+  transition: transform ${props => props.theme.transition.first};
+
+  &:hover,
+  &:focus {
+    transform: scale(1.02);
+    border: 1px solid ${p => p.theme.hoverButtonColor.primary};
+  }
+
   @media ${device.tablet} {
     font-family: 'Manrope400';
     font-size: 18px;
@@ -229,16 +237,27 @@ export const NextFormRegisterBtn = styled.button`
   background-color: ${props =>
     props.disabled ? '#A0A0A0' : props.theme.backgrounds.buttonPrimary};
   border-radius: 40px;
-  padding-top: 8.5px;
-  padding-bottom: 8.5px;
+  padding-top: 6.5px;
+  padding-bottom: 6.5px;
   font-weight: 500;
   font-size: 20px;
   line-height: 27px;
   letter-spacing: ${props => props.theme.fonts.letterSpacing};
   outline: none;
-  border: none;
-  cursor: pointer;
-  transition: all 0.3s ease-in-out;
+
+  border: 2px solid #f59256;
+  border: ${props =>
+    props.disabled ? '2px solid #A0A0A0' : '2px solid #f59256'};
+  transition: transform ${props => props.theme.transition.first};
+
+  &:hover,
+  &:focus {
+    cursor: pointer;
+    transform: scale(1.03);
+    /* border: 2px solid ${p => p.theme.hoverButtonColor.primary}; */
+    border: ${props =>
+      props.disabled ? '2px solid #A0A0A0' : '2px solid #FF6101'};
+  }
 
   &:hover {
     transform: scale(1.03);
@@ -266,17 +285,20 @@ export const BackFormRegisterBtn = styled.button`
   background-color: ${props => props.theme.backgrounds.bodyPrimary};
   border: 2px solid #f59256;
   border-radius: 40px;
-  padding-top: 8.5px;
-  padding-bottom: 8.5px;
+  padding-top: 6.5px;
+  padding-bottom: 6.5px;
   font-weight: 500;
   font-size: 20px;
   line-height: 27px;
   letter-spacing: ${props => props.theme.fonts.letterSpacing};
   outline: none;
-  transition: all 0.3s ease-in-out;
-  cursor: pointer;
-  &:hover {
+  transition: transform ${props => props.theme.transition.first};
+
+  &:hover,
+  &:focus {
+    cursor: pointer;
     transform: scale(1.03);
+    border: 2px solid ${p => p.theme.hoverButtonColor.primary};
   }
 
   @media ${device.tablet} {
@@ -300,8 +322,19 @@ export const RegisterLinkText = styled.p`
   line-height: 16px;
   letter-spacing: ${props => props.theme.fonts.letterSpacing};
   color: ${props => props.theme.fontColors.inputTextColor};
+  transition: transform ${props => props.theme.transition.first};
+  &:hover,
+  &:focus {
+    transform: scale(1.03);
+  }
 `;
 
 export const ReqisterLoginLink = styled(NavLink)`
   color: ${props => props.theme.fontColors.blueLink};
+  transition: transform ${props => props.theme.transition.first};
+
+  &:hover {
+    color: #4169e1;
+    cursor: pointer;
+  }
 `;

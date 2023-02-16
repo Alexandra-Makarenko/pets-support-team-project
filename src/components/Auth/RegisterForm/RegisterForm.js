@@ -52,7 +52,7 @@ export const RegisterForm = () => {
       phone: formData.phone,
     };
 
-    console.log('Form Submitted', bodyRegister);
+    // console.log('Form Submitted', bodyRegister);
     dispatch(register(bodyRegister));
   };
 
