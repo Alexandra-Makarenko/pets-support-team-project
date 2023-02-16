@@ -5,6 +5,7 @@ import { device } from 'styles/device';
 export const Overlay = styled.div`
   position: fixed;
   top: 0;
+
   left: 0;
   width: 100vw;
   height: 100vh;
@@ -14,23 +15,24 @@ export const Overlay = styled.div`
   background-color: rgba(17, 17, 17, 0.6);
   backdrop-filter: blur(10px);
   z-index: 1200;
-  overflow: scroll;
+
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
 `;
 
 export const ModalWindow = styled.div`
   position: fixed;
-  top: 70px;
+  top: 50px;
   background-color: #ffffff;
   border-radius: 20px;
   z-index: 1201;
 
   @media ${device.tablet} {
-    top: 90px;
+    top: 70px;
     border-radius: 40px;
   }
 
   @media ${device.desktop} {
-    /* top: 329px; */
   }
 `;
 
@@ -45,7 +47,15 @@ export const BtnCloseModal = styled.button`
   padding: 0;
   background-color: #fdf7f2;
   color: #000000;
-  cursor: pointer;
+  transition: transform 250ms cubic-bezier(0.57, 0.21, 0.69, 1.25);
+
+  &:hover,
+  &:focus {
+    cursor: pointer;
+    transform: scale(1.03);
+    border: 2px solid #f59256;
+    color: #f59256;
+  }
 
   @media ${device.tablet} {
     width: 44px;
@@ -55,9 +65,10 @@ export const BtnCloseModal = styled.button`
 
 export const ImgClose = styled(IoCloseSharp)`
   position: absolute;
-  width: 30px;
-  height: 30px;
+  width: 26px;
+  height: 26px;
   top: 50%;
   left: 50%;
+
   transform: translate(-50%, -50%);
 `;

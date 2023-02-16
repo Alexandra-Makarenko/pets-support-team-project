@@ -12,8 +12,13 @@ export const Button = styled.button`
   font-size: 16px;
   line-height: 22px;
   letter-spacing: 0.04em;
+  transition: transform ${p => p.theme.transition.first};
 
-  cursor: pointer;
+  &:hover,
+  &:focus {
+    transform: scale(1.03);
+    cursor: pointer;
+  }
 
   span {
     display: flex;
@@ -23,6 +28,7 @@ export const Button = styled.button`
     svg {
       margin-left: 15px;
       &:hover {
+        transform: scale(1.03);
         fill: #f59256;
         cursor: pointer;
       }
