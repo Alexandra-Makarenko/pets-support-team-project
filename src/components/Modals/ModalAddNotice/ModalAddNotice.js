@@ -27,6 +27,20 @@ export const ModalAddNotice = ({ onClick, isOpen }) => {
 
   const [currentStep, setCurrentStep] = useState(0);
 
+  useEffect(() => {
+    const onModalCloseBtn = button => {
+      if (button.keyCode === 27) {
+        onClick();
+      }
+    };
+
+    if (isOpen) {
+      window.addEventListener('keydown', onModalCloseBtn);
+    } else {
+      window.removeEventListener('keydown', onModalCloseBtn);
+    }
+  }, [onClick, isOpen]);
+
   const handleNextStep = (newData, final = false) => {
     setData(prev => ({ ...prev, ...newData }));
     if (final) {
@@ -35,6 +49,13 @@ export const ModalAddNotice = ({ onClick, isOpen }) => {
       return;
     }
     setCurrentStep(prev => prev + 1);
+  };
+
+  const handleOutletClose = event => {
+    if (event.target.matches(AddNoticeModal)) {
+      onClick();
+    }
+    return;
   };
 
   const handlePrevStep = newData => {
@@ -93,22 +114,12 @@ export const ModalAddNotice = ({ onClick, isOpen }) => {
     />,
   ];
 
-  useEffect(() => {
-    const onModalCloseBtn = button => {
-      if (button.keyCode === 27) {
-        onClick();
-      }
-    };
-
-    if (isOpen) {
-      window.addEventListener('keydown', onModalCloseBtn);
-    } else {
-      window.removeEventListener('keydown', onModalCloseBtn);
-    }
-  }, [onClick, isOpen]);
-
   return (
-    <AddNoticeModal>
+    <AddNoticeModal
+      onClick={e => {
+        handleOutletClose(e);
+      }}
+    >
       <AddNoticeModalWindow>
         <ModalCrossClose type="button" onClick={onClick}>
           <RxCross1Modal />
