@@ -25,7 +25,9 @@ const authSlice = createSlice({
     builder
 
       .addCase(register.fulfilled, (state, action) => {
-        state.user = action.payload.email;
+        // state.user = action.payload.registerRespons.email;
+        state.user = action.payload.loginRespons.user;
+        state.token = action.payload.loginRespons.token;
         state.isLoggedIn = true;
       })
 

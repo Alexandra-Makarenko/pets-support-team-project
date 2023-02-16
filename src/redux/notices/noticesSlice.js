@@ -26,7 +26,15 @@ const noticesSlice = createSlice({
     [fetchNotices.fulfilled](state, action) {
       state.isLoading = false;
       state.error = null;
-      state.items = action.payload;
+      if (action.payload.page === 1) {
+        state.items = action.payload;
+      } else {
+        if (action?.payload?.notices) {
+          for (let i = 0; i < action.payload.notices.length; i++) {
+            state.items.notices.push(action.payload.notices[i]);
+          }
+        }
+      }
     },
     [fetchNotices.rejected](state, action) {
       state.isLoading = false;
@@ -40,7 +48,6 @@ const noticesSlice = createSlice({
       state.isLoading = false;
       state.error = null;
       state.favoriteNotices = action.payload;
-      // console.log(action.payload);
     },
     [fetchFavoriteNotices.rejected](state, action) {
       state.isLoading = false;

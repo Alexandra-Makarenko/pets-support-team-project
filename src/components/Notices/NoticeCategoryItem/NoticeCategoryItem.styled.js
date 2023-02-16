@@ -5,15 +5,20 @@ import { AiOutlineHeart } from 'react-icons/ai';
 export const Item = styled.li`
   margin-bottom: 32px;
   height: 100%;
-  color: #111111;
-  background-color: #ffffff;
+  color: ${props => props.theme.fontColors.primary};
+  background-color: ${props => props.theme.backgrounds.bodySecondary};
   box-shadow: 7px 4px 14px rgba(49, 21, 4, 0.07);
   border-radius: 0px 0px 20px 20px;
   overflow-wrap: break-word;
+   
 
   @media ${device.tablet} {
-    flex-basis: calc(100% / 4 - 32px);
+    flex-basis: calc(100% / 2 - 32px);
     margin-left: 32px;
+  }
+
+   @media ${device.desktop} {
+    flex-basis: calc(100% / 4 - 32px);
   }
 `;
 
@@ -23,7 +28,8 @@ export const Wrap = styled.div`
   height: 100%;
 `;
 export const ImgWrap = styled.div`
-  position: relative;
+ position: relative;
+ height: 288px;
 `;
 
 export const CategoryLabel = styled.p`
@@ -34,7 +40,7 @@ export const CategoryLabel = styled.p`
   padding: 6px 0;
   width: 158px;
   font-size: 12px;
-  line-height: calc(16 / 12);
+  line-height: 1.3;
   text-align: center;
   background: rgba(255, 255, 255, 0.6);
   backdrop-filter: blur(2px);
@@ -58,14 +64,14 @@ export const AddToFavoriteBtn = styled.button`
 `;
 
 export const HeartIcon = styled(AiOutlineHeart)`
-  color: #f59256;
+  color: ${props => props.theme.fontColors.buttonSecondary};;
   width: 32px;
   height: 28px;
 `;
 
 export const Img = styled.img`
   width: 100%;
-  height: 288px;
+  height: 100%;
   object-fit: cover;
 `;
 

@@ -5,6 +5,7 @@ import { ErrorText } from './AuthErrorMessage.styled';
 const nameRules = /^[aA-zZ\s]+$/;
 const passwordRules = /^(\S+$)/g;
 const emailRules = /^(?!-)(?!.*@[^,]*,)/;
+const emailRules2 = /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/;
 const regionRules = /^()(\w+(,|\s)\s*)+\w+$/;
 const regionRulesOnlyLetters = /^[a-zA-Z\s]{3,},[a-zA-Z\s]{4,}$/;
 
@@ -15,6 +16,7 @@ export const stepOneReqisterSchema = yup.object().shape({
     .max(63, 'Maximum number of characters 63')
     .email('Please enter a valid email')
     .matches(emailRules, 'Please enter a valid email')
+    .matches(emailRules2, 'Only Latin letters')
     .required('Email is a required field'),
   password: yup
     .string()

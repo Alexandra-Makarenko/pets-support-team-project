@@ -8,8 +8,12 @@ import {
 } from './NoticesCategoriesNav.styled';
 import { useAuth } from 'hooks/useAuth';
 
+
 export const NoticesCategoriesNav = () => {
   const { isLoggedIn } = useAuth();
+
+
+
   return (
     <NavSection>
       <Container>
