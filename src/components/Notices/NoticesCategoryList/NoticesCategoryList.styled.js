@@ -8,7 +8,8 @@ export const PetsListSection = styled.section`
   }
 `;
 export const PetsList = styled.ul`
-  margin-bottom: 32px;
+  display: flex;
+  flex-wrap: wrap;
 
   @media ${device.tablet} {
     display: flex;
