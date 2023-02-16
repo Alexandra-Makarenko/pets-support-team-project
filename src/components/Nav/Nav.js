@@ -13,8 +13,7 @@ import {
 
 import { UserMenu } from 'components/UserMenu/UserMenu';
 import { AuthNav } from 'components/AuthNav/AuthNav';
-import { useSelector } from 'react-redux';
-import { getCategoryFilter } from 'redux/notices/selectors';
+import { useLocation } from 'react-router-dom';
 
 export const Nav = () => {
   const [isOpen, setIsOnen] = useState(false);
@@ -24,7 +23,7 @@ export const Nav = () => {
     setIsOnen(isOpen => !isOpen);
   };
 
-  const category = useSelector(getCategoryFilter);
+  const loc = useLocation();
 
   return (
     <NavBlock>
@@ -36,12 +35,12 @@ export const Nav = () => {
           <MenuLink
             to="notices/sell"
             className={
-              category === '/notices/lost-found' ||
-              '/notices/in-good-hands' ||
-              '/notices/favorite' ||
-              '/notices/own'
+              loc.pathname === '/notices/lost-found' ||
+              loc.pathname === '/notices/own' ||
+              loc.pathname === '/notices/in-good-hands' ||
+              loc.pathname === '/notices/favorite'
                 ? 'active'
-                : ''
+                : null
             }
           >
             Find pet
