@@ -4,7 +4,7 @@ import { OurFriends } from 'components/Friends';
 
 const OurFriendsPage = () => {
   return (
-    <section>
+    <section style={{ marginBottom: '100px' }}>
       <Container>
         <PagesTitle>Our friends</PagesTitle>
         <OurFriends />

@@ -4,7 +4,6 @@ import { device } from '../../styles/device';
 import { ReactComponent as BurgerIco } from './burger-menu.svg';
 import { ReactComponent as CloseIco } from './x.svg';
 
-
 export const NavBlock = styled.nav`
   display: flex;
   align-items: center;
@@ -21,7 +20,6 @@ export const MenuList = styled.ul`
   @media ${device.desktop} {
     display: flex;
     align-items: center;
-    /* margin-right: ; */
   }
 `;
 
