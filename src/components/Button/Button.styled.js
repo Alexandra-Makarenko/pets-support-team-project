@@ -32,10 +32,10 @@ export const Button = styled.button`
 
   @media ${device.tablet} {
     font-size: 20px;
-    padding: ${props => (props.icon ? '6px 28px' : '6px 28px')};
+    padding: ${props => (props.icon ? '10px 28px' : '10px 28px')};
   }
 
   @media ${device.desktop} {
-    padding: ${props => (props.icon ? '7px 28px' : '7px 28px')};
+    padding: ${props => (props.icon ? '10px 28px' : '10px 28px')};
   }
 `;
