@@ -24,9 +24,5 @@ export const stepOnePetSchema = yup.object().shape({
     .required('Breed is a required field'),
 });
 export const stepTwoPetSchema = yup.object().shape({
-  comment: yup
-    .string()
-    .min(8, 'Must be more than 8 characters')
-    .max(800, 'Maximum number of characters 800')
-    .required('Comments is a required field'),
+  comment: yup.string().max(800, 'Maximum number of characters 800'),
 });

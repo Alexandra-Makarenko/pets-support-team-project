@@ -142,7 +142,7 @@ export const InputValue = styled.input`
   margin-right: 9px;
   padding: 0px 0px 0px 17px;
   height: 20px;
-  background-color: #f5925680;
+  background-color: ${props => props.theme.backgrounds.input};
   border: 1px solid ${props => props.theme.fontColors.buttonSecondary};
   border-radius: 16px;
 
@@ -223,6 +223,7 @@ export const UserButton = styled.button`
   width: 20px;
   height: 20px;
   padding: 0;
+
   svg {
     width: 12.5px;
     height: 12.5px;
@@ -266,11 +267,11 @@ export const PetPhoto = styled.img`
 `;
 
 export const PetPhotoContainer = styled.div`
-  width: 240px;
+  min-width: 240px;
   height: 240px;
   margin-bottom: 20px;
   @media ${device.tablet} {
-    width: 161px;
+    min-width: 161px;
     height: 161px;
     margin-right: 32px;
     margin-bottom: 0;
@@ -326,6 +327,7 @@ export const PetFieldName = styled.span`
 `;
 
 export const PetDescription = styled.span`
+  word-break: break-all;
   font-family: 'Manrope400';
   font-size: 14px;
   line-height: 19px;
