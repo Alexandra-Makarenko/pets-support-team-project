@@ -27,6 +27,22 @@ const NewsItem = styled.li`
   }
 `;
 
+const SkeletonItem = styled.li`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  max-height: 100%;
+  margin-bottom: 40px;
+  @media (min-width: 768px) {
+    flex-basis: calc((100% - 2 * 32px) / 2);
+    margin-right: 32px;
+  }
+  @media (min-width: 1280px) {
+    flex-basis: calc((100% - 3 * 35px) / 3);
+    margin-right: 35px;
+  }
+`;
+
 const GradientBar = styled.div`
   width: 200px;
   border-radius: 2px;
@@ -45,6 +61,7 @@ const NewsTitle = styled.h3`
   margin-bottom: 16px;
   font-family: 'Manrope', sans-serif;
   font-weight: 700;
+  font-size: 24px;
   size: 24px;
   line-height: 33px;
   letter-spacing: -0.01em;
@@ -101,6 +118,7 @@ export {
   NewsAdditional,
   NewsDate,
   NewsItem,
+  SkeletonItem,
   NewsTitle,
   NewsMore,
   Empty,
