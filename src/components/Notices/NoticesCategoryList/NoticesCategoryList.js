@@ -50,7 +50,8 @@ const NoticesCategoryList = () => {
   const showLoadMoreButton = () => {
     if (currentPage < totalPages) {
       if (isLoading === false) {
-        return <LoadMore onLoadMore={onLoadMore} ButtonText={'Load More'} />;
+        if (category !== 'favorite')
+          return <LoadMore onLoadMore={onLoadMore} ButtonText={'Load More'} />;
       } else return <p>Loading...</p>;
     }
     return;
