@@ -13,6 +13,8 @@ import {
 
 import { UserMenu } from 'components/UserMenu/UserMenu';
 import { AuthNav } from 'components/AuthNav/AuthNav';
+import { useSelector } from 'react-redux';
+import { getCategoryFilter } from 'redux/notices/selectors';
 
 export const Nav = () => {
   const [isOpen, setIsOnen] = useState(false);
@@ -22,7 +24,7 @@ export const Nav = () => {
     setIsOnen(isOpen => !isOpen);
   };
 
-
+  const category = useSelector(getCategoryFilter);
 
   return (
     <NavBlock>
@@ -33,16 +35,20 @@ export const Nav = () => {
         <MenuItem>
           <MenuLink
             to="notices/sell"
+            className={
+              category === '/notices/lost-found' ||
+              '/notices/in-good-hands' ||
+              '/notices/favorite' ||
+              '/notices/own'
+                ? 'active'
+                : ''
+            }
           >
             Find pet
           </MenuLink>
         </MenuItem>
         <MenuItem>
-          <MenuLink
-            to="friends"
-          >
-            Our friends
-          </MenuLink>
+          <MenuLink to="friends">Our friends</MenuLink>
         </MenuItem>
       </MenuList>
       <UserMenuWrapper>

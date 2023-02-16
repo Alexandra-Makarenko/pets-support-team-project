@@ -84,6 +84,8 @@ const NoticesCategoryList = () => {
     dispatch(fetchFavoriteNotices({ searchValue }));
   }, [dispatch, category, searchValue, isLoggedIn, currentPage]);
 
+
+
   const result =
     categoryFilter !== '/notices/favorite'
       ? pets?.notices?.map((pet, idx) => (
