@@ -6,19 +6,19 @@ export const Overlay = styled.div`
   position: fixed;
   top: 0;
   left: 0;
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
   background-color: rgba(17, 17, 17, 0.6);
   backdrop-filter: blur(10px);
   z-index: 1200;
-  overflow: scroll;
+  overflow-y: scroll;
 `;
 
 export const ModalWindow = styled.div`
-  position: fixed;
+  position: absolute;
   top: 70px;
   background-color: #ffffff;
   border-radius: 20px;
