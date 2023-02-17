@@ -119,7 +119,7 @@ export const Title = styled.h2`
     margin-right: 85px;
   }
   @media ${device.tablet} {
-    margin-right: 85px;
+    margin-right: 36px;
   }
 `;
 
