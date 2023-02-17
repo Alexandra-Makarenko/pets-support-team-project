@@ -251,6 +251,16 @@ img {
   font-size: 13px;
   white-space: nowrap;
 }
+
+.react-tel-input {
+  transition: transform 250ms cubic-bezier(0.57, 0.21, 0.69, 1.25);
+}
+
+.react-tel-input:hover {
+  transform: scale(1.02);
+  border: 1px solid #ff6101 !important;
+}
+
 /* ====================================== */
 
 .react-confirm-alert-overlay {

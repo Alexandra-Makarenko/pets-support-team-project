@@ -13,6 +13,13 @@ export const Button = styled.button`
   outline: none;
   border: 0;
 
+  &:hover,
+  &:focus {
+    transform: scale(1.03);
+    border: 2px solid #f59256;
+    cursor: pointer;
+  }
+
   span {
     display: flex;
     justify-content: center;
@@ -20,8 +27,6 @@ export const Button = styled.button`
 
     svg {
       &:hover {
-        fill: #f59256;
-        cursor: pointer;
       }
     }
   }

@@ -53,10 +53,22 @@ export const NoticeCategoryItem = ({
   const dispatch = useDispatch();
   const [showModal, setShowModal] = useState(false);
 
-  const notify = () =>
+  const notifyNeedLogin = () =>
     toast.warn('You need to log in to use this function!', {
       position: 'top-center',
       autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: 'colored',
+    });
+
+  const notifyDeclarationIsDelete = () =>
+    toast.success('Declaration deleted!', {
+      position: 'bottom-left',
+      autoClose: 5000,
       hideProgressBar: false,
       closeOnClick: true,
       pauseOnHover: true,
@@ -83,6 +95,7 @@ export const NoticeCategoryItem = ({
                 onClick={() => {
                   dispatch(removeMyAddNotice(pet._id));
                   onClose();
+                  notifyDeclarationIsDelete();
                 }}
               >
                 Yes, Delete it!
@@ -97,7 +110,7 @@ export const NoticeCategoryItem = ({
 
   const addToFavorite = () => {
     if (!isLoggedIn) {
-      notify();
+      notifyNeedLogin();
       return;
     }
     dispatch(fetchAddFavoriteNotice(pet._id));
@@ -121,23 +134,24 @@ export const NoticeCategoryItem = ({
 
   return (
     <>
-      <Item>
-        <ImgWrap>
-          <CategoryLabel>{noLinesCategory(pet.category)}</CategoryLabel>
-
-          {isFavorite ? (
-            <RemoveFavoriteIconBtn removeFromFavorite={removeFromFavorite} />
-          ) : (
-            <AddFavoriteIconBtn onClick={addToFavorite} />
-          )}
-
-          {pet.avatarURL ? (
-            <Img src={pet.avatarURL} alt={pet.title} loading="lazy" />
-          ) : (
-            <Img src={Plug} alt="animal" />
-          )}
-        </ImgWrap>
+      <Item isMyAds={isMyAds}>
         <Wrap>
+          <ImgWrap>
+            <CategoryLabel>{noLinesCategory(pet.category)}</CategoryLabel>
+
+            {isFavorite ? (
+              <RemoveFavoriteIconBtn removeFromFavorite={removeFromFavorite} />
+            ) : (
+              <AddFavoriteIconBtn onClick={addToFavorite} />
+            )}
+
+            {pet.avatarURL ? (
+              <Img src={pet.avatarURL} alt={pet.title} loading="lazy" />
+            ) : (
+              <Img src={Plug} alt="animal" />
+            )}
+          </ImgWrap>
+
           <WrapInner>
             <Title>{pet.title || 'Title must be here'}</Title>
             <Ul>
@@ -161,13 +175,14 @@ export const NoticeCategoryItem = ({
               )}
             </Ul>
           </WrapInner>
-          <ThumbBtn isFavorite={isFavorite}>
-            <LearnMoreBtn type="button" onClick={toggleModal}>
-              Learn more
-            </LearnMoreBtn>
-            {isMyAds && <RemoveMyNoticeBtn onClick={removeFromMyAdsNotices} />}
-          </ThumbBtn>
         </Wrap>
+        <ThumbBtn isFavorite={isFavorite} isMyAds={isMyAds}>
+          <LearnMoreBtn type="button" onClick={toggleModal}>
+            Learn more
+          </LearnMoreBtn>
+          {isMyAds && <RemoveMyNoticeBtn onClick={removeFromMyAdsNotices} />}
+        </ThumbBtn>
+
         <ToastContainer
           position="top-center"
           autoClose={3000}

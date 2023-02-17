@@ -122,6 +122,14 @@ export const FormInput = styled(Field)`
   border: 1px solid rgba(245, 146, 86, 0.5);
   border-radius: 40px;
 
+  transition: transform ${props => props.theme.transition.first};
+
+  &:hover,
+  &:focus {
+    transform: scale(1.02);
+    border: 1px solid ${p => p.theme.hoverButtonColor.primary};
+  }
+
   @media ${device.tablet} {
     font-size: 18px;
     line-height: 25px;
@@ -172,17 +180,22 @@ export const LoginSubmitBtn = styled.button`
   color: ${props => props.theme.fontColors.white};
   background-color: ${props => props.theme.backgrounds.buttonPrimary};
   border-radius: 40px;
-  padding-top: 8.5px;
-  padding-bottom: 8.5px;
+  padding-top: 6.5px;
+  padding-bottom: 6.5px;
+  text-align: center;
   font-weight: 500;
   font-size: 20px;
   line-height: 27px;
   letter-spacing: ${props => props.theme.fonts.letterSpacing};
   outline: none;
-  border: none;
-  transition: all 0.3s ease-in-out;
-  &:hover {
+  border: 2px solid #f59256;
+  transition: transform ${props => props.theme.transition.first};
+
+  &:hover,
+  &:focus {
+    cursor: pointer;
     transform: scale(1.03);
+    border: 2px solid ${p => p.theme.hoverButtonColor.primary};
   }
 
   @media ${device.tablet} {
