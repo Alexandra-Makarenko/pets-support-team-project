@@ -205,6 +205,7 @@ export const NoticeCategoryItem = ({
             removeFromFavorite={removeFromFavorite}
             toggleModal={toggleModal}
             categoryFilter={categoryFilter}
+            imgsrc={pet.avatarURL ? pet.avatarURL : Plug}
           />
         </MainModal>
       )}

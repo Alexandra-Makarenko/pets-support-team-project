@@ -1,28 +1,38 @@
 import * as yup from 'yup';
+import { parse, isDate } from 'date-fns';
 const nameRules = /^[aA-zZ\s]+$/;
-const dateOfBirthSchema =
-  /^\s*(3[01]|[12][0-9]|0?[1-9])\.(1[012]|0?[1-9])\.((?:19|20)\d{2})\s*$/;
 
 export const stepOnePetSchema = yup.object().shape({
   name: yup
     .string()
     .min(2, 'Must be more than 2 characters')
-    .max(30, 'Maximum number of characters 30')
+    .max(16, 'Maximum number of characters 16')
     .matches(nameRules, 'Only latin characters are allowed for this field')
     .required('Name is a required field'),
   date: yup
-    .string()
-    .min(10)
-    .max(10)
-    .matches(dateOfBirthSchema, 'DD.MM.YYYY')
-    .required('Date of birth is a required field'),
+    .date()
+    .transform((value, originalValue) => {
+      const parsedDate = isDate(new Date(originalValue))
+        ? new Date(originalValue)
+        : parse(new Date(originalValue), 'yyyy-MM-dd', new Date());
+      return parsedDate;
+    })
+    .min('1970-01-01', 'Date must be later than 01.01.1970')
+    .max(
+      new Date().setDate(new Date().getDate() + 1),
+      'Date must be today or earlier '
+    )
+    .required('Date of birth is required'),
   breed: yup
     .string()
     .min(2, 'Must be more than 2 characters')
-    .max(30, 'Maximum number of characters 30')
+    .max(16, 'Maximum number of characters 16')
     .matches(nameRules, 'Only latin characters are allowed for this field')
     .required('Breed is a required field'),
 });
 export const stepTwoPetSchema = yup.object().shape({
-  comment: yup.string().max(800, 'Maximum number of characters 800'),
+  comment: yup
+    .string()
+    .min(8, 'Must be more than 8 characters')
+    .max(120, 'Maximum number of characters 120'),
 });
