@@ -7,8 +7,8 @@ export const Overlay = styled.div`
   top: 0;
 
   left: 0;
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -16,13 +16,13 @@ export const Overlay = styled.div`
   backdrop-filter: blur(10px);
   z-index: 1200;
 
-  overflow-y: auto;
-  -webkit-overflow-scrolling: touch;
+  overflow-y: scroll;
 `;
 
 export const ModalWindow = styled.div`
-  position: fixed;
-  top: 50px;
+  position: absolute;
+  top: 70px;
+
   background-color: #ffffff;
   border-radius: 20px;
   z-index: 1201;
