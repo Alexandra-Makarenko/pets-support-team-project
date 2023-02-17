@@ -11,3 +11,5 @@ export const getOneNotice = state => state.notices.oneNotice;
 export const getNoticesIsLoading = state => state.notices.isLoading;
 
 export const getNoticesError = state => state.notices.error;
+
+export const getCategory = state => state.notices.category;

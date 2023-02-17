@@ -16,8 +16,17 @@ const noticesSlice = createSlice({
     items: [],
     oneNotice: {},
     favoriteNotices: [],
+    category: '',
     isLoading: false,
     error: null,
+  },
+  reducers: {
+    clearNotices(state) {
+      state.items = [];
+    },
+    setCategoryGlobal(state, action) {
+      state.category = action.payload;
+    },
   },
   extraReducers: {
     [fetchNotices.pending](state) {
@@ -111,4 +120,5 @@ const noticesSlice = createSlice({
 });
 
 // export const { addTask, deleteTask, toggleCompleted } = petsSlice.actions;
+export const { clearNotices, setCategoryGlobal } = noticesSlice.actions;
 export const noticesReducer = noticesSlice.reducer;
