@@ -19,7 +19,6 @@ import AddNoticeButton from 'components/Notices/AddNoticeButton/AddNoticeButton'
 import { ModalAddNotice } from 'components/Modals/ModalAddNotice/ModalAddNotice';
 import { SearchNotFound } from 'components/SearchNotFound/SearchNotFound';
 import { setSearch } from 'redux/notices/filtersSlice';
-import { setCategoryGlobal } from 'redux/notices/noticesSlice';
 
 const NoticesPage = () => {
   const [isAddNoticeOpen, setIsAddNoticeOpen] = useState(false);

@@ -3,7 +3,6 @@ import FormData from 'form-data';
 import { StepOne } from './StepOneAddNotice';
 import { StepTwo } from './StepTwoAddNotice';
 
-import { postNotice } from './helpers/sendNoticeRequest';
 import {
   ModalHeader,
   AddNoticeModal,
@@ -11,6 +10,8 @@ import {
   ModalCrossClose,
   RxCross1Modal,
 } from './ModalAddNotice.styled';
+import { addNotice } from 'redux/notices/operations';
+import { useDispatch } from 'react-redux';
 
 export const ModalAddNotice = ({ onClick, isOpen }) => {
   const [data, setData] = useState({
@@ -26,7 +27,7 @@ export const ModalAddNotice = ({ onClick, isOpen }) => {
   });
 
   const [currentStep, setCurrentStep] = useState(0);
-
+  const dispatch = useDispatch();
   useEffect(() => {
     const onModalCloseBtn = button => {
       if (button.keyCode === 27) {
@@ -95,7 +96,7 @@ export const ModalAddNotice = ({ onClick, isOpen }) => {
       noticeFormData.append('price', parseInt(noticeInfo.price, 10));
     }
 
-    postNotice(noticeFormData);
+    dispatch(addNotice(noticeFormData));
   };
 
   const steps = [
