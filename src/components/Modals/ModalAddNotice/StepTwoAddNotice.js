@@ -18,6 +18,7 @@ import {
   IoMdFemaleModal,
   IoMdMaleModal,
   FormError,
+  ErrorWraper,
 } from './ModalAddNotice.styled';
 
 const regionRules = /^()(\w+(,|\s)\s*)+\w+$/;
@@ -36,10 +37,7 @@ export const StepTwo = props => {
           place: yup
             .string()
             .required('Please enter location')
-            .matches(
-              regionRules,
-              'Format must be City, region. For example: Brovary, Kyiv'
-            ),
+            .matches(regionRules, 'Format must be City, region'),
           price: yup
             .string('Enter a price')
             .matches(/^(?!(0))[0-9]+$/, 'Price must not start with 0 or -')
@@ -59,10 +57,7 @@ export const StepTwo = props => {
           place: yup
             .string()
             .required('Please enter location')
-            .matches(
-              regionRules,
-              'Format must be City, region. For example: Brovary, Kyiv'
-            ),
+            .matches(regionRules, 'Format must be City, region'),
           avatarURL: yup.mixed(),
           comments: yup
             .string()
@@ -115,8 +110,9 @@ export const StepTwo = props => {
               Female
             </ModalRadioSexTitle>
           </ModalRadioSex>
-          <FormError name="sex" />
-
+          <ErrorWraper>
+            <FormError name="sex" />
+          </ErrorWraper>
           <ModalLabel>
             Location<p style={{ color: '#F59256' }}>*</p>
           </ModalLabel>
@@ -125,7 +121,9 @@ export const StepTwo = props => {
             name="place"
             placeholder="Enter location"
           />
-          <FormError name="place" />
+          <ErrorWraper>
+            <FormError name="place" />
+          </ErrorWraper>
           {props.data.category === 'sell' && (
             <>
               <ModalLabel>
@@ -136,7 +134,9 @@ export const StepTwo = props => {
                 name="price"
                 placeholder="Enter price"
               />
-              <FormError name="price" />
+              <ErrorWraper>
+                <FormError name="price" />
+              </ErrorWraper>
             </>
           )}
           <ModalLabel>Load pets image</ModalLabel>
@@ -164,15 +164,18 @@ export const StepTwo = props => {
               }}
             />
           </ModalImageBlock>
-          <FormError name="avatarURL" />
+          <ErrorWraper>
+            <FormError name="avatarURL" />
+          </ErrorWraper>
           <ModalLabel>Comments</ModalLabel>
           <ModalTextArea
             component="textarea"
             name="comments"
             placeholder="Enter needed comments"
           />
-
-          <FormError name="comments" />
+          <ErrorWraper>
+            <FormError name="comments" />
+          </ErrorWraper>
           <ModalButtonSection>
             <NextFormModalBtn type="submit" currentStep={props.currentStep}>
               Done
