@@ -23,6 +23,8 @@ import {
 import { useSelector } from 'react-redux';
 import { getOneNotice } from 'redux/notices/selectors';
 
+import Plug from '../../../logo/plug_picture_pet.png';
+
 export const ModalNotice = ({
   isFavorite,
   addToFavorite,
@@ -47,7 +49,16 @@ export const ModalNotice = ({
       <SecondWrap>
         <ImgWrap>
           <CategoryLabel>{oneNotice.category}</CategoryLabel>
-          <Img src={oneNotice.avatarURL} alt={oneNotice.name} loading="lazy" />
+
+          {oneNotice.avatarURL ? (
+            <Img
+              src={oneNotice.avatarURL}
+              alt={oneNotice.name}
+              loading="lazy"
+            />
+          ) : (
+            <Img src={Plug} alt="animal" />
+          )}
         </ImgWrap>
 
         <WrapInner>

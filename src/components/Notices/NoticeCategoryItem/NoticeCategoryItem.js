@@ -120,9 +120,6 @@ export const NoticeCategoryItem = ({
     dispatch(fetchRemoveFavoriteNotice(pet._id));
   };
 
-  // const removeFromMyAdsNotices = () => {
-  //   dispatch(removeMyAddNotice(pet._id));
-  // };
   const noLinesCategory = category => {
     if (category === 'lost-found') {
       return 'Lost/Found';
