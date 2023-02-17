@@ -59,19 +59,17 @@ const GradientBar = styled.div`
 `;
 const NewsTitle = styled.h3`
   margin-bottom: 16px;
-  font-family: 'Manrope', sans-serif;
-  font-weight: 700;
+  font-family: 'Manrope700';
   font-size: 24px;
   size: 24px;
-  line-height: 33px;
+  line-height: 32.78px;
   letter-spacing: -0.01em;
   color: #111111;
 `;
 const NewsArticle = styled.p`
-  font-family: 'Manrope';
-  font-weight: 400;
+  font-family: 'Manrope400';
   font-size: 16px;
-  line-height: 22px;
+  line-height: 21.86px;
   color: #111321;
 `;
 const NewsAdditional = styled.div`
@@ -80,19 +78,16 @@ const NewsAdditional = styled.div`
   margin-top: 40px;
 `;
 const NewsDate = styled.span`
-  font-family: 'Manrope';
-  font-style: normal;
-  font-weight: 400;
+  font-family: 'Manrope400';
   font-size: 16px;
-  line-height: 22px;
-  color: rgba(17, 17, 17, 0.6);
+  line-height: 21.86px
+  color: rgba(11, 11, 11, 0.6);
 `;
 
 const NewsMore = styled.a`
-  font-family: 'Manrope';
-  font-weight: 500;
+  font-family: 'Manrope500';
   font-size: 16px;
-  line-height: 22px;
+  line-height: 21.86px;
   text-align: right;
   text-decoration: none;
   color: #f59256;
@@ -102,8 +97,7 @@ const NewsMore = styled.a`
 `;
 
 const Empty = styled.h3`
-  font-family: 'Manrope', sans-serif;
-  font-weight: 700;
+  font-family: 'Manrope700', sans-serif;
   size: 36px;
   line-height: 40px;
   letter-spacing: -0.01em;
