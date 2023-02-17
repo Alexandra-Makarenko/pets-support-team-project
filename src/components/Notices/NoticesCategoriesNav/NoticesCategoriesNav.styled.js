@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom';
 import { device } from '../../../styles/device';
 
 export const NavSection = styled.section`
-  padding-top: 30px;
+  ${'' /* padding-top: 30px; */}
 `;
 export const Container = styled.div`
   display: flex;
@@ -63,5 +63,12 @@ export const Link = styled(NavLink)`
 
   &:focus {
     transform: scale(1.03);
+  }
+  @media ${device.tablet} {
+    padding: 10px 28px;
+    font-size: 20px;
+    line-height: 1;
+  }
+  @media ${device.desktop} {
   }
 `;
