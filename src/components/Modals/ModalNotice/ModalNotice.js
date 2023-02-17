@@ -23,7 +23,6 @@ import {
 import { useSelector } from 'react-redux';
 import { getOneNotice } from 'redux/notices/selectors';
 
-import Plug from '../../../logo/plug_picture_pet.png';
 
 export const ModalNotice = ({
   isFavorite,
