@@ -48,7 +48,7 @@ export default function NewsList({ news, status, searchValue }) {
               <NewsTitle>{article.title}</NewsTitle>
               <NewsArticle>{articleSplit(article.description)}</NewsArticle>
               <NewsAdditional>
-                <NewsDate>{article.date || article.publishedAt}</NewsDate>
+                <NewsDate>{article.date}</NewsDate>
                 <NewsMore
                   href={article.url}
                   target="_blank"
