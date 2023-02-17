@@ -40,7 +40,7 @@ export const UserPageAddPet = ({ onClick }) => {
   const makeRequest = formData => {
     const body = {
       name: formData.name,
-      date: formData.date,
+      date: formData.date.split('-').reverse().join('.'),
       breed: formData.breed,
       comment: formData.comment,
       avatar: formData.avatar,
