@@ -31,6 +31,7 @@ export const ModalNotice = ({
   removeFromFavorite,
   toggleModal,
   categoryFilter,
+  imgsrc,
 }) => {
   const oneNotice = useSelector(getOneNotice);
 
@@ -50,15 +51,7 @@ export const ModalNotice = ({
         <ImgWrap>
           <CategoryLabel>{oneNotice.category}</CategoryLabel>
 
-          {oneNotice.avatarURL ? (
-            <Img
-              src={oneNotice.avatarURL}
-              alt={oneNotice.name}
-              loading="lazy"
-            />
-          ) : (
-            <Img src={Plug} alt="animal" />
-          )}
+          <Img src={imgsrc} alt={oneNotice.name} loading="lazy" />
         </ImgWrap>
 
         <WrapInner>

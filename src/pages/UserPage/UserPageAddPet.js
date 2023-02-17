@@ -113,7 +113,15 @@ const AddPetStepOne = props => {
             <PetInputField name="name" placeholder="Type name pet" />
             <PetInputLabel>Date of birth</PetInputLabel>
             <FormError name="date" />
-            <PetInputField name="date" placeholder="Type date of birth" />
+            <PetInputField
+              type="date"
+              id="start"
+              name="date"
+              min="1970-01-01"
+              max={new Date().toISOString().split('T')[0]}
+              lang="en-GB"
+              noValidate
+            />
             <PetInputLabel>Breed</PetInputLabel>
             <FormError name="breed" />
             <PetInputField name="breed" placeholder="Type breed" />
@@ -215,6 +223,7 @@ const AddPetStepTwo = props => {
               name="comment"
               placeholder="Type comments"
               component="textarea"
+              maxlength="120"
             />
             <PetButtonBlock>
               <PetButtonBack
