@@ -21,8 +21,13 @@ const ErrorText = styled.p`
   letter-spacing: 0.04em;
   margin-top: 4px;
   color: red;
+  height: 20px;
 `;
-
+export const ErrorWraper = styled.div`
+  height: 18px;
+  padding: 2px;
+  margin-bottom: 4px;
+`;
 export const AddNoticeModal = styled.section`
   position: fixed;
   top: 0;
@@ -61,6 +66,7 @@ export const ModalTitle = styled.label`
   font-family: 'Manrope700';
   font-size: 24px;
   line-height: 33px;
+  margin-top: 6px;
   letter-spacing: ${props => props.theme.fonts.letterSpacing};
   color: ${props => props.theme.fontColors.primary};
 
@@ -81,7 +87,6 @@ export const ModalFormInput = styled(Field)`
   padding-top: 11px;
   padding-bottom: 12px;
   padding-left: 14px;
-  margin-bottom: 16px;
   margin-top: 8px;
   color: ${props => props.theme.fontColors.inputTextColor};
   outline: none;
@@ -110,7 +115,6 @@ export const ModalDateField = styled(Field)`
   padding-bottom: 12px;
   padding-left: 14px;
   padding-right: 14px;
-  margin-bottom: 16px;
   margin-top: 8px;
   color: ${props => props.theme.fontColors.inputTextColor};
   outline: none;
@@ -310,7 +314,6 @@ export const BsPlusLgModal = styled(BsPlusLg)`
 
 export const ModalImageBlock = styled.div`
   margin-top: 8px;
-  margin-bottom: 30px;
   padding: 20px;
 `;
 
