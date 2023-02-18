@@ -5,18 +5,17 @@ export const fetchNotices = createAsyncThunk(
   'notices/fetchAll',
 
   async ({ category, searchValue, currentPage, options = {} }, thunkAPI) => {
+    const params = searchValue;
     try {
       const response = await axios.get(
         `/notices/${category}?page=${currentPage}`,
+        {
+          params: { keyword: params },
+        },
         options
       );
-      if (!searchValue) {
-        return response.data;
-      } else {
-        return response.data.filter(
-          article => article.title.toLowerCase().indexOf(searchValue) >= 0
-        );
-      }
+
+      return response.data;
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);
     }
@@ -27,16 +26,20 @@ export const fetchFavoriteNotices = createAsyncThunk(
   'notices/fetchFavorite',
 
   async ({ searchValue }, thunkAPI) => {
+    const params = searchValue;
     try {
-      const response = await axios.get(`/notices/favorite`);
-      console.log(searchValue);
-      if (!searchValue) {
-        return response.data;
-      } else {
-        return response.data.filter(
-          article => article.title.toLowerCase().indexOf(searchValue) >= 0
-        );
-      }
+      const response = await axios.get(`/notices/favorite`, {
+        params: { keyword: params },
+      });
+      return response.data;
+      // console.log(searchValue);
+      // if (!searchValue) {
+      // return response.data;
+      // } else {
+      //   return response.data.filter(
+      //     article => article.title.toLowerCase().indexOf(searchValue) >= 0
+      //   );
+      // }
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);
     }

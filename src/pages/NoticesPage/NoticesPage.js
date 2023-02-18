@@ -28,10 +28,12 @@ const NoticesPage = () => {
   const noties = useSelector(getNotices);
   const error = useSelector(getNoticesError);
   const [searchValue, setSearchValue] = useState('');
-  if (searchValue !== '') {
-    console.log('need to fetch and filter by searchValue');
-  }
+  // if (searchValue !== '') {
+  //   console.log('need to fetch and filter by searchValue');
+  // }
 
+  console.log(searchValue);
+  
   const dispatch = useDispatch();
 
   useEffect(() => {
