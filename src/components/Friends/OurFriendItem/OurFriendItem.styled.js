@@ -70,10 +70,24 @@ export const FriendLink = styled.span`
   text-decoration: none; */
   color: inherit;
   background: none;
+  text-decoration: none;
   border: none;
-  border-bottom: 1px solid ${p => p.theme.fontColors.buttonSecondary};
   cursor: pointer;
+
+  &:hover {
+    border-bottom: 1px solid ${p => p.theme.fontColors.buttonSecondary};
+  }
 `;
+
+export const TextLink = styled(FriendLink)`
+  text-decoration: none;
+  border-bottom: 0.5px solid ${p => p.theme.fontColors.primary};
+
+  &:hover {
+    border-bottom: 0.5px solid ${p => p.theme.fontColors.buttonSecondary};
+  }
+`;
+
 export const FriendContentWrapper = styled.div`
   display: flex;
   flex-direction: row;
