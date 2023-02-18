@@ -1,9 +1,10 @@
 import axios from 'axios';
 
 export const fetchNews = async searchQuery => {
+  const params = searchQuery;
   const news = await axios
     .get('/news', {
-      params: {},
+      params: { keyword: params },
     })
     .then(result => {
       return result.data.data;
@@ -22,11 +23,6 @@ export const fetchNews = async searchQuery => {
     return sortedNews;
   };
 
-  if (searchQuery === '') {
-    return sortNewsByDate(news);
-  } else {
-    return sortNewsByDate(news).filter(
-      article => article.title.toLowerCase().indexOf(searchQuery) >= 0
-    );
-  }
+  return sortNewsByDate(news);
+
 };
