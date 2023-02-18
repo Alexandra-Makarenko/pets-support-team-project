@@ -14,6 +14,7 @@ import { setStatusFilter } from 'redux/notices/filtersSlice';
 import { NoticeCategoryItem } from '../NoticeCategoryItem/NoticeCategoryItem';
 import { useAuth } from 'hooks/useAuth';
 import { LoadMore } from 'components/LoadMore/LoadMore';
+import { clearNotices, setCategoryGlobal } from 'redux/notices/noticesSlice';
 
 const NoticesCategoryList = () => {
   const [currentPage, setCurrentPage] = useState(1);
@@ -52,7 +53,7 @@ const NoticesCategoryList = () => {
       if (isLoading === false) {
         if (category !== 'favorite')
           return <LoadMore onLoadMore={onLoadMore} ButtonText={'Load More'} />;
-      } else return <p>Loading...</p>;
+      } else return null;
     }
     return;
   };
@@ -71,11 +72,13 @@ const NoticesCategoryList = () => {
     } else {
       setCategory('sell');
     }
-  }, [categoryFilter]);
+    dispatch(setCategoryGlobal(category));
+  }, [category, categoryFilter, dispatch]);
 
   useEffect(() => {
     setCurrentPage(1);
-  }, [category]);
+    dispatch(clearNotices());
+  }, [category, dispatch]);
 
   useEffect(() => {
     if (category) {
@@ -84,8 +87,6 @@ const NoticesCategoryList = () => {
     if (!isLoggedIn) return;
     dispatch(fetchFavoriteNotices({ searchValue }));
   }, [dispatch, category, searchValue, isLoggedIn, currentPage]);
-
-
 
   const result =
     categoryFilter !== '/notices/favorite'

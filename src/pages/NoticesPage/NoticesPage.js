@@ -62,7 +62,6 @@ const NoticesPage = () => {
         <AddNoticeButton onClick={isLoggedIn ? toggleAddNoticeModal : logify} />
       </NavBox>
 
-      {isLoading && !error && <Loader />}
       {/* {isLoading && !error && (
         <SkeletonNoticesLoader>{<NoticesLoaderBig />}</SkeletonNoticesLoader>
       )} */}
@@ -84,6 +83,7 @@ const NoticesPage = () => {
         )}
 
         <Outlet />
+        {isLoading && !error && <Loader />}
       </Suspense>
     </Container>
   );

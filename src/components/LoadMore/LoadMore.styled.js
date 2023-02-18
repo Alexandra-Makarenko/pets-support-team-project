@@ -7,7 +7,7 @@ export const LoadMoreButton = styled.button`
 
   margin-left: auto;
   margin-right: auto;
-  margin-bottom: 20px;
+  margin-bottom: 160px;
 
   width: 240px;
   padding-top: 9px;
@@ -20,7 +20,6 @@ export const LoadMoreButton = styled.button`
   background-color: ${props =>
     props.disabled ? '#A0A0A0' : props.theme.backgrounds.buttonPrimary};
   border: none;
-  margin-bottom: 12px;
   &:hover,
   :focus {
     background-color: ${props => props.theme.hovers.primary};
