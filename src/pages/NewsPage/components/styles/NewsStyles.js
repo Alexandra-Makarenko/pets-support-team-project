@@ -14,7 +14,7 @@ const NewsContainer = styled.div`
 const NewsItem = styled.li`
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+
   max-height: 100%;
   margin-bottom: 40px;
   @media (min-width: 768px) {
@@ -30,7 +30,6 @@ const NewsItem = styled.li`
 const SkeletonItem = styled.li`
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
   max-height: 100%;
   margin-bottom: 40px;
   @media (min-width: 768px) {
@@ -58,18 +57,22 @@ const GradientBar = styled.div`
   }
 `;
 const NewsTitle = styled.h3`
+  height: 66px;
+  overflow: hidden;
   margin-bottom: 16px;
   font-family: 'Manrope700';
   font-size: 24px;
   size: 24px;
-  line-height: 32.78px;
+  line-height: 33px;
   letter-spacing: -0.01em;
   color: #111111;
 `;
 const NewsArticle = styled.p`
+  height: 110px;
+  overflow: hidden;
   font-family: 'Manrope400';
   font-size: 16px;
-  line-height: 21.86px;
+  line-height: 22px;
   color: #111321;
 `;
 const NewsAdditional = styled.div`

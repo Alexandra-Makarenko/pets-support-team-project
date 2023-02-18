@@ -14,7 +14,7 @@ import {
   NewsTitle,
   NewsMore,
 } from './styles/NewsStyles';
-import { articleSplit } from './helpers/articleSplit';
+import { articleSplit, titleSplit } from './helpers/articleSplit';
 import NewsLoaderBig from 'components/Skeleton/SkeletonNewsLoaderBig';
 import { SkeletonNewsLoader } from 'components/Skeleton/SkeletonOptions';
 import NewsLoaderSmall from 'components/Skeleton/SkeletonNewsLoaderSmall';
@@ -45,7 +45,7 @@ export default function NewsList({ news, status, searchValue }) {
           {news.map(article => (
             <NewsItem key={nanoid()}>
               <GradientBar></GradientBar>
-              <NewsTitle>{article.title}</NewsTitle>
+              <NewsTitle>{titleSplit(article.title)}</NewsTitle>
               <NewsArticle>{articleSplit(article.description)}</NewsArticle>
               <NewsAdditional>
                 <NewsDate>{article.date}</NewsDate>
