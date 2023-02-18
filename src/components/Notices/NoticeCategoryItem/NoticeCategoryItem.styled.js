@@ -109,11 +109,13 @@ export const Title = styled.h2`
   font-family: 'Manrope700';
   font-size: 28px;
   line-height: calc(38 / 28);
-  /* height: 76px; */
-  /* overflow: hidden; */
   margin-left: 20px;
   margin-right: 30px;
   margin-bottom: 20px;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow-y: hidden;
 
   @media ${device.tablet} {
     margin-right: 85px;
