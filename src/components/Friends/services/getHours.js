@@ -1,7 +1,7 @@
 // workDays - Array of Work hours by Days of week
 import { HoursItem } from '../OurFriendItem/OurFriendItem.styled';
 
-export const getHours = (workDays, NO_INFO_STRING) => {
+export const getHours = (workDays, NO_INFO_STRING, TODAY_CLOSED_STRING) => {
   const hoursToString = ({ from, to }) => from.concat('-', to);
 
   //
@@ -34,7 +34,7 @@ export const getHours = (workDays, NO_INFO_STRING) => {
     const numberOfDay = new Date().getDay();
     const workToDay = workDays[!numberOfDay ? 6 : numberOfDay - 1];
     const hoursToday = !workToDay.isOpen
-      ? null
+      ? TODAY_CLOSED_STRING
       : workToDay.from.concat('-', workToDay.to);
 
     return hoursToday;
