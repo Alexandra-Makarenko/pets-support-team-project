@@ -46,6 +46,7 @@ import { MainModal } from 'components/MainModal/MainModal';
 import { UserPageAddPet } from './UserPageAddPet';
 import { getPets } from 'redux/userPets/selectors';
 import { deletePet, fetchPets } from 'redux/userPets/operations';
+import { toast } from 'react-toastify';
 
 // const fetchPets = async () => {
 //   const res = await axios.get('user');
@@ -134,8 +135,22 @@ const UserPage = () => {
   };
 
   const handleChangeImage = e => {
-    if (e.target.files[0]) {
-      setImage(e.target.files[0]);
+    if (e.target.files[0].size < 2097152) {
+      if (e.target.files[0]) {
+        setImage(e.target.files[0]);
+      }
+    } else {
+      console.log(e.target.files[0].size);
+      toast.warn('File size should be less than 2Mb!', {
+        position: 'top-center',
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: 'colored',
+      });
     }
   };
 
@@ -371,7 +386,11 @@ const UserPage = () => {
               <UploadLabel>
                 <MdPhotoCamera fill="#F59256" />
                 Edit photo
-                <HiddenInput type="file" onChange={handleChangeImage} />
+                <HiddenInput
+                  type="file"
+                  onChange={handleChangeImage}
+                  accept=".jpg, .jpeg, .png"
+                />
               </UploadLabel>
               <MyInfoDataSection>
                 <ul>

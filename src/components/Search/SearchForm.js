@@ -11,6 +11,8 @@ export const SearchForm = ({ searchValue, setSearchValue, mbtn }) => {
   const inputRef = useRef();
 
   const handleSearchChange = event => {
+
+    console.log(event.currentTarget.value.toLowerCase());
     setSearchValue(event.currentTarget.value.toLowerCase());
   };
 

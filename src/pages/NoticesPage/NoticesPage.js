@@ -62,7 +62,9 @@ const NoticesPage = () => {
         <AddNoticeButton onClick={isLoggedIn ? toggleAddNoticeModal : logify} />
       </NavBox>
 
-      {isLoading && !error && <Loader />}
+      {/* {isLoading && !error && (
+        <SkeletonNoticesLoader>{<NoticesLoaderBig />}</SkeletonNoticesLoader>
+      )} */}
       {error &&
         !isLoading &&
         toast.warn(`Something wrong, please try again later: ${error}`, {
@@ -73,7 +75,6 @@ const NoticesPage = () => {
       )}
 
       <Suspense fallback={<div>Loading subpage...</div>}>
-
         {isAddNoticeOpen && (
           <ModalAddNotice
             onClick={toggleAddNoticeModal}
@@ -82,6 +83,7 @@ const NoticesPage = () => {
         )}
 
         <Outlet />
+        {isLoading && !error && <Loader />}
       </Suspense>
     </Container>
   );

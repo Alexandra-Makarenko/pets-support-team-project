@@ -76,9 +76,22 @@ export const CloseLineLogo = styled(CloseLine)`
   height: 20px;
   transform: translate(-14px, -50%);
   cursor: pointer;
+  transition: stroke-width ${props => props.theme.transition.first};
+
+  &:hover {
+    stroke: #f59256;
+    stroke-width: 2;
+    width: 22px;
+    height: 22px;
+  }
 
   @media ${device.tablet} {
     width: 24px;
     height: 24px;
+
+    &:hover {
+      width: 26px;
+      height: 26px;
+    }
   }
 `;

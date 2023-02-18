@@ -23,12 +23,14 @@ import {
 import { useSelector } from 'react-redux';
 import { getOneNotice } from 'redux/notices/selectors';
 
+
 export const ModalNotice = ({
   isFavorite,
   addToFavorite,
   removeFromFavorite,
   toggleModal,
   categoryFilter,
+  imgsrc,
 }) => {
   const oneNotice = useSelector(getOneNotice);
 
@@ -47,7 +49,8 @@ export const ModalNotice = ({
       <SecondWrap>
         <ImgWrap>
           <CategoryLabel>{oneNotice.category}</CategoryLabel>
-          <Img src={oneNotice.avatarURL} alt={oneNotice.name} loading="lazy" />
+
+          <Img src={imgsrc} alt={oneNotice.name} loading="lazy" />
         </ImgWrap>
 
         <WrapInner>

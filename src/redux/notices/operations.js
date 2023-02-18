@@ -90,3 +90,22 @@ export const removeMyAddNotice = createAsyncThunk(
     }
   }
 );
+
+export const addNotice = createAsyncThunk(
+  'notices/addNotice',
+  async (noticeInfo, thunkAPI) => {
+    console.log(noticeInfo);
+    try {
+      const response = await axios.post('/notices', noticeInfo, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      });
+      console.log('response:');
+      console.log(response);
+      return response.data;
+    } catch (e) {
+      return thunkAPI.rejectWithValue(e.message);
+    }
+  }
+);

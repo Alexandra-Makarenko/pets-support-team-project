@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import { device } from '../../../styles/device';
 import { BsPlusLg } from 'react-icons/bs';
 export const AddNotice = styled.button`
+  background-color: transparent;
   @media${device.tablet} {
     display: flex;
     align-items: center;
@@ -39,7 +40,7 @@ export const AddNoticeButtonText = styled.p`
     display: inline-block;
     white-space: nowrap;
     font-family: 'Manrope500';
-    font-size: 20 px;
+    font-size: 20px;
     line-height: 27px;
     margin-right: 20px;
   }
