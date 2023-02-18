@@ -114,6 +114,7 @@ export const FieldName = styled.span`
 `;
 
 export const Value = styled.span`
+  word-wrap: break-word;
   display: inline-block;
   font-family: 'Manrope500';
   font-size: 12px;
