@@ -2,11 +2,10 @@ import { useEffect } from 'react';
 import { useState } from 'react';
 
 import { OurFriendItem } from 'components/Friends';
+import { Loader } from 'components/Loader/Loader';
 import { FriendsList } from './OurFriends.styled.js';
-// import { Loader } from 'components/Loader/Loader';
 
-// import SPONSORS from 'data/sponsors.json';
-// import axios from 'axios';
+
 import { fetchFriends } from 'components/Friends/services';
 import { SkeletonFriendsLoader } from 'components/Skeleton/SkeletonOptions.js';
 import FriendsLoaderBig from 'components/Skeleton/SkeletonFriendsLoaderBig.js';
@@ -38,11 +37,13 @@ export const OurFriends = () => {
           </SkeletonFriendsLoader>
         )
       ) : (
-        <FriendsList>
-          {friends.map(friend => (
-            <OurFriendItem key={friend._id} {...friend} />
-          ))}
-        </FriendsList>
+        <>
+          <FriendsList>
+            {friends.map(friend => (
+              <OurFriendItem key={friend._id} {...friend} />
+            ))}
+          </FriendsList>
+        </>
       )}
     </>
   );
