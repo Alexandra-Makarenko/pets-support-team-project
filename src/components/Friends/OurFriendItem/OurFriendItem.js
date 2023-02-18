@@ -33,12 +33,29 @@ export const OurFriendItem = ({
     setIsHours(!isHours);
   };
 
-  const { hoursToday, hoursOfWeek } = getHours(workDays, NO_INFO_STRING);
+  const windowHeight = document.documentElement.clientHeight;
+  const windowWidth = document.documentElement.clientWidth;
 
+  console.log(`width=${windowWidth},height=${windowHeight}`);
+
+  const { hoursToday, hoursOfWeek } = getHours(workDays, NO_INFO_STRING);
   return (
     <FriendItem>
       <FriendTitle>
-        <FriendLink href={url}>{title}</FriendLink>
+        {/* <FriendLink onClick={() => setModalUrl(url)}>{title}</FriendLink> */}
+        <FriendLink
+          onClick={() =>
+            window.open(
+              url,
+              title,
+              `width=${windowWidth - 64},height=${
+                windowHeight - 64
+              },left=32,top=32`
+            )
+          }
+        >
+          {title}
+        </FriendLink>
       </FriendTitle>
       <FriendContentWrapper>
         <ImgWrapper>

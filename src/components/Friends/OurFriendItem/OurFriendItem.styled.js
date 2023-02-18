@@ -58,13 +58,22 @@ export const FriendTitle = styled.h3`
   }
 `;
 
-export const FriendLink = styled.a`
-  outline: none;
-  text-decoration: none;
+// export const FriendLink = styled.a`
+//   outline: none;
+//   text-decoration: none;
+//   color: inherit;
+//   border-bottom: 1px solid ${p => p.theme.fontColors.buttonSecondary};
+// `;
+export const FriendLink = styled.span`
+  /* display: inline-block; */
+  /* outline: none;
+  text-decoration: none; */
   color: inherit;
+  background: none;
+  border: none;
   border-bottom: 1px solid ${p => p.theme.fontColors.buttonSecondary};
+  cursor: pointer;
 `;
-
 export const FriendContentWrapper = styled.div`
   display: flex;
   flex-direction: row;

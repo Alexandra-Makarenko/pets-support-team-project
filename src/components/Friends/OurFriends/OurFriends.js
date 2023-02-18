@@ -6,13 +6,9 @@ import { Loader } from 'components/Loader/Loader';
 import { FriendsList } from './OurFriends.styled.js';
 
 import { fetchFriends } from 'components/Friends/services';
-import { FriendModal } from 'components/Friends/FriendModal';
 
 export const OurFriends = () => {
   const [friends, setFriends] = useState([]);
-  const [modalUrl, setModalUrl] = useState('');
-
-  const toggleModal = modalUrl => setModalUrl(modalUrl ?? '');
 
   const getFriends = async () => {
     try {
@@ -34,14 +30,9 @@ export const OurFriends = () => {
         <>
           <FriendsList>
             {friends.map(friend => (
-              <OurFriendItem
-                key={friend._id}
-                toggleModal={toggleModal}
-                {...friend}
-              />
+              <OurFriendItem key={friend._id} {...friend} />
             ))}
           </FriendsList>
-          {modalUrl && <FriendModal url={modalUrl} toggleModal={toggleModal} />}
         </>
       )}
     </>
