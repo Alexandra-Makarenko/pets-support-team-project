@@ -2,7 +2,6 @@ import { useEffect } from 'react';
 import { useState } from 'react';
 
 import { OurFriendItem } from 'components/Friends';
-import { Loader } from 'components/Loader/Loader';
 import { FriendsList } from './OurFriends.styled.js';
 
 
