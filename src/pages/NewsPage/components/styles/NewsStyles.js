@@ -14,7 +14,6 @@ const NewsContainer = styled.div`
 const NewsItem = styled.li`
   display: flex;
   flex-direction: column;
-
   max-height: 100%;
   margin-bottom: 40px;
   @media (min-width: 768px) {
@@ -57,7 +56,9 @@ const GradientBar = styled.div`
   }
 `;
 const NewsTitle = styled.h3`
-  height: 66px;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
   overflow: hidden;
   margin-bottom: 16px;
   font-family: 'Manrope700';
@@ -68,7 +69,9 @@ const NewsTitle = styled.h3`
   color: #111111;
 `;
 const NewsArticle = styled.p`
-  height: 110px;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 5;
   overflow: hidden;
   font-family: 'Manrope400';
   font-size: 16px;
