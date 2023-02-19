@@ -4,7 +4,7 @@ import { device } from 'styles/device';
 export const LoadMoreButton = styled.button`
   display: flex;
   justify-content: center;
-
+  cursor: pointer;
   margin-left: auto;
   margin-right: auto;
   margin-bottom: 160px;

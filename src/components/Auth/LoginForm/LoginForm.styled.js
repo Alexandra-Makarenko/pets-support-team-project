@@ -116,6 +116,7 @@ export const FormInput = styled(Field)`
   padding-top: 11px;
   padding-bottom: 12px;
   padding-left: 14px;
+  padding-right: 56px;
   color: ${props => props.theme.fontColors.inputTextColor};
   outline: none;
   background-color: ${props => props.theme.backgrounds.input};

@@ -106,11 +106,13 @@ export const WrapInner = styled.div`
 `;
 
 export const Title = styled.h2`
+  width: 240px;
+  word-wrap: break-word;
   font-family: 'Manrope700';
   font-size: 28px;
   line-height: calc(38 / 28);
   margin-left: 20px;
-  margin-right: 30px;
+  margin-right: 20px;
   margin-bottom: 20px;
   display: -webkit-box;
   -webkit-line-clamp: 1;
@@ -118,10 +120,10 @@ export const Title = styled.h2`
   overflow-y: hidden;
 
   @media ${device.tablet} {
-    margin-right: 85px;
+    width: 296px;
   }
   @media ${device.tablet} {
-    margin-right: 36px;
+    width: 248px;
   }
 `;
 
