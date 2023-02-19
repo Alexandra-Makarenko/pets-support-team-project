@@ -27,7 +27,7 @@ export const stepOneReqisterSchema = yup.object().shape({
       /^(?=.*[a-z])(?=.*[A-Z])/,
       'Must contain one uppercase, one lowercase'
     )
-    .matches(/^(?=.{6,20}$)\D*\d/, 'Must contain one number')
+    .matches(/^(?=.{6,40}$)\D*\d/, 'Must contain one number')
     .required('Password is a required field'),
   confirmPassword: yup
     .string()
