@@ -48,11 +48,12 @@ export const MenuLink = styled(NavLink)`
     font-family: 'Manrope700';
     line-height: 27px;
     color: ${props => props.theme.fontColors.navFont};
+    &:focus {
+      color: initial;
+      text-shadow: initial;
+    }
   }
-  &:focus {
-    color: none;
-    text-shadow: none;
-  }
+
   &.active {
     color: ${props => props.theme.fontColors.buttonSecondary};
     text-decoration: underline;
