@@ -26,7 +26,6 @@ export const StepOne = props => {
     category: yup.string().required('Chose one option'),
     title: yup
       .string()
-      .string()
       .min(2, 'Must be more than 2 characters')
       .max(48, 'Must not be longer than 48 characters')
       .required('Please enter add title'),
