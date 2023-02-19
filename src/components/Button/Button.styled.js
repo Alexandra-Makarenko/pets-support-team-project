@@ -23,6 +23,7 @@ export const Button = styled.button`
   outline: 0;
   cursor: pointer;
   box-shadow: 0px 2px 2px lightgray;
+  transition: background-color 500ms cubic-bezier(0.4, 0, 0.2, 1);
 
   &:hover,
   :focus {

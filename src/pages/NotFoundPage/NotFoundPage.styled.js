@@ -17,6 +17,7 @@ export const Link = styled(NavLink)`
   color: ${props => props.theme.fontColors.white};
   background-color: ${props => props.theme.backgrounds.buttonPrimary};
   font-weight: 700;
+  transition: background-color 500ms cubic-bezier(0.4, 0, 0.2, 1);
   &:hover,
   :focus {
     background-color: ${props => props.theme.hovers.primary};
