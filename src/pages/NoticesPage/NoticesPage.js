@@ -28,12 +28,10 @@ const NoticesPage = () => {
   const noties = useSelector(getNotices);
   const error = useSelector(getNoticesError);
   const [searchValue, setSearchValue] = useState('');
-  // if (searchValue !== '') {
-  //   console.log('need to fetch and filter by searchValue');
-  // }
 
+  console.log(noties.total_results);
   console.log(searchValue);
-  
+
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -64,15 +62,12 @@ const NoticesPage = () => {
         <AddNoticeButton onClick={isLoggedIn ? toggleAddNoticeModal : logify} />
       </NavBox>
 
-      {/* {isLoading && !error && (
-        <SkeletonNoticesLoader>{<NoticesLoaderBig />}</SkeletonNoticesLoader>
-      )} */}
       {error &&
         !isLoading &&
         toast.warn(`Something wrong, please try again later: ${error}`, {
           position: toast.POSITION.TOP_CENTER,
         })}
-      {!isLoading && noties.length === 0 && searchValue && (
+      {!isLoading && noties.total_results === 0 && searchValue && (
         <SearchNotFound padding searchValue={searchValue} />
       )}
 
