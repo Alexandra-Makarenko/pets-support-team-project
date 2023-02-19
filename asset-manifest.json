@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/pets-support-team-project/static/css/main.f6396ea5.css",
+    "main.css": "/pets-support-team-project/static/css/main.3cbbee21.css",
     "main.js": "/pets-support-team-project/static/js/main.be4af986.js",
     "static/js/774.dd9c4601.chunk.js": "/pets-support-team-project/static/js/774.dd9c4601.chunk.js",
     "static/js/317.dc9df2a9.chunk.js": "/pets-support-team-project/static/js/317.dc9df2a9.chunk.js",
@@ -62,7 +62,7 @@
     "static/media/accept.svg": "/pets-support-team-project/static/media/accept.7cfa759efbf4123f1434ca905ccc02d0.svg",
     "static/media/x.svg": "/pets-support-team-project/static/media/x.846a45d0f4e5082edf268f8af40864ce.svg",
     "static/media/plus.svg": "/pets-support-team-project/static/media/plus.92c92b8eae279251978c879fac09d332.svg",
-    "main.f6396ea5.css.map": "/pets-support-team-project/static/css/main.f6396ea5.css.map",
+    "main.3cbbee21.css.map": "/pets-support-team-project/static/css/main.3cbbee21.css.map",
     "main.be4af986.js.map": "/pets-support-team-project/static/js/main.be4af986.js.map",
     "774.dd9c4601.chunk.js.map": "/pets-support-team-project/static/js/774.dd9c4601.chunk.js.map",
     "317.dc9df2a9.chunk.js.map": "/pets-support-team-project/static/js/317.dc9df2a9.chunk.js.map",
@@ -87,7 +87,7 @@
     "67.35cba493.chunk.js.map": "/pets-support-team-project/static/js/67.35cba493.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.f6396ea5.css",
+    "static/css/main.3cbbee21.css",
     "static/js/main.be4af986.js"
   ]
 }
