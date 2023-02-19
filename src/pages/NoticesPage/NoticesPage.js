@@ -30,7 +30,6 @@ const NoticesPage = () => {
   const [searchValue, setSearchValue] = useState('');
 
   console.log(noties.total_results);
-  console.log(searchValue);
 
   const dispatch = useDispatch();
 
@@ -43,7 +42,14 @@ const NoticesPage = () => {
   };
   const logify = text =>
     toast.warn('You need to log in to use this function!', {
-      position: toast.POSITION.TOP_CENTER,
+      position: 'top-right',
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: 'dark',
     });
 
   return (

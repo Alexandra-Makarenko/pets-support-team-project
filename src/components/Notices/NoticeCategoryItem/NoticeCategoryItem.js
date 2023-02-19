@@ -19,7 +19,7 @@ import {
   WrapConfirmAlertBtn,
 } from './NoticeCategoryItem.styled';
 import { useDispatch } from 'react-redux';
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import {
   fetchOneNotice,
@@ -55,14 +55,14 @@ export const NoticeCategoryItem = ({
 
   const notifyNeedLogin = () =>
     toast.warn('You need to log in to use this function!', {
-      position: 'top-center',
+      position: 'top-right',
       autoClose: 3000,
       hideProgressBar: false,
       closeOnClick: true,
       pauseOnHover: true,
       draggable: true,
       progress: undefined,
-      theme: 'colored',
+      theme: 'dark',
     });
 
   const notifyDeclarationIsDelete = () =>
@@ -179,19 +179,6 @@ export const NoticeCategoryItem = ({
           </LearnMoreBtn>
           {isMyAds && <RemoveMyNoticeBtn onClick={removeFromMyAdsNotices} />}
         </ThumbBtn>
-
-        <ToastContainer
-          position="top-center"
-          autoClose={3000}
-          hideProgressBar={false}
-          newestOnTop={false}
-          closeOnClick
-          rtl={false}
-          pauseOnFocusLoss
-          draggable
-          pauseOnHover
-          theme="colored"
-        />
       </Item>
       {showModal && (
         <MainModal onClose={toggleModal}>
