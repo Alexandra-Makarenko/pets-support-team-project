@@ -23,7 +23,6 @@ import {
 import { useSelector } from 'react-redux';
 import { getOneNotice } from 'redux/notices/selectors';
 
-
 export const ModalNotice = ({
   isFavorite,
   addToFavorite,
@@ -33,6 +32,15 @@ export const ModalNotice = ({
   imgsrc,
 }) => {
   const oneNotice = useSelector(getOneNotice);
+
+  const noLinesCategory = category => {
+    if (category === 'lost-found') {
+      return 'Lost/Found';
+    } else if (category === 'in-good-hands') {
+      return 'In good hands';
+    }
+    return 'Sell';
+  };
 
   const handleAddToFavorite = () => {
     removeFromFavorite();
@@ -48,7 +56,7 @@ export const ModalNotice = ({
     <ModalNoticeBox>
       <SecondWrap>
         <ImgWrap>
-          <CategoryLabel>{oneNotice.category}</CategoryLabel>
+          <CategoryLabel>{noLinesCategory(oneNotice)}</CategoryLabel>
 
           <Img src={imgsrc} alt={oneNotice.name} loading="lazy" />
         </ImgWrap>
