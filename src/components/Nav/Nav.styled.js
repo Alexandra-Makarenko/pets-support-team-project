@@ -37,6 +37,7 @@ export const MenuLink = styled(NavLink)`
   font-size: 20px;
   line-height: 1.4;
   letter-spacing: 0.04em;
+  transition: color 500ms cubic-bezier(0.4, 0, 0.2, 1);
 
   &:hover,
   :focus {
