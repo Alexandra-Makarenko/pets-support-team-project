@@ -12,12 +12,11 @@ import desktop_vector_1 from '../../../assets/images/bg-pictures/desktop/desktop
 import desktop_vector_2 from '../../../assets/images/bg-pictures/desktop/desktop_vector_2.png';
 import desktop_vector_3 from '../../../assets/images/bg-pictures/desktop/desktop_vector_3.png';
 import { device } from 'styles/device';
-import { BiShow } from 'react-icons/bi';
-import { BiHide } from 'react-icons/bi';
 
 export const SectionLoginForm = styled.section`
-  min-height: calc(100vh - 100px);
-
+  min-height: 100vh;
+  padding-top: 42px;
+  padding-bottom: 159px;
   background-color: ${props => props.theme.backgrounds.input};
 
   background-image: url(${register_bg_step1_mob});
@@ -27,9 +26,8 @@ export const SectionLoginForm = styled.section`
   background-repeat: no-repeat;
 
   @media ${device.tablet} {
-    min-height: calc(100vh - 272px);
-    margin-top: 204px;
-
+    padding-top: 204px;
+    padding-bottom: 299px;
     background-image: url(${tablet_vector_3}), url(${tablet_vector_2}),
       url(${tablet_vector_4}), url(${tablet_vector_1}), url(${tablet_vector_5}),
       url(${tablet_vector_6});
@@ -39,9 +37,8 @@ export const SectionLoginForm = styled.section`
   }
 
   @media ${device.desktop} {
-    min-height: calc(100vh - 152px);
-    margin-top: 80px;
-
+    padding-top: 80px;
+    padding-bottom: 147px;
     background-image: url(${desktop_vector_1}), url(${desktop_vector_2}),
       url(${desktop_vector_3}), url(${tablet_vector_5}), url(${tablet_vector_6});
 
@@ -53,12 +50,18 @@ export const SectionLoginForm = styled.section`
 export const LoginFormContainer = styled.div`
   max-width: 320px;
   padding: 0px 20px;
-
+  /* margin-bottom: ${props =>
+    props.currentStep === 0 ? `266px` : `223px`}; */
+  /* padding-left: 20px;
+  padding-right: 20px; */
   margin: 0px auto;
-
+  /* margin-left: auto;
+  margin-right: auto; */
   text-align: center;
   padding-left: 20px;
   padding-right: 20px;
+  /* padding-bottom: ${props =>
+    props.currentStep === 0 ? `103px` : `59px`}; */
 
   @media ${device.tablet} {
     max-width: 768px;
@@ -122,14 +125,6 @@ export const FormInput = styled(Field)`
   border: 1px solid rgba(245, 146, 86, 0.5);
   border-radius: 40px;
 
-  transition: transform ${props => props.theme.transition.first};
-
-  &:hover,
-  &:focus {
-    transform: scale(1.02);
-    border: 1px solid ${p => p.theme.hoverButtonColor.primary};
-  }
-
   @media ${device.tablet} {
     font-size: 18px;
     line-height: 25px;
@@ -137,39 +132,8 @@ export const FormInput = styled(Field)`
     padding-bottom: 13px;
     padding-left: 32px;
   }
-`;
 
-export const WrapInputPassword = styled.div`
-  position: relative;
-`;
-
-export const ShowPasswordIcon = styled(BiShow)`
-  position: absolute;
-  right: 20px;
-  top: 8.5px;
-  color: #f59256;
-  width: 26px;
-  height: 26px;
-  @media ${device.tablet} {
-    top: 10px;
-
-    width: 32px;
-    height: 32px;
-  }
-`;
-
-export const HidePasswordIcon = styled(BiHide)`
-  position: absolute;
-  right: 20px;
-  top: 8.5px;
-  color: #f59256;
-  width: 26px;
-  height: 26px;
-  @media ${device.tablet} {
-    top: 10px;
-
-    width: 32px;
-    height: 32px;
+  @media ${device.desktop} {
   }
 `;
 
@@ -180,22 +144,17 @@ export const LoginSubmitBtn = styled.button`
   color: ${props => props.theme.fontColors.white};
   background-color: ${props => props.theme.backgrounds.buttonPrimary};
   border-radius: 40px;
-  padding-top: 6.5px;
-  padding-bottom: 6.5px;
-  text-align: center;
+  padding-top: 8.5px;
+  padding-bottom: 8.5px;
   font-weight: 500;
   font-size: 20px;
   line-height: 27px;
   letter-spacing: ${props => props.theme.fonts.letterSpacing};
   outline: none;
-  border: 2px solid #f59256;
-  transition: transform ${props => props.theme.transition.first};
-
-  &:hover,
-  &:focus {
-    cursor: pointer;
+  border: none;
+  transition: all 0.3s ease-in-out;
+  &:hover {
     transform: scale(1.03);
-    border: 2px solid ${p => p.theme.hoverButtonColor.primary};
   }
 
   @media ${device.tablet} {
@@ -213,7 +172,6 @@ export const LoginBoxText = styled.div`
 `;
 
 export const LoginLinkText = styled.p`
-  margin-bottom: 10px;
   font-family: 'Manrope400';
   font-weight: 400;
   font-size: 12px;

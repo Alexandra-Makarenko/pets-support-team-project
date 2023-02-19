@@ -11,6 +11,9 @@ import { Loader } from 'components/Loader/Loader';
 
 const Home = lazy(() => import('../pages/Home/Home'));
 const RegisterPage = lazy(() => import('../pages/RegisterPage/RegisterPage'));
+const ForgotPasswordPage = lazy(() =>
+  import('../pages/ForgotPassword/ForgotPasswordPage')
+);
 const LoginPage = lazy(() => import('../pages/LoginPage/LoginPage'));
 const OurFriendsPage = lazy(() =>
   import('../pages/OurFriendsPage/OurFriendsPage')
@@ -42,6 +45,15 @@ export const App = () => {
             path="/register"
             element={
               <RestrictedRoute component={RegisterPage} redirectTo="/user" />
+            }
+          />
+          <Route
+            path="/password"
+            element={
+              <RestrictedRoute
+                component={ForgotPasswordPage}
+                redirectTo="/login"
+              />
             }
           />
           <Route
