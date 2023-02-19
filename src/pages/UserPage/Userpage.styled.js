@@ -344,16 +344,24 @@ export const LogoutContainer = styled.div`
     display: flex;
     justify-content: flex-end;
   }
+  margin-top: 44px;
+  @media ${device.tablet} {
+    margin-top: 33px;
+  }
+  @media ${device.desktop} {
+    margin-top: 24px;
+  }
 `;
 
 export const LogoutButton = styled.button`
   display: flex;
   align-items: center;
-
   width: fit-content;
-  height: 32px;
+  font-family: 'Manrope500';
+  font-size: 16px;
+  letter-spacing: 0.04em;
   border: none;
-  margin-top: 44px;
+
   background-color: transparent;
   color: rgba(17, 17, 17, 0.6);
   svg {
@@ -363,12 +371,6 @@ export const LogoutButton = styled.button`
   }
   &:hover {
     color: ${props => props.theme.fontColors.buttonSecondary};
-  }
-  @media ${device.tablet} {
-    margin-top: 33px;
-  }
-  @media ${device.desktop} {
-    margin-top: 24px;
   }
 `;
 

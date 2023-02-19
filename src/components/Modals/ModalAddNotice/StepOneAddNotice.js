@@ -69,9 +69,14 @@ export const StepOne = props => {
             Here you can create new add for pets that you have
           </ModalText>
           <CategoriesOfAdd role="group">
-            <ModalRadio type="radio" name="category" value="sell" id="idSell" />
-            <ModalRadioCategoriesTitle htmlFor="idSell">
-              Sell
+            <ModalRadio
+              type="radio"
+              name="category"
+              value="lost-found"
+              id="idLostFound"
+            />
+            <ModalRadioCategoriesTitle htmlFor="idLostFound">
+              lost/found
             </ModalRadioCategoriesTitle>
             <ModalRadio
               type="radio"
@@ -80,16 +85,11 @@ export const StepOne = props => {
               id="idInGoodHands"
             />
             <ModalRadioCategoriesTitle htmlFor="idInGoodHands">
-              In good hands
+              in good hands
             </ModalRadioCategoriesTitle>
-            <ModalRadio
-              type="radio"
-              name="category"
-              value="lost-found"
-              id="idLostFound"
-            />
-            <ModalRadioCategoriesTitle htmlFor="idLostFound">
-              Lost/Found
+            <ModalRadio type="radio" name="category" value="sell" id="idSell" />
+            <ModalRadioCategoriesTitle htmlFor="idSell">
+              sell
             </ModalRadioCategoriesTitle>
           </CategoriesOfAdd>
           <ErrorWraper>

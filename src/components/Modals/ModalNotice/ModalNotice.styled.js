@@ -10,7 +10,6 @@ export const ModalNoticeBox = styled.div`
   padding-right: 20px;
   overflow: auto;
 
-
   @media ${device.tablet} {
     min-width: 704px;
     padding-top: 32px;
@@ -79,6 +78,7 @@ export const WrapInner = styled.div`
 `;
 
 export const Title = styled.h2`
+  word-wrap: break-word;
   font-family: 'Manrope700';
   padding-right: 35px;
   font-size: 24px;
@@ -116,23 +116,42 @@ export const Li = styled.li`
 
 export const Lable = styled.p`
   font-family: 'Manrope600';
+  font-size: 14px;
+  line-height: 19px;
   width: 94px;
   flex-shrink: 0;
+  @media ${device.tablet} {
+    font-size: 16px;
+    line-height: 22px;
+  }
 `;
 
 export const Text = styled.p`
-  @media screen and (min-width: 768px) {
+  font-family: 'Manrope500';
+  font-size: 14px;
+  line-height: 19px;
+  @media ${device.tablet} {
+    font-size: 16px;
+    line-height: 22px;
   }
 `;
 
 export const TextLink = styled.a`
+  width: 122px;
+  word-wrap: break-word;
   text-decoration: none;
+  font-size: 14px;
+  line-height: 19px;
+
   color: #000000;
   &:hover {
     color: #f59256;
     text-decoration: underline;
   }
   @media screen and (min-width: 768px) {
+    font-size: 16px;
+    line-height: 22px;
+    width: 235px;
   }
 `;
 
