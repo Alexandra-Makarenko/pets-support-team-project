@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { Formik, Form } from 'formik';
 import { nanoid } from 'nanoid';
-import { register } from 'redux/auth/authOperations';
+import { register, registerWithGoogle } from 'redux/auth/authOperations';
 import 'react-phone-input-2/lib/style.css';
 import { PhoneInputField } from './RegisterForm.styled';
 import { ErrorText } from 'Validations/AuthErrorMessage.styled';
@@ -17,6 +17,7 @@ import {
   RegisterFormContainer,
   FormInput,
   NextFormRegisterBtn,
+  GoogleRegButton,
   SectionRegisterForm,
   RegisterTitle,
   RegisterLinkText,
@@ -104,6 +105,10 @@ const RegisterStepOne = props => {
     props.nextStep(values);
   };
 
+  const handleClick = () => {
+    
+  }
+
   const toogleShowPassword = () => {
     setShowPassword(!showPassword);
   };
@@ -166,6 +171,7 @@ const RegisterStepOne = props => {
             </Form>
           )}
         </Formik>
+        <GoogleRegButton type="button" onClick={handleClick}>Register with Google</GoogleRegButton>
         <RegisterBoxText>
           <RegisterLinkText>
             Already have an account?{' '}

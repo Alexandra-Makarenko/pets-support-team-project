@@ -56,6 +56,23 @@ export const register = createAsyncThunk(
 );
 
 /*
+ * GET @ /users/google
+ */
+export const registerWithGoogle = createAsyncThunk(
+  '/users/google',
+  async (_, thunkAPI) => {
+    try {
+      await axios.get('/users/google');
+      // After successful registration, add the token to the HTTP header
+      clearAuthHeader();
+    } catch (error) {
+      // return alert('Sorry, there was a login error');
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
+/*
  * POST @ /users/login
  * body: { email, password }
  */

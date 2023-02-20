@@ -258,6 +258,44 @@ export const NextFormRegisterBtn = styled.button`
   }
 `;
 
+export const GoogleRegButton = styled.button`
+  font-family: 'Manrope500';
+  margin-top: ${props => (props.currentStep === 0 ? '40px' : '28px')};
+  width: 100%;
+  color: ${props => props.theme.fontColors.white};
+
+  background-color: ${props =>
+    props.disabled ? '#A0A0A0' : props.theme.backgrounds.buttonPrimary};
+  border-radius: 40px;
+  padding-top: 8.5px;
+  padding-bottom: 8.5px;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 27px;
+  letter-spacing: ${props => props.theme.fonts.letterSpacing};
+  outline: none;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+
+  &:hover {
+    transform: scale(1.03);
+  }
+
+  /* &:hover {
+    transform: scale(1.03);
+  } */
+
+  @media ${device.tablet} {
+    margin-top: 40px;
+  }
+
+  @media ${device.desktop} {
+    padding-top: 10.5px;
+    padding-bottom: 10.5px;
+  }
+`;
+
 export const BackFormRegisterBtn = styled.button`
   font-family: 'Manrope500';
   margin-top: 12px;
