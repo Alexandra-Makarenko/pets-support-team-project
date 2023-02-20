@@ -34,7 +34,6 @@ export const ModalNotice = ({
   const oneNotice = useSelector(getOneNotice);
 
   const noLinesCategory = category => {
-    console.log('category:', category);
     if (category === 'lost-found') {
       return 'Lost/Found';
     } else if (category === 'in-good-hands') {
@@ -45,7 +44,6 @@ export const ModalNotice = ({
 
   const handleAddToFavorite = () => {
     removeFromFavorite();
-    console.log(categoryFilter);
     if (categoryFilter === '/notices/favorite') {
       toggleModal();
     }
