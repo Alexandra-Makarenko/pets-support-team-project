@@ -29,8 +29,6 @@ const NoticesPage = () => {
   const error = useSelector(getNoticesError);
   const [searchValue, setSearchValue] = useState('');
 
-  console.log(noties.total_results);
-
   const dispatch = useDispatch();
 
   useEffect(() => {
