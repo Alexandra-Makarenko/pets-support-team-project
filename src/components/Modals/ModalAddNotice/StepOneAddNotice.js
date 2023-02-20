@@ -26,9 +26,11 @@ export const StepOne = props => {
     category: yup.string().required('Chose one option'),
     title: yup
       .string()
+      .matches(nameRules, 'Only latin characters allowed')
       .min(2, 'Must be more than 2 characters')
       .max(48, 'Title is maximum 48 characters!')
       .required('Please enter add title'),
+
     name: yup
       .string()
       .min(2, 'Must be more than 2 characters')
@@ -51,9 +53,9 @@ export const StepOne = props => {
       .required('Date of birth is required'),
     breed: yup
       .string()
+      .matches(nameRules, 'Only latin characters allowed ')
       .min(2, 'Must be more than 2 characters')
       .max(24, 'Must not be longer than 24 characters')
-      .matches(nameRules, 'Only latin characters allowed ')
       .required('Breed is required'),
   });
 
