@@ -27,12 +27,12 @@ export const StepOne = props => {
     title: yup
       .string()
       .min(2, 'Must be more than 2 characters')
-      .max(48, 'Must not be longer than 48 characters')
+      .max(48, 'Title is maximum 48 characters!')
       .required('Please enter add title'),
     name: yup
       .string()
       .min(2, 'Must be more than 2 characters')
-      .max(16, 'Must not be longer than 16 characters')
+      .max(16, 'Name is maximum 16 characters!')
       .matches(nameRules, 'Only latin characters allowed')
       .required('This field is required'),
     dateofbirth: yup
