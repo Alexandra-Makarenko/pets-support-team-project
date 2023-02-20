@@ -47,6 +47,7 @@ export const NoticeCategoryItem = ({
 }) => {
   const { isLoggedIn } = useAuth();
 
+
   const isFavorite = favoritePets.find(item => item._id === pet._id);
   const isMyAds = user._id === pet.owner;
 
