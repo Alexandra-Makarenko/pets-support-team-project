@@ -482,6 +482,7 @@ export const AddPetButton = styled.button`
   background-color: ${props => props.theme.fontColors.buttonSecondary};
   svg {
     fill: #fff;
+
     transition: fill 200ms cubic-bezier(0.4, 0, 0.2, 1);
   }
 

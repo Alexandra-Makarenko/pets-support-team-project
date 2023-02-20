@@ -344,6 +344,7 @@ export const RxCross1Modal = styled(RxCross1)`
   width: 28px;
   height: 28px;
   color: grey;
+  cursor: pointer;
   &:hover {
     color: #f59256;
   }
