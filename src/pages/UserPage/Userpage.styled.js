@@ -221,6 +221,32 @@ export const UserButton = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
+  cursor: pointer;
+  width: 20px;
+  height: 20px;
+  padding: 0;
+
+  svg {
+    width: 12.5px;
+    height: 12.5px;
+  }
+  border-radius: 50%;
+  border: none;
+  background-color: #fdf7f2;
+  @media ${device.tablet} {
+    width: 32px;
+    height: 32px;
+    svg {
+      width: 20px;
+      height: 20px;
+    }
+  }
+`;
+
+export const UserButtonDisabled = styled.button`
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 20px;
   height: 20px;
   padding: 0;
@@ -356,6 +382,7 @@ export const LogoutContainer = styled.div`
 export const LogoutButton = styled.button`
   display: flex;
   align-items: center;
+  cursor: pointer;
   width: fit-content;
   font-family: 'Manrope500';
   font-size: 16px;
@@ -379,6 +406,7 @@ export const DeletePetButton = styled.button`
   top: 272px;
   right: 20px;
   display: block;
+  cursor: pointer;
   width: 24px;
   height: 24px;
   border-radius: 50%;
@@ -445,6 +473,7 @@ export const AddPetButton = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
+  cursor: pointer;
   width: 40px;
   height: 40px;
   margin-left: 15px;
