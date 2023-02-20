@@ -14,9 +14,8 @@ import desktop_vector_3 from '../../../assets/images/bg-pictures/desktop/desktop
 import { device } from 'styles/device';
 
 export const SectionLoginForm = styled.section`
-  min-height: 100vh;
-  padding-top: 42px;
-  padding-bottom: 159px;
+  min-height: calc(100vh - 100px);
+
   background-color: ${props => props.theme.backgrounds.input};
 
   background-image: url(${register_bg_step1_mob});
@@ -26,8 +25,9 @@ export const SectionLoginForm = styled.section`
   background-repeat: no-repeat;
 
   @media ${device.tablet} {
-    padding-top: 204px;
-    padding-bottom: 299px;
+    min-height: calc(100vh - 272px);
+    margin-top: 204px;
+
     background-image: url(${tablet_vector_3}), url(${tablet_vector_2}),
       url(${tablet_vector_4}), url(${tablet_vector_1}), url(${tablet_vector_5}),
       url(${tablet_vector_6});
@@ -37,8 +37,9 @@ export const SectionLoginForm = styled.section`
   }
 
   @media ${device.desktop} {
-    padding-top: 80px;
-    padding-bottom: 147px;
+    min-height: calc(100vh - 152px);
+    margin-top: 80px;
+
     background-image: url(${desktop_vector_1}), url(${desktop_vector_2}),
       url(${desktop_vector_3}), url(${tablet_vector_5}), url(${tablet_vector_6});
 
