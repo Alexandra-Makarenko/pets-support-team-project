@@ -16,12 +16,12 @@ import {
   PetPhotoPlaceholder,
 } from './UserPageAddPet.styled';
 import { ReactComponent as PlusSvg } from './plus.svg';
-import { HiddenInput } from './Userpage.styled';
 import { useDispatch } from 'react-redux';
 import { postPet } from 'redux/userPets/operations';
 import { stepOnePetSchema, stepTwoPetSchema } from 'Validations/PetValidation';
 import { FormError } from 'Validations/RegisterValidation';
 import { toast } from 'react-toastify';
+import { HiddenInput } from 'components/Account/MyInfo/MyInfo.styled';
 
 const { Formik, Form } = require('formik');
 const { useState, useEffect } = require('react');
