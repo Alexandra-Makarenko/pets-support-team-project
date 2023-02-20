@@ -41,6 +41,7 @@ const NoticesCategoryList = () => {
     dispatch(setStatusFilter(location.pathname));
   }, [dispatch, location.pathname]);
 
+
   useEffect(() => {
     if (!pets) {
       return;
@@ -87,6 +88,8 @@ const NoticesCategoryList = () => {
     if (!isLoggedIn) return;
     dispatch(fetchFavoriteNotices({ searchValue }));
   }, [dispatch, category, searchValue, isLoggedIn, currentPage]);
+
+
 
   const result =
     categoryFilter !== '/notices/favorite'
