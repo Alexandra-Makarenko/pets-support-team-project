@@ -27,6 +27,7 @@ import {
   PetPhotoPlaceholder,
   UploadLavel as UploadLabel,
   UserButton,
+  UserButtonDisabled,
   UserButtonPlaceholder,
   UserContainer,
   UserDataContainer,
@@ -315,9 +316,9 @@ const UserPage = () => {
           );
         } else {
           return (
-            <UserButton type="button">
+            <UserButtonDisabled type="button">
               <EditSvg fill="#111111" />
-            </UserButton>
+            </UserButtonDisabled>
           );
         }
       } else {

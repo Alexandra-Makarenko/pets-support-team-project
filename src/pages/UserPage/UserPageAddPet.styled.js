@@ -108,6 +108,7 @@ export const PetPhoto = styled.img`
 export const PetPhotoLabel = styled.label`
   display: flex;
   justify-content: center;
+  cursor: pointer;
   margin-bottom: 20px;
   @media ${device.tablet} {
     margin-bottom: 40px;
@@ -202,6 +203,7 @@ export const PetButtonBlock = styled.div`
 `;
 
 export const PetButtonBack = styled.button`
+  cursor: pointer;
   width: 240px;
   padding-top: 9px;
   padding-bottom: 9px;
@@ -226,6 +228,7 @@ export const PetButtonBack = styled.button`
 `;
 
 export const PetButtonNext = styled.button`
+  cursor: pointer;
   width: 240px;
   padding-top: 9px;
   padding-bottom: 9px;
