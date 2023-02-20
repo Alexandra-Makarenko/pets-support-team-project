@@ -34,6 +34,7 @@ export const ModalNotice = ({
   const oneNotice = useSelector(getOneNotice);
 
   const noLinesCategory = category => {
+    console.log('category:', category);
     if (category === 'lost-found') {
       return 'Lost/Found';
     } else if (category === 'in-good-hands') {
@@ -56,7 +57,7 @@ export const ModalNotice = ({
     <ModalNoticeBox>
       <SecondWrap>
         <ImgWrap>
-          <CategoryLabel>{noLinesCategory(oneNotice)}</CategoryLabel>
+          <CategoryLabel>{noLinesCategory(oneNotice.category)}</CategoryLabel>
 
           <Img src={imgsrc} alt={oneNotice.name} loading="lazy" />
         </ImgWrap>
