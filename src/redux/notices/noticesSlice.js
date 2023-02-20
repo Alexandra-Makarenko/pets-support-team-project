@@ -55,9 +55,10 @@ const noticesSlice = createSlice({
       state.isLoading = true;
     },
     [fetchFavoriteNotices.fulfilled](state, action) {
+      // console.log(action.payload.notices);
       state.isLoading = false;
       state.error = null;
-      state.favoriteNotices = action.payload;
+      state.favoriteNotices = action.payload.notices;
     },
     [fetchFavoriteNotices.rejected](state, action) {
       state.isLoading = false;
