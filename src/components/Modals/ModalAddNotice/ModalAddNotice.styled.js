@@ -21,8 +21,13 @@ const ErrorText = styled.p`
   letter-spacing: 0.04em;
   margin-top: 4px;
   color: red;
+  height: 20px;
 `;
-
+export const ErrorWraper = styled.div`
+  height: 18px;
+  padding: 2px;
+  margin-bottom: 4px;
+`;
 export const AddNoticeModal = styled.section`
   position: fixed;
   top: 0;
@@ -37,7 +42,7 @@ export const AddNoticeModal = styled.section`
 `;
 export const AddNoticeModalWindow = styled.div`
   position: fixed;
-  background-color: ${props => props.theme.backgrounds.input};
+  background-color: ${props => props.theme.backgrounds.bodySecondary};
   overflow: auto;
   width: 280px;
   max-height: 100vh;
@@ -52,7 +57,7 @@ export const ModalButtonSection = styled.div`
   @media ${device.tablet} {
     display: flex;
     flex-direction: row-reverse;
-    margin-top: 40px;
+    margin-top: 22px;
     justify-content: center;
   }
 `;
@@ -61,6 +66,7 @@ export const ModalTitle = styled.label`
   font-family: 'Manrope700';
   font-size: 24px;
   line-height: 33px;
+  margin-top: 6px;
   letter-spacing: ${props => props.theme.fonts.letterSpacing};
   color: ${props => props.theme.fontColors.primary};
 
@@ -81,7 +87,6 @@ export const ModalFormInput = styled(Field)`
   padding-top: 11px;
   padding-bottom: 12px;
   padding-left: 14px;
-  margin-bottom: 16px;
   margin-top: 8px;
   color: ${props => props.theme.fontColors.inputTextColor};
   outline: none;
@@ -109,13 +114,16 @@ export const ModalDateField = styled(Field)`
   padding-top: 11px;
   padding-bottom: 12px;
   padding-left: 14px;
-  margin-bottom: 16px;
+  padding-right: 14px;
   margin-top: 8px;
   color: ${props => props.theme.fontColors.inputTextColor};
   outline: none;
   background-color: ${props => props.theme.backgrounds.input};
   border: 1px solid rgba(245, 146, 86, 0.5);
   border-radius: 40px;
+  &::-webkit-calendar-picker-indicator {
+    cursor: pointer;
+  }
 `;
 
 export const ModalTextArea = styled(Field)`
@@ -151,10 +159,9 @@ export const ModalTextArea = styled(Field)`
 
 export const NextFormModalBtn = styled.button`
   font-family: 'Manrope500';
-  margin-top: ${props => (props.currentStep === 0 ? '40px' : '28px')};
+  margin-top: 22px;
   width: 100%;
   color: ${props => props.theme.fontColors.white};
-  /* background-color: ${props => props.theme.backgrounds.buttonPrimary}; */
   background-color: ${props =>
     props.disabled ? '#A0A0A0' : props.theme.backgrounds.buttonPrimary};
   border-radius: 40px;
@@ -225,36 +232,59 @@ export const ModalRadio = styled(Field).attrs({ type: 'radio' })`
 export const ModalRadioCategoriesTitle = styled.label`
   font-family: 'Manrope500';
   font-size: 14px;
-  line-height: 19px;
   letter-spacing: 0.04em;
   white-space: nowrap;
   letter-spacing: ${props => props.theme.fonts.letterSpacing};
-  padding: 8px 28px 8px 28px;
+  padding: 8px 28px;
   border-radius: 40px;
   border: 2px solid #f59256;
   cursor: pointer;
   margin-right: 8px;
-  margin-bottom: 8px;
+  margin-bottom: 12px;
   ${ModalRadio}:checked + && {
     background-color: #f59256;
     color: #ffffff;
   }
+  @media ${device.tablet} {
+    font-size: 20px;
+    padding: 10px 28px;
+  }
 `;
 
 export const ModalHeader = styled.h2`
-  margin-bottom: 20px;
+  font-family: 'Manrope400';
+  font-size: 24px;
+  line-height: 33px;
   text-align: center;
+  margin-bottom: 20px;
+  @media ${device.tablet} {
+    font-size: 36px;
+    line-height: 49px;
+  }
 `;
 export const ModalText = styled.p`
+  font-family: 'Manrope500';
   text-align: center;
+  font-size: 16px;
+  line-height: 22px;
+  letter-spacing: -0.01em;
   margin-bottom: 20px;
+  @media ${device.tablet} {
+    font-size: 20px;
+    line-height: 27px;
+    margin-bottom: 28px;
+  }
 `;
 
 export const ModalLabel = styled.label`
   display: flex;
   font-family: 'Manrope500';
   font-size: 18px;
-  line-height: 27px;
+  line-height: 26.5px;
+  @media ${device.tablet} {
+    font-size: 24px;
+    line-height: 26.5px;
+  }
 `;
 
 export const CategoriesOfAdd = styled.div`
@@ -307,7 +337,6 @@ export const BsPlusLgModal = styled(BsPlusLg)`
 
 export const ModalImageBlock = styled.div`
   margin-top: 8px;
-  margin-bottom: 30px;
   padding: 20px;
 `;
 

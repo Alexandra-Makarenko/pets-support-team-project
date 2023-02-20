@@ -41,7 +41,7 @@ export const FriendItem = styled.li`
 `;
 
 export const FriendTitle = styled.h3`
-  font-family: inherit;
+  font-family: 'Manrope700';
   font-size: 12px;
   line-height: 1.35;
   font-weight: 700;
@@ -58,11 +58,34 @@ export const FriendTitle = styled.h3`
   }
 `;
 
-export const FriendLink = styled.a`
-  outline: none;
-  text-decoration: none;
+// export const FriendLink = styled.a`
+//   outline: none;
+//   text-decoration: none;
+//   color: inherit;
+//   border-bottom: 1px solid ${p => p.theme.fontColors.buttonSecondary};
+// `;
+export const FriendLink = styled.span`
+  /* display: inline-block; */
+  /* outline: none;
+  text-decoration: none; */
   color: inherit;
-  border-bottom: 1px solid ${p => p.theme.fontColors.buttonSecondary};
+  background: none;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+
+  &:hover {
+    border-bottom: 1px solid ${p => p.theme.fontColors.buttonSecondary};
+  }
+`;
+
+export const TextLink = styled(FriendLink)`
+  text-decoration: none;
+  border-bottom: 0.5px solid ${p => p.theme.fontColors.primary};
+
+  &:hover {
+    border-bottom: 0.5px solid ${p => p.theme.fontColors.buttonSecondary};
+  }
 `;
 
 export const FriendContentWrapper = styled.div`
@@ -106,6 +129,7 @@ export const FriendImg = styled.img`
 export const TextWrapper = styled.div`
   display: flex;
   flex-direction: column;
+  width: 100%;
 `;
 export const HoursWrapper = styled.div`
   position: relative;
@@ -114,7 +138,7 @@ export const HoursWrapper = styled.div`
 export const FriendText = styled.p`
   margin-top: 4px;
 
-  font-family: inherit;
+  font-family: 'Manrope500';
   font-size: 12px;
   line-height: 1.35;
 
@@ -169,7 +193,7 @@ export const HoursItem = styled.li`
   justify-content: space-between;
   gap: 12px;
 
-  font-family: inherit;
+  font-family: 'Manrope500';
   font-size: 12px;
   line-height: 1.35;
 

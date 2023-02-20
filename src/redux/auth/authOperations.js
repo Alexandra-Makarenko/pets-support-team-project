@@ -9,6 +9,8 @@ const notify = message => {
   });
 };
 
+// заглушка для розробки
+// axios.defaults.baseURL = 'http://localhost:3000/api';
 axios.defaults.baseURL = 'https://petly-5jqe.onrender.com/api';
 
 // Utility to add JWT
@@ -31,7 +33,7 @@ export const register = createAsyncThunk(
   async (credentials, thunkAPI) => {
     try {
       const responseRegister = await axios.post('/users/signup', credentials);
-      console.log(responseRegister.data);
+      // console.log(responseRegister.data);
       // After successful registration, add the token to the HTTP header
       setAuthHeader(responseRegister.data.token);
 
@@ -90,6 +92,25 @@ export const logIn = createAsyncThunk(
       // return alert('You entered an incorrect username or password');
       notify('You entered an incorrect username or password');
       return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
+/*
+ * POST @ /users/new_password
+ * body: { email }
+ */
+export const password = createAsyncThunk(
+  '/users/new_password',
+  async (credentials, thunkAPI) => {
+    console.log(credentials);
+    try {
+      const response = await axios.post('/users/new_password', credentials);
+      alert('Check your email');
+      return response.data;
+    } catch (error) {
+      // return thunkAPI.rejectWithValue(error.message);
+      return alert('You entered an incorrect email');
     }
   }
 );

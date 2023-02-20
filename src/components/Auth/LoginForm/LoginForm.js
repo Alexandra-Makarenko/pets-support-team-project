@@ -89,6 +89,11 @@ export const LoginForm = () => {
               Don't have an account?{' '}
               <LoginLink to="/register">Register</LoginLink>
             </LoginLinkText>
+          
+            <LoginLinkText>
+              Don't remember password?{' '}
+              <LoginLink to="/password">Click here</LoginLink>
+            </LoginLinkText>
           </LoginBoxText>
         </LoginFormBox>
       </LoginFormContainer>

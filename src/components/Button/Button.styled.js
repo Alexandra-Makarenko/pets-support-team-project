@@ -23,6 +23,7 @@ export const Button = styled.button`
   outline: 0;
   cursor: pointer;
   box-shadow: 0px 2px 2px lightgray;
+  transition: background-color 500ms cubic-bezier(0.4, 0, 0.2, 1);
 
   &:hover,
   :focus {
@@ -32,10 +33,10 @@ export const Button = styled.button`
 
   @media ${device.tablet} {
     font-size: 20px;
-    padding: ${props => (props.icon ? '6px 28px' : '6px 28px')};
+    padding: ${props => (props.icon ? '10px 28px' : '10px 28px')};
   }
 
   @media ${device.desktop} {
-    padding: ${props => (props.icon ? '7px 28px' : '7px 28px')};
+    padding: ${props => (props.icon ? '10px 28px' : '10px 28px')};
   }
 `;

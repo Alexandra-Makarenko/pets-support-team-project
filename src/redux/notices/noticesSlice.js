@@ -6,6 +6,7 @@ import {
   fetchAddFavoriteNotice,
   fetchRemoveFavoriteNotice,
   removeMyAddNotice,
+  addNotice,
 } from './operations';
 
 // const tasksInitialState = petsdata;
@@ -16,8 +17,17 @@ const noticesSlice = createSlice({
     items: [],
     oneNotice: {},
     favoriteNotices: [],
+    category: '',
     isLoading: false,
     error: null,
+  },
+  reducers: {
+    clearNotices(state) {
+      state.items = [];
+    },
+    setCategoryGlobal(state, action) {
+      state.category = action.payload;
+    },
   },
   extraReducers: {
     [fetchNotices.pending](state) {
@@ -26,7 +36,15 @@ const noticesSlice = createSlice({
     [fetchNotices.fulfilled](state, action) {
       state.isLoading = false;
       state.error = null;
-      state.items = action.payload;
+      if (action.payload.page === 1) {
+        state.items = action.payload;
+      } else {
+        if (action?.payload?.notices) {
+          for (let i = 0; i < action.payload.notices.length; i++) {
+            state.items.notices.push(action.payload.notices[i]);
+          }
+        }
+      }
     },
     [fetchNotices.rejected](state, action) {
       state.isLoading = false;
@@ -40,7 +58,6 @@ const noticesSlice = createSlice({
       state.isLoading = false;
       state.error = null;
       state.favoriteNotices = action.payload;
-      // console.log(action.payload);
     },
     [fetchFavoriteNotices.rejected](state, action) {
       state.isLoading = false;
@@ -93,15 +110,38 @@ const noticesSlice = createSlice({
       // console.log(action.meta.arg);
       // console.log(state.items);
       state.error = null;
-      const index = state.items.findIndex(pet => pet._id === action.meta.arg);
-      state.items.splice(index, 1);
+      const index = state.items.notices.findIndex(
+        pet => pet._id === action.meta.arg
+      );
+      state.items.notices.splice(index, 1);
     },
     [removeMyAddNotice.rejected](state, action) {
       // state.isLoading = false;
       state.error = action.payload;
     },
+    [addNotice.pending](state, action) {
+      state.error = null;
+      state.isLoading = true;
+    },
+    [addNotice.fulfilled](state, action) {
+      state.error = null;
+      state.isLoading = false;
+      const stateCategory = JSON.parse(JSON.stringify(state.category));
+      if (
+        action?.payload?.category === stateCategory ||
+        stateCategory === 'mynotices'
+      ) {
+        console.log('payload', action.payload);
+        state.items.notices.unshift(action.payload);
+      }
+    },
+    [addNotice.rejected](state, action) {
+      state.error = action.payload;
+      state.isLoading = false;
+    },
   },
 });
 
 // export const { addTask, deleteTask, toggleCompleted } = petsSlice.actions;
+export const { clearNotices, setCategoryGlobal } = noticesSlice.actions;
 export const noticesReducer = noticesSlice.reducer;

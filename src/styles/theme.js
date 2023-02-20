@@ -20,6 +20,9 @@ export const theme = Object.freeze({
     grey: '#535353',
     navFont: '#181C27',
   },
+  hoverButtonColor: {
+    primary: '#FF6101',
+  },
   hovers: {
     primary: '#f59356af',
     secondary: '#ffffffd0',
@@ -32,6 +35,7 @@ export const theme = Object.freeze({
   },
   shadows: {
     searchBox: '7px 4px 14px rgba(49, 21, 4, 0.07)',
+    
   },
   transition: { first: '250ms cubic-bezier(0.57, 0.21, 0.69, 1.25)' },
 });

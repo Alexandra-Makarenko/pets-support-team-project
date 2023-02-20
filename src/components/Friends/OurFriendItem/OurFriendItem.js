@@ -11,12 +11,14 @@ import {
   ImgWrapper,
   HoursOfWeek,
   HoursWrapper,
+  TextLink,
 } from './OurFriendItem.styled.js';
 
 import { getHours } from 'components/Friends/services';
 import defaultImage from 'data/default-image_550.png';
 
-const NO_INFO_STRING = '---------------';
+const NO_INFO_STRING = '----------------'; //
+const TODAY_CLOSED_STRING = '- today closed -';
 
 export const OurFriendItem = ({
   title,
@@ -33,12 +35,33 @@ export const OurFriendItem = ({
     setIsHours(!isHours);
   };
 
-  const { hoursToday, hoursOfWeek } = getHours(workDays, NO_INFO_STRING);
+  const windowHeight = document.documentElement.clientHeight;
+  const windowWidth = document.documentElement.clientWidth;
+
+  const { hoursToday, hoursOfWeek } = getHours(
+    workDays,
+    NO_INFO_STRING,
+    TODAY_CLOSED_STRING
+  );
 
   return (
     <FriendItem>
       <FriendTitle>
-        <FriendLink href={url}>{title}</FriendLink>
+        {!!url && (
+          <FriendLink
+            onClick={() =>
+              window.open(
+                url,
+                title,
+                `width=${windowWidth - 64},height=${
+                  windowHeight - 64
+                },left=32,top=32`
+              )
+            }
+          >
+            {title}
+          </FriendLink>
+        )}
       </FriendTitle>
       <FriendContentWrapper>
         <ImgWrapper>
@@ -62,17 +85,58 @@ export const OurFriendItem = ({
           <FriendText>
             Address:
             <br />
-            {address ?? NO_INFO_STRING}
+            {!!address ? (
+              <TextLink
+                onClick={() =>
+                  window.open(
+                    `https://www.google.com/maps/search/${address}`,
+                    title,
+                    `width=${windowWidth - 64},height=${
+                      windowHeight - 64
+                    },left=32,top=32`
+                  )
+                }
+              >
+                {address}
+              </TextLink>
+            ) : (
+              NO_INFO_STRING
+            )}
           </FriendText>
           <FriendText>
             Email:
             <br />
-            {email ?? NO_INFO_STRING}
+            {!!email ? (
+              // <TextLink as="a" href={`mailto:${email}`}>
+              //   {email}
+              // </TextLink>
+              <TextLink
+                onClick={() =>
+                  window.open(
+                    `mailto:${email}`,
+                    title,
+                    `width=${windowWidth - 64},height=${
+                      windowHeight - 64
+                    },left=32,top=32`
+                  )
+                }
+              >
+                {email}
+              </TextLink>
+            ) : (
+              NO_INFO_STRING
+            )}
           </FriendText>
           <FriendText>
             Phone:
             <br />
-            {phone ?? NO_INFO_STRING}
+            {!!phone ? (
+              <TextLink as="a" href={`tel:${phone}`}>
+                {phone}
+              </TextLink>
+            ) : (
+              NO_INFO_STRING
+            )}
           </FriendText>
         </TextWrapper>
       </FriendContentWrapper>

@@ -19,8 +19,9 @@ import { ReactComponent as PlusSvg } from './plus.svg';
 import { HiddenInput } from './Userpage.styled';
 import { useDispatch } from 'react-redux';
 import { postPet } from 'redux/userPets/operations';
-import { stepOnePetSchema } from 'Validations/PetValidation';
+import { stepOnePetSchema, stepTwoPetSchema } from 'Validations/PetValidation';
 import { FormError } from 'Validations/RegisterValidation';
+import { toast } from 'react-toastify';
 
 const { Formik, Form } = require('formik');
 const { useState, useEffect } = require('react');
@@ -39,7 +40,7 @@ export const UserPageAddPet = ({ onClick }) => {
   const makeRequest = formData => {
     const body = {
       name: formData.name,
-      date: formData.date,
+      date: formData.date.split('-').reverse().join('.'),
       breed: formData.breed,
       comment: formData.comment,
       avatar: formData.avatar,
@@ -112,7 +113,15 @@ const AddPetStepOne = props => {
             <PetInputField name="name" placeholder="Type name pet" />
             <PetInputLabel>Date of birth</PetInputLabel>
             <FormError name="date" />
-            <PetInputField name="date" placeholder="Type date of birth" />
+            <PetInputField
+              type="date"
+              id="start"
+              name="date"
+              min="1970-01-01"
+              max={new Date().toISOString().split('T')[0]}
+              lang="en-GB"
+              noValidate
+            />
             <PetInputLabel>Breed</PetInputLabel>
             <FormError name="breed" />
             <PetInputField name="breed" placeholder="Type breed" />
@@ -133,60 +142,6 @@ const AddPetStepOne = props => {
       </Formik>
     </AddPetContainerStepOne>
   );
-
-  // return (
-  //   <RegisterFormContainer>
-  //     <RegisterFormBox>
-  //       <RegisterTitle>Registration</RegisterTitle>
-  //       <Formik
-  //         initialValues={props.userData}
-  //         validationSchema={stepOneReqisterSchema}
-  //         onSubmit={handleSubmit}
-  //       >
-  //         {({ isValid, dirty }) => (
-  //           <Form autoComplete="off">
-  //             <FormInput
-  //               id={emailInputId}
-  //               name="email"
-  //               placeholder="Email"
-  //               autoComplete="on"
-  //             />
-  //             <FormError name="email" />
-  //             <FormInput
-  //               id={passwordInputId}
-  //               name="password"
-  //               placeholder="Password"
-  //               type="password"
-  //               autoComplete="off"
-  //             />
-  //             <FormError name="password" />
-  //             <FormInput
-  //               id={confirmPasswordInputId}
-  //               name="confirmPassword"
-  //               placeholder="Confirm Password"
-  //               type="password"
-  //               autoComplete="off"
-  //             />
-  //             <FormError name="confirmPassword" />
-  //             <NextFormRegisterBtn
-  //               currentstep={props.currentstep}
-  //               type="submit"
-  //               disabled={!isValid}
-  //             >
-  //               Next
-  //             </NextFormRegisterBtn>
-  //           </Form>
-  //         )}
-  //       </Formik>
-  //       <RegisterBoxText>
-  //         <RegisterLinkText>
-  //           Already have an account?{' '}
-  //           <ReqisterLoginLink to="/login">Login</ReqisterLoginLink>
-  //         </RegisterLinkText>
-  //       </RegisterBoxText>
-  //     </RegisterFormBox>
-  //   </RegisterFormContainer>
-  // );
 };
 
 const AddPetStepTwo = props => {
@@ -194,20 +149,6 @@ const AddPetStepTwo = props => {
   const handleSubmit = values => {
     props.nextStep({ ...values, avatar: props.petData.avatar }, true);
   };
-
-  //   const handleChangePicture = e => {
-  //     props.setPetData({ avatar: e.target.files[0] });
-
-  //     const reader = new FileReader();
-  //     if (e.target.files[0]) {
-  //       reader.readAsDataURL(e.target.files[0]);
-  //       reader.onloadend = () => {
-  //         const base64data = reader.result;
-  //         setPicture(base64data);
-  //       };
-  //     }
-  //     };
-
   useEffect(() => {
     const reader = new FileReader();
     if (props.petData.avatar) {
@@ -223,7 +164,11 @@ const AddPetStepTwo = props => {
     <AddPetContainerStepTwo>
       <AddPetHeaderStepTwo>Add pet</AddPetHeaderStepTwo>
       <AddPhotoHeader>Add photo and some comments</AddPhotoHeader>
-      <Formik initialValues={props.petData} onSubmit={handleSubmit}>
+      <Formik
+        initialValues={props.petData}
+        onSubmit={handleSubmit}
+        validationSchema={stepTwoPetSchema}
+      >
         {({
           values,
           setFieldValue,
@@ -241,10 +186,24 @@ const AddPetStepTwo = props => {
               accept=".jpg, .jpeg, .png"
               size={2097152}
               onChange={e => {
-                if (e.target.files[0]) {
-                  props.setPetData({
-                    ...props.petData,
-                    avatar: e.target.files[0],
+                if (e.target.files[0].size < 2097152) {
+                  if (e.target.files[0]) {
+                    props.setPetData({
+                      ...props.petData,
+                      avatar: e.target.files[0],
+                    });
+                  }
+                } else {
+                  console.log(e.target.files[0].size);
+                  toast.warn('File size should be less than 2Mb!', {
+                    position: 'top-center',
+                    autoClose: 3000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: 'colored',
                   });
                 }
               }}
@@ -264,6 +223,7 @@ const AddPetStepTwo = props => {
               name="comment"
               placeholder="Type comments"
               component="textarea"
+              maxlength="120"
             />
             <PetButtonBlock>
               <PetButtonBack
@@ -286,77 +246,3 @@ const AddPetStepTwo = props => {
     </AddPetContainerStepTwo>
   );
 };
-
-// return (
-//   <RegisterFormContainer>
-//     <RegisterFormBox>
-//       <RegisterTitle>Registration</RegisterTitle>
-//       <Formik
-//         initialValues={props.userData}
-//         validationSchema={stepTwoReqisterSchema}
-//         onSubmit={handleSubmit}
-//       >
-//         {({
-//           values,
-//           setFieldValue,
-//           isValid,
-//           dirty,
-//           errors,
-//           touched,
-//           context,
-//         }) => (
-//           <Form autoComplete="off">
-//             <FormInput
-//               id={nameInputId}
-//               name="name"
-//               placeholder="Name"
-//               type="text"
-//               autoComplete="off"
-//             />
-//             <FormError name="name" />
-//             <FormInput
-//               id={regionInputId}
-//               name="region"
-//               placeholder="City, reqion"
-//               type="text"
-//               autoComplete="off"
-//             />
-//             <FormError name="region" />
-
-//             <FormInput
-//               component={PhoneInputField}
-//               type="text"
-//               id={phoneInputId}
-//               name="phone"
-//               onChange={e => setFieldValue('phone', `+${e}`)}
-//               value={values.phone}
-//               error={Boolean(errors.phone) && Boolean(touched.phone)}
-//               helperText={Boolean(touched.phone) && errors.phone}
-//             />
-//             <ErrorText>{errors.phone}</ErrorText>
-
-//             <NextFormRegisterBtn
-//               currentstep={props.currentstep}
-//               type="submit"
-//               disabled={!dirty || !isValid}
-//             >
-//               Register
-//             </NextFormRegisterBtn>
-//             <BackFormRegisterBtn
-//               type="button"
-//               onClick={() => props.prevStep(values)}
-//             >
-//               Back
-//             </BackFormRegisterBtn>
-//           </Form>
-//         )}
-//       </Formik>
-//       <RegisterBoxText>
-//         <RegisterLinkText>
-//           Already have an account?{' '}
-//           <ReqisterLoginLink to="/login">Login</ReqisterLoginLink>
-//         </RegisterLinkText>
-//       </RegisterBoxText>
-//     </RegisterFormBox>
-//   </RegisterFormContainer>
-// );

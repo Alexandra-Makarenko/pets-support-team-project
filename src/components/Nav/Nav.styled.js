@@ -4,7 +4,6 @@ import { device } from '../../styles/device';
 import { ReactComponent as BurgerIco } from './burger-menu.svg';
 import { ReactComponent as CloseIco } from './x.svg';
 
-
 export const NavBlock = styled.nav`
   display: flex;
   align-items: center;
@@ -21,7 +20,6 @@ export const MenuList = styled.ul`
   @media ${device.desktop} {
     display: flex;
     align-items: center;
-    /* margin-right: ; */
   }
 `;
 
@@ -39,6 +37,7 @@ export const MenuLink = styled(NavLink)`
   font-size: 20px;
   line-height: 1.4;
   letter-spacing: 0.04em;
+  transition: color 500ms cubic-bezier(0.4, 0, 0.2, 1);
 
   &:hover,
   :focus {
@@ -50,11 +49,12 @@ export const MenuLink = styled(NavLink)`
     font-family: 'Manrope700';
     line-height: 27px;
     color: ${props => props.theme.fontColors.navFont};
+    &:focus {
+      color: initial;
+      text-shadow: initial;
+    }
   }
-  &:focus {
-    color: none;
-    text-shadow: none;
-  }
+
   &.active {
     color: ${props => props.theme.fontColors.buttonSecondary};
     text-decoration: underline;

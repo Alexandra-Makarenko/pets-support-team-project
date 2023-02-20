@@ -29,8 +29,19 @@ export const ModalNotice = ({
   removeFromFavorite,
   toggleModal,
   categoryFilter,
+  imgsrc,
 }) => {
   const oneNotice = useSelector(getOneNotice);
+
+  const noLinesCategory = category => {
+    console.log('category:', category);
+    if (category === 'lost-found') {
+      return 'Lost/Found';
+    } else if (category === 'in-good-hands') {
+      return 'In good hands';
+    }
+    return 'Sell';
+  };
 
   const handleAddToFavorite = () => {
     removeFromFavorite();
@@ -46,8 +57,9 @@ export const ModalNotice = ({
     <ModalNoticeBox>
       <SecondWrap>
         <ImgWrap>
-          <CategoryLabel>{oneNotice.category}</CategoryLabel>
-          <Img src={oneNotice.avatarURL} alt={oneNotice.name} loading="lazy" />
+          <CategoryLabel>{noLinesCategory(oneNotice.category)}</CategoryLabel>
+
+          <Img src={imgsrc} alt={oneNotice.name} loading="lazy" />
         </ImgWrap>
 
         <WrapInner>

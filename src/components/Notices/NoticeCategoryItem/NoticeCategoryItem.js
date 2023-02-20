@@ -19,7 +19,7 @@ import {
   WrapConfirmAlertBtn,
 } from './NoticeCategoryItem.styled';
 import { useDispatch } from 'react-redux';
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import {
   fetchOneNotice,
@@ -53,10 +53,22 @@ export const NoticeCategoryItem = ({
   const dispatch = useDispatch();
   const [showModal, setShowModal] = useState(false);
 
-  const notify = () =>
+  const notifyNeedLogin = () =>
     toast.warn('You need to log in to use this function!', {
-      position: 'top-center',
+      position: 'top-right',
       autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: 'dark',
+    });
+
+  const notifyDeclarationIsDelete = () =>
+    toast.success('Declaration deleted!', {
+      position: 'bottom-left',
+      autoClose: 5000,
       hideProgressBar: false,
       closeOnClick: true,
       pauseOnHover: true,
@@ -83,6 +95,7 @@ export const NoticeCategoryItem = ({
                 onClick={() => {
                   dispatch(removeMyAddNotice(pet._id));
                   onClose();
+                  notifyDeclarationIsDelete();
                 }}
               >
                 Yes, Delete it!
@@ -97,7 +110,7 @@ export const NoticeCategoryItem = ({
 
   const addToFavorite = () => {
     if (!isLoggedIn) {
-      notify();
+      notifyNeedLogin();
       return;
     }
     dispatch(fetchAddFavoriteNotice(pet._id));
@@ -107,9 +120,6 @@ export const NoticeCategoryItem = ({
     dispatch(fetchRemoveFavoriteNotice(pet._id));
   };
 
-  // const removeFromMyAdsNotices = () => {
-  //   dispatch(removeMyAddNotice(pet._id));
-  // };
   const noLinesCategory = category => {
     if (category === 'lost-found') {
       return 'Lost/Found';
@@ -121,23 +131,24 @@ export const NoticeCategoryItem = ({
 
   return (
     <>
-      <Item>
-        <ImgWrap>
-          <CategoryLabel>{noLinesCategory(pet.category)}</CategoryLabel>
-
-          {isFavorite ? (
-            <RemoveFavoriteIconBtn removeFromFavorite={removeFromFavorite} />
-          ) : (
-            <AddFavoriteIconBtn onClick={addToFavorite} />
-          )}
-
-          {pet.avatarURL ? (
-            <Img src={pet.avatarURL} alt={pet.title} loading="lazy" />
-          ) : (
-            <Img src={Plug} alt="animal" />
-          )}
-        </ImgWrap>
+      <Item isMyAds={isMyAds}>
         <Wrap>
+          <ImgWrap>
+            <CategoryLabel>{noLinesCategory(pet.category)}</CategoryLabel>
+
+            {isFavorite ? (
+              <RemoveFavoriteIconBtn removeFromFavorite={removeFromFavorite} />
+            ) : (
+              <AddFavoriteIconBtn onClick={addToFavorite} />
+            )}
+
+            {pet.avatarURL ? (
+              <Img src={pet.avatarURL} alt={pet.title} loading="lazy" />
+            ) : (
+              <Img src={Plug} alt="animal" />
+            )}
+          </ImgWrap>
+
           <WrapInner>
             <Title>{pet.title || 'Title must be here'}</Title>
             <Ul>
@@ -161,25 +172,13 @@ export const NoticeCategoryItem = ({
               )}
             </Ul>
           </WrapInner>
-          <ThumbBtn isFavorite={isFavorite}>
-            <LearnMoreBtn type="button" onClick={toggleModal}>
-              Learn more
-            </LearnMoreBtn>
-            {isMyAds && <RemoveMyNoticeBtn onClick={removeFromMyAdsNotices} />}
-          </ThumbBtn>
         </Wrap>
-        <ToastContainer
-          position="top-center"
-          autoClose={3000}
-          hideProgressBar={false}
-          newestOnTop={false}
-          closeOnClick
-          rtl={false}
-          pauseOnFocusLoss
-          draggable
-          pauseOnHover
-          theme="colored"
-        />
+        <ThumbBtn isFavorite={isFavorite} isMyAds={isMyAds}>
+          <LearnMoreBtn type="button" onClick={toggleModal}>
+            Learn more
+          </LearnMoreBtn>
+          {isMyAds && <RemoveMyNoticeBtn onClick={removeFromMyAdsNotices} />}
+        </ThumbBtn>
       </Item>
       {showModal && (
         <MainModal onClose={toggleModal}>
@@ -190,6 +189,7 @@ export const NoticeCategoryItem = ({
             removeFromFavorite={removeFromFavorite}
             toggleModal={toggleModal}
             categoryFilter={categoryFilter}
+            imgsrc={pet.avatarURL ? pet.avatarURL : Plug}
           />
         </MainModal>
       )}

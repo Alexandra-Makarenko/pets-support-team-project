@@ -8,7 +8,7 @@ export const ModalNoticeBox = styled.div`
   padding-bottom: 40px;
   padding-left: 20px;
   padding-right: 20px;
-  overflow:auto;
+  overflow: auto;
 
   @media ${device.tablet} {
     min-width: 704px;
@@ -78,6 +78,7 @@ export const WrapInner = styled.div`
 `;
 
 export const Title = styled.h2`
+  word-wrap: break-word;
   font-family: 'Manrope700';
   padding-right: 35px;
   font-size: 24px;
@@ -115,23 +116,42 @@ export const Li = styled.li`
 
 export const Lable = styled.p`
   font-family: 'Manrope600';
+  font-size: 14px;
+  line-height: 19px;
   width: 94px;
   flex-shrink: 0;
+  @media ${device.tablet} {
+    font-size: 16px;
+    line-height: 22px;
+  }
 `;
 
 export const Text = styled.p`
-  @media screen and (min-width: 768px) {
+  font-family: 'Manrope500';
+  font-size: 14px;
+  line-height: 19px;
+  @media ${device.tablet} {
+    font-size: 16px;
+    line-height: 22px;
   }
 `;
 
 export const TextLink = styled.a`
+  width: 122px;
+  word-wrap: break-word;
   text-decoration: none;
+  font-size: 14px;
+  line-height: 19px;
+
   color: #000000;
   &:hover {
     color: #f59256;
     text-decoration: underline;
   }
   @media screen and (min-width: 768px) {
+    font-size: 16px;
+    line-height: 22px;
+    width: 235px;
   }
 `;
 
@@ -187,24 +207,24 @@ export const ContactModalNoticeBtn = styled.a`
   text-align: center;
   background-color: #f59256;
   border-radius: 40px;
-  padding-top: 9px;
-  padding-bottom: 9px;
+  padding-top: 7px;
+  padding-bottom: 7px;
   font-size: 16px;
   line-height: 22px;
   letter-spacing: 0.04em;
   outline: none;
-  border: none;
   cursor: pointer;
-  transition: all 0.3s ease-in-out;
   text-decoration: none;
   text-align: center;
-  &:hover {
-    transform: scale(1.03);
-  }
+  border: 2px solid #f59256;
+  transition: transform ${p => p.theme.transition.first};
 
-  /* &:hover {
+  &:hover,
+  &:focus {
     transform: scale(1.03);
-  } */
+    border: 2px solid ${p => p.theme.hoverButtonColor.primary};
+    cursor: pointer;
+  }
 
   @media ${device.tablet} {
     margin-top: 0px;
@@ -230,10 +250,13 @@ export const AddModalNoticeBtn = styled.button`
   line-height: 22px;
   letter-spacing: 0.04em;
   outline: none;
-  transition: all 0.3s ease-in-out;
-  cursor: pointer;
-  &:hover {
+  transition: transform ${p => p.theme.transition.first};
+
+  &:hover,
+  &:focus {
     transform: scale(1.03);
+    border: 2px solid ${p => p.theme.hoverButtonColor.primary};
+    cursor: pointer;
   }
 
   @media ${device.tablet} {
@@ -250,7 +273,7 @@ export const RemoveFavoriteBtn = styled.button`
   justify-content: center;
   margin-top: 12px;
   width: 100%;
-  color: #ff6101;
+  color: #111111;
   background-color: #ffffff;
   border: 2px solid #ff6101;
   border-radius: 40px;
@@ -260,10 +283,13 @@ export const RemoveFavoriteBtn = styled.button`
   line-height: 22px;
   letter-spacing: 0.04em;
   outline: none;
-  transition: all 0.3s ease-in-out;
-  cursor: pointer;
-  &:hover {
+  transition: transform ${p => p.theme.transition.first};
+
+  &:hover,
+  &:focus {
     transform: scale(1.03);
+    border: 2px solid ${p => p.theme.hoverButtonColor.primary};
+    cursor: pointer;
   }
 
   @media ${device.tablet} {

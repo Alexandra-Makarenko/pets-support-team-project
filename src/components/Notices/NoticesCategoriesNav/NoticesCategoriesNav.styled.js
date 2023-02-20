@@ -1,11 +1,11 @@
 import styled from 'styled-components';
-import { NavLink } from "react-router-dom";
+import { NavLink } from 'react-router-dom';
 import { device } from '../../../styles/device';
 
- export const NavSection = styled.section`
-  padding-top:30px;
+export const NavSection = styled.section`
+  ${'' /* padding-top: 30px; */}
 `;
- export const Container = styled.div`
+export const Container = styled.div`
   display: flex;
   flex-wrap: wrap;
   gap: 12px;
@@ -14,11 +14,10 @@ import { device } from '../../../styles/device';
   font-weight: 500;
   font-size: 14px;
   letter-spacing: 0.04em;
- 
 `;
- export const DesktopContainer = styled.ul`
-  display: none;  
-   @media ${device.desktop} {
+export const DesktopContainer = styled.ul`
+  display: none;
+  @media ${device.desktop} {
     display: flex;
     flex-wrap: wrap;
     justify-content: flex-start;
@@ -30,16 +29,15 @@ export const TabletContainer = styled.ul`
   flex-wrap: wrap;
   justify-content: flex-start;
   gap: 12px;
-   @media ${device.desktop} {
+  @media ${device.desktop} {
     display: none;
-  }  
+  }
 `;
 
- export const AuthContainer = styled.ul`
+export const AuthContainer = styled.ul`
   display: flex;
   flex-wrap: wrap;
   gap: 12px;
- 
 `;
 export const Link = styled(NavLink)`
   display: block;
@@ -48,10 +46,29 @@ export const Link = styled(NavLink)`
   border-radius: 40px;
   padding: 8px 28px;
   color: ${props => props.theme.fontColors.buttonPrimary};
-  background-color:${props => props.theme.backgrounds.buttonSecondary};
+  background-color: ${props => props.theme.backgrounds.buttonSecondary};
   font-weight: 500;
-   &.active {
-    color:  ${props => props.theme.fontColors.white};
-    background-color:${props => props.theme.backgrounds.buttonPrimary};
+  transition: transform ${p => p.theme.transition.first};
+  &.active {
+    color: ${props => props.theme.fontColors.white};
+    background-color: ${props => props.theme.backgrounds.buttonPrimary};
+  }
+
+  &:hover {
+    transform: scale(1.03);
+    border: 2px solid ${p => p.theme.hoverButtonColor.primary};
+    /* color: ${p => p.theme.hoverButtonColor.primary}; */
+    cursor: pointer;
+  }
+
+  &:focus {
+    transform: scale(1.03);
+  }
+  @media ${device.tablet} {
+    padding: 10px 28px;
+    font-size: 20px;
+    line-height: 1;
+  }
+  @media ${device.desktop} {
   }
 `;

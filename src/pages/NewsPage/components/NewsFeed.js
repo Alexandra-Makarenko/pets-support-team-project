@@ -1,7 +1,7 @@
 import { nanoid } from 'nanoid';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { Loader } from 'components/Loader/Loader';
+// import { Loader } from 'components/Loader/Loader';
 import { SearchNotFound } from 'components/SearchNotFound/SearchNotFound';
 import {
   GradientBar,
@@ -14,7 +14,9 @@ import {
   NewsTitle,
   NewsMore,
 } from './styles/NewsStyles';
-import { articleSplit } from './helpers/articleSplit';
+import NewsLoaderBig from 'components/Skeleton/SkeletonNewsLoaderBig';
+import { SkeletonNewsLoader } from 'components/Skeleton/SkeletonOptions';
+import NewsLoaderSmall from 'components/Skeleton/SkeletonNewsLoaderSmall';
 
 export default function NewsList({ news, status, searchValue }) {
   const logify = () => {
@@ -25,7 +27,14 @@ export default function NewsList({ news, status, searchValue }) {
 
   return (
     <NewsContainer>
-      {status === 'loading' && <Loader />}
+      {status === 'loading' &&
+        window.matchMedia('(min-width: 768px)').matches && (
+          <SkeletonNewsLoader>{<NewsLoaderBig />}</SkeletonNewsLoader>
+        )}
+      {status === 'loading' &&
+        window.matchMedia('(max-width: 767px)').matches && (
+          <SkeletonNewsLoader>{<NewsLoaderSmall />}</SkeletonNewsLoader>
+        )}
       {status === 'resolved' && !news && logify}
       {status === 'resolved' && news && news.length === 0 && (
         <SearchNotFound searchValue={searchValue} />
@@ -36,9 +45,9 @@ export default function NewsList({ news, status, searchValue }) {
             <NewsItem key={nanoid()}>
               <GradientBar></GradientBar>
               <NewsTitle>{article.title}</NewsTitle>
-              <NewsArticle>{articleSplit(article.description)}</NewsArticle>
+              <NewsArticle>{article.description}</NewsArticle>
               <NewsAdditional>
-                <NewsDate>{article.date || article.publishedAt}</NewsDate>
+                <NewsDate>{article.date}</NewsDate>
                 <NewsMore
                   href={article.url}
                   target="_blank"

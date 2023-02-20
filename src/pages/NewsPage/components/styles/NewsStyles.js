@@ -14,7 +14,21 @@ const NewsContainer = styled.div`
 const NewsItem = styled.li`
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  max-height: 100%;
+  margin-bottom: 40px;
+  @media (min-width: 768px) {
+    flex-basis: calc((100% - 2 * 32px) / 2);
+    margin-right: 32px;
+  }
+  @media (min-width: 1280px) {
+    flex-basis: calc((100% - 3 * 35px) / 3);
+    margin-right: 35px;
+  }
+`;
+
+const SkeletonItem = styled.li`
+  display: flex;
+  flex-direction: column;
   max-height: 100%;
   margin-bottom: 40px;
   @media (min-width: 768px) {
@@ -42,17 +56,24 @@ const GradientBar = styled.div`
   }
 `;
 const NewsTitle = styled.h3`
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
   margin-bottom: 16px;
-  font-family: 'Manrope', sans-serif;
-  font-weight: 700;
+  font-family: 'Manrope700';
+  font-size: 24px;
   size: 24px;
   line-height: 33px;
   letter-spacing: -0.01em;
   color: #111111;
 `;
 const NewsArticle = styled.p`
-  font-family: 'Manrope';
-  font-weight: 400;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 5;
+  overflow: hidden;
+  font-family: 'Manrope400';
   font-size: 16px;
   line-height: 22px;
   color: #111321;
@@ -63,19 +84,16 @@ const NewsAdditional = styled.div`
   margin-top: 40px;
 `;
 const NewsDate = styled.span`
-  font-family: 'Manrope';
-  font-style: normal;
-  font-weight: 400;
+  font-family: 'Manrope400';
   font-size: 16px;
-  line-height: 22px;
-  color: rgba(17, 17, 17, 0.6);
+  line-height: 21.86px
+  color: rgba(11, 11, 11, 0.6);
 `;
 
 const NewsMore = styled.a`
-  font-family: 'Manrope';
-  font-weight: 500;
+  font-family: 'Manrope500';
   font-size: 16px;
-  line-height: 22px;
+  line-height: 21.86px;
   text-align: right;
   text-decoration: none;
   color: #f59256;
@@ -85,8 +103,7 @@ const NewsMore = styled.a`
 `;
 
 const Empty = styled.h3`
-  font-family: 'Manrope', sans-serif;
-  font-weight: 700;
+  font-family: 'Manrope700', sans-serif;
   size: 36px;
   line-height: 40px;
   letter-spacing: -0.01em;
@@ -101,6 +118,7 @@ export {
   NewsAdditional,
   NewsDate,
   NewsItem,
+  SkeletonItem,
   NewsTitle,
   NewsMore,
   Empty,
