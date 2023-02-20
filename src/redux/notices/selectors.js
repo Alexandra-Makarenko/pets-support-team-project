@@ -4,7 +4,8 @@ export const getSearchValueFilter = state => state.filters.searchValue;
 
 export const getNotices = state => state.notices.items;
 
-export const getFavoriteNotices = state => state.notices.favoriteNotices;
+export const getFavoriteNotices = state =>
+  state.notices.favoriteNotices.notices;
 
 export const getOneNotice = state => state.notices.oneNotice;
 
