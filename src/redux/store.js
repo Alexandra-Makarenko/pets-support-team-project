@@ -14,6 +14,7 @@ import {
 
 import { authReduser } from './auth/authSlice';
 import { petsReducer } from './userPets/userPetSlice';
+import { ownerReducer } from './owner/ownerSlice';
 
 export const store = configureStore({
   reducer: {
@@ -21,6 +22,7 @@ export const store = configureStore({
     notices: noticesReducer,
     filters: filtersReducer,
     pets: petsReducer,
+    owner: ownerReducer,
   },
   middleware(getDefaultMiddleware) {
     return getDefaultMiddleware({

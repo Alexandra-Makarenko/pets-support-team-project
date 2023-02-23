@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { device } from 'styles/device';
 import { AiFillHeart } from 'react-icons/ai';
+import { Link } from 'react-router-dom';
 
 export const ModalNoticeBox = styled.div`
   max-width: 280px;
@@ -130,6 +131,21 @@ export const Text = styled.p`
   font-family: 'Manrope500';
   font-size: 14px;
   line-height: 19px;
+  @media ${device.tablet} {
+    font-size: 16px;
+    line-height: 22px;
+  }
+`;
+
+export const OwnerLink = styled(Link)`
+  transition: color 100ms cubic-bezier(0.57, 0.21, 0.69, 1.25);
+  color: ${props => props.theme.fontColors.buttonPrimary};
+  font-family: 'Manrope500';
+  font-size: 14px;
+  line-height: 19px;
+  &:hover {
+    color: ${props => props.theme.fontColors.buttonSecondary};
+  }
   @media ${device.tablet} {
     font-size: 16px;
     line-height: 22px;
