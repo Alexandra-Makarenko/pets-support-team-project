@@ -21,6 +21,7 @@ const OurFriendsPage = lazy(() =>
 const NewsPage = lazy(() => import('../pages/NewsPage/NewsPage'));
 const NoticesPage = lazy(() => import('../pages/NoticesPage/NoticesPage'));
 const UserPage = lazy(() => import('../pages/UserPage/UserPage'));
+const OwnerPage = lazy(() => import('../pages/OwnerPage/OwnerPage'));
 const NoticesCategoryList = lazy(() =>
   import('./Notices/NoticesCategoryList/NoticesCategoryList')
 );
@@ -71,6 +72,7 @@ export const App = () => {
             <Route path="favorite" element={<NoticesCategoryList />} />
             <Route path="own" element={<NoticesCategoryList />} />
           </Route>
+          <Route path="/owner/:id" element={<OwnerPage />} />
           <Route
             path="/user"
             element={<PrivateRoute component={UserPage} redirectTo="/login" />}

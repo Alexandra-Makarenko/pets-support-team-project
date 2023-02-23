@@ -18,10 +18,12 @@ import {
   WrapForBtn,
   SecondWrap,
   TextLink,
+  OwnerLink,
 } from './ModalNotice.styled';
 
 import { useSelector } from 'react-redux';
 import { getOneNotice } from 'redux/notices/selectors';
+import { Link } from 'react-router-dom';
 
 export const ModalNotice = ({
   isFavorite,
@@ -101,6 +103,12 @@ export const ModalNotice = ({
                 <Text>{oneNotice.price + ' ₴' || '----------'}</Text>
               </Li>
             )}
+            <Li key={`${oneNotice._id}+owner`}>
+              <Lable>By:</Lable>
+              <OwnerLink to={`/owner/${oneNotice.owner}`}>
+                {oneNotice.ownername}
+              </OwnerLink>
+            </Li>
           </Ul>
         </WrapInner>
       </SecondWrap>
