@@ -138,13 +138,13 @@ export const Text = styled.p`
 `;
 
 export const OwnerLink = styled(Link)`
-  color: ${props => props.theme.fontColors.buttonSecondary};
-  text-decoration: none;
+  transition: color 100ms cubic-bezier(0.57, 0.21, 0.69, 1.25);
+  color: ${props => props.theme.fontColors.buttonPrimary};
   font-family: 'Manrope500';
   font-size: 14px;
   line-height: 19px;
   &:hover {
-    text-decoration: underline;
+    color: ${props => props.theme.fontColors.buttonSecondary};
   }
   @media ${device.tablet} {
     font-size: 16px;

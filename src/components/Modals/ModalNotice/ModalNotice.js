@@ -23,7 +23,6 @@ import {
 
 import { useSelector } from 'react-redux';
 import { getOneNotice } from 'redux/notices/selectors';
-import { Link } from 'react-router-dom';
 
 export const ModalNotice = ({
   isFavorite,

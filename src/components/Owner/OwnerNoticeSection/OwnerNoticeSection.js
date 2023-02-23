@@ -1,4 +1,4 @@
-import { Container } from 'components/Container/Container';
+// import { Container } from 'components/Container/Container';
 // import { ModalAddNotice } from 'components/Modals/ModalAddNotice/ModalAddNotice';
 import { PagesTitle } from 'components/PagesTitle/PagesTitle';
 import { SearchForm } from 'components/Search/SearchForm';
