@@ -1,4 +1,4 @@
-import { Route, Routes } from 'react-router-dom';
+import { Navigate, Route, Routes } from 'react-router-dom';
 import { SharedLayout } from './SharedLayout/SharedLayout';
 import { useEffect, lazy } from 'react';
 import { useDispatch } from 'react-redux';
@@ -65,19 +65,24 @@ export const App = () => {
           />
           <Route path="/friends" element={<OurFriendsPage />} />
           <Route path="/news" element={<NewsPage />} />
+          <Route
+            exact
+            path="/notices"
+            element={<Navigate to={'/notices/sell'} />}
+          />
           <Route path="/notices" element={<NoticesPage />}>
             <Route path="sell" element={<NoticesCategoryList />} />
             <Route path="lost-found" element={<NoticesCategoryList />} />
             <Route path="in-good-hands" element={<NoticesCategoryList />} />
             <Route path="favorite" element={<NoticesCategoryList />} />
             <Route path="own" element={<NoticesCategoryList />} />
+            <Route path="*" element={<Navigate to={'/notices/sell'} />} />
           </Route>
           <Route path="/owner/:id" element={<OwnerPage />} />
           <Route
             path="/user"
             element={<PrivateRoute component={UserPage} redirectTo="/login" />}
           />
-          {/* <Route path="*" element={<Home />} /> */}
           <Route path="*" element={<NotFoundPage />} />
         </Route>
       </Routes>
